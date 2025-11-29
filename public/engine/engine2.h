@@ -43,7 +43,7 @@ class RWVariable
 #define RW_VAR(type, name, parent, readop, writeop) RWVariable<type, parent> name{readop, writeop,this};
 
 
-extern void *g_nativeFunctions[2699];
+extern void *g_nativeFunctions[2709];
 extern void *g_callbackFunctions[80];
 typedef int(*FnBindingsImportDelegate)( int hash, void* imports, void* exports, int* structSizes );
 
@@ -6096,6 +6096,11 @@ class fpxr::ApplicationConfig
 	{
 		((void(*)(void* __dbgCallback))g_nativeFunctions[1376])(dbgCallback);
 	}
+	static
+	inline void SetErrorCallback(void* errCallback) 
+	{
+		((void(*)(void* __errCallback))g_nativeFunctions[1377])(errCallback);
+	}
 };
 class fpxr::Compositor
 {
@@ -6108,57 +6113,57 @@ class fpxr::Compositor
 	inline const fpxr::EventManager* EventManager() 
 	{
 		return
-		((const fpxr::EventManager*(*)(void* self))g_nativeFunctions[1377])(m_pSelf);
+		((const fpxr::EventManager*(*)(void* self))g_nativeFunctions[1378])(m_pSelf);
 	}
 	inline int64 Submit(fpxr::TextureSubmitInfo info) 
 	{
 		return
-		((int64(*)(void* self, fpxr::TextureSubmitInfo info))g_nativeFunctions[1378])(m_pSelf, info);
+		((int64(*)(void* self, fpxr::TextureSubmitInfo info))g_nativeFunctions[1379])(m_pSelf, info);
 	}
 	inline int64 BeginFrame() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1379])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1380])(m_pSelf);
 	}
 	inline int64 EndFrame() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1380])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1381])(m_pSelf);
 	}
 	inline unsigned int GetEyeWidth() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1381])(m_pSelf);
+		((unsigned int(*)(void* self))g_nativeFunctions[1382])(m_pSelf);
 	}
 	inline unsigned int GetEyeHeight() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1382])(m_pSelf);
+		((unsigned int(*)(void* self))g_nativeFunctions[1383])(m_pSelf);
 	}
 	inline unsigned int GetRenderTargetWidth() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1383])(m_pSelf);
+		((unsigned int(*)(void* self))g_nativeFunctions[1384])(m_pSelf);
 	}
 	inline unsigned int GetRenderTargetHeight() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1384])(m_pSelf);
+		((unsigned int(*)(void* self))g_nativeFunctions[1385])(m_pSelf);
 	}
 	inline float GetDisplayRefreshRate() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1385])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1386])(m_pSelf);
 	}
 	inline int64 GetViewInfo(unsigned int viewIndex, fpxr::ViewInfo* outViewInfo) 
 	{
 		return
-		((int64(*)(void* self, unsigned int viewIndex, fpxr::ViewInfo* outViewInfo))g_nativeFunctions[1386])(m_pSelf, viewIndex, outViewInfo);
+		((int64(*)(void* self, unsigned int viewIndex, fpxr::ViewInfo* outViewInfo))g_nativeFunctions[1387])(m_pSelf, viewIndex, outViewInfo);
 	}
 	inline int64 GetProjectionMatrix(unsigned int viewIndex, float flNearZ, float flFarZ, fpxr::Matrix* outViewInfo) 
 	{
 		return
-		((int64(*)(void* self, unsigned int viewIndex, float flNearZ, float flFarZ, fpxr::Matrix* outViewInfo))g_nativeFunctions[1387])(m_pSelf, viewIndex, flNearZ, flFarZ, outViewInfo);
+		((int64(*)(void* self, unsigned int viewIndex, float flNearZ, float flFarZ, fpxr::Matrix* outViewInfo))g_nativeFunctions[1388])(m_pSelf, viewIndex, flNearZ, flFarZ, outViewInfo);
 	}
 };
 class fpxr::EventManager
@@ -6172,7 +6177,7 @@ class fpxr::EventManager
 	inline int64 PumpEvent(fpxr::Event* ev) 
 	{
 		return
-		((int64(*)(void* __self, fpxr::Event* __ev))g_nativeFunctions[1388])(m_pSelf, ev);
+		((int64(*)(void* __self, fpxr::Event* __ev))g_nativeFunctions[1389])(m_pSelf, ev);
 	}
 };
 class fpxr::Input
@@ -6186,37 +6191,37 @@ class fpxr::Input
 	inline int64 GetBooleanActionState(const char* path, int64 inputSource, fpxr::InputBooleanActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputBooleanActionState* outState))g_nativeFunctions[1389])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputBooleanActionState* outState))g_nativeFunctions[1390])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 GetFloatActionState(const char* path, int64 inputSource, fpxr::InputFloatActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputFloatActionState* outState))g_nativeFunctions[1390])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputFloatActionState* outState))g_nativeFunctions[1391])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 GetVector2ActionState(const char* path, int64 inputSource, fpxr::InputVector2ActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputVector2ActionState* outState))g_nativeFunctions[1391])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputVector2ActionState* outState))g_nativeFunctions[1392])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 GetPoseActionState(const char* path, int64 inputSource, fpxr::InputPoseActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputPoseActionState* outState))g_nativeFunctions[1392])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputPoseActionState* outState))g_nativeFunctions[1393])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 TriggerHapticVibration(float duration, float frequency, float amplitude, int64 inputSource) 
 	{
 		return
-		((int64(*)(void* self, float duration, float frequency, float amplitude, int64 inputSource))g_nativeFunctions[1393])(m_pSelf, duration, frequency, amplitude, inputSource);
+		((int64(*)(void* self, float duration, float frequency, float amplitude, int64 inputSource))g_nativeFunctions[1394])(m_pSelf, duration, frequency, amplitude, inputSource);
 	}
 	inline int64 GetHandPoseState(int64 inputSource, int64 motionRange, fpxr::InputPoseHandState* outState) 
 	{
 		return
-		((int64(*)(void* self, int64 inputSource, int64 motionRange, fpxr::InputPoseHandState* outState))g_nativeFunctions[1394])(m_pSelf, inputSource, motionRange, outState);
+		((int64(*)(void* self, int64 inputSource, int64 motionRange, fpxr::InputPoseHandState* outState))g_nativeFunctions[1395])(m_pSelf, inputSource, motionRange, outState);
 	}
 	inline float GetFingerCurl(int64 inputSource, int64 finger) 
 	{
 		return
-		((float(*)(void* self, int64 inputSource, int64 finger))g_nativeFunctions[1395])(m_pSelf, inputSource, finger);
+		((float(*)(void* self, int64 inputSource, int64 finger))g_nativeFunctions[1396])(m_pSelf, inputSource, finger);
 	}
 };
 class fpxr::Instance
@@ -6229,38 +6234,38 @@ class fpxr::Instance
 	}
 	Instance(fpxr::InstanceInfo instanceInfo) 
 	{
-		m_pSelf = ((void*(*)(fpxr::InstanceInfo __instanceInfo))g_nativeFunctions[1396])(instanceInfo);
+		m_pSelf = ((void*(*)(fpxr::InstanceInfo __instanceInfo))g_nativeFunctions[1397])(instanceInfo);
 	}
 	static
 	inline int HasHeadset() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1397])();
+		((int(*)())g_nativeFunctions[1398])();
 	}
 	inline const fpxr::Compositor* Compositor(fpxr::VulkanInfo vulkanInfo) 
 	{
 		return
-		((const fpxr::Compositor*(*)(void* self, fpxr::VulkanInfo vulkanInfo))g_nativeFunctions[1398])(m_pSelf, vulkanInfo);
+		((const fpxr::Compositor*(*)(void* self, fpxr::VulkanInfo vulkanInfo))g_nativeFunctions[1399])(m_pSelf, vulkanInfo);
 	}
 	inline const fpxr::Input* Input() 
 	{
 		return
-		((const fpxr::Input*(*)(void* self))g_nativeFunctions[1399])(m_pSelf);
+		((const fpxr::Input*(*)(void* self))g_nativeFunctions[1400])(m_pSelf);
 	}
 	inline const char* GetRequiredDeviceExtensions() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[1400])(m_pSelf);
+		((const char*(*)(void* __self))g_nativeFunctions[1401])(m_pSelf);
 	}
 	inline const char* GetRequiredInstanceExtensions() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[1401])(m_pSelf);
+		((const char*(*)(void* __self))g_nativeFunctions[1402])(m_pSelf);
 	}
 	inline fpxr::InstanceProperties GetProperties() 
 	{
 		return
-		((fpxr::InstanceProperties(*)(void* self))g_nativeFunctions[1402])(m_pSelf);
+		((fpxr::InstanceProperties(*)(void* self))g_nativeFunctions[1403])(m_pSelf);
 	}
 };
 class g_pAudioDevice
@@ -6274,66 +6279,66 @@ class g_pAudioDevice
 	inline const char* Name() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[1403])();
+		((const char*(*)())g_nativeFunctions[1404])();
 	}
 	inline unsigned int ChannelCount() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1404])();
+		((unsigned int(*)())g_nativeFunctions[1405])();
 	}
 	inline unsigned int MixChannelCount() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1405])();
+		((unsigned int(*)())g_nativeFunctions[1406])();
 	}
 	inline unsigned int BitsPerSample() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1406])();
+		((unsigned int(*)())g_nativeFunctions[1407])();
 	}
 	inline unsigned int BytesPerSample() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1407])();
+		((unsigned int(*)())g_nativeFunctions[1408])();
 	}
 	inline unsigned int SampleRate() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1408])();
+		((unsigned int(*)())g_nativeFunctions[1409])();
 	}
 	inline int IsActive() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1409])();
+		((int(*)())g_nativeFunctions[1410])();
 	}
 	inline void CancelOutput() 
 	{
-		((void(*)())g_nativeFunctions[1410])();
+		((void(*)())g_nativeFunctions[1411])();
 	}
 	inline void WaitForComplete() 
 	{
-		((void(*)())g_nativeFunctions[1411])();
+		((void(*)())g_nativeFunctions[1412])();
 	}
 	inline void MuteDevice(int bMuteDevice) 
 	{
-		((void(*)(int bMuteDevice))g_nativeFunctions[1412])(bMuteDevice);
+		((void(*)(int bMuteDevice))g_nativeFunctions[1413])(bMuteDevice);
 	}
 	inline void ClearBuffer() 
 	{
-		((void(*)())g_nativeFunctions[1413])();
+		((void(*)())g_nativeFunctions[1414])();
 	}
 	inline void OutputDebugInfo() 
 	{
-		((void(*)())g_nativeFunctions[1414])();
+		((void(*)())g_nativeFunctions[1415])();
 	}
 	inline int IsValid() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1415])();
+		((int(*)())g_nativeFunctions[1416])();
 	}
 	inline void SendOutput(CAudioMixDeviceBuffers* buffers) 
 	{
-		((void(*)(CAudioMixDeviceBuffers* __buffers))g_nativeFunctions[1416])(buffers);
+		((void(*)(CAudioMixDeviceBuffers* __buffers))g_nativeFunctions[1417])(buffers);
 	}
 };
 class g_pEnginePVSManager
@@ -6347,11 +6352,11 @@ class g_pEnginePVSManager
 	inline const IPVS* BuildPvs(IWorldReference* world) 
 	{
 		return
-		((const IPVS*(*)(IWorldReference* world))g_nativeFunctions[1417])(world);
+		((const IPVS*(*)(IWorldReference* world))g_nativeFunctions[1418])(world);
 	}
 	inline void DestroyPvs(IPVS* pvs) 
 	{
-		((void(*)(IPVS* pvs))g_nativeFunctions[1418])(pvs);
+		((void(*)(IPVS* pvs))g_nativeFunctions[1419])(pvs);
 	}
 };
 class g_pEngineServiceMgr
@@ -6365,19 +6370,19 @@ class g_pEngineServiceMgr
 	inline SwapChainHandle_t GetEngineSwapChain() 
 	{
 		return
-		((SwapChainHandle_t(*)())g_nativeFunctions[1419])();
+		((SwapChainHandle_t(*)())g_nativeFunctions[1420])();
 	}
 	inline void GetEngineSwapChainSize(int* w, int* h) 
 	{
-		((void(*)(int* w, int* h))g_nativeFunctions[1420])(w, h);
+		((void(*)(int* w, int* h))g_nativeFunctions[1421])(w, h);
 	}
 	inline void SetEngineState(void* hWnd, SwapChainHandle_t hSwapChain) 
 	{
-		((void(*)(void* __hWnd, SwapChainHandle_t __hSwapChain))g_nativeFunctions[1421])(hWnd, hSwapChain);
+		((void(*)(void* __hWnd, SwapChainHandle_t __hSwapChain))g_nativeFunctions[1422])(hWnd, hSwapChain);
 	}
 	inline void ExitMainLoop() 
 	{
-		((void(*)())g_nativeFunctions[1422])();
+		((void(*)())g_nativeFunctions[1423])();
 	}
 };
 class g_pFullFileSystem
@@ -6391,27 +6396,27 @@ class g_pFullFileSystem
 	inline const char* GetSymLink(const char* pPath, const char* pathID) 
 	{
 		return
-		((const char*(*)(const char* pPath, const char* pathID))g_nativeFunctions[1423])(pPath, pathID);
+		((const char*(*)(const char* pPath, const char* pathID))g_nativeFunctions[1424])(pPath, pathID);
 	}
 	inline void AddSymLink(const char* pPath, const char* pathID, const char* realPath) 
 	{
-		((void(*)(const char* pPath, const char* pathID, const char* realPath))g_nativeFunctions[1424])(pPath, pathID, realPath);
+		((void(*)(const char* pPath, const char* pathID, const char* realPath))g_nativeFunctions[1425])(pPath, pathID, realPath);
 	}
 	inline void RemoveSymLink(const char* pPath, const char* pathID) 
 	{
-		((void(*)(const char* pPath, const char* pathID))g_nativeFunctions[1425])(pPath, pathID);
+		((void(*)(const char* pPath, const char* pathID))g_nativeFunctions[1426])(pPath, pathID);
 	}
 	inline void ResetProjectPaths(int includeCloudAssets) 
 	{
-		((void(*)(int includeCloudAssets))g_nativeFunctions[1426])(includeCloudAssets);
+		((void(*)(int includeCloudAssets))g_nativeFunctions[1427])(includeCloudAssets);
 	}
 	inline void AddProjectPath(const char* ident, const char* fullPath) 
 	{
-		((void(*)(const char* ident, const char* fullPath))g_nativeFunctions[1427])(ident, fullPath);
+		((void(*)(const char* ident, const char* fullPath))g_nativeFunctions[1428])(ident, fullPath);
 	}
 	inline void AddCloudPath(const char* ident, const char* fullPath) 
 	{
-		((void(*)(const char* ident, const char* fullPath))g_nativeFunctions[1428])(ident, fullPath);
+		((void(*)(const char* ident, const char* fullPath))g_nativeFunctions[1429])(ident, fullPath);
 	}
 };
 class g_pInputService
@@ -6425,30 +6430,30 @@ class g_pInputService
 	inline int IsAppActive() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1429])();
+		((int(*)())g_nativeFunctions[1430])();
 	}
 	inline int HasMouseFocus() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1430])();
+		((int(*)())g_nativeFunctions[1431])();
 	}
 	inline const char* Key_NameForBinding(const char* binding) 
 	{
 		return
-		((const char*(*)(const char* binding))g_nativeFunctions[1431])(binding);
+		((const char*(*)(const char* binding))g_nativeFunctions[1432])(binding);
 	}
 	inline const char* GetBinding(int64 button) 
 	{
 		return
-		((const char*(*)(int64 button))g_nativeFunctions[1432])(button);
+		((const char*(*)(int64 button))g_nativeFunctions[1433])(button);
 	}
 	inline void SetCursorPosition(int x, int y) 
 	{
-		((void(*)(int x, int y))g_nativeFunctions[1433])(x, y);
+		((void(*)(int x, int y))g_nativeFunctions[1434])(x, y);
 	}
 	inline void Pump() 
 	{
-		((void(*)())g_nativeFunctions[1434])();
+		((void(*)())g_nativeFunctions[1435])();
 	}
 };
 class g_pInputSystem
@@ -6461,96 +6466,96 @@ class g_pInputSystem
 	}
 	inline void RegisterWindowWithSDL(void* hwnd) 
 	{
-		((void(*)(void* hwnd))g_nativeFunctions[1435])(hwnd);
+		((void(*)(void* hwnd))g_nativeFunctions[1436])(hwnd);
 	}
 	inline void UnregisterWindowFromSDL(void* hwnd) 
 	{
-		((void(*)(void* hwnd))g_nativeFunctions[1436])(hwnd);
+		((void(*)(void* hwnd))g_nativeFunctions[1437])(hwnd);
 	}
 	inline void SetEditorMainWindow(void* hwnd) 
 	{
-		((void(*)(void* hwnd))g_nativeFunctions[1437])(hwnd);
+		((void(*)(void* hwnd))g_nativeFunctions[1438])(hwnd);
 	}
 	inline void OnEditorGameFocusChange(void* hwnd, int bIsFocused) 
 	{
-		((void(*)(void* hwnd, int bIsFocused))g_nativeFunctions[1438])(hwnd, bIsFocused);
+		((void(*)(void* hwnd, int bIsFocused))g_nativeFunctions[1439])(hwnd, bIsFocused);
 	}
 	inline void SetCursorPosition(int x, int y, void* window) 
 	{
-		((void(*)(int x, int y, void* window))g_nativeFunctions[1439])(x, y, window);
+		((void(*)(int x, int y, void* window))g_nativeFunctions[1440])(x, y, window);
 	}
 	inline int HasMouseFocus() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1440])();
+		((int(*)())g_nativeFunctions[1441])();
 	}
 	inline int IsAppActive() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1441])();
+		((int(*)())g_nativeFunctions[1442])();
 	}
 	inline int IsIMEAllowed() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1442])();
+		((int(*)())g_nativeFunctions[1443])();
 	}
 	inline void SetIMEAllowed(int bAllowed) 
 	{
-		((void(*)(int bAllowed))g_nativeFunctions[1443])(bAllowed);
+		((void(*)(int bAllowed))g_nativeFunctions[1444])(bAllowed);
 	}
 	inline void SetIMETextLocation(int x, int y, int nWidth, int nHeight) 
 	{
-		((void(*)(int x, int y, int nWidth, int nHeight))g_nativeFunctions[1444])(x, y, nWidth, nHeight);
+		((void(*)(int x, int y, int nWidth, int nHeight))g_nativeFunctions[1445])(x, y, nWidth, nHeight);
 	}
 	inline void DismissIME() 
 	{
-		((void(*)())g_nativeFunctions[1445])();
+		((void(*)())g_nativeFunctions[1446])();
 	}
 	inline const char* CodeToString(int64 code) 
 	{
 		return
-		((const char*(*)(int64 code))g_nativeFunctions[1446])(code);
+		((const char*(*)(int64 code))g_nativeFunctions[1447])(code);
 	}
 	inline int64 StringToButtonCode(const char* pString) 
 	{
 		return
-		((int64(*)(const char* pString))g_nativeFunctions[1447])(pString);
+		((int64(*)(const char* pString))g_nativeFunctions[1448])(pString);
 	}
 	inline int64 VirtualKeyToButtonCode(int nVirtualKey) 
 	{
 		return
-		((int64(*)(int nVirtualKey))g_nativeFunctions[1448])(nVirtualKey);
+		((int64(*)(int nVirtualKey))g_nativeFunctions[1449])(nVirtualKey);
 	}
 	inline int ButtonCodeToVirtualKey(int64 code) 
 	{
 		return
-		((int(*)(int64 code))g_nativeFunctions[1449])(code);
+		((int(*)(int64 code))g_nativeFunctions[1450])(code);
 	}
 	inline void SetRelativeMouseMode(int bState) 
 	{
-		((void(*)(int bState))g_nativeFunctions[1450])(bState);
+		((void(*)(int bState))g_nativeFunctions[1451])(bState);
 	}
 	inline int GetRelativeMouseMode() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1451])();
+		((int(*)())g_nativeFunctions[1452])();
 	}
 	inline void SetCursorStandard(int64 cursor) 
 	{
-		((void(*)(int64 cursor))g_nativeFunctions[1452])(cursor);
+		((void(*)(int64 cursor))g_nativeFunctions[1453])(cursor);
 	}
 	inline void SetCursorUser(const char* pName) 
 	{
-		((void(*)(const char* pName))g_nativeFunctions[1453])(pName);
+		((void(*)(const char* pName))g_nativeFunctions[1454])(pName);
 	}
 	inline int LoadCursorFromFile(const char* pFileName, const char* pName, int nHotX, int nHotY) 
 	{
 		return
-		((int(*)(const char* pFileName, const char* pName, int nHotX, int nHotY))g_nativeFunctions[1454])(pFileName, pName, nHotX, nHotY);
+		((int(*)(const char* pFileName, const char* pName, int nHotX, int nHotY))g_nativeFunctions[1455])(pFileName, pName, nHotX, nHotY);
 	}
 	inline void ShutdownUserCursors() 
 	{
-		((void(*)())g_nativeFunctions[1455])();
+		((void(*)())g_nativeFunctions[1456])();
 	}
 };
 class g_pMaterialSystem2
@@ -6564,21 +6569,21 @@ class g_pMaterialSystem2
 	inline HMaterialStrong* CreateRawMaterial(const char* materialName, const char* shader, int anonymous) 
 	{
 		return
-		((HMaterialStrong*(*)(const char* materialName, const char* shader, int anonymous))g_nativeFunctions[1456])(materialName, shader, anonymous);
+		((HMaterialStrong*(*)(const char* materialName, const char* shader, int anonymous))g_nativeFunctions[1457])(materialName, shader, anonymous);
 	}
 	inline HMaterialStrong* CreateProceduralMaterialCopy(HMaterialStrong* hSrcMaterial, int nResourceType, int bRecreateStaticBuffers) 
 	{
 		return
-		((HMaterialStrong*(*)(HMaterialStrong* hSrcMaterial, int nResourceType, int bRecreateStaticBuffers))g_nativeFunctions[1457])(hSrcMaterial, nResourceType, bRecreateStaticBuffers);
+		((HMaterialStrong*(*)(HMaterialStrong* hSrcMaterial, int nResourceType, int bRecreateStaticBuffers))g_nativeFunctions[1458])(hSrcMaterial, nResourceType, bRecreateStaticBuffers);
 	}
 	inline HMaterialStrong* FindOrCreateMaterialFromResource(const char* pResourceName) 
 	{
 		return
-		((HMaterialStrong*(*)(const char* pResourceName))g_nativeFunctions[1458])(pResourceName);
+		((HMaterialStrong*(*)(const char* pResourceName))g_nativeFunctions[1459])(pResourceName);
 	}
 	inline void FrameUpdate() 
 	{
-		((void(*)())g_nativeFunctions[1459])();
+		((void(*)())g_nativeFunctions[1460])();
 	}
 };
 class g_pMeshSystem
@@ -6592,11 +6597,11 @@ class g_pMeshSystem
 	inline int CreateSceneObject(HModelStrong* model, CTransformUnaligned modelToWorld, const char* pDescName, int64 nFlags, int64 nObjectTypeFlags, ISceneWorld* pWorld, int creationFlags) 
 	{
 		return
-		((int(*)(HModelStrong* model, CTransformUnaligned modelToWorld, const char* pDescName, int64 nFlags, int64 nObjectTypeFlags, ISceneWorld* pWorld, int creationFlags))g_nativeFunctions[1460])(model, modelToWorld, pDescName, nFlags, nObjectTypeFlags, pWorld, creationFlags);
+		((int(*)(HModelStrong* model, CTransformUnaligned modelToWorld, const char* pDescName, int64 nFlags, int64 nObjectTypeFlags, ISceneWorld* pWorld, int creationFlags))g_nativeFunctions[1461])(model, modelToWorld, pDescName, nFlags, nObjectTypeFlags, pWorld, creationFlags);
 	}
 	inline void ChangeModel(CSceneObject* obj, HModelStrong* model) 
 	{
-		((void(*)(CSceneObject* obj, HModelStrong* model))g_nativeFunctions[1461])(obj, model);
+		((void(*)(CSceneObject* obj, HModelStrong* model))g_nativeFunctions[1462])(obj, model);
 	}
 };
 class g_pPhysicsSystem
@@ -6610,35 +6615,35 @@ class g_pPhysicsSystem
 	inline int NumWorlds() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1462])();
+		((int(*)())g_nativeFunctions[1463])();
 	}
 	inline int CreateWorld() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1463])();
+		((int(*)())g_nativeFunctions[1464])();
 	}
 	inline void DestroyWorld(IPhysicsWorld* world) 
 	{
-		((void(*)(IPhysicsWorld* world))g_nativeFunctions[1464])(world);
+		((void(*)(IPhysicsWorld* world))g_nativeFunctions[1465])(world);
 	}
 	inline const IPhysSurfacePropertyController* GetSurfacePropertyController() 
 	{
 		return
-		((const IPhysSurfacePropertyController*(*)())g_nativeFunctions[1465])();
+		((const IPhysSurfacePropertyController*(*)())g_nativeFunctions[1466])();
 	}
 	inline int CastHeightField(Vector* vOut, Vector vRayStart, Vector vRayDelta, void* Heights, int SizeX, int SizeY, float SizeScale, float HeightScale) 
 	{
 		return
-		((int(*)(Vector* vOut, Vector vRayStart, Vector vRayDelta, void* Heights, int SizeX, int SizeY, float SizeScale, float HeightScale))g_nativeFunctions[1466])(vOut, vRayStart, vRayDelta, Heights, SizeX, SizeY, SizeScale, HeightScale);
+		((int(*)(Vector* vOut, Vector vRayStart, Vector vRayDelta, void* Heights, int SizeX, int SizeY, float SizeScale, float HeightScale))g_nativeFunctions[1467])(vOut, vRayStart, vRayDelta, Heights, SizeX, SizeY, SizeScale, HeightScale);
 	}
 	inline const CPhysAggregateData* GetAggregateData(const char* resourceName) 
 	{
 		return
-		((const CPhysAggregateData*(*)(const char* __resourceName))g_nativeFunctions[1467])(resourceName);
+		((const CPhysAggregateData*(*)(const char* __resourceName))g_nativeFunctions[1468])(resourceName);
 	}
 	inline void UpdateSurfaceProperties(CPhysSurfaceProperties* pSurfaceProperties) 
 	{
-		((void(*)(CPhysSurfaceProperties* pSurfaceProperties))g_nativeFunctions[1468])(pSurfaceProperties);
+		((void(*)(CPhysSurfaceProperties* pSurfaceProperties))g_nativeFunctions[1469])(pSurfaceProperties);
 	}
 };
 class g_pRenderDevice
@@ -6652,192 +6657,197 @@ class g_pRenderDevice
 	inline SamplerStateHandle_t FindOrCreateSamplerState(CSamplerStateDesc samplerDesc) 
 	{
 		return
-		((SamplerStateHandle_t(*)(CSamplerStateDesc samplerDesc))g_nativeFunctions[1469])(samplerDesc);
+		((SamplerStateHandle_t(*)(CSamplerStateDesc samplerDesc))g_nativeFunctions[1470])(samplerDesc);
 	}
 	inline int GetSamplerIndex(SamplerStateHandle_t samplerState) 
 	{
 		return
-		((int(*)(SamplerStateHandle_t samplerState))g_nativeFunctions[1470])(samplerState);
+		((int(*)(SamplerStateHandle_t samplerState))g_nativeFunctions[1471])(samplerState);
 	}
 	inline RenderDeviceInfo_t GetSwapChainInfo(SwapChainHandle_t swapChain) 
 	{
 		return
-		((RenderDeviceInfo_t(*)(SwapChainHandle_t swapChain))g_nativeFunctions[1471])(swapChain);
+		((RenderDeviceInfo_t(*)(SwapChainHandle_t swapChain))g_nativeFunctions[1472])(swapChain);
 	}
 	inline HRenderTextureStrong* FindOrCreateFileTexture(const char* pFileName, int64 nLoadMode) 
 	{
 		return
-		((HRenderTextureStrong*(*)(const char* pFileName, int64 nLoadMode))g_nativeFunctions[1472])(pFileName, nLoadMode);
+		((HRenderTextureStrong*(*)(const char* pFileName, int64 nLoadMode))g_nativeFunctions[1473])(pFileName, nLoadMode);
 	}
 	inline HRenderTextureStrong* FindOrCreateTexture2(const char* pResourceName, int bIsAnonymous, TextureCreationConfig_t pDescriptor, void* data, int dataSize) 
 	{
 		return
-		((HRenderTextureStrong*(*)(const char* pResourceName, int bIsAnonymous, TextureCreationConfig_t pDescriptor, void* data, int dataSize))g_nativeFunctions[1473])(pResourceName, bIsAnonymous, pDescriptor, data, dataSize);
+		((HRenderTextureStrong*(*)(const char* pResourceName, int bIsAnonymous, TextureCreationConfig_t pDescriptor, void* data, int dataSize))g_nativeFunctions[1474])(pResourceName, bIsAnonymous, pDescriptor, data, dataSize);
 	}
 	inline void ClearTexture(HRenderTextureStrong* hTexture, Color color) 
 	{
-		((void(*)(HRenderTextureStrong* hTexture, Color color))g_nativeFunctions[1474])(hTexture, color);
+		((void(*)(HRenderTextureStrong* hTexture, Color color))g_nativeFunctions[1475])(hTexture, color);
 	}
 	inline void AsyncSetTextureData2(HRenderTextureStrong* hTexture, void* pData, int nDataSize, Rect3D_t rect) 
 	{
-		((void(*)(HRenderTextureStrong* hTexture, void* pData, int nDataSize, Rect3D_t rect))g_nativeFunctions[1475])(hTexture, pData, nDataSize, rect);
+		((void(*)(HRenderTextureStrong* hTexture, void* pData, int nDataSize, Rect3D_t rect))g_nativeFunctions[1476])(hTexture, pData, nDataSize, rect);
 	}
 	inline HRenderTextureStrong* GetSwapChainTexture(SwapChainHandle_t swapChain, int64 bufferType) 
 	{
 		return
-		((HRenderTextureStrong*(*)(SwapChainHandle_t swapChain, int64 bufferType))g_nativeFunctions[1476])(swapChain, bufferType);
+		((HRenderTextureStrong*(*)(SwapChainHandle_t swapChain, int64 bufferType))g_nativeFunctions[1477])(swapChain, bufferType);
 	}
 	inline int GetGPUFrameTimeMS(SwapChainHandle_t swapChain, float* pGPUFrameTimeMSOut, unsigned int* pFrameNumberOut) 
 	{
 		return
-		((int(*)(SwapChainHandle_t swapChain, float* pGPUFrameTimeMSOut, unsigned int* pFrameNumberOut))g_nativeFunctions[1477])(swapChain, pGPUFrameTimeMSOut, pFrameNumberOut);
+		((int(*)(SwapChainHandle_t swapChain, float* pGPUFrameTimeMSOut, unsigned int* pFrameNumberOut))g_nativeFunctions[1478])(swapChain, pGPUFrameTimeMSOut, pFrameNumberOut);
 	}
 	inline CTextureDesc* GetTextureDesc(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1478])(hTexture);
+		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1479])(hTexture);
 	}
 	inline CTextureDesc* GetOnDiskTextureDesc(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1479])(hTexture);
+		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1480])(hTexture);
 	}
 	inline int64 GetTextureMultisampleType(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((int64(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1480])(hTexture);
+		((int64(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1481])(hTexture);
 	}
 	inline const IRenderContext* CreateRenderContext(unsigned int flags) 
 	{
 		return
-		((const IRenderContext*(*)(unsigned int flags))g_nativeFunctions[1481])(flags);
+		((const IRenderContext*(*)(unsigned int flags))g_nativeFunctions[1482])(flags);
 	}
 	inline void ReleaseRenderContext(IRenderContext* context) 
 	{
-		((void(*)(IRenderContext* context))g_nativeFunctions[1482])(context);
+		((void(*)(IRenderContext* context))g_nativeFunctions[1483])(context);
 	}
 	inline int ReadTexturePixels(HRenderTextureStrong* hTexture, Rect_t* pSrcRect, int nSrcSlice, int nSrcMip, Rect_t* pDstRect, void* pData, int64 dstFormat, int nDstStride) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* hTexture, Rect_t* pSrcRect, int nSrcSlice, int nSrcMip, Rect_t* pDstRect, void* pData, int64 dstFormat, int nDstStride))g_nativeFunctions[1483])(hTexture, pSrcRect, nSrcSlice, nSrcMip, pDstRect, pData, dstFormat, nDstStride);
+		((int(*)(HRenderTextureStrong* hTexture, Rect_t* pSrcRect, int nSrcSlice, int nSrcMip, Rect_t* pDstRect, void* pData, int64 dstFormat, int nDstStride))g_nativeFunctions[1484])(hTexture, pSrcRect, nSrcSlice, nSrcMip, pDstRect, pData, dstFormat, nDstStride);
 	}
 	inline void DestroySwapChain(SwapChainHandle_t hSwapChain) 
 	{
-		((void(*)(SwapChainHandle_t hSwapChain))g_nativeFunctions[1484])(hSwapChain);
+		((void(*)(SwapChainHandle_t hSwapChain))g_nativeFunctions[1485])(hSwapChain);
 	}
 	inline int Present(SwapChainHandle_t chain) 
 	{
 		return
-		((int(*)(SwapChainHandle_t chain))g_nativeFunctions[1485])(chain);
+		((int(*)(SwapChainHandle_t chain))g_nativeFunctions[1486])(chain);
 	}
 	inline void Flush() 
 	{
-		((void(*)())g_nativeFunctions[1486])();
+		((void(*)())g_nativeFunctions[1487])();
 	}
 	inline int CanRenderToSwapChain(SwapChainHandle_t chain) 
 	{
 		return
-		((int(*)(SwapChainHandle_t chain))g_nativeFunctions[1487])(chain);
+		((int(*)(SwapChainHandle_t chain))g_nativeFunctions[1488])(chain);
 	}
 	inline int IsUsing32BitDepthBuffer() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1488])();
+		((int(*)())g_nativeFunctions[1489])();
 	}
 	inline Vector2D GetBackbufferDimensions(SwapChainHandle_t chain) 
 	{
 		return
-		((Vector2D(*)(SwapChainHandle_t __chain))g_nativeFunctions[1489])(chain);
+		((Vector2D(*)(SwapChainHandle_t __chain))g_nativeFunctions[1490])(chain);
 	}
 	inline RenderShaderHandle_t CompileAndCreateShader(int64 nType, const char* pProgram, unsigned int nBufLen, const char* pShaderVersion, const char* pDebugName) 
 	{
 		return
-		((RenderShaderHandle_t(*)(int64 nType, const char* pProgram, unsigned int nBufLen, const char* pShaderVersion, const char* pDebugName))g_nativeFunctions[1490])(nType, pProgram, nBufLen, pShaderVersion, pDebugName);
+		((RenderShaderHandle_t(*)(int64 nType, const char* pProgram, unsigned int nBufLen, const char* pShaderVersion, const char* pDebugName))g_nativeFunctions[1491])(nType, pProgram, nBufLen, pShaderVersion, pDebugName);
 	}
 	inline int GetTextureLastUsed(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1491])(hTexture);
+		((int(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1492])(hTexture);
 	}
 	inline void UnThrottleTextureStreamingForNFrames(unsigned int nNumberOfFramesForUnthrottledTextureLoading) 
 	{
-		((void(*)(unsigned int nNumberOfFramesForUnthrottledTextureLoading))g_nativeFunctions[1492])(nNumberOfFramesForUnthrottledTextureLoading);
+		((void(*)(unsigned int nNumberOfFramesForUnthrottledTextureLoading))g_nativeFunctions[1493])(nNumberOfFramesForUnthrottledTextureLoading);
 	}
 	inline int GetNumTextureLoadsInFlight() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1493])();
+		((int(*)())g_nativeFunctions[1494])();
 	}
 	inline void SetForcePreloadStreamingData(int bForcePreloadStreamingData) 
 	{
-		((void(*)(int bForcePreloadStreamingData))g_nativeFunctions[1494])(bForcePreloadStreamingData);
+		((void(*)(int bForcePreloadStreamingData))g_nativeFunctions[1495])(bForcePreloadStreamingData);
 	}
 	inline int64 GetRenderDeviceAPI() 
 	{
 		return
-		((int64(*)())g_nativeFunctions[1495])();
+		((int64(*)())g_nativeFunctions[1496])();
 	}
 	inline void MarkTextureUsed(HRenderTextureStrong* texture, int nRequiredMipSize) 
 	{
-		((void(*)(HRenderTextureStrong* texture, int nRequiredMipSize))g_nativeFunctions[1496])(texture, nRequiredMipSize);
+		((void(*)(HRenderTextureStrong* texture, int nRequiredMipSize))g_nativeFunctions[1497])(texture, nRequiredMipSize);
 	}
 	inline int IsTextureRenderTarget(HRenderTextureStrong* texture) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* texture))g_nativeFunctions[1497])(texture);
+		((int(*)(HRenderTextureStrong* texture))g_nativeFunctions[1498])(texture);
+	}
+	inline int IsRayTracingSupported() 
+	{
+		return
+		((int(*)())g_nativeFunctions[1499])();
 	}
 	inline RenderBufferHandle_t CreateGPUBuffer(int64 nType, BufferDesc_t desc, int64 usage, const char* pDebugName) 
 	{
 		return
-		((RenderBufferHandle_t(*)(int64 __nType, BufferDesc_t __desc, int64 __usage, const char* __pDebugName))g_nativeFunctions[1498])(nType, desc, usage, pDebugName);
+		((RenderBufferHandle_t(*)(int64 __nType, BufferDesc_t __desc, int64 __usage, const char* __pDebugName))g_nativeFunctions[1500])(nType, desc, usage, pDebugName);
 	}
 	inline void DestroyGPUBuffer(RenderBufferHandle_t hGPUBuffer) 
 	{
-		((void(*)(RenderBufferHandle_t hGPUBuffer))g_nativeFunctions[1499])(hGPUBuffer);
+		((void(*)(RenderBufferHandle_t hGPUBuffer))g_nativeFunctions[1501])(hGPUBuffer);
 	}
 	inline int ReadBuffer(RenderBufferHandle_t hBuffer, unsigned int nOffsetInBytes, void* pBuf, unsigned int nBytesToRead) 
 	{
 		return
-		((int(*)(RenderBufferHandle_t hBuffer, unsigned int nOffsetInBytes, void* pBuf, unsigned int nBytesToRead))g_nativeFunctions[1500])(hBuffer, nOffsetInBytes, pBuf, nBytesToRead);
+		((int(*)(RenderBufferHandle_t hBuffer, unsigned int nOffsetInBytes, void* pBuf, unsigned int nBytesToRead))g_nativeFunctions[1502])(hBuffer, nOffsetInBytes, pBuf, nBytesToRead);
 	}
 	inline const void* GetDeviceSpecificInfo(int64 info) 
 	{
 		return
-		((const void*(*)(int64 info))g_nativeFunctions[1501])(info);
+		((const void*(*)(int64 info))g_nativeFunctions[1503])(info);
 	}
 	inline const void* GetGraphicsAPISpecificTextureHandle(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((const void*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1502])(hTexture);
+		((const void*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1504])(hTexture);
 	}
 	inline const void* GetDeviceSpecificTexture(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((const void*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1503])(hTexture);
+		((const void*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1505])(hTexture);
 	}
 	inline int GetTextureViewIndex(HRenderTextureStrong* hTexture, unsigned char colorSpace, int64 dim) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* hTexture, unsigned char colorSpace, int64 dim))g_nativeFunctions[1504])(hTexture, colorSpace, dim);
+		((int(*)(HRenderTextureStrong* hTexture, unsigned char colorSpace, int64 dim))g_nativeFunctions[1506])(hTexture, colorSpace, dim);
 	}
 	inline void GetTextureResidencyInfo(CUtlVector<HRenderTexture>* pTextures, CUtlVector<CUtlString>* pNames) 
 	{
-		((void(*)(CUtlVector<HRenderTexture>* __pTextures, CUtlVector<CUtlString>* __pNames))g_nativeFunctions[1505])(pTextures, pNames);
+		((void(*)(CUtlVector<HRenderTexture>* __pTextures, CUtlVector<CUtlString>* __pNames))g_nativeFunctions[1507])(pTextures, pNames);
 	}
 	inline Vector4D GetSheetInfo(HRenderTextureStrong* texture) 
 	{
 		return
-		((Vector4D(*)(HRenderTextureStrong* __texture))g_nativeFunctions[1506])(texture);
+		((Vector4D(*)(HRenderTextureStrong* __texture))g_nativeFunctions[1508])(texture);
 	}
 	inline int GetSequenceCount(HRenderTextureStrong* texture) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* __texture))g_nativeFunctions[1507])(texture);
+		((int(*)(HRenderTextureStrong* __texture))g_nativeFunctions[1509])(texture);
 	}
 	inline const SheetSequence_t* GetSequence(HRenderTextureStrong* texture, int index) 
 	{
 		return
-		((const SheetSequence_t*(*)(HRenderTextureStrong* __texture, int __index))g_nativeFunctions[1508])(texture, index);
+		((const SheetSequence_t*(*)(HRenderTextureStrong* __texture, int __index))g_nativeFunctions[1510])(texture, index);
 	}
 };
 class g_pRenderService
@@ -6851,7 +6861,7 @@ class g_pRenderService
 	inline int64 GetMultisampleType() 
 	{
 		return
-		((int64(*)())g_nativeFunctions[1509])();
+		((int64(*)())g_nativeFunctions[1511])();
 	}
 };
 class g_pResourceCompilerSystem
@@ -6865,17 +6875,17 @@ class g_pResourceCompilerSystem
 	inline int GenerateResourceFile(const char* path, void* pData, int size) 
 	{
 		return
-		((int(*)(const char* __path, void* __pData, int __size))g_nativeFunctions[1510])(path, pData, size);
+		((int(*)(const char* __path, void* __pData, int __size))g_nativeFunctions[1512])(path, pData, size);
 	}
 	inline int GenerateResourceFile(const char* path, const char* text) 
 	{
 		return
-		((int(*)(const char* __path, const char* __text))g_nativeFunctions[1511])(path, text);
+		((int(*)(const char* __path, const char* __text))g_nativeFunctions[1513])(path, text);
 	}
 	inline const CUtlBuffer* GenerateResourceBytes(const char* path, void* pData, int size) 
 	{
 		return
-		((const CUtlBuffer*(*)(const char* __path, void* __pData, int __size))g_nativeFunctions[1512])(path, pData, size);
+		((const CUtlBuffer*(*)(const char* __path, void* __pData, int __size))g_nativeFunctions[1514])(path, pData, size);
 	}
 };
 class g_pResourceSystem
@@ -6888,34 +6898,34 @@ class g_pResourceSystem
 	}
 	inline void ReloadSymlinkedResidentResources() 
 	{
-		((void(*)())g_nativeFunctions[1513])();
+		((void(*)())g_nativeFunctions[1515])();
 	}
 	inline void UpdateSimple() 
 	{
-		((void(*)())g_nativeFunctions[1514])();
+		((void(*)())g_nativeFunctions[1516])();
 	}
 	inline int HasPendingWork() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1515])();
+		((int(*)())g_nativeFunctions[1517])();
 	}
 	inline const HResourceManifest__* LoadResourceInManifest(const char* name) 
 	{
 		return
-		((const HResourceManifest__*(*)(const char* __name))g_nativeFunctions[1516])(name);
+		((const HResourceManifest__*(*)(const char* __name))g_nativeFunctions[1518])(name);
 	}
 	inline void DestroyResourceManifest(HResourceManifest__* manifest) 
 	{
-		((void(*)(HResourceManifest__* manifest))g_nativeFunctions[1517])(manifest);
+		((void(*)(HResourceManifest__* manifest))g_nativeFunctions[1519])(manifest);
 	}
 	inline int IsManifestLoaded(HResourceManifest__* manifest) 
 	{
 		return
-		((int(*)(HResourceManifest__* manifest))g_nativeFunctions[1518])(manifest);
+		((int(*)(HResourceManifest__* manifest))g_nativeFunctions[1520])(manifest);
 	}
 	inline void GetAllCodeManifests(CUtlVector<CUtlString>* values) 
 	{
-		((void(*)(CUtlVector<CUtlString>* __values))g_nativeFunctions[1519])(values);
+		((void(*)(CUtlVector<CUtlString>* __values))g_nativeFunctions[1521])(values);
 	}
 };
 class g_pSceneSystem
@@ -6928,121 +6938,130 @@ class g_pSceneSystem
 	}
 	inline void DeleteSceneObject(CSceneObject* pObj) 
 	{
-		((void(*)(CSceneObject* pObj))g_nativeFunctions[1520])(pObj);
+		((void(*)(CSceneObject* pObj))g_nativeFunctions[1522])(pObj);
 	}
 	inline void DeleteSceneObjectAtFrameEnd(CSceneObject* pObj) 
 	{
-		((void(*)(CSceneObject* pObj))g_nativeFunctions[1521])(pObj);
+		((void(*)(CSceneObject* pObj))g_nativeFunctions[1523])(pObj);
 	}
 	inline int CreateSkyBox(HMaterialStrong* skyMaterial, ISceneWorld* world) 
 	{
 		return
-		((int(*)(HMaterialStrong* skyMaterial, ISceneWorld* world))g_nativeFunctions[1522])(skyMaterial, world);
+		((int(*)(HMaterialStrong* skyMaterial, ISceneWorld* world))g_nativeFunctions[1524])(skyMaterial, world);
 	}
 	inline int CreateDecal(ISceneWorld* world) 
 	{
 		return
-		((int(*)(ISceneWorld* world))g_nativeFunctions[1523])(world);
+		((int(*)(ISceneWorld* world))g_nativeFunctions[1525])(world);
 	}
 	inline void BeginRenderingDynamicView(ISceneView* pView) 
 	{
-		((void(*)(ISceneView* pView))g_nativeFunctions[1524])(pView);
+		((void(*)(ISceneView* pView))g_nativeFunctions[1526])(pView);
 	}
 	inline HRenderTextureStrong* GetWellKnownTexture(int64 a) 
 	{
 		return
-		((HRenderTextureStrong*(*)(int64 a))g_nativeFunctions[1525])(a);
+		((HRenderTextureStrong*(*)(int64 a))g_nativeFunctions[1527])(a);
 	}
 	inline HMaterialStrong* GetWellKnownMaterialHandle(int64 a) 
 	{
 		return
-		((HMaterialStrong*(*)(int64 a))g_nativeFunctions[1526])(a);
+		((HMaterialStrong*(*)(int64 a))g_nativeFunctions[1528])(a);
 	}
 	inline const SceneSystemPerFrameStats_t* GetPerFrameStats() 
 	{
 		return
-		((const SceneSystemPerFrameStats_t*(*)())g_nativeFunctions[1527])();
+		((const SceneSystemPerFrameStats_t*(*)())g_nativeFunctions[1529])();
 	}
 	inline int CreateWorld(const char* debugName) 
 	{
 		return
-		((int(*)(const char* debugName))g_nativeFunctions[1528])(debugName);
+		((int(*)(const char* debugName))g_nativeFunctions[1530])(debugName);
 	}
 	inline void DestroyWorld(ISceneWorld* world) 
 	{
-		((void(*)(ISceneWorld* world))g_nativeFunctions[1529])(world);
+		((void(*)(ISceneWorld* world))g_nativeFunctions[1531])(world);
 	}
 	inline void SetupPerObjectLighting(CRenderAttributes* renderAttributes, CSceneObject* pSceneObject, ISceneLayer* pSceneLayerInterface) 
 	{
-		((void(*)(CRenderAttributes* __renderAttributes, CSceneObject* __pSceneObject, ISceneLayer* __pSceneLayerInterface))g_nativeFunctions[1530])(renderAttributes, pSceneObject, pSceneLayerInterface);
+		((void(*)(CRenderAttributes* __renderAttributes, CSceneObject* __pSceneObject, ISceneLayer* __pSceneLayerInterface))g_nativeFunctions[1532])(renderAttributes, pSceneObject, pSceneLayerInterface);
 	}
 	inline int CreatePointLight(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1531])(pWorld);
+		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1533])(pWorld);
 	}
 	inline int CreateSpotLight(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1532])(pWorld);
+		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1534])(pWorld);
 	}
 	inline int CreateOrthoLight(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1533])(pWorld);
+		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1535])(pWorld);
 	}
 	inline int CreateDirectionalLight(ISceneWorld* pWorld, Vector direction) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld, Vector __direction))g_nativeFunctions[1534])(pWorld, direction);
+		((int(*)(ISceneWorld* __pWorld, Vector __direction))g_nativeFunctions[1536])(pWorld, direction);
 	}
 	inline int CreateEnvMap(ISceneWorld* pWorld, int nProjectionMode) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld, int __nProjectionMode))g_nativeFunctions[1535])(pWorld, nProjectionMode);
+		((int(*)(ISceneWorld* __pWorld, int __nProjectionMode))g_nativeFunctions[1537])(pWorld, nProjectionMode);
 	}
 	inline int CreateLightProbeVolume(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* pWorld))g_nativeFunctions[1536])(pWorld);
+		((int(*)(ISceneWorld* pWorld))g_nativeFunctions[1538])(pWorld);
 	}
 	inline void MarkEnvironmentMapObjectUpdated(CEnvMapSceneObject* pEnvMap) 
 	{
-		((void(*)(CEnvMapSceneObject* pEnvMap))g_nativeFunctions[1537])(pEnvMap);
+		((void(*)(CEnvMapSceneObject* pEnvMap))g_nativeFunctions[1539])(pEnvMap);
 	}
 	inline void MarkLightProbeVolumeObjectUpdated(CSceneLightProbeVolumeObject* pLightProbe) 
 	{
-		((void(*)(CSceneLightProbeVolumeObject* pLightProbe))g_nativeFunctions[1538])(pLightProbe);
+		((void(*)(CSceneLightProbeVolumeObject* pLightProbe))g_nativeFunctions[1540])(pLightProbe);
 	}
 	inline unsigned int AddCullingBox(ISceneWorld* pWorld, int nCullMode, Vector vOrigin, QAngle vAngles, Vector vExtents) 
 	{
 		return
-		((unsigned int(*)(ISceneWorld* __pWorld, int __nCullMode, Vector __vOrigin, QAngle __vAngles, Vector __vExtents))g_nativeFunctions[1539])(pWorld, nCullMode, vOrigin, vAngles, vExtents);
+		((unsigned int(*)(ISceneWorld* __pWorld, int __nCullMode, Vector __vOrigin, QAngle __vAngles, Vector __vExtents))g_nativeFunctions[1541])(pWorld, nCullMode, vOrigin, vAngles, vExtents);
 	}
 	inline void RemoveCullingBox(ISceneWorld* pWorld, unsigned int nBoxId) 
 	{
-		((void(*)(ISceneWorld* pWorld, unsigned int nBoxId))g_nativeFunctions[1540])(pWorld, nBoxId);
+		((void(*)(ISceneWorld* pWorld, unsigned int nBoxId))g_nativeFunctions[1542])(pWorld, nBoxId);
 	}
 	inline unsigned int AddVolumetricFogVolume(ISceneWorld* pWorld, SceneVolumetricFogVolume_t volume) 
 	{
 		return
-		((unsigned int(*)(ISceneWorld* pWorld, SceneVolumetricFogVolume_t volume))g_nativeFunctions[1541])(pWorld, volume);
+		((unsigned int(*)(ISceneWorld* pWorld, SceneVolumetricFogVolume_t volume))g_nativeFunctions[1543])(pWorld, volume);
 	}
 	inline void RemoveVolumetricFogVolume(ISceneWorld* pWorld, unsigned int nId) 
 	{
-		((void(*)(ISceneWorld* pWorld, unsigned int nId))g_nativeFunctions[1542])(pWorld, nId);
+		((void(*)(ISceneWorld* pWorld, unsigned int nId))g_nativeFunctions[1544])(pWorld, nId);
 	}
 	inline void DownsampleTexture(IRenderContext* ctx, HRenderTextureStrong* src, unsigned char nDownsampleType) 
 	{
-		((void(*)(IRenderContext* __ctx, HRenderTextureStrong* __src, unsigned char __nDownsampleType))g_nativeFunctions[1543])(ctx, src, nDownsampleType);
+		((void(*)(IRenderContext* __ctx, HRenderTextureStrong* __src, unsigned char __nDownsampleType))g_nativeFunctions[1545])(ctx, src, nDownsampleType);
 	}
 	inline void RenderTiledLightCulling(IRenderContext* pCtx, ISceneView* pView, RenderViewport_t viewport) 
 	{
-		((void(*)(IRenderContext* pCtx, ISceneView* pView, RenderViewport_t viewport))g_nativeFunctions[1544])(pCtx, pView, viewport);
+		((void(*)(IRenderContext* pCtx, ISceneView* pView, RenderViewport_t viewport))g_nativeFunctions[1546])(pCtx, pView, viewport);
 	}
 	inline void BindTransformSlot(IRenderContext* pCtx, int nVBSlot, int nTransformSlotIndex) 
 	{
-		((void(*)(IRenderContext* pCtx, int nVBSlot, int nTransformSlotIndex))g_nativeFunctions[1545])(pCtx, nVBSlot, nTransformSlotIndex);
+		((void(*)(IRenderContext* pCtx, int nVBSlot, int nTransformSlotIndex))g_nativeFunctions[1547])(pCtx, nVBSlot, nTransformSlotIndex);
+	}
+	inline const IRayTraceSceneWorld* CreateRayTraceWorld(const char* pWorldDebugName, int nMaxRayTypes) 
+	{
+		return
+		((const IRayTraceSceneWorld*(*)(const char* pWorldDebugName, int nMaxRayTypes))g_nativeFunctions[1548])(pWorldDebugName, nMaxRayTypes);
+	}
+	inline void DestroyRayTraceWorld(IRayTraceSceneWorld* pRayTraceSceneWorld) 
+	{
+		((void(*)(IRayTraceSceneWorld* pRayTraceSceneWorld))g_nativeFunctions[1549])(pRayTraceSceneWorld);
 	}
 };
 class g_pSceneUtils
@@ -7056,20 +7075,20 @@ class g_pSceneUtils
 	inline const ITonemapSystem* CreateTonemapSystem() 
 	{
 		return
-		((const ITonemapSystem*(*)())g_nativeFunctions[1546])();
+		((const ITonemapSystem*(*)())g_nativeFunctions[1550])();
 	}
 	inline void DestroyTonemapSystem(ITonemapSystem* pTonemapSystem) 
 	{
-		((void(*)(ITonemapSystem* pTonemapSystem))g_nativeFunctions[1547])(pTonemapSystem);
+		((void(*)(ITonemapSystem* pTonemapSystem))g_nativeFunctions[1551])(pTonemapSystem);
 	}
 	inline const IVolumetricFog* CreateVolumetricFog() 
 	{
 		return
-		((const IVolumetricFog*(*)())g_nativeFunctions[1548])();
+		((const IVolumetricFog*(*)())g_nativeFunctions[1552])();
 	}
 	inline void DestroyVolumetricFog(IVolumetricFog* pVolumetricFog) 
 	{
-		((void(*)(IVolumetricFog* pVolumetricFog))g_nativeFunctions[1549])(pVolumetricFog);
+		((void(*)(IVolumetricFog* pVolumetricFog))g_nativeFunctions[1553])(pVolumetricFog);
 	}
 };
 class g_pSoundSystemInternal
@@ -7083,49 +7102,49 @@ class g_pSoundSystemInternal
 	inline int GetNumAudioDevices() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1550])();
+		((int(*)())g_nativeFunctions[1554])();
 	}
 	inline AudioDeviceDesc GetAudioDeviceDesc(int index) 
 	{
 		return
-		((AudioDeviceDesc(*)(int index))g_nativeFunctions[1551])(index);
+		((AudioDeviceDesc(*)(int index))g_nativeFunctions[1555])(index);
 	}
 	inline const char* GetAudioDeviceId(int index) 
 	{
 		return
-		((const char*(*)(int index))g_nativeFunctions[1552])(index);
+		((const char*(*)(int index))g_nativeFunctions[1556])(index);
 	}
 	inline const char* GetAudioDeviceName(int index) 
 	{
 		return
-		((const char*(*)(int index))g_nativeFunctions[1553])(index);
+		((const char*(*)(int index))g_nativeFunctions[1557])(index);
 	}
 	inline const char* GetActiveAudioDevice() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[1554])();
+		((const char*(*)())g_nativeFunctions[1558])();
 	}
 	inline void SetActiveAudioDevice(const char* id) 
 	{
-		((void(*)(const char* id))g_nativeFunctions[1555])(id);
+		((void(*)(const char* id))g_nativeFunctions[1559])(id);
 	}
 	inline void PlaySoundAtOSLevel(const char* filename) 
 	{
-		((void(*)(const char* filename))g_nativeFunctions[1556])(filename);
+		((void(*)(const char* filename))g_nativeFunctions[1560])(filename);
 	}
 	inline const CSfxTable* PrecacheSound(const char* pSoundName) 
 	{
 		return
-		((const CSfxTable*(*)(const char* pSoundName))g_nativeFunctions[1557])(pSoundName);
+		((const CSfxTable*(*)(const char* pSoundName))g_nativeFunctions[1561])(pSoundName);
 	}
 	inline const CSfxTable* CreateSound(const char* pSoundName, int nChannels, int nRate, int nFormat, int nSampleCount, float flDuration, int bLoop, void* pData, int nDataSize) 
 	{
 		return
-		((const CSfxTable*(*)(const char* pSoundName, int nChannels, int nRate, int nFormat, int nSampleCount, float flDuration, int bLoop, void* pData, int nDataSize))g_nativeFunctions[1558])(pSoundName, nChannels, nRate, nFormat, nSampleCount, flDuration, bLoop, pData, nDataSize);
+		((const CSfxTable*(*)(const char* pSoundName, int nChannels, int nRate, int nFormat, int nSampleCount, float flDuration, int bLoop, void* pData, int nDataSize))g_nativeFunctions[1562])(pSoundName, nChannels, nRate, nFormat, nSampleCount, flDuration, bLoop, pData, nDataSize);
 	}
 	inline void PreloadSound(CSfxTable* pSfx) 
 	{
-		((void(*)(CSfxTable* pSfx))g_nativeFunctions[1559])(pSfx);
+		((void(*)(CSfxTable* pSfx))g_nativeFunctions[1563])(pSfx);
 	}
 };
 class g_pWorldRendererMgr
@@ -7138,170 +7157,170 @@ class g_pWorldRendererMgr
 	}
 	inline void ServiceWorldRequests() 
 	{
-		((void(*)())g_nativeFunctions[1560])();
+		((void(*)())g_nativeFunctions[1564])();
 	}
 	inline unsigned int UpdateObjectsForRendering(uint32 worldGroupId, Vector eyePos, float flLODScale, float flMaxVisibleDistance) 
 	{
 		return
-		((unsigned int(*)(uint32 __worldGroupId, Vector __eyePos, float __flLODScale, float __flMaxVisibleDistance))g_nativeFunctions[1561])(worldGroupId, eyePos, flLODScale, flMaxVisibleDistance);
+		((unsigned int(*)(uint32 __worldGroupId, Vector __eyePos, float __flLODScale, float __flMaxVisibleDistance))g_nativeFunctions[1565])(worldGroupId, eyePos, flLODScale, flMaxVisibleDistance);
 	}
 	inline const IWorldReference* CreateWorld(const char* pMapName, ISceneWorld* pSceneWorld, int bAsyncLoad, int bIgnoreExistingWorlds, int bLoadVis, int bPrecacheOnly, uint32 worldGroupId, CTransformUnaligned transform) 
 	{
 		return
-		((const IWorldReference*(*)(const char* __pMapName, ISceneWorld* __pSceneWorld, int __bAsyncLoad, int __bIgnoreExistingWorlds, int __bLoadVis, int __bPrecacheOnly, uint32 __worldGroupId, CTransformUnaligned __transform))g_nativeFunctions[1562])(pMapName, pSceneWorld, bAsyncLoad, bIgnoreExistingWorlds, bLoadVis, bPrecacheOnly, worldGroupId, transform);
+		((const IWorldReference*(*)(const char* __pMapName, ISceneWorld* __pSceneWorld, int __bAsyncLoad, int __bIgnoreExistingWorlds, int __bLoadVis, int __bPrecacheOnly, uint32 __worldGroupId, CTransformUnaligned __transform))g_nativeFunctions[1566])(pMapName, pSceneWorld, bAsyncLoad, bIgnoreExistingWorlds, bLoadVis, bPrecacheOnly, worldGroupId, transform);
 	}
 	inline int MountWorldVPK(const char* pWorldName, const char* pVpkPath) 
 	{
 		return
-		((int(*)(const char* pWorldName, const char* pVpkPath))g_nativeFunctions[1563])(pWorldName, pVpkPath);
+		((int(*)(const char* pWorldName, const char* pVpkPath))g_nativeFunctions[1567])(pWorldName, pVpkPath);
 	}
 	inline int UnmountWorldVPK(const char* pWorldName) 
 	{
 		return
-		((int(*)(const char* pWorldName))g_nativeFunctions[1564])(pWorldName);
+		((int(*)(const char* pWorldName))g_nativeFunctions[1568])(pWorldName);
 	}
 };
 inline void Plat_ScreenToWindowCoords(void* hwnd, int* x, int* y) 
 {
-	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1565])(hwnd, x, y);
+	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1569])(hwnd, x, y);
 }
 inline void Plat_WindowToScreenCoords(void* hwnd, int* x, int* y) 
 {
-	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1566])(hwnd, x, y);
+	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1570])(hwnd, x, y);
 }
 inline void Plat_MessageBox(const char* title, const char* message) 
 {
-	((void(*)(const char* title, const char* message))g_nativeFunctions[1567])(title, message);
+	((void(*)(const char* title, const char* message))g_nativeFunctions[1571])(title, message);
 }
 inline int Plat_GetDesktopResolution(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate) 
 {
 	return
-	((int(*)(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate))g_nativeFunctions[1568])(nMonitorIndex, pWidth, pHeight, pRefreshRate);
+	((int(*)(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate))g_nativeFunctions[1572])(nMonitorIndex, pWidth, pHeight, pRefreshRate);
 }
 inline int Plat_GetDefaultMonitorIndex() 
 {
 	return
-	((int(*)())g_nativeFunctions[1569])();
+	((int(*)())g_nativeFunctions[1573])();
 }
 inline int Plat_SafeRemoveFile(const char* file) 
 {
 	return
-	((int(*)(const char* file))g_nativeFunctions[1570])(file);
+	((int(*)(const char* file))g_nativeFunctions[1574])(file);
 }
 inline void Plat_SetModuleFilename(const char* filename) 
 {
-	((void(*)(const char* filename))g_nativeFunctions[1571])(filename);
+	((void(*)(const char* filename))g_nativeFunctions[1575])(filename);
 }
 inline void Plat_SetCurrentDirectory(const char* filename) 
 {
-	((void(*)(const char* filename))g_nativeFunctions[1572])(filename);
+	((void(*)(const char* filename))g_nativeFunctions[1576])(filename);
 }
 inline uint64 Plat_GetCurrentFrame() 
 {
 	return
-	((uint64(*)())g_nativeFunctions[1573])();
+	((uint64(*)())g_nativeFunctions[1577])();
 }
 inline void Plat_SetCurrentFrame(uint64 nFrame) 
 {
-	((void(*)(uint64 nFrame))g_nativeFunctions[1574])(nFrame);
+	((void(*)(uint64 nFrame))g_nativeFunctions[1578])(nFrame);
 }
 inline void Plat_ChangeCurrentFrame(int64 nDelta) 
 {
-	((void(*)(int64 nDelta))g_nativeFunctions[1575])(nDelta);
+	((void(*)(int64 nDelta))g_nativeFunctions[1579])(nDelta);
 }
 inline int Plat_IsRunningOnCustomerMachine() 
 {
 	return
-	((int(*)())g_nativeFunctions[1576])();
+	((int(*)())g_nativeFunctions[1580])();
 }
 inline int Plat_HasClipboardText() 
 {
 	return
-	((int(*)())g_nativeFunctions[1577])();
+	((int(*)())g_nativeFunctions[1581])();
 }
 inline void Plat_SetClipboardText(const char* text) 
 {
-	((void(*)(const char* text))g_nativeFunctions[1578])(text);
+	((void(*)(const char* text))g_nativeFunctions[1582])(text);
 }
 inline const char* Plat_GetClipboardText() 
 {
 	return
-	((const char*(*)())g_nativeFunctions[1579])();
+	((const char*(*)())g_nativeFunctions[1583])();
 }
 inline void Plat_ClearClipboardText() 
 {
-	((void(*)())g_nativeFunctions[1580])();
+	((void(*)())g_nativeFunctions[1584])();
 }
 inline int IsWindowFocused() 
 {
 	return
-	((int(*)())g_nativeFunctions[1581])();
+	((int(*)())g_nativeFunctions[1585])();
 }
 inline int IsRetail() 
 {
 	return
-	((int(*)())g_nativeFunctions[1582])();
+	((int(*)())g_nativeFunctions[1586])();
 }
 inline int HasLaunchParameter(const char* name) 
 {
 	return
-	((int(*)(const char* __name))g_nativeFunctions[1583])(name);
+	((int(*)(const char* __name))g_nativeFunctions[1587])(name);
 }
 inline void Plat_SetNoAssert() 
 {
-	((void(*)())g_nativeFunctions[1584])();
+	((void(*)())g_nativeFunctions[1588])();
 }
 inline const char* GetGameRootFolder() 
 {
 	return
-	((const char*(*)())g_nativeFunctions[1585])();
+	((const char*(*)())g_nativeFunctions[1589])();
 }
 inline const char* GetGameSearchPath() 
 {
 	return
-	((const char*(*)())g_nativeFunctions[1586])();
+	((const char*(*)())g_nativeFunctions[1590])();
 }
 inline int SourceEngineUnitTestInit() 
 {
 	return
-	((int(*)())g_nativeFunctions[1587])();
+	((int(*)())g_nativeFunctions[1591])();
 }
 inline int SourceEnginePreInit(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict) 
 {
 	return
-	((int(*)(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1588])(lpCmdLine, appDict);
+	((int(*)(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1592])(lpCmdLine, appDict);
 }
 inline int SourceEngineInit(CMaterialSystem2AppSystemDict* appDict) 
 {
 	return
-	((int(*)(CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1589])(appDict);
+	((int(*)(CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1593])(appDict);
 }
 inline int SourceEngineFrame(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime) 
 {
 	return
-	((int(*)(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime))g_nativeFunctions[1590])(appDict, currentTime, previousTime);
+	((int(*)(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime))g_nativeFunctions[1594])(appDict, currentTime, previousTime);
 }
 inline void SourceEngineShutdown(CMaterialSystem2AppSystemDict* appDict, int forced) 
 {
-	((void(*)(CMaterialSystem2AppSystemDict* appDict, int forced))g_nativeFunctions[1591])(appDict, forced);
+	((void(*)(CMaterialSystem2AppSystemDict* appDict, int forced))g_nativeFunctions[1595])(appDict, forced);
 }
 inline void UpdateWindowSize() 
 {
-	((void(*)())g_nativeFunctions[1592])();
+	((void(*)())g_nativeFunctions[1596])();
 }
 inline float GetDiagonalDpi() 
 {
 	return
-	((float(*)())g_nativeFunctions[1593])();
+	((float(*)())g_nativeFunctions[1597])();
 }
 inline int AppIsDedicatedServer() 
 {
 	return
-	((int(*)())g_nativeFunctions[1594])();
+	((int(*)())g_nativeFunctions[1598])();
 }
 inline void ToolsStallMonitor_IndicateActivity() 
 {
-	((void(*)())g_nativeFunctions[1595])();
+	((void(*)())g_nativeFunctions[1599])();
 }
 class globalOVRLipSync
 {
@@ -7315,145 +7334,145 @@ class globalOVRLipSync
 	inline int64 ovrLipSync_Initialize(int sampleRate, int bufferSize) 
 	{
 		return
-		((int64(*)(int sampleRate, int bufferSize))g_nativeFunctions[1596])(sampleRate, bufferSize);
+		((int64(*)(int sampleRate, int bufferSize))g_nativeFunctions[1600])(sampleRate, bufferSize);
 	}
 	static
 	inline int64 ovrLipSync_Shutdown() 
 	{
 		return
-		((int64(*)())g_nativeFunctions[1597])();
+		((int64(*)())g_nativeFunctions[1601])();
 	}
 	static
 	inline int64 ovrLipSync_DestroyContext(unsigned int context) 
 	{
 		return
-		((int64(*)(unsigned int context))g_nativeFunctions[1598])(context);
+		((int64(*)(unsigned int context))g_nativeFunctions[1602])(context);
 	}
 	static
 	inline int64 ovrLipSync_ResetContext(unsigned int context) 
 	{
 		return
-		((int64(*)(unsigned int context))g_nativeFunctions[1599])(context);
+		((int64(*)(unsigned int context))g_nativeFunctions[1603])(context);
 	}
 	static
 	inline int64 ovrLipSync_CreateContext(unsigned int* pContext, int64 provider) 
 	{
 		return
-		((int64(*)(unsigned int* pContext, int64 provider))g_nativeFunctions[1600])(pContext, provider);
+		((int64(*)(unsigned int* pContext, int64 provider))g_nativeFunctions[1604])(pContext, provider);
 	}
 	static
 	inline int64 ovrLipSync_CreateContextEx(unsigned int* pContext, int64 provider, int sampleRate, int enableAcceleration) 
 	{
 		return
-		((int64(*)(unsigned int* pContext, int64 provider, int sampleRate, int enableAcceleration))g_nativeFunctions[1601])(pContext, provider, sampleRate, enableAcceleration);
+		((int64(*)(unsigned int* pContext, int64 provider, int sampleRate, int enableAcceleration))g_nativeFunctions[1605])(pContext, provider, sampleRate, enableAcceleration);
 	}
 	static
 	inline int64 ovrLipSync_SendSignal(unsigned int context, int64 signal, int arg1, int arg2) 
 	{
 		return
-		((int64(*)(unsigned int context, int64 signal, int arg1, int arg2))g_nativeFunctions[1602])(context, signal, arg1, arg2);
+		((int64(*)(unsigned int context, int64 signal, int arg1, int arg2))g_nativeFunctions[1606])(context, signal, arg1, arg2);
 	}
 	static
 	inline int64 ovrLipSync_ProcessFrameEx(unsigned int context, void* audioBuffer, int sampleCount, int64 dataType, ovrLipSyncFrame* frame) 
 	{
 		return
-		((int64(*)(unsigned int context, void* audioBuffer, int sampleCount, int64 dataType, ovrLipSyncFrame* frame))g_nativeFunctions[1603])(context, audioBuffer, sampleCount, dataType, frame);
+		((int64(*)(unsigned int context, void* audioBuffer, int sampleCount, int64 dataType, ovrLipSyncFrame* frame))g_nativeFunctions[1607])(context, audioBuffer, sampleCount, dataType, frame);
 	}
 };
 static
 inline const ISteamHTMLSurface* SteamHTMLSurface() 
 {
 	return
-	((const ISteamHTMLSurface*(*)())g_nativeFunctions[1604])();
+	((const ISteamHTMLSurface*(*)())g_nativeFunctions[1608])();
 }
 static
 inline void SteamAPI_RunCallbacks() 
 {
-	((void(*)())g_nativeFunctions[1605])();
+	((void(*)())g_nativeFunctions[1609])();
 }
 static
 inline void SteamGameServer_RunCallbacks() 
 {
-	((void(*)())g_nativeFunctions[1606])();
+	((void(*)())g_nativeFunctions[1610])();
 }
 static
 inline const ISteamUser* SteamUser() 
 {
 	return
-	((const ISteamUser*(*)())g_nativeFunctions[1607])();
+	((const ISteamUser*(*)())g_nativeFunctions[1611])();
 }
 static
 inline const ISteamFriends* SteamFriends() 
 {
 	return
-	((const ISteamFriends*(*)())g_nativeFunctions[1608])();
+	((const ISteamFriends*(*)())g_nativeFunctions[1612])();
 }
 static
 inline const ISteamNetworkingMessages* SteamNetworkingMessages() 
 {
 	return
-	((const ISteamNetworkingMessages*(*)())g_nativeFunctions[1609])();
+	((const ISteamNetworkingMessages*(*)())g_nativeFunctions[1613])();
 }
 static
 inline const ISteamNetworkingUtils* SteamNetworkingUtils() 
 {
 	return
-	((const ISteamNetworkingUtils*(*)())g_nativeFunctions[1610])();
+	((const ISteamNetworkingUtils*(*)())g_nativeFunctions[1614])();
 }
 static
 inline const ISteamMatchmaking* SteamMatchmaking() 
 {
 	return
-	((const ISteamMatchmaking*(*)())g_nativeFunctions[1611])();
+	((const ISteamMatchmaking*(*)())g_nativeFunctions[1615])();
 }
 static
 inline const ISteamGameServer* SteamGameServer() 
 {
 	return
-	((const ISteamGameServer*(*)())g_nativeFunctions[1612])();
+	((const ISteamGameServer*(*)())g_nativeFunctions[1616])();
 }
 static
 inline const ISteamApps* SteamApps() 
 {
 	return
-	((const ISteamApps*(*)())g_nativeFunctions[1613])();
+	((const ISteamApps*(*)())g_nativeFunctions[1617])();
 }
 static
 inline const ISteamUtils* SteamUtils() 
 {
 	return
-	((const ISteamUtils*(*)())g_nativeFunctions[1614])();
+	((const ISteamUtils*(*)())g_nativeFunctions[1618])();
 }
 static
 inline int SteamGameServer_BSecure() 
 {
 	return
-	((int(*)())g_nativeFunctions[1615])();
+	((int(*)())g_nativeFunctions[1619])();
 }
 static
 inline uint64 SteamGameServer_GetSteamID() 
 {
 	return
-	((uint64(*)())g_nativeFunctions[1616])();
+	((uint64(*)())g_nativeFunctions[1620])();
 }
 static
 inline void SteamGameServer_Shutdown() 
 {
-	((void(*)())g_nativeFunctions[1617])();
+	((void(*)())g_nativeFunctions[1621])();
 }
 static
 inline void SteamGameServer_ReleaseCurrentThreadMemory() 
 {
-	((void(*)())g_nativeFunctions[1618])();
+	((void(*)())g_nativeFunctions[1622])();
 }
 inline const ISteamNetworkingSockets* SteamNetworkingSockets() 
 {
 	return
-	((const ISteamNetworkingSockets*(*)())g_nativeFunctions[1619])();
+	((const ISteamNetworkingSockets*(*)())g_nativeFunctions[1623])();
 }
 inline void SteamGameServer_Init(int gamePort, int queryPort, const char* serverVersion) 
 {
-	((void(*)(int __gamePort, int __queryPort, const char* __serverVersion))g_nativeFunctions[1620])(gamePort, queryPort, serverVersion);
+	((void(*)(int __gamePort, int __queryPort, const char* __serverVersion))g_nativeFunctions[1624])(gamePort, queryPort, serverVersion);
 }
 class globalYoga
 {
@@ -7466,442 +7485,442 @@ class globalYoga
 	inline YGNodeRef YGNodeNew() 
 	{
 		return
-		((YGNodeRef(*)())g_nativeFunctions[1621])();
+		((YGNodeRef(*)())g_nativeFunctions[1625])();
 	}
 	inline YGNodeRef YGNodeNewWithConfig(YGConfigRef config) 
 	{
 		return
-		((YGNodeRef(*)(YGConfigRef config))g_nativeFunctions[1622])(config);
+		((YGNodeRef(*)(YGConfigRef config))g_nativeFunctions[1626])(config);
 	}
 	inline void YGNodeFree(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1623])(r);
+		((void(*)(YGNodeRef r))g_nativeFunctions[1627])(r);
 	}
 	inline void YGNodeReset(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1624])(r);
+		((void(*)(YGNodeRef r))g_nativeFunctions[1628])(r);
 	}
 	inline void YGNodeCalculateLayout(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction) 
 	{
-		((void(*)(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction))g_nativeFunctions[1625])(r, ownerWidth, ownerHeight, direction);
+		((void(*)(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction))g_nativeFunctions[1629])(r, ownerWidth, ownerHeight, direction);
 	}
 	inline int YGNodeGetHasNewLayout(YGNodeRef r) 
 	{
 		return
-		((int(*)(YGNodeRef r))g_nativeFunctions[1626])(r);
+		((int(*)(YGNodeRef r))g_nativeFunctions[1630])(r);
 	}
 	inline void YGNodeSetHasNewLayout(YGNodeRef r, int b) 
 	{
-		((void(*)(YGNodeRef r, int b))g_nativeFunctions[1627])(r, b);
+		((void(*)(YGNodeRef r, int b))g_nativeFunctions[1631])(r, b);
 	}
 	inline void YGNodeIsDirty(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1628])(r);
+		((void(*)(YGNodeRef r))g_nativeFunctions[1632])(r);
 	}
 	inline void YGNodeMarkDirty(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1629])(r);
+		((void(*)(YGNodeRef r))g_nativeFunctions[1633])(r);
 	}
 	inline void YGNodeInsertChild(YGNodeRef owner, YGNodeRef child, int index) 
 	{
-		((void(*)(YGNodeRef owner, YGNodeRef child, int index))g_nativeFunctions[1630])(owner, child, index);
+		((void(*)(YGNodeRef owner, YGNodeRef child, int index))g_nativeFunctions[1634])(owner, child, index);
 	}
 	inline void YGNodeRemoveChild(YGNodeRef owner, YGNodeRef child) 
 	{
-		((void(*)(YGNodeRef owner, YGNodeRef child))g_nativeFunctions[1631])(owner, child);
+		((void(*)(YGNodeRef owner, YGNodeRef child))g_nativeFunctions[1635])(owner, child);
 	}
 	inline void YGNodeRemoveAllChildren(YGNodeRef owner) 
 	{
-		((void(*)(YGNodeRef owner))g_nativeFunctions[1632])(owner);
+		((void(*)(YGNodeRef owner))g_nativeFunctions[1636])(owner);
 	}
 	inline uint64 YGNodeGetChildCount(YGNodeRef owner) 
 	{
 		return
-		((uint64(*)(YGNodeRef owner))g_nativeFunctions[1633])(owner);
+		((uint64(*)(YGNodeRef owner))g_nativeFunctions[1637])(owner);
 	}
 	inline YGNodeRef YGNodeGetParent(YGNodeRef owner) 
 	{
 		return
-		((YGNodeRef(*)(YGNodeRef owner))g_nativeFunctions[1634])(owner);
+		((YGNodeRef(*)(YGNodeRef owner))g_nativeFunctions[1638])(owner);
 	}
 	inline void YGNodeSetConfig(YGNodeRef r, YGConfigRef congig) 
 	{
-		((void(*)(YGNodeRef r, YGConfigRef congig))g_nativeFunctions[1635])(r, congig);
+		((void(*)(YGNodeRef r, YGConfigRef congig))g_nativeFunctions[1639])(r, congig);
 	}
 	inline float YGNodeLayoutGetLeft(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1636])(r);
+		((float(*)(YGNodeRef r))g_nativeFunctions[1640])(r);
 	}
 	inline float YGNodeLayoutGetTop(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1637])(r);
+		((float(*)(YGNodeRef r))g_nativeFunctions[1641])(r);
 	}
 	inline float YGNodeLayoutGetRight(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1638])(r);
+		((float(*)(YGNodeRef r))g_nativeFunctions[1642])(r);
 	}
 	inline float YGNodeLayoutGetBottom(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1639])(r);
+		((float(*)(YGNodeRef r))g_nativeFunctions[1643])(r);
 	}
 	inline float YGNodeLayoutGetWidth(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1640])(r);
+		((float(*)(YGNodeRef r))g_nativeFunctions[1644])(r);
 	}
 	inline float YGNodeLayoutGetHeight(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1641])(r);
+		((float(*)(YGNodeRef r))g_nativeFunctions[1645])(r);
 	}
 	inline int64 YGNodeLayoutGetDirection(YGNodeRef r) 
 	{
 		return
-		((int64(*)(YGNodeRef r))g_nativeFunctions[1642])(r);
+		((int64(*)(YGNodeRef r))g_nativeFunctions[1646])(r);
 	}
 	inline float YGNodeLayoutGetHadOverflow(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1643])(r);
+		((float(*)(YGNodeRef r))g_nativeFunctions[1647])(r);
 	}
 	inline float YGNodeLayoutGetMargin(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1644])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1648])(node, edge);
 	}
 	inline float YGNodeLayoutGetBorder(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1645])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1649])(node, edge);
 	}
 	inline float YGNodeLayoutGetPadding(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1646])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1650])(node, edge);
 	}
 	inline YGConfigRef YGConfigNew() 
 	{
 		return
-		((YGConfigRef(*)())g_nativeFunctions[1647])();
+		((YGConfigRef(*)())g_nativeFunctions[1651])();
 	}
 	inline void YGConfigFree(YGConfigRef c) 
 	{
-		((void(*)(YGConfigRef c))g_nativeFunctions[1648])(c);
+		((void(*)(YGConfigRef c))g_nativeFunctions[1652])(c);
 	}
 	inline void YGConfigSetUseWebDefaults(YGConfigRef config, int enabled) 
 	{
-		((void(*)(YGConfigRef config, int enabled))g_nativeFunctions[1649])(config, enabled);
+		((void(*)(YGConfigRef config, int enabled))g_nativeFunctions[1653])(config, enabled);
 	}
 	inline void YGConfigSetPointScaleFactor(YGConfigRef config, float pixelsInPoint) 
 	{
-		((void(*)(YGConfigRef config, float pixelsInPoint))g_nativeFunctions[1650])(config, pixelsInPoint);
+		((void(*)(YGConfigRef config, float pixelsInPoint))g_nativeFunctions[1654])(config, pixelsInPoint);
 	}
 	inline void YGNodeCopyStyle(YGNodeRef dstNode, YGNodeRef srcNode) 
 	{
-		((void(*)(YGNodeRef dstNode, YGNodeRef srcNode))g_nativeFunctions[1651])(dstNode, srcNode);
+		((void(*)(YGNodeRef dstNode, YGNodeRef srcNode))g_nativeFunctions[1655])(dstNode, srcNode);
 	}
 	inline void YGNodeStyleSetDirection(YGNodeRef node, int64 direction) 
 	{
-		((void(*)(YGNodeRef node, int64 direction))g_nativeFunctions[1652])(node, direction);
+		((void(*)(YGNodeRef node, int64 direction))g_nativeFunctions[1656])(node, direction);
 	}
 	inline int64 YGNodeStyleGetDirection(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1653])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1657])(node);
 	}
 	inline void YGNodeStyleSetFlexDirection(YGNodeRef node, int64 flexDirection) 
 	{
-		((void(*)(YGNodeRef node, int64 flexDirection))g_nativeFunctions[1654])(node, flexDirection);
+		((void(*)(YGNodeRef node, int64 flexDirection))g_nativeFunctions[1658])(node, flexDirection);
 	}
 	inline int64 YGNodeStyleGetFlexDirection(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1655])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1659])(node);
 	}
 	inline void YGNodeStyleSetJustifyContent(YGNodeRef node, int64 justifyContent) 
 	{
-		((void(*)(YGNodeRef node, int64 justifyContent))g_nativeFunctions[1656])(node, justifyContent);
+		((void(*)(YGNodeRef node, int64 justifyContent))g_nativeFunctions[1660])(node, justifyContent);
 	}
 	inline int64 YGNodeStyleGetJustifyContent(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1657])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1661])(node);
 	}
 	inline void YGNodeStyleSetAlignContent(YGNodeRef node, int64 alignContent) 
 	{
-		((void(*)(YGNodeRef node, int64 alignContent))g_nativeFunctions[1658])(node, alignContent);
+		((void(*)(YGNodeRef node, int64 alignContent))g_nativeFunctions[1662])(node, alignContent);
 	}
 	inline int64 YGNodeStyleGetAlignContent(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1659])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1663])(node);
 	}
 	inline void YGNodeStyleSetAlignItems(YGNodeRef node, int64 alignItems) 
 	{
-		((void(*)(YGNodeRef node, int64 alignItems))g_nativeFunctions[1660])(node, alignItems);
+		((void(*)(YGNodeRef node, int64 alignItems))g_nativeFunctions[1664])(node, alignItems);
 	}
 	inline int64 YGNodeStyleGetAlignItems(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1661])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1665])(node);
 	}
 	inline void YGNodeStyleSetAlignSelf(YGNodeRef node, int64 alignSelf) 
 	{
-		((void(*)(YGNodeRef node, int64 alignSelf))g_nativeFunctions[1662])(node, alignSelf);
+		((void(*)(YGNodeRef node, int64 alignSelf))g_nativeFunctions[1666])(node, alignSelf);
 	}
 	inline int64 YGNodeStyleGetAlignSelf(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1663])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1667])(node);
 	}
 	inline void YGNodeStyleSetPositionType(YGNodeRef node, int64 positionType) 
 	{
-		((void(*)(YGNodeRef node, int64 positionType))g_nativeFunctions[1664])(node, positionType);
+		((void(*)(YGNodeRef node, int64 positionType))g_nativeFunctions[1668])(node, positionType);
 	}
 	inline int64 YGNodeStyleGetPositionType(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1665])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1669])(node);
 	}
 	inline void YGNodeStyleSetFlexWrap(YGNodeRef node, int64 flexWrap) 
 	{
-		((void(*)(YGNodeRef node, int64 flexWrap))g_nativeFunctions[1666])(node, flexWrap);
+		((void(*)(YGNodeRef node, int64 flexWrap))g_nativeFunctions[1670])(node, flexWrap);
 	}
 	inline int64 YGNodeStyleGetFlexWrap(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1667])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1671])(node);
 	}
 	inline void YGNodeStyleSetOverflow(YGNodeRef node, int64 overflow) 
 	{
-		((void(*)(YGNodeRef node, int64 overflow))g_nativeFunctions[1668])(node, overflow);
+		((void(*)(YGNodeRef node, int64 overflow))g_nativeFunctions[1672])(node, overflow);
 	}
 	inline int64 YGNodeStyleGetOverflow(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1669])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1673])(node);
 	}
 	inline void YGNodeStyleSetDisplay(YGNodeRef node, int64 display) 
 	{
-		((void(*)(YGNodeRef node, int64 display))g_nativeFunctions[1670])(node, display);
+		((void(*)(YGNodeRef node, int64 display))g_nativeFunctions[1674])(node, display);
 	}
 	inline int64 YGNodeStyleGetDisplay(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1671])(node);
+		((int64(*)(YGNodeRef node))g_nativeFunctions[1675])(node);
 	}
 	inline void YGNodeStyleSetFlex(YGNodeRef node, float flex) 
 	{
-		((void(*)(YGNodeRef node, float flex))g_nativeFunctions[1672])(node, flex);
+		((void(*)(YGNodeRef node, float flex))g_nativeFunctions[1676])(node, flex);
 	}
 	inline float YGNodeStyleGetFlex(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1673])(node);
+		((float(*)(YGNodeRef node))g_nativeFunctions[1677])(node);
 	}
 	inline void YGNodeStyleSetFlexGrow(YGNodeRef node, float flexGrow) 
 	{
-		((void(*)(YGNodeRef node, float flexGrow))g_nativeFunctions[1674])(node, flexGrow);
+		((void(*)(YGNodeRef node, float flexGrow))g_nativeFunctions[1678])(node, flexGrow);
 	}
 	inline float YGNodeStyleGetFlexGrow(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1675])(node);
+		((float(*)(YGNodeRef node))g_nativeFunctions[1679])(node);
 	}
 	inline void YGNodeStyleSetFlexShrink(YGNodeRef node, float flexShrink) 
 	{
-		((void(*)(YGNodeRef node, float flexShrink))g_nativeFunctions[1676])(node, flexShrink);
+		((void(*)(YGNodeRef node, float flexShrink))g_nativeFunctions[1680])(node, flexShrink);
 	}
 	inline float YGNodeStyleGetFlexShrink(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1677])(node);
+		((float(*)(YGNodeRef node))g_nativeFunctions[1681])(node);
 	}
 	inline void YGNodeStyleSetFlexBasis(YGNodeRef node, float flexBasis) 
 	{
-		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1678])(node, flexBasis);
+		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1682])(node, flexBasis);
 	}
 	inline void YGNodeStyleSetFlexBasisPercent(YGNodeRef node, float flexBasis) 
 	{
-		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1679])(node, flexBasis);
+		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1683])(node, flexBasis);
 	}
 	inline void YGNodeStyleSetFlexBasisAuto(YGNodeRef node) 
 	{
-		((void(*)(YGNodeRef node))g_nativeFunctions[1680])(node);
+		((void(*)(YGNodeRef node))g_nativeFunctions[1684])(node);
 	}
 	inline YGValue YGNodeStyleGetFlexBasis(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1681])(node);
+		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1685])(node);
 	}
 	inline void YGNodeStyleSetPosition(YGNodeRef node, int64 edge, float position) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1682])(node, edge, position);
+		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1686])(node, edge, position);
 	}
 	inline void YGNodeStyleSetPositionPercent(YGNodeRef node, int64 edge, float position) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1683])(node, edge, position);
+		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1687])(node, edge, position);
 	}
 	inline YGValue YGNodeStyleGetPosition(YGNodeRef node, int64 edge) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1684])(node, edge);
+		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1688])(node, edge);
 	}
 	inline void YGNodeStyleSetMargin(YGNodeRef node, int64 edge, float margin) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1685])(node, edge, margin);
+		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1689])(node, edge, margin);
 	}
 	inline void YGNodeStyleSetMarginPercent(YGNodeRef node, int64 edge, float margin) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1686])(node, edge, margin);
+		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1690])(node, edge, margin);
 	}
 	inline void YGNodeStyleSetMarginAuto(YGNodeRef node, int64 edge) 
 	{
-		((void(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1687])(node, edge);
+		((void(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1691])(node, edge);
 	}
 	inline YGValue YGNodeStyleGetMargin(YGNodeRef node, int64 edge) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1688])(node, edge);
+		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1692])(node, edge);
 	}
 	inline void YGNodeStyleSetPadding(YGNodeRef node, int64 edge, float padding) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1689])(node, edge, padding);
+		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1693])(node, edge, padding);
 	}
 	inline void YGNodeStyleSetPaddingPercent(YGNodeRef node, int64 edge, float padding) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1690])(node, edge, padding);
+		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1694])(node, edge, padding);
 	}
 	inline YGValue YGNodeStyleGetPadding(YGNodeRef node, int64 edge) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1691])(node, edge);
+		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1695])(node, edge);
 	}
 	inline void YGNodeStyleSetBorder(YGNodeRef node, int64 edge, float border) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float border))g_nativeFunctions[1692])(node, edge, border);
+		((void(*)(YGNodeRef node, int64 edge, float border))g_nativeFunctions[1696])(node, edge, border);
 	}
 	inline float YGNodeStyleGetBorder(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1693])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1697])(node, edge);
 	}
 	inline void YGNodeStyleSetGap(YGNodeRef node, int64 gutter, float gapLength) 
 	{
-		((void(*)(YGNodeRef node, int64 gutter, float gapLength))g_nativeFunctions[1694])(node, gutter, gapLength);
+		((void(*)(YGNodeRef node, int64 gutter, float gapLength))g_nativeFunctions[1698])(node, gutter, gapLength);
 	}
 	inline float YGNodeStyleGetGap(YGNodeRef node, int64 gutter) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 gutter))g_nativeFunctions[1695])(node, gutter);
+		((float(*)(YGNodeRef node, int64 gutter))g_nativeFunctions[1699])(node, gutter);
 	}
 	inline void YGNodeStyleSetWidth(YGNodeRef node, float width) 
 	{
-		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1696])(node, width);
+		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1700])(node, width);
 	}
 	inline void YGNodeStyleSetWidthPercent(YGNodeRef node, float width) 
 	{
-		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1697])(node, width);
+		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1701])(node, width);
 	}
 	inline void YGNodeStyleSetWidthAuto(YGNodeRef node) 
 	{
-		((void(*)(YGNodeRef node))g_nativeFunctions[1698])(node);
+		((void(*)(YGNodeRef node))g_nativeFunctions[1702])(node);
 	}
 	inline YGValue YGNodeStyleGetWidth(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1699])(node);
+		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1703])(node);
 	}
 	inline void YGNodeStyleSetHeight(YGNodeRef node, float height) 
 	{
-		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1700])(node, height);
+		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1704])(node, height);
 	}
 	inline void YGNodeStyleSetHeightPercent(YGNodeRef node, float height) 
 	{
-		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1701])(node, height);
+		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1705])(node, height);
 	}
 	inline void YGNodeStyleSetHeightAuto(YGNodeRef node) 
 	{
-		((void(*)(YGNodeRef node))g_nativeFunctions[1702])(node);
+		((void(*)(YGNodeRef node))g_nativeFunctions[1706])(node);
 	}
 	inline YGValue YGNodeStyleGetHeight(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1703])(node);
+		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1707])(node);
 	}
 	inline void YGNodeStyleSetMinWidth(YGNodeRef node, float minWidth) 
 	{
-		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1704])(node, minWidth);
+		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1708])(node, minWidth);
 	}
 	inline void YGNodeStyleSetMinWidthPercent(YGNodeRef node, float minWidth) 
 	{
-		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1705])(node, minWidth);
+		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1709])(node, minWidth);
 	}
 	inline YGValue YGNodeStyleGetMinWidth(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1706])(node);
+		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1710])(node);
 	}
 	inline void YGNodeStyleSetMinHeight(YGNodeRef node, float minHeight) 
 	{
-		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1707])(node, minHeight);
+		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1711])(node, minHeight);
 	}
 	inline void YGNodeStyleSetMinHeightPercent(YGNodeRef node, float minHeight) 
 	{
-		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1708])(node, minHeight);
+		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1712])(node, minHeight);
 	}
 	inline YGValue YGNodeStyleGetMinHeight(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1709])(node);
+		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1713])(node);
 	}
 	inline void YGNodeStyleSetMaxWidth(YGNodeRef node, float maxWidth) 
 	{
-		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1710])(node, maxWidth);
+		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1714])(node, maxWidth);
 	}
 	inline void YGNodeStyleSetMaxWidthPercent(YGNodeRef node, float maxWidth) 
 	{
-		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1711])(node, maxWidth);
+		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1715])(node, maxWidth);
 	}
 	inline YGValue YGNodeStyleGetMaxWidth(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1712])(node);
+		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1716])(node);
 	}
 	inline void YGNodeStyleSetMaxHeight(YGNodeRef node, float maxHeight) 
 	{
-		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1713])(node, maxHeight);
+		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1717])(node, maxHeight);
 	}
 	inline void YGNodeStyleSetMaxHeightPercent(YGNodeRef node, float maxHeight) 
 	{
-		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1714])(node, maxHeight);
+		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1718])(node, maxHeight);
 	}
 	inline YGValue YGNodeStyleGetMaxHeight(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1715])(node);
+		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1719])(node);
 	}
 	inline void YGNodeStyleSetAspectRatio(YGNodeRef node, float aspectRatio) 
 	{
-		((void(*)(YGNodeRef node, float aspectRatio))g_nativeFunctions[1716])(node, aspectRatio);
+		((void(*)(YGNodeRef node, float aspectRatio))g_nativeFunctions[1720])(node, aspectRatio);
 	}
 	inline float YGNodeStyleGetAspectRatio(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1717])(node);
+		((float(*)(YGNodeRef node))g_nativeFunctions[1721])(node);
 	}
 	inline void YGNodeSetMeasureFunc(YGNodeRef node, YGMeasureFunc measureFunc) 
 	{
-		((void(*)(YGNodeRef node, YGMeasureFunc measureFunc))g_nativeFunctions[1718])(node, measureFunc);
+		((void(*)(YGNodeRef node, YGMeasureFunc measureFunc))g_nativeFunctions[1722])(node, measureFunc);
 	}
 	inline int YGNodeHasMeasureFunc(YGNodeRef node) 
 	{
 		return
-		((int(*)(YGNodeRef node))g_nativeFunctions[1719])(node);
+		((int(*)(YGNodeRef node))g_nativeFunctions[1723])(node);
 	}
 };
 class Glue::Networking
@@ -7915,137 +7934,137 @@ class Glue::Networking
 	static
 	inline void RunCallbacks() 
 	{
-		((void(*)())g_nativeFunctions[1720])();
+		((void(*)())g_nativeFunctions[1724])();
 	}
 	static
 	inline void SetDebugFunction(int level, void* func) 
 	{
-		((void(*)(int level, void* func))g_nativeFunctions[1721])(level, func);
+		((void(*)(int level, void* func))g_nativeFunctions[1725])(level, func);
 	}
 	static
 	inline int64 GetAuthenticationStatus(void* debugMsg) 
 	{
 		return
-		((int64(*)(void* debugMsg))g_nativeFunctions[1722])(debugMsg);
+		((int64(*)(void* debugMsg))g_nativeFunctions[1726])(debugMsg);
 	}
 	static
 	inline int64 GetRelayNetworkStatus(void* debugMsg) 
 	{
 		return
-		((int64(*)(void* debugMsg))g_nativeFunctions[1723])(debugMsg);
+		((int64(*)(void* debugMsg))g_nativeFunctions[1727])(debugMsg);
 	}
 	static
 	inline HSteamListenSocket CreateSocket(int virtualPort) 
 	{
 		return
-		((HSteamListenSocket(*)(int virtualPort))g_nativeFunctions[1724])(virtualPort);
+		((HSteamListenSocket(*)(int virtualPort))g_nativeFunctions[1728])(virtualPort);
 	}
 	static
 	inline HSteamListenSocket CreateIpBasedSocket(int useFakeIP) 
 	{
 		return
-		((HSteamListenSocket(*)(int useFakeIP))g_nativeFunctions[1725])(useFakeIP);
+		((HSteamListenSocket(*)(int useFakeIP))g_nativeFunctions[1729])(useFakeIP);
 	}
 	static
 	inline void CloseSocket(HSteamListenSocket socket) 
 	{
-		((void(*)(HSteamListenSocket socket))g_nativeFunctions[1726])(socket);
+		((void(*)(HSteamListenSocket socket))g_nativeFunctions[1730])(socket);
 	}
 	static
 	inline const char* GetSocketAddress(HSteamListenSocket socket) 
 	{
 		return
-		((const char*(*)(HSteamListenSocket socket))g_nativeFunctions[1727])(socket);
+		((const char*(*)(HSteamListenSocket socket))g_nativeFunctions[1731])(socket);
 	}
 	static
 	inline void BeginAsyncRequestFakeIP() 
 	{
-		((void(*)())g_nativeFunctions[1728])();
+		((void(*)())g_nativeFunctions[1732])();
 	}
 	static
 	inline const char* GetIdentity() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[1729])();
+		((const char*(*)())g_nativeFunctions[1733])();
 	}
 	static
 	inline HSteamNetPollGroup CreatePollGroup() 
 	{
 		return
-		((HSteamNetPollGroup(*)())g_nativeFunctions[1730])();
+		((HSteamNetPollGroup(*)())g_nativeFunctions[1734])();
 	}
 	static
 	inline void DestroyPollGroup(HSteamNetPollGroup group) 
 	{
-		((void(*)(HSteamNetPollGroup group))g_nativeFunctions[1731])(group);
+		((void(*)(HSteamNetPollGroup group))g_nativeFunctions[1735])(group);
 	}
 	static
 	inline void SetPollGroup(HSteamNetConnection connection, HSteamNetPollGroup group) 
 	{
-		((void(*)(HSteamNetConnection connection, HSteamNetPollGroup group))g_nativeFunctions[1732])(connection, group);
+		((void(*)(HSteamNetConnection connection, HSteamNetPollGroup group))g_nativeFunctions[1736])(connection, group);
 	}
 	static
 	inline int GetPollGroupMessages(HSteamNetPollGroup group, void* array_of_pointers, int maxmessages) 
 	{
 		return
-		((int(*)(HSteamNetPollGroup group, void* array_of_pointers, int maxmessages))g_nativeFunctions[1733])(group, array_of_pointers, maxmessages);
+		((int(*)(HSteamNetPollGroup group, void* array_of_pointers, int maxmessages))g_nativeFunctions[1737])(group, array_of_pointers, maxmessages);
 	}
 	static
 	inline HSteamNetConnection ConnectToSteamId(uint64 steamid, int virtualPort) 
 	{
 		return
-		((HSteamNetConnection(*)(uint64 steamid, int virtualPort))g_nativeFunctions[1734])(steamid, virtualPort);
+		((HSteamNetConnection(*)(uint64 steamid, int virtualPort))g_nativeFunctions[1738])(steamid, virtualPort);
 	}
 	static
 	inline HSteamNetConnection ConnectToIpAddress(const char* address) 
 	{
 		return
-		((HSteamNetConnection(*)(const char* address))g_nativeFunctions[1735])(address);
+		((HSteamNetConnection(*)(const char* address))g_nativeFunctions[1739])(address);
 	}
 	static
 	inline void CloseConnection(HSteamNetConnection c, int reason, const char* debugReason) 
 	{
-		((void(*)(HSteamNetConnection c, int reason, const char* debugReason))g_nativeFunctions[1736])(c, reason, debugReason);
+		((void(*)(HSteamNetConnection c, int reason, const char* debugReason))g_nativeFunctions[1740])(c, reason, debugReason);
 	}
 	static
 	inline void AcceptConnection(HSteamNetConnection c) 
 	{
-		((void(*)(HSteamNetConnection c))g_nativeFunctions[1737])(c);
+		((void(*)(HSteamNetConnection c))g_nativeFunctions[1741])(c);
 	}
 	static
 	inline void FlushMessagesOnConnection(HSteamNetConnection c) 
 	{
-		((void(*)(HSteamNetConnection c))g_nativeFunctions[1738])(c);
+		((void(*)(HSteamNetConnection c))g_nativeFunctions[1742])(c);
 	}
 	static
 	inline int64 SendMessage(HSteamNetConnection c, void* data, int length, int flags) 
 	{
 		return
-		((int64(*)(HSteamNetConnection c, void* data, int length, int flags))g_nativeFunctions[1739])(c, data, length, flags);
+		((int64(*)(HSteamNetConnection c, void* data, int length, int flags))g_nativeFunctions[1743])(c, data, length, flags);
 	}
 	static
 	inline int GetConnectionMessages(HSteamNetConnection c, void* array_of_pointers, int maxmessages) 
 	{
 		return
-		((int(*)(HSteamNetConnection c, void* array_of_pointers, int maxmessages))g_nativeFunctions[1740])(c, array_of_pointers, maxmessages);
+		((int(*)(HSteamNetConnection c, void* array_of_pointers, int maxmessages))g_nativeFunctions[1744])(c, array_of_pointers, maxmessages);
 	}
 	static
 	inline int GetConnectionState(HSteamNetConnection c) 
 	{
 		return
-		((int(*)(HSteamNetConnection c))g_nativeFunctions[1741])(c);
+		((int(*)(HSteamNetConnection c))g_nativeFunctions[1745])(c);
 	}
 	static
 	inline const char* GetConnectionDescription(HSteamNetConnection c) 
 	{
 		return
-		((const char*(*)(HSteamNetConnection c))g_nativeFunctions[1742])(c);
+		((const char*(*)(HSteamNetConnection c))g_nativeFunctions[1746])(c);
 	}
 	static
 	inline uint64 GetConnectionSteamId(HSteamNetConnection c) 
 	{
 		return
-		((uint64(*)(HSteamNetConnection c))g_nativeFunctions[1743])(c);
+		((uint64(*)(HSteamNetConnection c))g_nativeFunctions[1747])(c);
 	}
 };
 class Glue::RenderDeviceManager
@@ -8058,20 +8077,20 @@ class Glue::RenderDeviceManager
 	}
 	inline void WriteVideoConfig() 
 	{
-		((void(*)())g_nativeFunctions[1744])();
+		((void(*)())g_nativeFunctions[1748])();
 	}
 	inline void ResetVideoConfig() 
 	{
-		((void(*)())g_nativeFunctions[1745])();
+		((void(*)())g_nativeFunctions[1749])();
 	}
 	inline void ChangeVideoMode(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample) 
 	{
-		((void(*)(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample))g_nativeFunctions[1746])(fullscreen, noborder, vsync, width, height, multisample);
+		((void(*)(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample))g_nativeFunctions[1750])(fullscreen, noborder, vsync, width, height, multisample);
 	}
 	inline int GetDisplayModes(DisplayMode_t* modes, int max, int windowed) 
 	{
 		return
-		((int(*)(DisplayMode_t* modes, int max, int windowed))g_nativeFunctions[1747])(modes, max, windowed);
+		((int(*)(DisplayMode_t* modes, int max, int windowed))g_nativeFunctions[1751])(modes, max, windowed);
 	}
 };
 class Glue::Resources
@@ -8085,27 +8104,27 @@ class Glue::Resources
 	inline HMaterialStrong* GetMaterial(const char* name) 
 	{
 		return
-		((HMaterialStrong*(*)(const char* name))g_nativeFunctions[1748])(name);
+		((HMaterialStrong*(*)(const char* name))g_nativeFunctions[1752])(name);
 	}
 	inline HRenderTextureStrong* GetTexture(const char* name) 
 	{
 		return
-		((HRenderTextureStrong*(*)(const char* name))g_nativeFunctions[1749])(name);
+		((HRenderTextureStrong*(*)(const char* name))g_nativeFunctions[1753])(name);
 	}
 	inline HModelStrong* GetModel(const char* name) 
 	{
 		return
-		((HModelStrong*(*)(const char* name))g_nativeFunctions[1750])(name);
+		((HModelStrong*(*)(const char* name))g_nativeFunctions[1754])(name);
 	}
 	inline HAnimationGraphStrong* GetAnimationGraph(const char* name) 
 	{
 		return
-		((HAnimationGraphStrong*(*)(const char* name))g_nativeFunctions[1751])(name);
+		((HAnimationGraphStrong*(*)(const char* name))g_nativeFunctions[1755])(name);
 	}
 	inline HShaderStrong* GetShader(const char* name) 
 	{
 		return
-		((HShaderStrong*(*)(const char* name))g_nativeFunctions[1752])(name);
+		((HShaderStrong*(*)(const char* name))g_nativeFunctions[1756])(name);
 	}
 };
 class HResourceManifest__
@@ -8127,42 +8146,42 @@ class IAnimationGraph
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1753])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1757])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1754])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1758])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1755])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1759])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1756])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1760])(m_pSelf);
 	}
 	inline HAnimationGraphStrong* CopyStrongHandle() 
 	{
 		return
-		((HAnimationGraphStrong*(*)(void* self))g_nativeFunctions[1757])(m_pSelf);
+		((HAnimationGraphStrong*(*)(void* self))g_nativeFunctions[1761])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1758])(m_pSelf);
+		((const void*(*)(void* self))g_nativeFunctions[1762])(m_pSelf);
 	}
 	inline const char* GetResourceName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1759])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[1763])(m_pSelf);
 	}
 	inline const IAnimParameterList* GetParameterList() 
 	{
 		return
-		((const IAnimParameterList*(*)(void* self))g_nativeFunctions[1760])(m_pSelf);
+		((const IAnimParameterList*(*)(void* self))g_nativeFunctions[1764])(m_pSelf);
 	}
 };
 class IAnimParameter
@@ -8176,37 +8195,32 @@ class IAnimParameter
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1761])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[1765])(m_pSelf);
 	}
 	inline int64 GetParameterType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1762])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1766])(m_pSelf);
 	}
 	inline CAnimVariant GetDefaultValue() 
 	{
 		return
-		((CAnimVariant(*)(void* self))g_nativeFunctions[1763])(m_pSelf);
-	}
-	inline CAnimVariant GetMinValue() 
-	{
-		return
-		((CAnimVariant(*)(void* self))g_nativeFunctions[1764])(m_pSelf);
+		((CAnimVariant(*)(void* self))g_nativeFunctions[1767])(m_pSelf);
 	}
 	inline CAnimVariant GetMaxValue() 
 	{
 		return
-		((CAnimVariant(*)(void* self))g_nativeFunctions[1765])(m_pSelf);
+		((CAnimVariant(*)(void* self))g_nativeFunctions[1769])(m_pSelf);
 	}
 	inline int GetNumOptionNames() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1766])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[1770])(m_pSelf);
 	}
 	inline const char* GetOptionName(int nIndex) 
 	{
 		return
-		((const char*(*)(void* __self, int __nIndex))g_nativeFunctions[1767])(m_pSelf, nIndex);
+		((const char*(*)(void* __self, int __nIndex))g_nativeFunctions[1771])(m_pSelf, nIndex);
 	}
 };
 class IAnimParameterInstance
@@ -8219,38 +8233,42 @@ class IAnimParameterInstance
 	}
 	inline void SetValue(int val) 
 	{
-		((void(*)(void* self, int val))g_nativeFunctions[1769])(m_pSelf, val);
+		((void(*)(void* self, int val))g_nativeFunctions[1772])(m_pSelf, val);
+	}
+	inline void SetValue(int val) 
+	{
+		((void(*)(void* self, int val))g_nativeFunctions[1773])(m_pSelf, val);
 	}
 	inline void SetValue(float val) 
 	{
-		((void(*)(void* self, float val))g_nativeFunctions[1770])(m_pSelf, val);
+		((void(*)(void* self, float val))g_nativeFunctions[1774])(m_pSelf, val);
 	}
 	inline void SetValue(Vector val) 
 	{
-		((void(*)(void* self, Vector val))g_nativeFunctions[1771])(m_pSelf, val);
+		((void(*)(void* self, Vector val))g_nativeFunctions[1775])(m_pSelf, val);
 	}
 	inline void SetValue(Quaternion val) 
 	{
-		((void(*)(void* self, Quaternion val))g_nativeFunctions[1772])(m_pSelf, val);
+		((void(*)(void* self, Quaternion val))g_nativeFunctions[1776])(m_pSelf, val);
 	}
 	inline void SetEnumValue(int val) 
 	{
-		((void(*)(void* __self, int __val))g_nativeFunctions[1773])(m_pSelf, val);
+		((void(*)(void* __self, int __val))g_nativeFunctions[1777])(m_pSelf, val);
 	}
 	inline const char * GetName() 
 	{
 		return
-		((const char *(*)(void* self))g_nativeFunctions[1774])(m_pSelf);
+		((const char *(*)(void* self))g_nativeFunctions[1778])(m_pSelf);
 	}
 	inline int IsAutoReset() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1775])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1779])(m_pSelf);
 	}
 	inline int64 GetParameterType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1776])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1780])(m_pSelf);
 	}
 };
 class IAnimParameterList
@@ -8264,17 +8282,17 @@ class IAnimParameterList
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1777])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1781])(m_pSelf);
 	}
 	inline const IAnimParameter* GetParameter(int index) 
 	{
 		return
-		((const IAnimParameter*(*)(void* self, int index))g_nativeFunctions[1778])(m_pSelf, index);
+		((const IAnimParameter*(*)(void* self, int index))g_nativeFunctions[1782])(m_pSelf, index);
 	}
 	inline const IAnimParameter* GetParameter(const char* name) 
 	{
 		return
-		((const IAnimParameter*(*)(void* self, const char* name))g_nativeFunctions[1779])(m_pSelf, name);
+		((const IAnimParameter*(*)(void* self, const char* name))g_nativeFunctions[1783])(m_pSelf, name);
 	}
 };
 class IAsyncResourceDataRequest
@@ -8288,17 +8306,17 @@ class IAsyncResourceDataRequest
 	inline const char* GetFileName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1780])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[1784])(m_pSelf);
 	}
 	inline const void* GetResultBuffer() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1781])(m_pSelf);
+		((const void*(*)(void* self))g_nativeFunctions[1785])(m_pSelf);
 	}
 	inline int64 GetResultBufferSize() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1782])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1786])(m_pSelf);
 	}
 };
 class ImageLoader
@@ -8312,17 +8330,17 @@ class ImageLoader
 	inline int GetMemRequired(int width, int height, int depth, int64 imageFormat, int mipmap) 
 	{
 		return
-		((int(*)(int width, int height, int depth, int64 imageFormat, int mipmap))g_nativeFunctions[1783])(width, height, depth, imageFormat, mipmap);
+		((int(*)(int width, int height, int depth, int64 imageFormat, int mipmap))g_nativeFunctions[1787])(width, height, depth, imageFormat, mipmap);
 	}
 	inline int GetMemRequired(int width, int height, int depth, int mipmaps, int64 imageFormat) 
 	{
 		return
-		((int(*)(int width, int height, int depth, int mipmaps, int64 imageFormat))g_nativeFunctions[1784])(width, height, depth, mipmaps, imageFormat);
+		((int(*)(int width, int height, int depth, int mipmaps, int64 imageFormat))g_nativeFunctions[1788])(width, height, depth, mipmaps, imageFormat);
 	}
 	inline int ConvertImageFormat(void* src, int64 srcImageFormat, void* dst, int64 dstImageFormat, int width, int height, int srcStride, int dstStride) 
 	{
 		return
-		((int(*)(void* src, int64 srcImageFormat, void* dst, int64 dstImageFormat, int width, int height, int srcStride, int dstStride))g_nativeFunctions[1785])(src, srcImageFormat, dst, dstImageFormat, width, height, srcStride, dstStride);
+		((int(*)(void* src, int64 srcImageFormat, void* dst, int64 dstImageFormat, int width, int height, int srcStride, int dstStride))g_nativeFunctions[1789])(src, srcImageFormat, dst, dstImageFormat, width, height, srcStride, dstStride);
 	}
 };
 class IMaterial2
@@ -8335,146 +8353,146 @@ class IMaterial2
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1786])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1790])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1787])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1791])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1788])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1792])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1789])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1793])(m_pSelf);
 	}
 	inline HMaterialStrong* CopyStrongHandle() 
 	{
 		return
-		((HMaterialStrong*(*)(void* self))g_nativeFunctions[1790])(m_pSelf);
+		((HMaterialStrong*(*)(void* self))g_nativeFunctions[1794])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1791])(m_pSelf);
+		((const void*(*)(void* self))g_nativeFunctions[1795])(m_pSelf);
 	}
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1792])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[1796])(m_pSelf);
 	}
 	inline const char* GetNameWithMod() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1793])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[1797])(m_pSelf);
 	}
 	inline uint64 GetSimilarityKey() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1794])(m_pSelf);
+		((uint64(*)(void* self))g_nativeFunctions[1798])(m_pSelf);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1795])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1799])(m_pSelf);
 	}
 	inline const IMaterialMode* GetMode(uint32 token) 
 	{
 		return
-		((const IMaterialMode*(*)(void* self, uint32 token))g_nativeFunctions[1796])(m_pSelf, token);
+		((const IMaterialMode*(*)(void* self, uint32 token))g_nativeFunctions[1800])(m_pSelf, token);
 	}
 	inline const IMaterialMode* GetMode() 
 	{
 		return
-		((const IMaterialMode*(*)(void* self))g_nativeFunctions[1797])(m_pSelf);
+		((const IMaterialMode*(*)(void* self))g_nativeFunctions[1801])(m_pSelf);
 	}
 	inline const IMaterialMode* GetMode(ISceneLayer* layer) 
 	{
 		return
-		((const IMaterialMode*(*)(void* __self, ISceneLayer* __layer))g_nativeFunctions[1798])(m_pSelf, layer);
+		((const IMaterialMode*(*)(void* __self, ISceneLayer* __layer))g_nativeFunctions[1802])(m_pSelf, layer);
 	}
 	inline const CRenderAttributes* GetRenderAttributes() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[1799])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[1803])(m_pSelf);
 	}
 	inline void RecreateAllStaticConstantAndCommandBuffers() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1800])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1804])(m_pSelf);
 	}
 	inline HRenderTextureStrong* GetFirstTextureAttribute() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self))g_nativeFunctions[1801])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* self))g_nativeFunctions[1805])(m_pSelf);
 	}
 	inline int GetBoolAttributeOrDefault(uint32 name, int i) 
 	{
 		return
-		((int(*)(void* self, uint32 name, int i))g_nativeFunctions[1802])(m_pSelf, name, i);
+		((int(*)(void* self, uint32 name, int i))g_nativeFunctions[1806])(m_pSelf, name, i);
 	}
 	inline int GetIntAttributeOrDefault(uint32 name, int i) 
 	{
 		return
-		((int(*)(void* self, uint32 name, int i))g_nativeFunctions[1803])(m_pSelf, name, i);
+		((int(*)(void* self, uint32 name, int i))g_nativeFunctions[1807])(m_pSelf, name, i);
 	}
 	inline float GetFloatAttributeOrDefault(uint32 name, float f) 
 	{
 		return
-		((float(*)(void* self, uint32 name, float f))g_nativeFunctions[1804])(m_pSelf, name, f);
+		((float(*)(void* self, uint32 name, float f))g_nativeFunctions[1808])(m_pSelf, name, f);
 	}
 	inline HRenderTextureStrong* GetTextureAttributeOrDefault(uint32 name) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, uint32 name))g_nativeFunctions[1805])(m_pSelf, name);
+		((HRenderTextureStrong*(*)(void* self, uint32 name))g_nativeFunctions[1809])(m_pSelf, name);
 	}
 	inline int HasParam(const char* name) 
 	{
 		return
-		((int(*)(void* self, const char* name))g_nativeFunctions[1806])(m_pSelf, name);
+		((int(*)(void* self, const char* name))g_nativeFunctions[1810])(m_pSelf, name);
 	}
 	inline void Set(const char* name, const char* val) 
 	{
-		((void(*)(void* self, const char* name, const char* val))g_nativeFunctions[1807])(m_pSelf, name, val);
+		((void(*)(void* self, const char* name, const char* val))g_nativeFunctions[1811])(m_pSelf, name, val);
 	}
 	inline const char* GetString(const char* name, const char* defaultValue) 
 	{
 		return
-		((const char*(*)(void* self, const char* name, const char* defaultValue))g_nativeFunctions[1808])(m_pSelf, name, defaultValue);
+		((const char*(*)(void* self, const char* name, const char* defaultValue))g_nativeFunctions[1812])(m_pSelf, name, defaultValue);
 	}
 	inline void Set(const char* name, Vector4D value) 
 	{
-		((void(*)(void* self, const char* name, Vector4D value))g_nativeFunctions[1809])(m_pSelf, name, value);
+		((void(*)(void* self, const char* name, Vector4D value))g_nativeFunctions[1813])(m_pSelf, name, value);
 	}
 	inline Vector4D GetVector4(const char* name) 
 	{
 		return
-		((Vector4D(*)(void* self, const char* name))g_nativeFunctions[1810])(m_pSelf, name);
+		((Vector4D(*)(void* self, const char* name))g_nativeFunctions[1814])(m_pSelf, name);
 	}
 	inline void Set(const char* name, HRenderTextureStrong* value) 
 	{
-		((void(*)(void* self, const char* name, HRenderTextureStrong* value))g_nativeFunctions[1811])(m_pSelf, name, value);
+		((void(*)(void* self, const char* name, HRenderTextureStrong* value))g_nativeFunctions[1815])(m_pSelf, name, value);
 	}
 	inline HRenderTextureStrong* GetTexture(const char* name) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, const char* name))g_nativeFunctions[1812])(m_pSelf, name);
+		((HRenderTextureStrong*(*)(void* self, const char* name))g_nativeFunctions[1816])(m_pSelf, name);
 	}
 	inline void SetEdited(int b) 
 	{
-		((void(*)(void* self, int b))g_nativeFunctions[1813])(m_pSelf, b);
+		((void(*)(void* self, int b))g_nativeFunctions[1817])(m_pSelf, b);
 	}
 	inline int IsEdited() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1814])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1818])(m_pSelf);
 	}
 	inline void ReloadStaticCombos() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[1815])(m_pSelf);
+		((void(*)(void* __self))g_nativeFunctions[1819])(m_pSelf);
 	}
 };
 class IMaterialMode
@@ -8496,117 +8514,117 @@ class IPhysAggregateInstance
 	}
 	inline void WakeUp() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1816])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1820])(m_pSelf);
 	}
 	inline void PutToSleep() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1817])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1821])(m_pSelf);
 	}
 	inline int IsAsleep() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1818])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1822])(m_pSelf);
 	}
 	inline void SetVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1819])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1823])(m_pSelf, v);
 	}
 	inline void AddVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1820])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1824])(m_pSelf, v);
 	}
 	inline void SetAngularVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1821])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1825])(m_pSelf, v);
 	}
 	inline void AddAngularVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1822])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1826])(m_pSelf, v);
 	}
 	inline int GetBodyCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1823])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1827])(m_pSelf);
 	}
 	inline int GetBodyHandle(int i) 
 	{
 		return
-		((int(*)(void* self, int i))g_nativeFunctions[1824])(m_pSelf, i);
+		((int(*)(void* self, int i))g_nativeFunctions[1828])(m_pSelf, i);
 	}
 	inline const char* GetBodyName(int i) 
 	{
 		return
-		((const char*(*)(void* self, int i))g_nativeFunctions[1825])(m_pSelf, i);
+		((const char*(*)(void* self, int i))g_nativeFunctions[1829])(m_pSelf, i);
 	}
 	inline unsigned int GetBodyNameHash(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[1826])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_nativeFunctions[1830])(m_pSelf, i);
 	}
 	inline int GetBodyByNameHash(int i) 
 	{
 		return
-		((int(*)(void* self, int i))g_nativeFunctions[1827])(m_pSelf, i);
+		((int(*)(void* self, int i))g_nativeFunctions[1831])(m_pSelf, i);
 	}
 	inline int GetBodyIndex(IPhysicsBody* body) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* body))g_nativeFunctions[1828])(m_pSelf, body);
+		((int(*)(void* self, IPhysicsBody* body))g_nativeFunctions[1832])(m_pSelf, body);
 	}
 	inline int FindBodyByName(const char* name) 
 	{
 		return
-		((int(*)(void* self, const char* name))g_nativeFunctions[1829])(m_pSelf, name);
+		((int(*)(void* self, const char* name))g_nativeFunctions[1833])(m_pSelf, name);
 	}
 	inline int GetJointCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1830])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1834])(m_pSelf);
 	}
 	inline int GetJointHandle(int nIndex) 
 	{
 		return
-		((int(*)(void* self, int nIndex))g_nativeFunctions[1831])(m_pSelf, nIndex);
+		((int(*)(void* self, int nIndex))g_nativeFunctions[1835])(m_pSelf, nIndex);
 	}
 	inline void RemoveJoint(IPhysicsJoint* pJoint) 
 	{
-		((void(*)(void* self, IPhysicsJoint* pJoint))g_nativeFunctions[1832])(m_pSelf, pJoint);
+		((void(*)(void* self, IPhysicsJoint* pJoint))g_nativeFunctions[1836])(m_pSelf, pJoint);
 	}
 	inline Vector GetOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1833])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1837])(m_pSelf);
 	}
 	inline Vector GetMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1834])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1838])(m_pSelf);
 	}
 	inline void SetSurfaceProperties(uint32 name) 
 	{
-		((void(*)(void* self, uint32 name))g_nativeFunctions[1835])(m_pSelf, name);
+		((void(*)(void* self, uint32 name))g_nativeFunctions[1839])(m_pSelf, name);
 	}
 	inline float GetTotalMass() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1836])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1840])(m_pSelf);
 	}
 	inline void SetTotalMass(float flMass) 
 	{
-		((void(*)(void* self, float flMass))g_nativeFunctions[1837])(m_pSelf, flMass);
+		((void(*)(void* self, float flMass))g_nativeFunctions[1841])(m_pSelf, flMass);
 	}
 	inline void SetLinearDamping(float flLinearDamping) 
 	{
-		((void(*)(void* self, float flLinearDamping))g_nativeFunctions[1838])(m_pSelf, flLinearDamping);
+		((void(*)(void* self, float flLinearDamping))g_nativeFunctions[1842])(m_pSelf, flLinearDamping);
 	}
 	inline void SetAngularDamping(float flAngularDamping) 
 	{
-		((void(*)(void* self, float flAngularDamping))g_nativeFunctions[1839])(m_pSelf, flAngularDamping);
+		((void(*)(void* self, float flAngularDamping))g_nativeFunctions[1843])(m_pSelf, flAngularDamping);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1840])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1844])(m_pSelf);
 	}
 };
 class IPhysicsBody
@@ -8620,358 +8638,358 @@ class IPhysicsBody
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1841])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1845])(m_pSelf);
 	}
 	inline void SetGravityScale(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1842])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[1846])(m_pSelf, f);
 	}
 	inline float GetGravityScale() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1843])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1847])(m_pSelf);
 	}
 	inline int IsGravityEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1844])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1848])(m_pSelf);
 	}
 	inline void EnableGravity(int value) 
 	{
-		((void(*)(void* self, int value))g_nativeFunctions[1845])(m_pSelf, value);
+		((void(*)(void* self, int value))g_nativeFunctions[1849])(m_pSelf, value);
 	}
 	inline void SetMass(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1846])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[1850])(m_pSelf, f);
 	}
 	inline float GetMass() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1847])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1851])(m_pSelf);
 	}
 	inline Vector GetMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1848])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1852])(m_pSelf);
 	}
 	inline Vector GetLocalMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1849])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1853])(m_pSelf);
 	}
 	inline void SetLocalMassCenter(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1850])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1854])(m_pSelf, v);
 	}
 	inline void SetOverrideMassCenter(int bOverride) 
 	{
-		((void(*)(void* self, int bOverride))g_nativeFunctions[1851])(m_pSelf, bOverride);
+		((void(*)(void* self, int bOverride))g_nativeFunctions[1855])(m_pSelf, bOverride);
 	}
 	inline int GetOverrideMassCenter() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1852])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1856])(m_pSelf);
 	}
 	inline void SetPosition(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1853])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1857])(m_pSelf, v);
 	}
 	inline Vector GetPosition() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1854])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1858])(m_pSelf);
 	}
 	inline void SetOrientation(Quaternion q) 
 	{
-		((void(*)(void* self, Quaternion q))g_nativeFunctions[1855])(m_pSelf, q);
+		((void(*)(void* self, Quaternion q))g_nativeFunctions[1859])(m_pSelf, q);
 	}
 	inline Quaternion GetOrientation() 
 	{
 		return
-		((Quaternion(*)(void* self))g_nativeFunctions[1856])(m_pSelf);
+		((Quaternion(*)(void* self))g_nativeFunctions[1860])(m_pSelf);
 	}
 	inline void SetTransform(Vector v, Quaternion q) 
 	{
-		((void(*)(void* self, Vector v, Quaternion q))g_nativeFunctions[1857])(m_pSelf, v, q);
+		((void(*)(void* self, Vector v, Quaternion q))g_nativeFunctions[1861])(m_pSelf, v, q);
 	}
 	inline CTransformUnaligned GetTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[1858])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_nativeFunctions[1862])(m_pSelf);
 	}
 	inline void SetLinearVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1859])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1863])(m_pSelf, v);
 	}
 	inline Vector GetLinearVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1860])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1864])(m_pSelf);
 	}
 	inline Vector GetVelocityAtPoint(Vector v) 
 	{
 		return
-		((Vector(*)(void* self, Vector v))g_nativeFunctions[1861])(m_pSelf, v);
+		((Vector(*)(void* self, Vector v))g_nativeFunctions[1865])(m_pSelf, v);
 	}
 	inline void AddLinearVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1862])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1866])(m_pSelf, v);
 	}
 	inline void SetAngularVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1863])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[1867])(m_pSelf, v);
 	}
 	inline Vector GetAngularVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1864])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1868])(m_pSelf);
 	}
 	inline void Wake() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1865])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1869])(m_pSelf);
 	}
 	inline void Sleep() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1866])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1870])(m_pSelf);
 	}
 	inline int IsSleeping() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1867])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1871])(m_pSelf);
 	}
 	inline void EnableAutoSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1868])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1872])(m_pSelf);
 	}
 	inline void DisableAutoSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1869])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1873])(m_pSelf);
 	}
 	inline void EnableTouchEvents() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1870])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1874])(m_pSelf);
 	}
 	inline void DisableTouchEvents() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1871])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1875])(m_pSelf);
 	}
 	inline int IsTouchEventEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1872])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1876])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1873])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1877])(m_pSelf);
 	}
 	inline void SetType(int64 type) 
 	{
-		((void(*)(void* self, int64 type))g_nativeFunctions[1874])(m_pSelf, type);
+		((void(*)(void* self, int64 type))g_nativeFunctions[1878])(m_pSelf, type);
 	}
 	inline int GetShapeCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1875])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1879])(m_pSelf);
 	}
 	inline int GetShape(int nShape) 
 	{
 		return
-		((int(*)(void* self, int nShape))g_nativeFunctions[1876])(m_pSelf, nShape);
+		((int(*)(void* self, int nShape))g_nativeFunctions[1880])(m_pSelf, nShape);
 	}
 	inline int AddSphereShape(Vector vCenter, float flRadius) 
 	{
 		return
-		((int(*)(void* self, Vector vCenter, float flRadius))g_nativeFunctions[1877])(m_pSelf, vCenter, flRadius);
+		((int(*)(void* self, Vector vCenter, float flRadius))g_nativeFunctions[1881])(m_pSelf, vCenter, flRadius);
 	}
 	inline int AddCapsuleShape(Vector vCenter1, Vector vCenter2, float flRadius) 
 	{
 		return
-		((int(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_nativeFunctions[1878])(m_pSelf, vCenter1, vCenter2, flRadius);
+		((int(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_nativeFunctions[1882])(m_pSelf, vCenter1, vCenter2, flRadius);
 	}
 	inline int AddBoxShape(Vector position, Quaternion rotation, Vector extent) 
 	{
 		return
-		((int(*)(void* self, Vector position, Quaternion rotation, Vector extent))g_nativeFunctions[1879])(m_pSelf, position, rotation, extent);
+		((int(*)(void* self, Vector position, Quaternion rotation, Vector extent))g_nativeFunctions[1883])(m_pSelf, position, rotation, extent);
 	}
 	inline int AddHullShape(Vector position, Quaternion rotation, int numVertices, void* vertices) 
 	{
 		return
-		((int(*)(void* self, Vector position, Quaternion rotation, int numVertices, void* vertices))g_nativeFunctions[1880])(m_pSelf, position, rotation, numVertices, vertices);
+		((int(*)(void* self, Vector position, Quaternion rotation, int numVertices, void* vertices))g_nativeFunctions[1884])(m_pSelf, position, rotation, numVertices, vertices);
 	}
 	inline int AddHullShape(RnHull_t* hull, CTransformUnaligned xform) 
 	{
 		return
-		((int(*)(void* self, RnHull_t* hull, CTransformUnaligned xform))g_nativeFunctions[1881])(m_pSelf, hull, xform);
+		((int(*)(void* self, RnHull_t* hull, CTransformUnaligned xform))g_nativeFunctions[1885])(m_pSelf, hull, xform);
 	}
 	inline int AddHullShape(RnMesh_t* mesh, CTransformUnaligned xform) 
 	{
 		return
-		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform))g_nativeFunctions[1882])(m_pSelf, mesh, xform);
+		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform))g_nativeFunctions[1886])(m_pSelf, mesh, xform);
 	}
 	inline int AddMeshShape(int numVertices, void* vertices, int numIndices, void* indices, int nMaterialCount) 
 	{
 		return
-		((int(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices, int nMaterialCount))g_nativeFunctions[1883])(m_pSelf, numVertices, vertices, numIndices, indices, nMaterialCount);
+		((int(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices, int nMaterialCount))g_nativeFunctions[1887])(m_pSelf, numVertices, vertices, numIndices, indices, nMaterialCount);
 	}
 	inline int AddMeshShape(RnMesh_t* mesh, CTransformUnaligned xform, int nMaterialCount) 
 	{
 		return
-		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform, int nMaterialCount))g_nativeFunctions[1884])(m_pSelf, mesh, xform, nMaterialCount);
+		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform, int nMaterialCount))g_nativeFunctions[1888])(m_pSelf, mesh, xform, nMaterialCount);
 	}
 	inline int AddHeightFieldShape(void* pHeights, void* pMaterials, int sizeX, int sizeY, float sizeScale, float heightScale, int nMaterialCount) 
 	{
 		return
-		((int(*)(void* self, void* pHeights, void* pMaterials, int sizeX, int sizeY, float sizeScale, float heightScale, int nMaterialCount))g_nativeFunctions[1885])(m_pSelf, pHeights, pMaterials, sizeX, sizeY, sizeScale, heightScale, nMaterialCount);
+		((int(*)(void* self, void* pHeights, void* pMaterials, int sizeX, int sizeY, float sizeScale, float heightScale, int nMaterialCount))g_nativeFunctions[1889])(m_pSelf, pHeights, pMaterials, sizeX, sizeY, sizeScale, heightScale, nMaterialCount);
 	}
 	inline void RemoveShape(IPhysicsShape* pShape) 
 	{
-		((void(*)(void* self, IPhysicsShape* pShape))g_nativeFunctions[1886])(m_pSelf, pShape);
+		((void(*)(void* self, IPhysicsShape* pShape))g_nativeFunctions[1890])(m_pSelf, pShape);
 	}
 	inline void PurgeShapes() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1887])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1891])(m_pSelf);
 	}
 	inline void ApplyLinearImpulse(Vector impulse) 
 	{
-		((void(*)(void* self, Vector impulse))g_nativeFunctions[1888])(m_pSelf, impulse);
+		((void(*)(void* self, Vector impulse))g_nativeFunctions[1892])(m_pSelf, impulse);
 	}
 	inline void ApplyLinearImpulseAtWorldSpace(Vector impulse, Vector pos) 
 	{
-		((void(*)(void* self, Vector impulse, Vector pos))g_nativeFunctions[1889])(m_pSelf, impulse, pos);
+		((void(*)(void* self, Vector impulse, Vector pos))g_nativeFunctions[1893])(m_pSelf, impulse, pos);
 	}
 	inline void ApplyAngularImpulse(Vector impulse) 
 	{
-		((void(*)(void* self, Vector impulse))g_nativeFunctions[1890])(m_pSelf, impulse);
+		((void(*)(void* self, Vector impulse))g_nativeFunctions[1894])(m_pSelf, impulse);
 	}
 	inline void ApplyForce(Vector F) 
 	{
-		((void(*)(void* self, Vector F))g_nativeFunctions[1891])(m_pSelf, F);
+		((void(*)(void* self, Vector F))g_nativeFunctions[1895])(m_pSelf, F);
 	}
 	inline void ApplyForceAt(Vector F, Vector r) 
 	{
-		((void(*)(void* self, Vector F, Vector r))g_nativeFunctions[1892])(m_pSelf, F, r);
+		((void(*)(void* self, Vector F, Vector r))g_nativeFunctions[1896])(m_pSelf, F, r);
 	}
 	inline void ApplyTorque(Vector M) 
 	{
-		((void(*)(void* self, Vector M))g_nativeFunctions[1893])(m_pSelf, M);
+		((void(*)(void* self, Vector M))g_nativeFunctions[1897])(m_pSelf, M);
 	}
 	inline void ClearForces() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1894])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1898])(m_pSelf);
 	}
 	inline void ClearTorque() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1895])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1899])(m_pSelf);
 	}
 	inline void Enable() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1896])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1900])(m_pSelf);
 	}
 	inline void Disable() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1897])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1901])(m_pSelf);
 	}
 	inline int IsEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1898])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1902])(m_pSelf);
 	}
 	inline void BuildMass() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1899])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1903])(m_pSelf);
 	}
 	inline void SetLinearDamping(float d) 
 	{
-		((void(*)(void* self, float d))g_nativeFunctions[1900])(m_pSelf, d);
+		((void(*)(void* self, float d))g_nativeFunctions[1904])(m_pSelf, d);
 	}
 	inline float GetLinearDamping() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1901])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1905])(m_pSelf);
 	}
 	inline void SetAngularDamping(float d) 
 	{
-		((void(*)(void* self, float d))g_nativeFunctions[1902])(m_pSelf, d);
+		((void(*)(void* self, float d))g_nativeFunctions[1906])(m_pSelf, d);
 	}
 	inline float GetAngularDamping() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1903])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1907])(m_pSelf);
 	}
 	inline AABB_t BuildBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[1904])(m_pSelf);
+		((AABB_t(*)(void* self))g_nativeFunctions[1908])(m_pSelf);
 	}
 	inline float GetDensity() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1905])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1909])(m_pSelf);
 	}
 	inline Vector GetClosestPoint(Vector vPoint) 
 	{
 		return
-		((Vector(*)(void* self, Vector vPoint))g_nativeFunctions[1906])(m_pSelf, vPoint);
+		((Vector(*)(void* self, Vector vPoint))g_nativeFunctions[1910])(m_pSelf, vPoint);
 	}
 	inline void SetMaterialIndex(uint32 name) 
 	{
-		((void(*)(void* self, uint32 name))g_nativeFunctions[1907])(m_pSelf, name);
+		((void(*)(void* self, uint32 name))g_nativeFunctions[1911])(m_pSelf, name);
 	}
 	inline int GetAggregate() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1908])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[1912])(m_pSelf);
 	}
 	inline void SetTargetTransform(Vector vTargetPosition, Quaternion vTargetAngles, float flTimeOffset) 
 	{
-		((void(*)(void* self, Vector vTargetPosition, Quaternion vTargetAngles, float flTimeOffset))g_nativeFunctions[1909])(m_pSelf, vTargetPosition, vTargetAngles, flTimeOffset);
+		((void(*)(void* self, Vector vTargetPosition, Quaternion vTargetAngles, float flTimeOffset))g_nativeFunctions[1913])(m_pSelf, vTargetPosition, vTargetAngles, flTimeOffset);
 	}
 	inline int CheckOverlap(IPhysicsBody* body, CTransformUnaligned transform) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* body, CTransformUnaligned transform))g_nativeFunctions[1910])(m_pSelf, body, transform);
+		((int(*)(void* self, IPhysicsBody* body, CTransformUnaligned transform))g_nativeFunctions[1914])(m_pSelf, body, transform);
 	}
 	inline Vector GetLocalInertiaVector() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1911])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1915])(m_pSelf);
 	}
 	inline Quaternion GetLocalInertiaOrientation() 
 	{
 		return
-		((Quaternion(*)(void* self))g_nativeFunctions[1912])(m_pSelf);
+		((Quaternion(*)(void* self))g_nativeFunctions[1916])(m_pSelf);
 	}
 	inline void SetLocalInertia(Vector vInertia, Quaternion qRotation) 
 	{
-		((void(*)(void* self, Vector vInertia, Quaternion qRotation))g_nativeFunctions[1913])(m_pSelf, vInertia, qRotation);
+		((void(*)(void* self, Vector vInertia, Quaternion qRotation))g_nativeFunctions[1917])(m_pSelf, vInertia, qRotation);
 	}
 	inline void ResetLocalInertia() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1914])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[1918])(m_pSelf);
 	}
 	inline int ManagedObject() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1915])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[1919])(m_pSelf);
 	}
 	inline void SetMotionLocks(int x, int y, int z, int pitch, int yaw, int roll) 
 	{
-		((void(*)(void* self, int x, int y, int z, int pitch, int yaw, int roll))g_nativeFunctions[1916])(m_pSelf, x, y, z, pitch, yaw, roll);
+		((void(*)(void* self, int x, int y, int z, int pitch, int yaw, int roll))g_nativeFunctions[1920])(m_pSelf, x, y, z, pitch, yaw, roll);
 	}
 	inline int IsTouching(IPhysicsBody* pBody, int bTriggers) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody, int bTriggers))g_nativeFunctions[1917])(m_pSelf, pBody, bTriggers);
+		((int(*)(void* self, IPhysicsBody* pBody, int bTriggers))g_nativeFunctions[1921])(m_pSelf, pBody, bTriggers);
 	}
 	inline int IsTouching(IPhysicsShape* pShape, int bTriggers) 
 	{
 		return
-		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_nativeFunctions[1918])(m_pSelf, pShape, bTriggers);
+		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_nativeFunctions[1922])(m_pSelf, pShape, bTriggers);
 	}
 	inline void SetTrigger(int trigger) 
 	{
-		((void(*)(void* self, int trigger))g_nativeFunctions[1919])(m_pSelf, trigger);
+		((void(*)(void* self, int trigger))g_nativeFunctions[1923])(m_pSelf, trigger);
 	}
 };
 class IPhysicsJoint
@@ -8985,248 +9003,248 @@ class IPhysicsJoint
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1920])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1924])(m_pSelf);
 	}
 	inline int GetBody1() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1921])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1925])(m_pSelf);
 	}
 	inline int GetBody2() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1922])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1926])(m_pSelf);
 	}
 	inline void GetLocalFrameA(Vector* position, Quaternion* rotation) 
 	{
-		((void(*)(void* self, Vector* position, Quaternion* rotation))g_nativeFunctions[1923])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector* position, Quaternion* rotation))g_nativeFunctions[1927])(m_pSelf, position, rotation);
 	}
 	inline void GetLocalFrameB(Vector* position, Quaternion* rotation) 
 	{
-		((void(*)(void* self, Vector* position, Quaternion* rotation))g_nativeFunctions[1924])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector* position, Quaternion* rotation))g_nativeFunctions[1928])(m_pSelf, position, rotation);
 	}
 	inline void SetLocalFrameA(Vector position, Quaternion rotation) 
 	{
-		((void(*)(void* self, Vector position, Quaternion rotation))g_nativeFunctions[1925])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector position, Quaternion rotation))g_nativeFunctions[1929])(m_pSelf, position, rotation);
 	}
 	inline void SetLocalFrameB(Vector position, Quaternion rotation) 
 	{
-		((void(*)(void* self, Vector position, Quaternion rotation))g_nativeFunctions[1926])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector position, Quaternion rotation))g_nativeFunctions[1930])(m_pSelf, position, rotation);
 	}
 	inline void SetEnableCollision(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[1927])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_nativeFunctions[1931])(m_pSelf, bEnabled);
 	}
 	inline int IsCollisionEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1928])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1932])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1929])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1933])(m_pSelf);
 	}
 	inline void SetLinearSpring(Vector vec) 
 	{
-		((void(*)(void* self, Vector vec))g_nativeFunctions[1930])(m_pSelf, vec);
+		((void(*)(void* self, Vector vec))g_nativeFunctions[1934])(m_pSelf, vec);
 	}
 	inline Vector GetLinearSpring() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1931])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1935])(m_pSelf);
 	}
 	inline void SetAngularSpring(Vector vec) 
 	{
-		((void(*)(void* self, Vector vec))g_nativeFunctions[1932])(m_pSelf, vec);
+		((void(*)(void* self, Vector vec))g_nativeFunctions[1936])(m_pSelf, vec);
 	}
 	inline Vector GetAngularSpring() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1933])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1937])(m_pSelf);
 	}
 	inline void SetAngularMotor(float targetVelocity, float maxTorque) 
 	{
-		((void(*)(void* self, float targetVelocity, float maxTorque))g_nativeFunctions[1934])(m_pSelf, targetVelocity, maxTorque);
+		((void(*)(void* self, float targetVelocity, float maxTorque))g_nativeFunctions[1938])(m_pSelf, targetVelocity, maxTorque);
 	}
 	inline void SetMinLength(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1935])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[1939])(m_pSelf, f);
 	}
 	inline float GetMinLength() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1936])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1940])(m_pSelf);
 	}
 	inline void SetMaxLength(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1937])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[1941])(m_pSelf, f);
 	}
 	inline float GetMaxLength() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1938])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1942])(m_pSelf);
 	}
 	inline void SetMinForce(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1939])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[1943])(m_pSelf, f);
 	}
 	inline float GetMinForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1940])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1944])(m_pSelf);
 	}
 	inline void SetMaxForce(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1941])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[1945])(m_pSelf, f);
 	}
 	inline float GetMaxForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1942])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1946])(m_pSelf);
 	}
 	inline void SetFriction(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1943])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[1947])(m_pSelf, f);
 	}
 	inline void SetLimit(const char* name, Vector limit) 
 	{
-		((void(*)(void* self, const char* name, Vector limit))g_nativeFunctions[1944])(m_pSelf, name, limit);
+		((void(*)(void* self, const char* name, Vector limit))g_nativeFunctions[1948])(m_pSelf, name, limit);
 	}
 	inline void SetLimitEnabled(const char* name, int state) 
 	{
-		((void(*)(void* self, const char* name, int state))g_nativeFunctions[1945])(m_pSelf, name, state);
+		((void(*)(void* self, const char* name, int state))g_nativeFunctions[1949])(m_pSelf, name, state);
 	}
 	inline float GetAngle() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1946])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1950])(m_pSelf);
 	}
 	inline float GetLinearImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1947])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1951])(m_pSelf);
 	}
 	inline float GetAngularImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1948])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1952])(m_pSelf);
 	}
 	inline float GetMaxLinearImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1949])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1953])(m_pSelf);
 	}
 	inline float GetMaxAngularImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1950])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1954])(m_pSelf);
 	}
 	inline void SetMaxLinearImpulse(float flMaxLinearImpulse) 
 	{
-		((void(*)(void* self, float flMaxLinearImpulse))g_nativeFunctions[1951])(m_pSelf, flMaxLinearImpulse);
+		((void(*)(void* self, float flMaxLinearImpulse))g_nativeFunctions[1955])(m_pSelf, flMaxLinearImpulse);
 	}
 	inline void SetMaxAngularImpulse(float flMaxAngularImpulse) 
 	{
-		((void(*)(void* self, float flMaxAngularImpulse))g_nativeFunctions[1952])(m_pSelf, flMaxAngularImpulse);
+		((void(*)(void* self, float flMaxAngularImpulse))g_nativeFunctions[1956])(m_pSelf, flMaxAngularImpulse);
 	}
 	inline void SetMotorVelocity(Vector velocity, float maxTorque) 
 	{
-		((void(*)(void* self, Vector velocity, float maxTorque))g_nativeFunctions[1953])(m_pSelf, velocity, maxTorque);
+		((void(*)(void* self, Vector velocity, float maxTorque))g_nativeFunctions[1957])(m_pSelf, velocity, maxTorque);
 	}
 	inline void SetTargetRotation(Quaternion rotation, float hertz, float damping) 
 	{
-		((void(*)(void* self, Quaternion rotation, float hertz, float damping))g_nativeFunctions[1954])(m_pSelf, rotation, hertz, damping);
+		((void(*)(void* self, Quaternion rotation, float hertz, float damping))g_nativeFunctions[1958])(m_pSelf, rotation, hertz, damping);
 	}
 	inline void Motor_SetLinearVelocity(Vector velocity) 
 	{
-		((void(*)(void* self, Vector velocity))g_nativeFunctions[1955])(m_pSelf, velocity);
+		((void(*)(void* self, Vector velocity))g_nativeFunctions[1959])(m_pSelf, velocity);
 	}
 	inline void Motor_SetAngularVelocity(Vector velocity) 
 	{
-		((void(*)(void* self, Vector velocity))g_nativeFunctions[1956])(m_pSelf, velocity);
+		((void(*)(void* self, Vector velocity))g_nativeFunctions[1960])(m_pSelf, velocity);
 	}
 	inline void Motor_SetMaxVelocityForce(float maxForce) 
 	{
-		((void(*)(void* self, float maxForce))g_nativeFunctions[1957])(m_pSelf, maxForce);
+		((void(*)(void* self, float maxForce))g_nativeFunctions[1961])(m_pSelf, maxForce);
 	}
 	inline void Motor_SetMaxVelocityTorque(float maxTorque) 
 	{
-		((void(*)(void* self, float maxTorque))g_nativeFunctions[1958])(m_pSelf, maxTorque);
+		((void(*)(void* self, float maxTorque))g_nativeFunctions[1962])(m_pSelf, maxTorque);
 	}
 	inline void Motor_SetLinearHertz(float hertz) 
 	{
-		((void(*)(void* self, float hertz))g_nativeFunctions[1959])(m_pSelf, hertz);
+		((void(*)(void* self, float hertz))g_nativeFunctions[1963])(m_pSelf, hertz);
 	}
 	inline void Motor_SetLinearDampingRatio(float damping) 
 	{
-		((void(*)(void* self, float damping))g_nativeFunctions[1960])(m_pSelf, damping);
+		((void(*)(void* self, float damping))g_nativeFunctions[1964])(m_pSelf, damping);
 	}
 	inline void Motor_SetAngularHertz(float hertz) 
 	{
-		((void(*)(void* self, float hertz))g_nativeFunctions[1961])(m_pSelf, hertz);
+		((void(*)(void* self, float hertz))g_nativeFunctions[1965])(m_pSelf, hertz);
 	}
 	inline void Motor_SetAngularDampingRatio(float damping) 
 	{
-		((void(*)(void* self, float damping))g_nativeFunctions[1962])(m_pSelf, damping);
+		((void(*)(void* self, float damping))g_nativeFunctions[1966])(m_pSelf, damping);
 	}
 	inline void Motor_SetMaxSpringForce(float maxForce) 
 	{
-		((void(*)(void* self, float maxForce))g_nativeFunctions[1963])(m_pSelf, maxForce);
+		((void(*)(void* self, float maxForce))g_nativeFunctions[1967])(m_pSelf, maxForce);
 	}
 	inline void Motor_SetMaxSpringTorque(float maxTorque) 
 	{
-		((void(*)(void* self, float maxTorque))g_nativeFunctions[1964])(m_pSelf, maxTorque);
+		((void(*)(void* self, float maxTorque))g_nativeFunctions[1968])(m_pSelf, maxTorque);
 	}
 	inline Vector Motor_GetLinearVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1965])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1969])(m_pSelf);
 	}
 	inline Vector Motor_GetAngularVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1966])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[1970])(m_pSelf);
 	}
 	inline float Motor_GetMaxVelocityForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1967])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1971])(m_pSelf);
 	}
 	inline float Motor_GetMaxVelocityTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1968])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1972])(m_pSelf);
 	}
 	inline float Motor_GetLinearHertz() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1969])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1973])(m_pSelf);
 	}
 	inline float Motor_GetLinearDampingRatio() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1970])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1974])(m_pSelf);
 	}
 	inline float Motor_GetAngularHertz() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1971])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1975])(m_pSelf);
 	}
 	inline float Motor_GetAngularDampingRatio() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1972])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1976])(m_pSelf);
 	}
 	inline float Motor_GetMaxSpringForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1973])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1977])(m_pSelf);
 	}
 	inline float Motor_GetMaxSpringTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1974])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[1978])(m_pSelf);
 	}
 };
 class IPhysicsShape
@@ -9239,168 +9257,168 @@ class IPhysicsShape
 	}
 	inline void AddCollisionFunctionMask(unsigned char nMask) 
 	{
-		((void(*)(void* self, unsigned char nMask))g_nativeFunctions[1975])(m_pSelf, nMask);
+		((void(*)(void* self, unsigned char nMask))g_nativeFunctions[1979])(m_pSelf, nMask);
 	}
 	inline void RemoveCollisionFunctionMask(unsigned char nMask) 
 	{
-		((void(*)(void* self, unsigned char nMask))g_nativeFunctions[1976])(m_pSelf, nMask);
+		((void(*)(void* self, unsigned char nMask))g_nativeFunctions[1980])(m_pSelf, nMask);
 	}
 	inline unsigned char GetCollisionFunctionMask() 
 	{
 		return
-		((unsigned char(*)(void* __self))g_nativeFunctions[1977])(m_pSelf);
+		((unsigned char(*)(void* __self))g_nativeFunctions[1981])(m_pSelf);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1978])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1982])(m_pSelf, tag);
 	}
 	inline int AddTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1979])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1983])(m_pSelf, tag);
 	}
 	inline int RemoveTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1980])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1984])(m_pSelf, tag);
 	}
 	inline int ClearTags() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1981])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1985])(m_pSelf);
 	}
 	inline int GetBody() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1982])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1986])(m_pSelf);
 	}
 	inline void SetMaterialIndex(uint32 name) 
 	{
-		((void(*)(void* self, uint32 name))g_nativeFunctions[1983])(m_pSelf, name);
+		((void(*)(void* self, uint32 name))g_nativeFunctions[1987])(m_pSelf, name);
 	}
 	inline void SetSurfaceIndex(int nSurfaceIndex, int index) 
 	{
-		((void(*)(void* self, int nSurfaceIndex, int index))g_nativeFunctions[1984])(m_pSelf, nSurfaceIndex, index);
+		((void(*)(void* self, int nSurfaceIndex, int index))g_nativeFunctions[1988])(m_pSelf, nSurfaceIndex, index);
 	}
 	inline const char* GetMaterialName() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[1985])(m_pSelf);
+		((const char*(*)(void* __self))g_nativeFunctions[1989])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1986])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[1990])(m_pSelf);
 	}
 	inline void UpdateMeshShape(int numVertices, void* vertices, int numIndices, void* indices) 
 	{
-		((void(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices))g_nativeFunctions[1987])(m_pSelf, numVertices, vertices, numIndices, indices);
+		((void(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices))g_nativeFunctions[1991])(m_pSelf, numVertices, vertices, numIndices, indices);
 	}
 	inline void UpdateHeightShape(void* pHeights, void* pMaterials, int x, int y, int w, int h, float SizeScale, float HeightScale) 
 	{
-		((void(*)(void* self, void* pHeights, void* pMaterials, int x, int y, int w, int h, float SizeScale, float HeightScale))g_nativeFunctions[1988])(m_pSelf, pHeights, pMaterials, x, y, w, h, SizeScale, HeightScale);
+		((void(*)(void* self, void* pHeights, void* pMaterials, int x, int y, int w, int h, float SizeScale, float HeightScale))g_nativeFunctions[1992])(m_pSelf, pHeights, pMaterials, x, y, w, h, SizeScale, HeightScale);
 	}
 	inline void UpdateSphereShape(Vector vCenter, float flRadius) 
 	{
-		((void(*)(void* self, Vector vCenter, float flRadius))g_nativeFunctions[1989])(m_pSelf, vCenter, flRadius);
+		((void(*)(void* self, Vector vCenter, float flRadius))g_nativeFunctions[1993])(m_pSelf, vCenter, flRadius);
 	}
 	inline void UpdateCapsuleShape(Vector vCenter1, Vector vCenter2, float flRadius) 
 	{
-		((void(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_nativeFunctions[1990])(m_pSelf, vCenter1, vCenter2, flRadius);
+		((void(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_nativeFunctions[1994])(m_pSelf, vCenter1, vCenter2, flRadius);
 	}
 	inline void UpdateHullShape(Vector position, Quaternion rotation, int nVertexCount, void* pvVertexBase) 
 	{
-		((void(*)(void* self, Vector position, Quaternion rotation, int nVertexCount, void* pvVertexBase))g_nativeFunctions[1991])(m_pSelf, position, rotation, nVertexCount, pvVertexBase);
+		((void(*)(void* self, Vector position, Quaternion rotation, int nVertexCount, void* pvVertexBase))g_nativeFunctions[1995])(m_pSelf, position, rotation, nVertexCount, pvVertexBase);
 	}
 	inline int ManagedObject() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1992])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[1996])(m_pSelf);
 	}
 	inline void SetTrigger(int trigger) 
 	{
-		((void(*)(void* self, int trigger))g_nativeFunctions[1993])(m_pSelf, trigger);
+		((void(*)(void* self, int trigger))g_nativeFunctions[1997])(m_pSelf, trigger);
 	}
 	inline int IsTrigger() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1994])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[1998])(m_pSelf);
 	}
 	inline void GetTriangulation(CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices) 
 	{
-		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices))g_nativeFunctions[1995])(m_pSelf, arrVectors, arrIndices);
+		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices))g_nativeFunctions[1999])(m_pSelf, arrVectors, arrIndices);
 	}
 	inline void GetTriangulationForNavmesh(CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices, AABB_t bounds) 
 	{
-		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices, AABB_t bounds))g_nativeFunctions[1996])(m_pSelf, arrVectors, arrIndices, bounds);
+		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices, AABB_t bounds))g_nativeFunctions[2000])(m_pSelf, arrVectors, arrIndices, bounds);
 	}
 	inline void GetOutline(CUtlVector<Vector>* arrVectors) 
 	{
-		((void(*)(void* self, CUtlVector<Vector>* arrVectors))g_nativeFunctions[1997])(m_pSelf, arrVectors);
+		((void(*)(void* self, CUtlVector<Vector>* arrVectors))g_nativeFunctions[2001])(m_pSelf, arrVectors);
 	}
 	inline RnSphere_t AsSphere() 
 	{
 		return
-		((RnSphere_t(*)(void* self))g_nativeFunctions[1998])(m_pSelf);
+		((RnSphere_t(*)(void* self))g_nativeFunctions[2002])(m_pSelf);
 	}
 	inline RnCapsule_t AsCapsule() 
 	{
 		return
-		((RnCapsule_t(*)(void* self))g_nativeFunctions[1999])(m_pSelf);
+		((RnCapsule_t(*)(void* self))g_nativeFunctions[2003])(m_pSelf);
 	}
 	inline void UpdateBoxShape(Vector vCenter, Quaternion qRotation, Vector vExtents) 
 	{
-		((void(*)(void* self, Vector vCenter, Quaternion qRotation, Vector vExtents))g_nativeFunctions[2000])(m_pSelf, vCenter, qRotation, vExtents);
+		((void(*)(void* self, Vector vCenter, Quaternion qRotation, Vector vExtents))g_nativeFunctions[2004])(m_pSelf, vCenter, qRotation, vExtents);
 	}
 	inline void SetFriction(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[2001])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[2005])(m_pSelf, f);
 	}
 	inline float GetFriction() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2002])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[2006])(m_pSelf);
 	}
 	inline void SetLocalVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[2003])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_nativeFunctions[2007])(m_pSelf, v);
 	}
 	inline Vector GetLocalVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2004])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[2008])(m_pSelf);
 	}
 	inline void SetElasticity(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[2005])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[2009])(m_pSelf, f);
 	}
 	inline void SetRollingResistance(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[2006])(m_pSelf, f);
+		((void(*)(void* self, float f))g_nativeFunctions[2010])(m_pSelf, f);
 	}
 	inline void SetIgnoreTraces(int b) 
 	{
-		((void(*)(void* self, int b))g_nativeFunctions[2007])(m_pSelf, b);
+		((void(*)(void* self, int b))g_nativeFunctions[2011])(m_pSelf, b);
 	}
 	inline void SetHasNoMass(int b) 
 	{
-		((void(*)(void* self, int b))g_nativeFunctions[2008])(m_pSelf, b);
+		((void(*)(void* self, int b))g_nativeFunctions[2012])(m_pSelf, b);
 	}
 	inline AABB_t BuildBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[2009])(m_pSelf);
+		((AABB_t(*)(void* self))g_nativeFunctions[2013])(m_pSelf);
 	}
 	inline AABB_t LocalBounds() 
 	{
 		return
-		((AABB_t(*)(void* __self))g_nativeFunctions[2010])(m_pSelf);
+		((AABB_t(*)(void* __self))g_nativeFunctions[2014])(m_pSelf);
 	}
 	inline int IsTouching(IPhysicsShape* pShape, int bTriggers) 
 	{
 		return
-		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_nativeFunctions[2011])(m_pSelf, pShape, bTriggers);
+		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_nativeFunctions[2015])(m_pSelf, pShape, bTriggers);
 	}
 };
 class IPhysicsWorld
@@ -9414,145 +9432,145 @@ class IPhysicsWorld
 	inline int AddBody() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2012])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2016])(m_pSelf);
 	}
 	inline void RemoveBody(IPhysicsBody* pBody) 
 	{
-		((void(*)(void* self, IPhysicsBody* pBody))g_nativeFunctions[2013])(m_pSelf, pBody);
+		((void(*)(void* self, IPhysicsBody* pBody))g_nativeFunctions[2017])(m_pSelf, pBody);
 	}
 	inline int GetWorldReferenceBody() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2014])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2018])(m_pSelf);
 	}
 	inline void SetWorldReferenceBody(IPhysicsBody* pBody) 
 	{
-		((void(*)(void* self, IPhysicsBody* pBody))g_nativeFunctions[2015])(m_pSelf, pBody);
+		((void(*)(void* self, IPhysicsBody* pBody))g_nativeFunctions[2019])(m_pSelf, pBody);
 	}
 	inline void RemoveJoint(IPhysicsJoint* pJoint) 
 	{
-		((void(*)(void* self, IPhysicsJoint* pJoint))g_nativeFunctions[2016])(m_pSelf, pJoint);
+		((void(*)(void* self, IPhysicsJoint* pJoint))g_nativeFunctions[2020])(m_pSelf, pJoint);
 	}
 	inline void SetGravity(Vector gravity) 
 	{
-		((void(*)(void* self, Vector gravity))g_nativeFunctions[2017])(m_pSelf, gravity);
+		((void(*)(void* self, Vector gravity))g_nativeFunctions[2021])(m_pSelf, gravity);
 	}
 	inline Vector GetGravity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2018])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[2022])(m_pSelf);
 	}
 	inline void SetSimulation(int64 simulation) 
 	{
-		((void(*)(void* self, int64 simulation))g_nativeFunctions[2019])(m_pSelf, simulation);
+		((void(*)(void* self, int64 simulation))g_nativeFunctions[2023])(m_pSelf, simulation);
 	}
 	inline int64 GetSimulation() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2020])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2024])(m_pSelf);
 	}
 	inline void EnableSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2021])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2025])(m_pSelf);
 	}
 	inline void DisableSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2022])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2026])(m_pSelf);
 	}
 	inline int IsSleepingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2023])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2027])(m_pSelf);
 	}
 	inline void SetMaximumLinearSpeed(float flSpeed) 
 	{
-		((void(*)(void* self, float flSpeed))g_nativeFunctions[2024])(m_pSelf, flSpeed);
+		((void(*)(void* self, float flSpeed))g_nativeFunctions[2028])(m_pSelf, flSpeed);
 	}
 	inline int AddWeldJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2025])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2029])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddSpringJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2026])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2030])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddRevoluteJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2027])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2031])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddPrismaticJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2028])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2032])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddSphericalJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2029])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2033])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddMotorJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2030])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2034])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline void SetCollisionRulesFromJson(const char* rules) 
 	{
-		((void(*)(void* self, const char* rules))g_nativeFunctions[2031])(m_pSelf, rules);
+		((void(*)(void* self, const char* rules))g_nativeFunctions[2035])(m_pSelf, rules);
 	}
 	inline void StepSimulation(float flTimestep, int nNumSteps) 
 	{
-		((void(*)(void* __self, float __flTimestep, int __nNumSteps))g_nativeFunctions[2032])(m_pSelf, flTimestep, nNumSteps);
+		((void(*)(void* __self, float __flTimestep, int __nNumSteps))g_nativeFunctions[2036])(m_pSelf, flTimestep, nNumSteps);
 	}
 	inline void ProcessIntersections(void* f) 
 	{
-		((void(*)(void* self, void* f))g_nativeFunctions[2033])(m_pSelf, f);
+		((void(*)(void* self, void* f))g_nativeFunctions[2037])(m_pSelf, f);
 	}
 	inline void DestroyAggregateInstance(IPhysAggregateInstance* pAggregate) 
 	{
-		((void(*)(void* self, IPhysAggregateInstance* pAggregate))g_nativeFunctions[2034])(m_pSelf, pAggregate);
+		((void(*)(void* self, IPhysAggregateInstance* pAggregate))g_nativeFunctions[2038])(m_pSelf, pAggregate);
 	}
 	inline int CreateAggregateInstance(const char* resourceName, CTransformUnaligned tmStart, uint64 nGSNHandle, int64 nMotionType) 
 	{
 		return
-		((int(*)(void* __self, const char* __resourceName, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_nativeFunctions[2035])(m_pSelf, resourceName, tmStart, nGSNHandle, nMotionType);
+		((int(*)(void* __self, const char* __resourceName, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_nativeFunctions[2039])(m_pSelf, resourceName, tmStart, nGSNHandle, nMotionType);
 	}
 	inline int CreateAggregateInstance(HModelStrong* model, CTransformUnaligned tmStart, uint64 nGSNHandle, int64 nMotionType) 
 	{
 		return
-		((int(*)(void* __self, HModelStrong* __model, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_nativeFunctions[2036])(m_pSelf, model, tmStart, nGSNHandle, nMotionType);
+		((int(*)(void* __self, HModelStrong* __model, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_nativeFunctions[2040])(m_pSelf, model, tmStart, nGSNHandle, nMotionType);
 	}
 	inline void SetDebugScene(ISceneWorld* world) 
 	{
-		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2037])(m_pSelf, world);
+		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2041])(m_pSelf, world);
 	}
 	inline int GetDebugScene() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2038])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2042])(m_pSelf);
 	}
 	inline void Draw(void* debugDrawFcn) 
 	{
-		((void(*)(void* self, void* debugDrawFcn))g_nativeFunctions[2039])(m_pSelf, debugDrawFcn);
+		((void(*)(void* self, void* debugDrawFcn))g_nativeFunctions[2043])(m_pSelf, debugDrawFcn);
 	}
 	inline int ManagedObject() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2040])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2044])(m_pSelf);
 	}
 	inline void Query(CQueryResult* result, Vector vCenter, float flRadius, unsigned short nObjectSetMask) 
 	{
-		((void(*)(void* self, CQueryResult* result, Vector vCenter, float flRadius, unsigned short nObjectSetMask))g_nativeFunctions[2041])(m_pSelf, result, vCenter, flRadius, nObjectSetMask);
+		((void(*)(void* self, CQueryResult* result, Vector vCenter, float flRadius, unsigned short nObjectSetMask))g_nativeFunctions[2045])(m_pSelf, result, vCenter, flRadius, nObjectSetMask);
 	}
 	inline void Query(CQueryResult* result, AABB_t bounds, unsigned short nObjectSetMask) 
 	{
-		((void(*)(void* self, CQueryResult* result, AABB_t bounds, unsigned short nObjectSetMask))g_nativeFunctions[2042])(m_pSelf, result, bounds, nObjectSetMask);
+		((void(*)(void* self, CQueryResult* result, AABB_t bounds, unsigned short nObjectSetMask))g_nativeFunctions[2046])(m_pSelf, result, bounds, nObjectSetMask);
 	}
 	inline void Query(CQueryResult* result, void* pPoints, int nPoints, unsigned short nObjectSetMask) 
 	{
-		((void(*)(void* self, CQueryResult* result, void* pPoints, int nPoints, unsigned short nObjectSetMask))g_nativeFunctions[2043])(m_pSelf, result, pPoints, nPoints, nObjectSetMask);
+		((void(*)(void* self, CQueryResult* result, void* pPoints, int nPoints, unsigned short nObjectSetMask))g_nativeFunctions[2047])(m_pSelf, result, pPoints, nPoints, nObjectSetMask);
 	}
 };
 class IPhysSurfacePropertyController
@@ -9566,17 +9584,17 @@ class IPhysSurfacePropertyController
 	inline int GetSurfacePropCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2044])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2048])(m_pSelf);
 	}
 	inline const CPhysSurfaceProperties* GetSurfaceProperty(int nIndex) 
 	{
 		return
-		((const CPhysSurfaceProperties*(*)(void* self, int nIndex))g_nativeFunctions[2045])(m_pSelf, nIndex);
+		((const CPhysSurfaceProperties*(*)(void* self, int nIndex))g_nativeFunctions[2049])(m_pSelf, nIndex);
 	}
 	inline const CPhysSurfaceProperties* AddProperty(const char* name, const char* basename, const char* description) 
 	{
 		return
-		((const CPhysSurfaceProperties*(*)(void* self, const char* name, const char* basename, const char* description))g_nativeFunctions[2046])(m_pSelf, name, basename, description);
+		((const CPhysSurfaceProperties*(*)(void* self, const char* name, const char* basename, const char* description))g_nativeFunctions[2050])(m_pSelf, name, basename, description);
 	}
 };
 class IPVS
@@ -9590,27 +9608,54 @@ class IPVS
 	inline int IsEmptyPVS() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2047])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2051])(m_pSelf);
 	}
 	inline int IsInPVS(int numSources, void* sources, Vector position) 
 	{
 		return
-		((int(*)(void* self, int numSources, void* sources, Vector position))g_nativeFunctions[2048])(m_pSelf, numSources, sources, position);
+		((int(*)(void* self, int numSources, void* sources, Vector position))g_nativeFunctions[2052])(m_pSelf, numSources, sources, position);
 	}
 	inline int IsAbsBoxInPVS(int numSources, void* sources, Vector mins, Vector maxs) 
 	{
 		return
-		((int(*)(void* self, int numSources, void* sources, Vector mins, Vector maxs))g_nativeFunctions[2049])(m_pSelf, numSources, sources, mins, maxs);
+		((int(*)(void* self, int numSources, void* sources, Vector mins, Vector maxs))g_nativeFunctions[2053])(m_pSelf, numSources, sources, mins, maxs);
 	}
 	inline int IsSkyVisibleFromPosition(Vector position) 
 	{
 		return
-		((int(*)(void* self, Vector position))g_nativeFunctions[2050])(m_pSelf, position);
+		((int(*)(void* self, Vector position))g_nativeFunctions[2054])(m_pSelf, position);
 	}
 	inline int IsSunVisibleFromPosition(Vector position) 
 	{
 		return
-		((int(*)(void* self, Vector position))g_nativeFunctions[2051])(m_pSelf, position);
+		((int(*)(void* self, Vector position))g_nativeFunctions[2055])(m_pSelf, position);
+	}
+};
+class IRayTraceSceneWorld
+{
+	public:
+	void *m_pSelf;
+	inline operator IRayTraceSceneWorld*()
+	{
+		return (IRayTraceSceneWorld*)m_pSelf;
+	}
+	inline void BeginBuild() 
+	{
+		((void(*)(void* self))g_nativeFunctions[2056])(m_pSelf);
+	}
+	inline void AddSceneWorldToBuild(ISceneWorld* pWorld, IRenderContext* pRenderContext) 
+	{
+		((void(*)(void* self, ISceneWorld* pWorld, IRenderContext* pRenderContext))g_nativeFunctions[2057])(m_pSelf, pWorld, pRenderContext);
+	}
+	inline int EndBuild(IRenderContext* pRenderContext, CRenderAttributes* attrs) 
+	{
+		return
+		((int(*)(void* self, IRenderContext* pRenderContext, CRenderAttributes* attrs))g_nativeFunctions[2058])(m_pSelf, pRenderContext, attrs);
+	}
+	inline int BuildTLASForWorld(ISceneWorld* pWorld, CRenderAttributes* attrs) 
+	{
+		return
+		((int(*)(void* __self, ISceneWorld* __pWorld, CRenderAttributes* __attrs))g_nativeFunctions[2059])(m_pSelf, pWorld, attrs);
 	}
 };
 class IRD_RegisterResourceDataUtils
@@ -9623,31 +9668,31 @@ class IRD_RegisterResourceDataUtils
 	}
 	inline void SetDataRegistrationFailed() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2052])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2060])(m_pSelf);
 	}
 	inline int IsReloading() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2053])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2061])(m_pSelf);
 	}
 	inline void SetFinalResourceData(void* pPtr) 
 	{
-		((void(*)(void* self, void* pPtr))g_nativeFunctions[2054])(m_pSelf, pPtr);
+		((void(*)(void* self, void* pPtr))g_nativeFunctions[2062])(m_pSelf, pPtr);
 	}
 	inline int GetDataRegistrationFailed() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2055])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2063])(m_pSelf);
 	}
 	inline const void* GetFinalResourceData() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[2056])(m_pSelf);
+		((const void*(*)(void* self))g_nativeFunctions[2064])(m_pSelf);
 	}
 	inline int64 GetResultBufferSize() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2057])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2065])(m_pSelf);
 	}
 };
 class IReadBufferCallback
@@ -9678,155 +9723,155 @@ class IRenderContext
 	}
 	inline void Draw(int64 type, int nFirstVertex, int nVertexCount) 
 	{
-		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCount))g_nativeFunctions[2058])(m_pSelf, type, nFirstVertex, nVertexCount);
+		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCount))g_nativeFunctions[2066])(m_pSelf, type, nFirstVertex, nVertexCount);
 	}
 	inline void DrawInstanced(int64 type, int nFirstVertex, int nVertexCountPerInstance, int nInstanceCount) 
 	{
-		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCountPerInstance, int nInstanceCount))g_nativeFunctions[2059])(m_pSelf, type, nFirstVertex, nVertexCountPerInstance, nInstanceCount);
+		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCountPerInstance, int nInstanceCount))g_nativeFunctions[2067])(m_pSelf, type, nFirstVertex, nVertexCountPerInstance, nInstanceCount);
 	}
 	inline void DrawIndexed(int64 type, int nFirstIndex, int nIndexCount, int nMaxVertexCount, int nBaseVertex) 
 	{
-		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCount, int nMaxVertexCount, int nBaseVertex))g_nativeFunctions[2060])(m_pSelf, type, nFirstIndex, nIndexCount, nMaxVertexCount, nBaseVertex);
+		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCount, int nMaxVertexCount, int nBaseVertex))g_nativeFunctions[2068])(m_pSelf, type, nFirstIndex, nIndexCount, nMaxVertexCount, nBaseVertex);
 	}
 	inline void DrawIndexedInstanced(int64 type, int nFirstIndex, int nIndexCountPerInstance, int nInstanceCount, int nMaxVertexCount, int nBaseVertex) 
 	{
-		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCountPerInstance, int nInstanceCount, int nMaxVertexCount, int nBaseVertex))g_nativeFunctions[2061])(m_pSelf, type, nFirstIndex, nIndexCountPerInstance, nInstanceCount, nMaxVertexCount, nBaseVertex);
+		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCountPerInstance, int nInstanceCount, int nMaxVertexCount, int nBaseVertex))g_nativeFunctions[2069])(m_pSelf, type, nFirstIndex, nIndexCountPerInstance, nInstanceCount, nMaxVertexCount, nBaseVertex);
 	}
 	inline void DrawInstancedIndirect(int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset) 
 	{
-		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_nativeFunctions[2062])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
+		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_nativeFunctions[2070])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
 	}
 	inline void DrawIndexedInstancedIndirect(int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset) 
 	{
-		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_nativeFunctions[2063])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
+		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_nativeFunctions[2071])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
 	}
 	inline void TextureBarrierTransition(HRenderTextureStrong* hSrc, int mips, int64 srcStage, int64 dstStage, int64 layout, int64 srcFlags, int64 dstFlags) 
 	{
-		((void(*)(void* __self, HRenderTextureStrong* __hSrc, int __mips, int64 __srcStage, int64 __dstStage, int64 __layout, int64 __srcFlags, int64 __dstFlags))g_nativeFunctions[2064])(m_pSelf, hSrc, mips, srcStage, dstStage, layout, srcFlags, dstFlags);
+		((void(*)(void* __self, HRenderTextureStrong* __hSrc, int __mips, int64 __srcStage, int64 __dstStage, int64 __layout, int64 __srcFlags, int64 __dstFlags))g_nativeFunctions[2072])(m_pSelf, hSrc, mips, srcStage, dstStage, layout, srcFlags, dstFlags);
 	}
 	inline void BufferBarrierTransition(RenderBufferHandle_t hSrc, int64 srcStage, int64 dstStage, int64 srcFlags, int64 dstFlags) 
 	{
-		((void(*)(void* __self, RenderBufferHandle_t __hSrc, int64 __srcStage, int64 __dstStage, int64 __srcFlags, int64 __dstFlags))g_nativeFunctions[2065])(m_pSelf, hSrc, srcStage, dstStage, srcFlags, dstFlags);
+		((void(*)(void* __self, RenderBufferHandle_t __hSrc, int64 __srcStage, int64 __dstStage, int64 __srcFlags, int64 __dstFlags))g_nativeFunctions[2073])(m_pSelf, hSrc, srcStage, dstStage, srcFlags, dstFlags);
 	}
 	inline void SetScissorRect(Rect_t rect) 
 	{
-		((void(*)(void* self, Rect_t rect))g_nativeFunctions[2066])(m_pSelf, rect);
+		((void(*)(void* self, Rect_t rect))g_nativeFunctions[2074])(m_pSelf, rect);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[2067])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[2075])(m_pSelf);
 	}
 	inline void GenerateMipMaps(HRenderTextureStrong* material) 
 	{
-		((void(*)(void* self, HRenderTextureStrong* material))g_nativeFunctions[2068])(m_pSelf, material);
+		((void(*)(void* self, HRenderTextureStrong* material))g_nativeFunctions[2076])(m_pSelf, material);
 	}
 	inline void Clear(Vector4D col, int clearColor, int clearDepth, int clearStencil) 
 	{
-		((void(*)(void* __self, Vector4D __col, int __clearColor, int __clearDepth, int __clearStencil))g_nativeFunctions[2069])(m_pSelf, col, clearColor, clearDepth, clearStencil);
+		((void(*)(void* __self, Vector4D __col, int __clearColor, int __clearDepth, int __clearStencil))g_nativeFunctions[2077])(m_pSelf, col, clearColor, clearDepth, clearStencil);
 	}
 	inline void BindRenderTargets(HRenderTextureStrong* colorTexture, HRenderTextureStrong* depthTexture, ISceneLayer* layer) 
 	{
-		((void(*)(void* __self, HRenderTextureStrong* __colorTexture, HRenderTextureStrong* __depthTexture, ISceneLayer* __layer))g_nativeFunctions[2070])(m_pSelf, colorTexture, depthTexture, layer);
+		((void(*)(void* __self, HRenderTextureStrong* __colorTexture, HRenderTextureStrong* __depthTexture, ISceneLayer* __layer))g_nativeFunctions[2078])(m_pSelf, colorTexture, depthTexture, layer);
 	}
 	inline void RestoreRenderTargets(ISceneLayer* layer) 
 	{
-		((void(*)(void* __self, ISceneLayer* __layer))g_nativeFunctions[2071])(m_pSelf, layer);
+		((void(*)(void* __self, ISceneLayer* __layer))g_nativeFunctions[2079])(m_pSelf, layer);
 	}
 	inline void SetViewport(Rect_t rect) 
 	{
-		((void(*)(void* __self, Rect_t __rect))g_nativeFunctions[2072])(m_pSelf, rect);
+		((void(*)(void* __self, Rect_t __rect))g_nativeFunctions[2080])(m_pSelf, rect);
 	}
 	inline void SetViewport(RenderViewport_t viewport) 
 	{
-		((void(*)(void* __self, RenderViewport_t __viewport))g_nativeFunctions[2073])(m_pSelf, viewport);
+		((void(*)(void* __self, RenderViewport_t __viewport))g_nativeFunctions[2081])(m_pSelf, viewport);
 	}
 	inline void SetViewport(int x, int y, int w, int h) 
 	{
-		((void(*)(void* __self, int __x, int __y, int __w, int __h))g_nativeFunctions[2074])(m_pSelf, x, y, w, h);
+		((void(*)(void* __self, int __x, int __y, int __w, int __h))g_nativeFunctions[2082])(m_pSelf, x, y, w, h);
 	}
 	inline RenderViewport_t GetViewport() 
 	{
 		return
-		((RenderViewport_t(*)(void* __self))g_nativeFunctions[2075])(m_pSelf);
+		((RenderViewport_t(*)(void* __self))g_nativeFunctions[2083])(m_pSelf);
 	}
 	inline void Submit() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2076])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2084])(m_pSelf);
 	}
 	inline void SetAssociatedThreadIndex() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2077])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2085])(m_pSelf);
 	}
 	inline void BindRenderTargets(SwapChainHandle_t swapChain, int color, int depth) 
 	{
-		((void(*)(void* __self, SwapChainHandle_t __swapChain, int __color, int __depth))g_nativeFunctions[2078])(m_pSelf, swapChain, color, depth);
+		((void(*)(void* __self, SwapChainHandle_t __swapChain, int __color, int __depth))g_nativeFunctions[2086])(m_pSelf, swapChain, color, depth);
 	}
 	inline int BindIndexBuffer(IndexBufferHandle_t hIndexBuffer, int nOffset) 
 	{
 		return
-		((int(*)(void* self, IndexBufferHandle_t hIndexBuffer, int nOffset))g_nativeFunctions[2079])(m_pSelf, hIndexBuffer, nOffset);
+		((int(*)(void* self, IndexBufferHandle_t hIndexBuffer, int nOffset))g_nativeFunctions[2087])(m_pSelf, hIndexBuffer, nOffset);
 	}
 	inline int BindIndexBuffer(RenderBufferHandle_t hIndexBuffer, int nIndexSize, int nOffset) 
 	{
 		return
-		((int(*)(void* self, RenderBufferHandle_t hIndexBuffer, int nIndexSize, int nOffset))g_nativeFunctions[2080])(m_pSelf, hIndexBuffer, nIndexSize, nOffset);
+		((int(*)(void* self, RenderBufferHandle_t hIndexBuffer, int nIndexSize, int nOffset))g_nativeFunctions[2088])(m_pSelf, hIndexBuffer, nIndexSize, nOffset);
 	}
 	inline int BindVertexBuffer(int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset) 
 	{
 		return
-		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset))g_nativeFunctions[2081])(m_pSelf, nSlot, hVertexBuffer, nOffset);
+		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset))g_nativeFunctions[2089])(m_pSelf, nSlot, hVertexBuffer, nOffset);
 	}
 	inline int BindVertexBuffer(int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset, int nStride) 
 	{
 		return
-		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_nativeFunctions[2082])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
+		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_nativeFunctions[2090])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
 	}
 	inline int BindVertexBuffer(int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset) 
 	{
 		return
-		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset))g_nativeFunctions[2083])(m_pSelf, nSlot, hVertexBuffer, nOffset);
+		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset))g_nativeFunctions[2091])(m_pSelf, nSlot, hVertexBuffer, nOffset);
 	}
 	inline int BindVertexBuffer(int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset, int nStride) 
 	{
 		return
-		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_nativeFunctions[2084])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
+		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_nativeFunctions[2092])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
 	}
 	inline void BindVertexShader(RenderShaderHandle_t hVertexShader, VertexBufferHandle_t hInputLayout) 
 	{
-		((void(*)(void* __self, RenderShaderHandle_t __hVertexShader, VertexBufferHandle_t __hInputLayout))g_nativeFunctions[2085])(m_pSelf, hVertexShader, hInputLayout);
+		((void(*)(void* __self, RenderShaderHandle_t __hVertexShader, VertexBufferHandle_t __hInputLayout))g_nativeFunctions[2093])(m_pSelf, hVertexShader, hInputLayout);
 	}
 	inline void BindPixelShader(RenderShaderHandle_t hShader) 
 	{
-		((void(*)(void* __self, RenderShaderHandle_t __hShader))g_nativeFunctions[2086])(m_pSelf, hShader);
+		((void(*)(void* __self, RenderShaderHandle_t __hShader))g_nativeFunctions[2094])(m_pSelf, hShader);
 	}
 	inline void SetDynamicConstantBufferData(int64 shaderType, void* pData, int nSize, int slot) 
 	{
-		((void(*)(void* __self, int64 __shaderType, void* __pData, int __nSize, int __slot))g_nativeFunctions[2087])(m_pSelf, shaderType, pData, nSize, slot);
+		((void(*)(void* __self, int64 __shaderType, void* __pData, int __nSize, int __slot))g_nativeFunctions[2095])(m_pSelf, shaderType, pData, nSize, slot);
 	}
 	inline void BindTexture(int nTextureIndex, HRenderTextureStrong* hTexture) 
 	{
-		((void(*)(void* __self, int __nTextureIndex, HRenderTextureStrong* __hTexture))g_nativeFunctions[2088])(m_pSelf, nTextureIndex, hTexture);
+		((void(*)(void* __self, int __nTextureIndex, HRenderTextureStrong* __hTexture))g_nativeFunctions[2096])(m_pSelf, nTextureIndex, hTexture);
 	}
 	inline void ReadTexturePixels(HRenderTextureStrong* hTexture, IReadTexturePixelsCallback* pCallback, Rect_t srcRect, int nSrcSlice, int nSrcMip, int bDeleteCallbackWhenFinished) 
 	{
-		((void(*)(void* __self, HRenderTextureStrong* __hTexture, IReadTexturePixelsCallback* __pCallback, Rect_t __srcRect, int __nSrcSlice, int __nSrcMip, int __bDeleteCallbackWhenFinished))g_nativeFunctions[2089])(m_pSelf, hTexture, pCallback, srcRect, nSrcSlice, nSrcMip, bDeleteCallbackWhenFinished);
+		((void(*)(void* __self, HRenderTextureStrong* __hTexture, IReadTexturePixelsCallback* __pCallback, Rect_t __srcRect, int __nSrcSlice, int __nSrcMip, int __bDeleteCallbackWhenFinished))g_nativeFunctions[2097])(m_pSelf, hTexture, pCallback, srcRect, nSrcSlice, nSrcMip, bDeleteCallbackWhenFinished);
 	}
 	inline void ReadBuffer(RenderBufferHandle_t hBuffer, IReadBufferCallback* pCallback, int nOffset, int nBytesToRead, int bDeleteCallbackWhenFinished) 
 	{
-		((void(*)(void* self, RenderBufferHandle_t hBuffer, IReadBufferCallback* pCallback, int nOffset, int nBytesToRead, int bDeleteCallbackWhenFinished))g_nativeFunctions[2090])(m_pSelf, hBuffer, pCallback, nOffset, nBytesToRead, bDeleteCallbackWhenFinished);
+		((void(*)(void* self, RenderBufferHandle_t hBuffer, IReadBufferCallback* pCallback, int nOffset, int nBytesToRead, int bDeleteCallbackWhenFinished))g_nativeFunctions[2098])(m_pSelf, hBuffer, pCallback, nOffset, nBytesToRead, bDeleteCallbackWhenFinished);
 	}
 	inline void BeginPixEvent(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2091])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_nativeFunctions[2099])(m_pSelf, name);
 	}
 	inline void EndPixEvent() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2092])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2100])(m_pSelf);
 	}
 	inline void PixSetMarker(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2093])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_nativeFunctions[2101])(m_pSelf, name);
 	}
 };
 class ISceneLayer
@@ -9839,84 +9884,84 @@ class ISceneLayer
 	}
 	inline void SetObjectMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[2094])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_nativeFunctions[2102])(m_pSelf, nTok);
 	}
 	inline void AddObjectFlagsRequiredMask(int64 nRequiredFlags) 
 	{
-		((void(*)(void* self, int64 nRequiredFlags))g_nativeFunctions[2095])(m_pSelf, nRequiredFlags);
+		((void(*)(void* self, int64 nRequiredFlags))g_nativeFunctions[2103])(m_pSelf, nRequiredFlags);
 	}
 	inline void AddObjectFlagsExcludedMask(int64 nExcludedFlags) 
 	{
-		((void(*)(void* self, int64 nExcludedFlags))g_nativeFunctions[2096])(m_pSelf, nExcludedFlags);
+		((void(*)(void* self, int64 nExcludedFlags))g_nativeFunctions[2104])(m_pSelf, nExcludedFlags);
 	}
 	inline void RemoveObjectFlagsRequiredMask(int64 nRequiredFlags) 
 	{
-		((void(*)(void* self, int64 nRequiredFlags))g_nativeFunctions[2097])(m_pSelf, nRequiredFlags);
+		((void(*)(void* self, int64 nRequiredFlags))g_nativeFunctions[2105])(m_pSelf, nRequiredFlags);
 	}
 	inline void RemoveObjectFlagsExcludedMask(int64 nExcludedFlags) 
 	{
-		((void(*)(void* self, int64 nExcludedFlags))g_nativeFunctions[2098])(m_pSelf, nExcludedFlags);
+		((void(*)(void* self, int64 nExcludedFlags))g_nativeFunctions[2106])(m_pSelf, nExcludedFlags);
 	}
 	inline int64 GetObjectFlagsRequiredMask() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2099])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2107])(m_pSelf);
 	}
 	inline int64 GetObjectFlagsExcludedMask() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2100])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2108])(m_pSelf);
 	}
 	inline const char* GetDebugName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2101])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2109])(m_pSelf);
 	}
 	inline const CRenderAttributes* GetRenderAttributesPtr() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* __self))g_nativeFunctions[2102])(m_pSelf);
+		((const CRenderAttributes*(*)(void* __self))g_nativeFunctions[2110])(m_pSelf);
 	}
 	inline void SetAttr(uint32 nTokenID, HSceneViewRenderTarget hRenderTarget, int64 msaa, unsigned int flags) 
 	{
-		((void(*)(void* self, uint32 nTokenID, HSceneViewRenderTarget hRenderTarget, int64 msaa, unsigned int flags))g_nativeFunctions[2103])(m_pSelf, nTokenID, hRenderTarget, msaa, flags);
+		((void(*)(void* self, uint32 nTokenID, HSceneViewRenderTarget hRenderTarget, int64 msaa, unsigned int flags))g_nativeFunctions[2111])(m_pSelf, nTokenID, hRenderTarget, msaa, flags);
 	}
 	inline void SetBoundingVolumeSizeCullThresholdInPercent(float flSizeCullThreshold) 
 	{
-		((void(*)(void* self, float flSizeCullThreshold))g_nativeFunctions[2104])(m_pSelf, flSizeCullThreshold);
+		((void(*)(void* self, float flSizeCullThreshold))g_nativeFunctions[2112])(m_pSelf, flSizeCullThreshold);
 	}
 	inline void SetClearColor(Vector4D vecColor, int nRenderTargetIndex) 
 	{
-		((void(*)(void* self, Vector4D vecColor, int nRenderTargetIndex))g_nativeFunctions[2105])(m_pSelf, vecColor, nRenderTargetIndex);
+		((void(*)(void* self, Vector4D vecColor, int nRenderTargetIndex))g_nativeFunctions[2113])(m_pSelf, vecColor, nRenderTargetIndex);
 	}
 	inline HRenderTextureStrong* GetTextureValue(uint32 nTokenID, HRenderTextureStrong* nDefaultValue) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID, HRenderTextureStrong* nDefaultValue))g_nativeFunctions[2106])(m_pSelf, nTokenID, nDefaultValue);
+		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID, HRenderTextureStrong* nDefaultValue))g_nativeFunctions[2114])(m_pSelf, nTokenID, nDefaultValue);
 	}
 	inline HRenderTextureStrong* GetTextureValue(uint32 nTokenID) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID))g_nativeFunctions[2107])(m_pSelf, nTokenID);
+		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID))g_nativeFunctions[2115])(m_pSelf, nTokenID);
 	}
 	inline HRenderTextureStrong* GetColorTarget() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* __self))g_nativeFunctions[2108])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* __self))g_nativeFunctions[2116])(m_pSelf);
 	}
 	inline HRenderTextureStrong* GetDepthTarget() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* __self))g_nativeFunctions[2109])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* __self))g_nativeFunctions[2117])(m_pSelf);
 	}
 	inline void SetOutput(HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth) 
 	{
-		((void(*)(void* __self, HSceneViewRenderTarget __hColor, HSceneViewRenderTarget __hDepth))g_nativeFunctions[2110])(m_pSelf, hColor, hDepth);
+		((void(*)(void* __self, HSceneViewRenderTarget __hColor, HSceneViewRenderTarget __hDepth))g_nativeFunctions[2118])(m_pSelf, hColor, hDepth);
 	}
-	RW_VAR(int64,m_nLayerFlags,ISceneLayer,g_nativeFunctions[2111],g_nativeFunctions[2112]);
-	RW_VAR(int64,LayerEnum,ISceneLayer,g_nativeFunctions[2113],g_nativeFunctions[2114]);
-	RW_VAR(RenderViewport_t,m_viewport,ISceneLayer,g_nativeFunctions[2115],g_nativeFunctions[2116]);
-	RW_VAR(int,m_nClearFlags,ISceneLayer,g_nativeFunctions[2117],g_nativeFunctions[2118]);
+	RW_VAR(int64,m_nLayerFlags,ISceneLayer,g_nativeFunctions[2119],g_nativeFunctions[2120]);
+	RW_VAR(int64,LayerEnum,ISceneLayer,g_nativeFunctions[2121],g_nativeFunctions[2122]);
+	RW_VAR(RenderViewport_t,m_viewport,ISceneLayer,g_nativeFunctions[2123],g_nativeFunctions[2124]);
+	RW_VAR(int,m_nClearFlags,ISceneLayer,g_nativeFunctions[2125],g_nativeFunctions[2126]);
 };
 class ISceneView
 {
@@ -9929,94 +9974,94 @@ class ISceneView
 	inline RenderViewport_t GetMainViewport() 
 	{
 		return
-		((RenderViewport_t(*)(void* self))g_nativeFunctions[2119])(m_pSelf);
+		((RenderViewport_t(*)(void* self))g_nativeFunctions[2127])(m_pSelf);
 	}
 	inline const void* GetSwapChain() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[2120])(m_pSelf);
+		((const void*(*)(void* self))g_nativeFunctions[2128])(m_pSelf);
 	}
 	inline void AddDependentView(ISceneView* pView, int nSlot) 
 	{
-		((void(*)(void* self, ISceneView* pView, int nSlot))g_nativeFunctions[2121])(m_pSelf, pView, nSlot);
+		((void(*)(void* self, ISceneView* pView, int nSlot))g_nativeFunctions[2129])(m_pSelf, pView, nSlot);
 	}
 	inline const CRenderAttributes* GetRenderAttributesPtr() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[2122])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[2130])(m_pSelf);
 	}
 	inline const ISceneLayer* AddRenderLayer(const char* pszDebugName, RenderViewport_t viewport, uint32 eShaderMode, ISceneLayer* pAddBefore) 
 	{
 		return
-		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, uint32 eShaderMode, ISceneLayer* pAddBefore))g_nativeFunctions[2123])(m_pSelf, pszDebugName, viewport, eShaderMode, pAddBefore);
+		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, uint32 eShaderMode, ISceneLayer* pAddBefore))g_nativeFunctions[2131])(m_pSelf, pszDebugName, viewport, eShaderMode, pAddBefore);
 	}
 	inline const ISceneLayer* AddManagedProceduralLayer(const char* pszDebugName, RenderViewport_t viewport, void* renderCallback, ISceneLayer* pAddBefore, int bDeleteWhenDone) 
 	{
 		return
-		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, void* renderCallback, ISceneLayer* pAddBefore, int bDeleteWhenDone))g_nativeFunctions[2124])(m_pSelf, pszDebugName, viewport, renderCallback, pAddBefore, bDeleteWhenDone);
+		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, void* renderCallback, ISceneLayer* pAddBefore, int bDeleteWhenDone))g_nativeFunctions[2132])(m_pSelf, pszDebugName, viewport, renderCallback, pAddBefore, bDeleteWhenDone);
 	}
 	inline void SetDefaultLayerObjectRequiredFlags(int64 nFlags) 
 	{
-		((void(*)(void* self, int64 nFlags))g_nativeFunctions[2125])(m_pSelf, nFlags);
+		((void(*)(void* self, int64 nFlags))g_nativeFunctions[2133])(m_pSelf, nFlags);
 	}
 	inline void SetDefaultLayerObjectExcludedFlags(int64 nFlags) 
 	{
-		((void(*)(void* self, int64 nFlags))g_nativeFunctions[2126])(m_pSelf, nFlags);
+		((void(*)(void* self, int64 nFlags))g_nativeFunctions[2134])(m_pSelf, nFlags);
 	}
 	inline int64 GetDefaultLayerObjectRequiredFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2127])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2135])(m_pSelf);
 	}
 	inline int64 GetDefaultLayerObjectExcludedFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2128])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2136])(m_pSelf);
 	}
 	inline void AddWorldToRenderList(ISceneWorld* pWorld) 
 	{
-		((void(*)(void* self, ISceneWorld* pWorld))g_nativeFunctions[2129])(m_pSelf, pWorld);
+		((void(*)(void* self, ISceneWorld* pWorld))g_nativeFunctions[2137])(m_pSelf, pWorld);
 	}
 	inline HSceneViewRenderTarget FindOrCreateRenderTarget(const char* pName, HRenderTextureStrong* hTexture, int nFlags) 
 	{
 		return
-		((HSceneViewRenderTarget(*)(void* self, const char* pName, HRenderTextureStrong* hTexture, int nFlags))g_nativeFunctions[2130])(m_pSelf, pName, hTexture, nFlags);
+		((HSceneViewRenderTarget(*)(void* self, const char* pName, HRenderTextureStrong* hTexture, int nFlags))g_nativeFunctions[2138])(m_pSelf, pName, hTexture, nFlags);
 	}
 	inline void SetParent(ISceneView* pParent) 
 	{
-		((void(*)(void* self, ISceneView* pParent))g_nativeFunctions[2131])(m_pSelf, pParent);
+		((void(*)(void* self, ISceneView* pParent))g_nativeFunctions[2139])(m_pSelf, pParent);
 	}
 	inline const ISceneView* GetParent() 
 	{
 		return
-		((const ISceneView*(*)(void* self))g_nativeFunctions[2132])(m_pSelf);
+		((const ISceneView*(*)(void* self))g_nativeFunctions[2140])(m_pSelf);
 	}
 	inline int GetPriority() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2133])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2141])(m_pSelf);
 	}
 	inline void SetPriority(int nPriority) 
 	{
-		((void(*)(void* self, int nPriority))g_nativeFunctions[2134])(m_pSelf, nPriority);
+		((void(*)(void* self, int nPriority))g_nativeFunctions[2142])(m_pSelf, nPriority);
 	}
 	inline const CFrustum* GetFrustum() 
 	{
 		return
-		((const CFrustum*(*)(void* __self))g_nativeFunctions[2135])(m_pSelf);
+		((const CFrustum*(*)(void* __self))g_nativeFunctions[2143])(m_pSelf);
 	}
 	inline int GetPostProcessEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2136])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2144])(m_pSelf);
 	}
 	inline int GetToolsVisMode() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2137])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2145])(m_pSelf);
 	}
-	RW_VAR(int,m_ViewUniqueId,ISceneView,g_nativeFunctions[2138],g_nativeFunctions[2139]);
-	RW_VAR(int,m_ManagedCameraId,ISceneView,g_nativeFunctions[2140],g_nativeFunctions[2141]);
+	RW_VAR(int,m_ViewUniqueId,ISceneView,g_nativeFunctions[2146],g_nativeFunctions[2147]);
+	RW_VAR(int,m_ManagedCameraId,ISceneView,g_nativeFunctions[2148],g_nativeFunctions[2149]);
 };
 class ISceneWorld
 {
@@ -10028,65 +10073,65 @@ class ISceneWorld
 	}
 	inline void DeleteAllObjects() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2142])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2150])(m_pSelf);
 	}
 	inline void Release() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2143])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2151])(m_pSelf);
 	}
 	inline int GetSceneObjectCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2144])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2152])(m_pSelf);
 	}
 	inline int IsEmpty() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2145])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2153])(m_pSelf);
 	}
 	inline const char* GetWorldDebugName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2146])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2154])(m_pSelf);
 	}
 	inline void SetDeleteAtEndOfFrame(int bDelete) 
 	{
-		((void(*)(void* self, int bDelete))g_nativeFunctions[2147])(m_pSelf, bDelete);
+		((void(*)(void* self, int bDelete))g_nativeFunctions[2155])(m_pSelf, bDelete);
 	}
 	inline int GetDeleteAtEndOfFrame() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2148])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2156])(m_pSelf);
 	}
 	inline void DeleteEndOfFrameObjects() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2149])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2157])(m_pSelf);
 	}
 	inline int MeshTrace(MeshTraceInput input, MeshTraceOutput* output) 
 	{
 		return
-		((int(*)(void* __self, MeshTraceInput __input, MeshTraceOutput* __output))g_nativeFunctions[2150])(m_pSelf, input, output);
+		((int(*)(void* __self, MeshTraceInput __input, MeshTraceOutput* __output))g_nativeFunctions[2158])(m_pSelf, input, output);
 	}
 	inline const IPVS* GetPVS() 
 	{
 		return
-		((const IPVS*(*)(void* self))g_nativeFunctions[2151])(m_pSelf);
+		((const IPVS*(*)(void* self))g_nativeFunctions[2159])(m_pSelf);
 	}
 	inline void SetPVS(IPVS* pPVS) 
 	{
-		((void(*)(void* self, IPVS* pPVS))g_nativeFunctions[2152])(m_pSelf, pPVS);
+		((void(*)(void* self, IPVS* pPVS))g_nativeFunctions[2160])(m_pSelf, pPVS);
 	}
 	inline void Add3DSkyboxWorld(ISceneWorld* world) 
 	{
-		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2153])(m_pSelf, world);
+		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2161])(m_pSelf, world);
 	}
 	inline void Remove3DSkyboxWorld(ISceneWorld* world) 
 	{
-		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2154])(m_pSelf, world);
+		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2162])(m_pSelf, world);
 	}
 	inline void Set3DSkyboxParameters(Vector origin, QAngle angle, float scale) 
 	{
-		((void(*)(void* self, Vector origin, QAngle angle, float scale))g_nativeFunctions[2155])(m_pSelf, origin, angle, scale);
+		((void(*)(void* self, Vector origin, QAngle angle, float scale))g_nativeFunctions[2163])(m_pSelf, origin, angle, scale);
 	}
 };
 class IShaderCompileContext
@@ -10099,11 +10144,11 @@ class IShaderCompileContext
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2156])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2164])(m_pSelf);
 	}
 	inline void SetMaskedCode(const char* code) 
 	{
-		((void(*)(void* self, const char* code))g_nativeFunctions[2157])(m_pSelf, code);
+		((void(*)(void* self, const char* code))g_nativeFunctions[2165])(m_pSelf, code);
 	}
 };
 class ISteamApps
@@ -10117,62 +10162,62 @@ class ISteamApps
 	inline int BIsAppInstalled(int appid) 
 	{
 		return
-		((int(*)(void* self, int appid))g_nativeFunctions[2158])(m_pSelf, appid);
+		((int(*)(void* self, int appid))g_nativeFunctions[2166])(m_pSelf, appid);
 	}
 	inline int BIsCybercafe() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2159])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2167])(m_pSelf);
 	}
 	inline int BIsDlcInstalled(int appID) 
 	{
 		return
-		((int(*)(void* self, int appID))g_nativeFunctions[2160])(m_pSelf, appID);
+		((int(*)(void* self, int appID))g_nativeFunctions[2168])(m_pSelf, appID);
 	}
 	inline int BIsLowViolence() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2161])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2169])(m_pSelf);
 	}
 	inline int BIsSubscribed() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2162])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2170])(m_pSelf);
 	}
 	inline int BIsSubscribedApp(int appID) 
 	{
 		return
-		((int(*)(void* self, int appID))g_nativeFunctions[2163])(m_pSelf, appID);
+		((int(*)(void* self, int appID))g_nativeFunctions[2171])(m_pSelf, appID);
 	}
 	inline const char* GetAvailableGameLanguages() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2164])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2172])(m_pSelf);
 	}
 	inline const char* GetCurrentGameLanguage() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2165])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2173])(m_pSelf);
 	}
 	inline int GetAppBuildId() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2166])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2174])(m_pSelf);
 	}
 	inline int BIsVACBanned() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2167])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2175])(m_pSelf);
 	}
 	inline const char* GetCommandLine() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[2168])(m_pSelf);
+		((const char*(*)(void* __self))g_nativeFunctions[2176])(m_pSelf);
 	}
 	inline const char* GetAppInstallDir(int appid) 
 	{
 		return
-		((const char*(*)(void* __self, int __appid))g_nativeFunctions[2169])(m_pSelf, appid);
+		((const char*(*)(void* __self, int __appid))g_nativeFunctions[2177])(m_pSelf, appid);
 	}
 };
 class ISteamFriends
@@ -10186,26 +10231,26 @@ class ISteamFriends
 	inline const char* GetProfileItemPropertyString(uint64 steamID, int itemType, int prop) 
 	{
 		return
-		((const char*(*)(void* __self, uint64 __steamID, int __itemType, int __prop))g_nativeFunctions[2170])(m_pSelf, steamID, itemType, prop);
+		((const char*(*)(void* __self, uint64 __steamID, int __itemType, int __prop))g_nativeFunctions[2178])(m_pSelf, steamID, itemType, prop);
 	}
 	inline uint64 RequestEquippedProfileItems(uint64 steamID) 
 	{
 		return
-		((uint64(*)(void* self, uint64 steamID))g_nativeFunctions[2171])(m_pSelf, steamID);
+		((uint64(*)(void* self, uint64 steamID))g_nativeFunctions[2179])(m_pSelf, steamID);
 	}
 	inline const char* GetPersonaName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2172])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2180])(m_pSelf);
 	}
 	inline int SetRichPresence(const char* pchKey, const char* pchValue) 
 	{
 		return
-		((int(*)(void* self, const char* pchKey, const char* pchValue))g_nativeFunctions[2173])(m_pSelf, pchKey, pchValue);
+		((int(*)(void* self, const char* pchKey, const char* pchValue))g_nativeFunctions[2181])(m_pSelf, pchKey, pchValue);
 	}
 	inline void ClearRichPresence() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2174])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2182])(m_pSelf);
 	}
 };
 class ISteamGameServer
@@ -10218,74 +10263,74 @@ class ISteamGameServer
 	}
 	inline void SetServerName(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2175])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_nativeFunctions[2183])(m_pSelf, name);
 	}
 	inline void SetMapName(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2176])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_nativeFunctions[2184])(m_pSelf, name);
 	}
 	inline void SetGameTags(const char* tags) 
 	{
-		((void(*)(void* self, const char* tags))g_nativeFunctions[2177])(m_pSelf, tags);
+		((void(*)(void* self, const char* tags))g_nativeFunctions[2185])(m_pSelf, tags);
 	}
 	inline void SetDedicatedServer(int isDedicatedServer) 
 	{
-		((void(*)(void* self, int isDedicatedServer))g_nativeFunctions[2178])(m_pSelf, isDedicatedServer);
+		((void(*)(void* self, int isDedicatedServer))g_nativeFunctions[2186])(m_pSelf, isDedicatedServer);
 	}
 	inline void SetAdvertiseServerActive(int heartbeats) 
 	{
-		((void(*)(void* self, int heartbeats))g_nativeFunctions[2179])(m_pSelf, heartbeats);
+		((void(*)(void* self, int heartbeats))g_nativeFunctions[2187])(m_pSelf, heartbeats);
 	}
 	inline void SetMaxPlayerCount(int maxPlayers) 
 	{
-		((void(*)(void* self, int maxPlayers))g_nativeFunctions[2180])(m_pSelf, maxPlayers);
+		((void(*)(void* self, int maxPlayers))g_nativeFunctions[2188])(m_pSelf, maxPlayers);
 	}
 	inline void LogOnAnonymous() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2181])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2189])(m_pSelf);
 	}
 	inline void LogOn(const char* token) 
 	{
-		((void(*)(void* self, const char* token))g_nativeFunctions[2182])(m_pSelf, token);
+		((void(*)(void* self, const char* token))g_nativeFunctions[2190])(m_pSelf, token);
 	}
 	inline void LogOff() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2183])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2191])(m_pSelf);
 	}
 	inline void SetGameDescription(const char* description) 
 	{
-		((void(*)(void* self, const char* description))g_nativeFunctions[2184])(m_pSelf, description);
+		((void(*)(void* self, const char* description))g_nativeFunctions[2192])(m_pSelf, description);
 	}
 	inline void SetProduct(const char* productName) 
 	{
-		((void(*)(void* self, const char* productName))g_nativeFunctions[2185])(m_pSelf, productName);
+		((void(*)(void* self, const char* productName))g_nativeFunctions[2193])(m_pSelf, productName);
 	}
 	inline void SetModDir(const char* modDir) 
 	{
-		((void(*)(void* self, const char* modDir))g_nativeFunctions[2186])(m_pSelf, modDir);
+		((void(*)(void* self, const char* modDir))g_nativeFunctions[2194])(m_pSelf, modDir);
 	}
 	inline int BLoggedOn() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2187])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2195])(m_pSelf);
 	}
 	inline HAuthTicket GetAuthSessionTicket(uint64 targetSteamId, void* buffer, unsigned int* ticketLength) 
 	{
 		return
-		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_nativeFunctions[2188])(m_pSelf, targetSteamId, buffer, ticketLength);
+		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_nativeFunctions[2196])(m_pSelf, targetSteamId, buffer, ticketLength);
 	}
 	inline int64 BeginAuthSession(uint64 senderSteamId, void* buffer, int length) 
 	{
 		return
-		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_nativeFunctions[2189])(m_pSelf, senderSteamId, buffer, length);
+		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_nativeFunctions[2197])(m_pSelf, senderSteamId, buffer, length);
 	}
 	inline void CancelAuthTicket(HAuthTicket ticket) 
 	{
-		((void(*)(void* self, HAuthTicket ticket))g_nativeFunctions[2190])(m_pSelf, ticket);
+		((void(*)(void* self, HAuthTicket ticket))g_nativeFunctions[2198])(m_pSelf, ticket);
 	}
 	inline void EndAuthSession(uint64 steamId) 
 	{
-		((void(*)(void* self, uint64 steamId))g_nativeFunctions[2191])(m_pSelf, steamId);
+		((void(*)(void* self, uint64 steamId))g_nativeFunctions[2199])(m_pSelf, steamId);
 	}
 };
 class ISteamHTMLSurface
@@ -10299,101 +10344,101 @@ class ISteamHTMLSurface
 	inline int Init() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2192])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2200])(m_pSelf);
 	}
 	inline int Shutdown() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2193])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2201])(m_pSelf);
 	}
 	inline uint64 CreateBrowser(const char* pchUserAgent, const char* pchUserCSS) 
 	{
 		return
-		((uint64(*)(void* self, const char* pchUserAgent, const char* pchUserCSS))g_nativeFunctions[2194])(m_pSelf, pchUserAgent, pchUserCSS);
+		((uint64(*)(void* self, const char* pchUserAgent, const char* pchUserCSS))g_nativeFunctions[2202])(m_pSelf, pchUserAgent, pchUserCSS);
 	}
 	inline void RemoveBrowser(unsigned int bx) 
 	{
-		((void(*)(void* self, unsigned int bx))g_nativeFunctions[2195])(m_pSelf, bx);
+		((void(*)(void* self, unsigned int bx))g_nativeFunctions[2203])(m_pSelf, bx);
 	}
 	inline void LoadURL(unsigned int bx, const char* pchURL, const char* pchPostData) 
 	{
-		((void(*)(void* self, unsigned int bx, const char* pchURL, const char* pchPostData))g_nativeFunctions[2196])(m_pSelf, bx, pchURL, pchPostData);
+		((void(*)(void* self, unsigned int bx, const char* pchURL, const char* pchPostData))g_nativeFunctions[2204])(m_pSelf, bx, pchURL, pchPostData);
 	}
 	inline void AddHeader(unsigned int bx, const char* key, const char* value) 
 	{
-		((void(*)(void* self, unsigned int bx, const char* key, const char* value))g_nativeFunctions[2197])(m_pSelf, bx, key, value);
+		((void(*)(void* self, unsigned int bx, const char* key, const char* value))g_nativeFunctions[2205])(m_pSelf, bx, key, value);
 	}
 	inline void SetSize(unsigned int bx, unsigned int w, unsigned int h) 
 	{
-		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_nativeFunctions[2198])(m_pSelf, bx, w, h);
+		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_nativeFunctions[2206])(m_pSelf, bx, w, h);
 	}
 	inline void GetLinkAtPosition(unsigned int bx, unsigned int w, unsigned int h) 
 	{
-		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_nativeFunctions[2199])(m_pSelf, bx, w, h);
+		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_nativeFunctions[2207])(m_pSelf, bx, w, h);
 	}
 	inline void SetHorizontalScroll(unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_nativeFunctions[2200])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_nativeFunctions[2208])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
 	}
 	inline void SetVerticalScroll(unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_nativeFunctions[2201])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_nativeFunctions[2209])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
 	}
 	inline void SetKeyFocus(unsigned int unBrowserHandle, int b) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int b))g_nativeFunctions[2202])(m_pSelf, unBrowserHandle, b);
+		((void(*)(void* self, unsigned int unBrowserHandle, int b))g_nativeFunctions[2210])(m_pSelf, unBrowserHandle, b);
 	}
 	inline void AllowStartRequest(unsigned int bx, int b) 
 	{
-		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2203])(m_pSelf, bx, b);
+		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2211])(m_pSelf, bx, b);
 	}
 	inline void JSDialogResponse(unsigned int bx, int b) 
 	{
-		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2204])(m_pSelf, bx, b);
+		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2212])(m_pSelf, bx, b);
 	}
 	inline void SetBackgroundMode(unsigned int bx, int b) 
 	{
-		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2205])(m_pSelf, bx, b);
+		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2213])(m_pSelf, bx, b);
 	}
 	inline void SetDPIScalingFactor(unsigned int bx, float scale) 
 	{
-		((void(*)(void* self, unsigned int bx, float scale))g_nativeFunctions[2206])(m_pSelf, bx, scale);
+		((void(*)(void* self, unsigned int bx, float scale))g_nativeFunctions[2214])(m_pSelf, bx, scale);
 	}
 	inline void KeyDown(unsigned int unBrowserHandle, unsigned int key, int modifiers, int isSystemKey) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers, int isSystemKey))g_nativeFunctions[2207])(m_pSelf, unBrowserHandle, key, modifiers, isSystemKey);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers, int isSystemKey))g_nativeFunctions[2215])(m_pSelf, unBrowserHandle, key, modifiers, isSystemKey);
 	}
 	inline void KeyUp(unsigned int unBrowserHandle, unsigned int key, int modifiers) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers))g_nativeFunctions[2208])(m_pSelf, unBrowserHandle, key, modifiers);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers))g_nativeFunctions[2216])(m_pSelf, unBrowserHandle, key, modifiers);
 	}
 	inline void KeyChar(unsigned int unBrowserHandle, unsigned int unicodeChar, int modifiers) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int unicodeChar, int modifiers))g_nativeFunctions[2209])(m_pSelf, unBrowserHandle, unicodeChar, modifiers);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int unicodeChar, int modifiers))g_nativeFunctions[2217])(m_pSelf, unBrowserHandle, unicodeChar, modifiers);
 	}
 	inline void MouseUp(unsigned int unBrowserHandle, int eMouseButton) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2210])(m_pSelf, unBrowserHandle, eMouseButton);
+		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2218])(m_pSelf, unBrowserHandle, eMouseButton);
 	}
 	inline void MouseDown(unsigned int unBrowserHandle, int eMouseButton) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2211])(m_pSelf, unBrowserHandle, eMouseButton);
+		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2219])(m_pSelf, unBrowserHandle, eMouseButton);
 	}
 	inline void MouseDoubleClick(unsigned int unBrowserHandle, int eMouseButton) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2212])(m_pSelf, unBrowserHandle, eMouseButton);
+		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2220])(m_pSelf, unBrowserHandle, eMouseButton);
 	}
 	inline void MouseMove(unsigned int unBrowserHandle, int x, int y) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int x, int y))g_nativeFunctions[2213])(m_pSelf, unBrowserHandle, x, y);
+		((void(*)(void* self, unsigned int unBrowserHandle, int x, int y))g_nativeFunctions[2221])(m_pSelf, unBrowserHandle, x, y);
 	}
 	inline void MouseWheel(unsigned int unBrowserHandle, int nDelta) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int nDelta))g_nativeFunctions[2214])(m_pSelf, unBrowserHandle, nDelta);
+		((void(*)(void* self, unsigned int unBrowserHandle, int nDelta))g_nativeFunctions[2222])(m_pSelf, unBrowserHandle, nDelta);
 	}
 	inline void SetCookie(const char* pchHostname, const char* pchKey, const char* pchValue, const char* pchPath, unsigned int nExpires, int bSecure, int bHTTPOnly) 
 	{
-		((void(*)(void* self, const char* pchHostname, const char* pchKey, const char* pchValue, const char* pchPath, unsigned int nExpires, int bSecure, int bHTTPOnly))g_nativeFunctions[2215])(m_pSelf, pchHostname, pchKey, pchValue, pchPath, nExpires, bSecure, bHTTPOnly);
+		((void(*)(void* self, const char* pchHostname, const char* pchKey, const char* pchValue, const char* pchPath, unsigned int nExpires, int bSecure, int bHTTPOnly))g_nativeFunctions[2223])(m_pSelf, pchHostname, pchKey, pchValue, pchPath, nExpires, bSecure, bHTTPOnly);
 	}
 };
 class ISteamMatchmaking
@@ -10406,41 +10451,41 @@ class ISteamMatchmaking
 	}
 	inline void LeaveLobby(uint64 steamid) 
 	{
-		((void(*)(void* self, uint64 steamid))g_nativeFunctions[2216])(m_pSelf, steamid);
+		((void(*)(void* self, uint64 steamid))g_nativeFunctions[2224])(m_pSelf, steamid);
 	}
 	inline int GetNumLobbyMembers(uint64 steamid) 
 	{
 		return
-		((int(*)(void* self, uint64 steamid))g_nativeFunctions[2217])(m_pSelf, steamid);
+		((int(*)(void* self, uint64 steamid))g_nativeFunctions[2225])(m_pSelf, steamid);
 	}
 	inline uint64 GetLobbyMemberByIndex(uint64 steamid, int index) 
 	{
 		return
-		((uint64(*)(void* __self, uint64 __steamid, int __index))g_nativeFunctions[2218])(m_pSelf, steamid, index);
+		((uint64(*)(void* __self, uint64 __steamid, int __index))g_nativeFunctions[2226])(m_pSelf, steamid, index);
 	}
 	inline const void* GetLobbyData(uint64 steamid, const char* key) 
 	{
 		return
-		((const void*(*)(void* self, uint64 steamid, const char* key))g_nativeFunctions[2219])(m_pSelf, steamid, key);
+		((const void*(*)(void* self, uint64 steamid, const char* key))g_nativeFunctions[2227])(m_pSelf, steamid, key);
 	}
 	inline int SetLobbyData(uint64 steamid, const char* key, const char* data) 
 	{
 		return
-		((int(*)(void* self, uint64 steamid, const char* key, const char* data))g_nativeFunctions[2220])(m_pSelf, steamid, key, data);
+		((int(*)(void* self, uint64 steamid, const char* key, const char* data))g_nativeFunctions[2228])(m_pSelf, steamid, key, data);
 	}
 	inline int GetLobbyDataCount(uint64 steamid) 
 	{
 		return
-		((int(*)(void* self, uint64 steamid))g_nativeFunctions[2221])(m_pSelf, steamid);
+		((int(*)(void* self, uint64 steamid))g_nativeFunctions[2229])(m_pSelf, steamid);
 	}
 	inline void DeleteLobbyData(uint64 steamid, const char* key) 
 	{
-		((void(*)(void* self, uint64 steamid, const char* key))g_nativeFunctions[2222])(m_pSelf, steamid, key);
+		((void(*)(void* self, uint64 steamid, const char* key))g_nativeFunctions[2230])(m_pSelf, steamid, key);
 	}
 	inline int GetLobbyDataByIndex(uint64 steamid, int index, void* data, int datasize, void* value, int valueSize) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid, int __index, void* __data, int __datasize, void* __value, int __valueSize))g_nativeFunctions[2223])(m_pSelf, steamid, index, data, datasize, value, valueSize);
+		((int(*)(void* __self, uint64 __steamid, int __index, void* __data, int __datasize, void* __value, int __valueSize))g_nativeFunctions[2231])(m_pSelf, steamid, index, data, datasize, value, valueSize);
 	}
 };
 class ISteamNetworkingMessages
@@ -10454,31 +10499,31 @@ class ISteamNetworkingMessages
 	inline int SendMessageToUser(uint64 steamid, void* data, int dataSize, int flags, int channel) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid, void* __data, int __dataSize, int __flags, int __channel))g_nativeFunctions[2224])(m_pSelf, steamid, data, dataSize, flags, channel);
+		((int(*)(void* __self, uint64 __steamid, void* __data, int __dataSize, int __flags, int __channel))g_nativeFunctions[2232])(m_pSelf, steamid, data, dataSize, flags, channel);
 	}
 	inline int ReceiveMessagesOnChannel(int channel, void* array_of_pointers, int maxmessages) 
 	{
 		return
-		((int(*)(void* __self, int __channel, void* __array_of_pointers, int __maxmessages))g_nativeFunctions[2225])(m_pSelf, channel, array_of_pointers, maxmessages);
+		((int(*)(void* __self, int __channel, void* __array_of_pointers, int __maxmessages))g_nativeFunctions[2233])(m_pSelf, channel, array_of_pointers, maxmessages);
 	}
 	inline int AcceptSessionWithUser(uint64 steamid) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid))g_nativeFunctions[2226])(m_pSelf, steamid);
+		((int(*)(void* __self, uint64 __steamid))g_nativeFunctions[2234])(m_pSelf, steamid);
 	}
 	inline int CloseChannelWithUser(uint64 steamid, int nLocalChannel) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid, int __nLocalChannel))g_nativeFunctions[2227])(m_pSelf, steamid, nLocalChannel);
+		((int(*)(void* __self, uint64 __steamid, int __nLocalChannel))g_nativeFunctions[2235])(m_pSelf, steamid, nLocalChannel);
 	}
 	inline void ReleaseMessage(void* message) 
 	{
-		((void(*)(void* __self, void* __message))g_nativeFunctions[2228])(m_pSelf, message);
+		((void(*)(void* __self, void* __message))g_nativeFunctions[2236])(m_pSelf, message);
 	}
 	inline SteamNetConnectionRealTimeStatus_t GetConnectionInfo(uint64 steamid) 
 	{
 		return
-		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, uint64 __steamid))g_nativeFunctions[2229])(m_pSelf, steamid);
+		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, uint64 __steamid))g_nativeFunctions[2237])(m_pSelf, steamid);
 	}
 };
 class ISteamNetworkingSockets
@@ -10492,19 +10537,19 @@ class ISteamNetworkingSockets
 	inline SteamNetConnectionRealTimeStatus_t GetConnectionInfo(HSteamNetConnection handle) 
 	{
 		return
-		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, HSteamNetConnection __handle))g_nativeFunctions[2230])(m_pSelf, handle);
+		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, HSteamNetConnection __handle))g_nativeFunctions[2238])(m_pSelf, handle);
 	}
 	inline void StartAuthentication() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2231])(m_pSelf);
+		((void(*)(void* __self))g_nativeFunctions[2239])(m_pSelf);
 	}
 	inline void BeginRequestFakeIP() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2232])(m_pSelf);
+		((void(*)(void* __self))g_nativeFunctions[2240])(m_pSelf);
 	}
 	inline void ReleaseMessage(void* message) 
 	{
-		((void(*)(void* __self, void* __message))g_nativeFunctions[2233])(m_pSelf, message);
+		((void(*)(void* __self, void* __message))g_nativeFunctions[2241])(m_pSelf, message);
 	}
 };
 class ISteamNetworkingUtils
@@ -10517,15 +10562,15 @@ class ISteamNetworkingUtils
 	}
 	inline void SetConfig(int64 key, int value) 
 	{
-		((void(*)(void* __self, int64 __key, int __value))g_nativeFunctions[2234])(m_pSelf, key, value);
+		((void(*)(void* __self, int64 __key, int __value))g_nativeFunctions[2242])(m_pSelf, key, value);
 	}
 	inline void SetConfig(int64 key, const char* value) 
 	{
-		((void(*)(void* __self, int64 __key, const char* __value))g_nativeFunctions[2235])(m_pSelf, key, value);
+		((void(*)(void* __self, int64 __key, const char* __value))g_nativeFunctions[2243])(m_pSelf, key, value);
 	}
 	inline void InitializeRelayNetwork() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2236])(m_pSelf);
+		((void(*)(void* __self))g_nativeFunctions[2244])(m_pSelf);
 	}
 };
 class ISteamUser
@@ -10539,58 +10584,58 @@ class ISteamUser
 	inline int BLoggedOn() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2237])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2245])(m_pSelf);
 	}
 	inline uint64 GetSteamID() 
 	{
 		return
-		((uint64(*)(void* __self))g_nativeFunctions[2238])(m_pSelf);
+		((uint64(*)(void* __self))g_nativeFunctions[2246])(m_pSelf);
 	}
 	inline int GetVoice(int bWantCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten) 
 	{
 		return
-		((int(*)(void* self, int bWantCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten))g_nativeFunctions[2239])(m_pSelf, bWantCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten);
+		((int(*)(void* self, int bWantCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten))g_nativeFunctions[2247])(m_pSelf, bWantCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten);
 	}
 	inline int GetAvailableVoice(unsigned int* availableData) 
 	{
 		return
-		((int(*)(void* self, unsigned int* availableData))g_nativeFunctions[2240])(m_pSelf, availableData);
+		((int(*)(void* self, unsigned int* availableData))g_nativeFunctions[2248])(m_pSelf, availableData);
 	}
 	inline unsigned int GetVoiceOptimalSampleRate() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[2241])(m_pSelf);
+		((unsigned int(*)(void* self))g_nativeFunctions[2249])(m_pSelf);
 	}
 	inline int DecompressVoice(void* pCompressed, unsigned int cbCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten, unsigned int nDesiredSampleRate) 
 	{
 		return
-		((int(*)(void* self, void* pCompressed, unsigned int cbCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten, unsigned int nDesiredSampleRate))g_nativeFunctions[2242])(m_pSelf, pCompressed, cbCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten, nDesiredSampleRate);
+		((int(*)(void* self, void* pCompressed, unsigned int cbCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten, unsigned int nDesiredSampleRate))g_nativeFunctions[2250])(m_pSelf, pCompressed, cbCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten, nDesiredSampleRate);
 	}
 	inline void StartVoiceRecording() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2243])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2251])(m_pSelf);
 	}
 	inline void StopVoiceRecording() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2244])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2252])(m_pSelf);
 	}
 	inline HAuthTicket GetAuthSessionTicket(uint64 targetSteamId, void* buffer, unsigned int* ticketLength) 
 	{
 		return
-		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_nativeFunctions[2245])(m_pSelf, targetSteamId, buffer, ticketLength);
+		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_nativeFunctions[2253])(m_pSelf, targetSteamId, buffer, ticketLength);
 	}
 	inline int64 BeginAuthSession(uint64 senderSteamId, void* buffer, int length) 
 	{
 		return
-		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_nativeFunctions[2246])(m_pSelf, senderSteamId, buffer, length);
+		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_nativeFunctions[2254])(m_pSelf, senderSteamId, buffer, length);
 	}
 	inline void CancelAuthTicket(HAuthTicket ticket) 
 	{
-		((void(*)(void* self, HAuthTicket ticket))g_nativeFunctions[2247])(m_pSelf, ticket);
+		((void(*)(void* self, HAuthTicket ticket))g_nativeFunctions[2255])(m_pSelf, ticket);
 	}
 	inline void EndAuthSession(uint64 steamId) 
 	{
-		((void(*)(void* self, uint64 steamId))g_nativeFunctions[2248])(m_pSelf, steamId);
+		((void(*)(void* self, uint64 steamId))g_nativeFunctions[2256])(m_pSelf, steamId);
 	}
 };
 class ISteamUtils
@@ -10604,12 +10649,12 @@ class ISteamUtils
 	inline int InitFilterText(unsigned int unFilterOptions) 
 	{
 		return
-		((int(*)(void* self, unsigned int unFilterOptions))g_nativeFunctions[2249])(m_pSelf, unFilterOptions);
+		((int(*)(void* self, unsigned int unFilterOptions))g_nativeFunctions[2257])(m_pSelf, unFilterOptions);
 	}
 	inline int FilterText(int64 eContext, uint64 sourceSteamID, const char* pchInputMessage, void* pchOutFilteredText, unsigned int nByteSizeOutFilteredText) 
 	{
 		return
-		((int(*)(void* self, int64 eContext, uint64 sourceSteamID, const char* pchInputMessage, void* pchOutFilteredText, unsigned int nByteSizeOutFilteredText))g_nativeFunctions[2250])(m_pSelf, eContext, sourceSteamID, pchInputMessage, pchOutFilteredText, nByteSizeOutFilteredText);
+		((int(*)(void* self, int64 eContext, uint64 sourceSteamID, const char* pchInputMessage, void* pchOutFilteredText, unsigned int nByteSizeOutFilteredText))g_nativeFunctions[2258])(m_pSelf, eContext, sourceSteamID, pchInputMessage, pchOutFilteredText, nByteSizeOutFilteredText);
 	}
 };
 class ITonemapSystem
@@ -10622,11 +10667,11 @@ class ITonemapSystem
 	}
 	inline void SetTonemapParameters(SceneTonemapParameters_t* pParams) 
 	{
-		((void(*)(void* self, SceneTonemapParameters_t* pParams))g_nativeFunctions[2251])(m_pSelf, pParams);
+		((void(*)(void* self, SceneTonemapParameters_t* pParams))g_nativeFunctions[2259])(m_pSelf, pParams);
 	}
 	inline void ResetTonemapParameters() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2252])(m_pSelf);
+		((void(*)(void* __self))g_nativeFunctions[2260])(m_pSelf);
 	}
 };
 class IVfx
@@ -10639,21 +10684,21 @@ class IVfx
 	}
 	inline void Init(void* factory) 
 	{
-		((void(*)(void* __self, void* __factory))g_nativeFunctions[2253])(m_pSelf, factory);
+		((void(*)(void* __self, void* __factory))g_nativeFunctions[2261])(m_pSelf, factory);
 	}
 	inline const VfxCompiledShaderInfo_t* CompileShader(IShaderCompileContext* ctx, uint64 staticcombo, uint64 dynamiccombo, HShaderStrong* pVfx, int64 compileTarget, int64 programType, int useShaderCache, unsigned int flags) 
 	{
 		return
-		((const VfxCompiledShaderInfo_t*(*)(void* __self, IShaderCompileContext* __ctx, uint64 __staticcombo, uint64 __dynamiccombo, HShaderStrong* __pVfx, int64 __compileTarget, int64 __programType, int __useShaderCache, unsigned int __flags))g_nativeFunctions[2254])(m_pSelf, ctx, staticcombo, dynamiccombo, pVfx, compileTarget, programType, useShaderCache, flags);
+		((const VfxCompiledShaderInfo_t*(*)(void* __self, IShaderCompileContext* __ctx, uint64 __staticcombo, uint64 __dynamiccombo, HShaderStrong* __pVfx, int64 __compileTarget, int64 __programType, int __useShaderCache, unsigned int __flags))g_nativeFunctions[2262])(m_pSelf, ctx, staticcombo, dynamiccombo, pVfx, compileTarget, programType, useShaderCache, flags);
 	}
 	inline void ClearShaderCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2255])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2263])(m_pSelf);
 	}
 	inline const IShaderCompileContext* CreateSharedContext() 
 	{
 		return
-		((const IShaderCompileContext*(*)(void* self))g_nativeFunctions[2256])(m_pSelf);
+		((const IShaderCompileContext*(*)(void* self))g_nativeFunctions[2264])(m_pSelf);
 	}
 };
 class IVolumetricFog
@@ -10666,11 +10711,11 @@ class IVolumetricFog
 	}
 	inline void IsFoggingEnabled() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2257])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2265])(m_pSelf);
 	}
 	inline void SetParams(SceneVolumetricFogParameters2_t parameters, HRenderTextureStrong* bakedTexture) 
 	{
-		((void(*)(void* self, SceneVolumetricFogParameters2_t parameters, HRenderTextureStrong* bakedTexture))g_nativeFunctions[2258])(m_pSelf, parameters, bakedTexture);
+		((void(*)(void* self, SceneVolumetricFogParameters2_t parameters, HRenderTextureStrong* bakedTexture))g_nativeFunctions[2266])(m_pSelf, parameters, bakedTexture);
 	}
 };
 class IWorldReference
@@ -10683,55 +10728,55 @@ class IWorldReference
 	}
 	inline void Release() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2259])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2267])(m_pSelf);
 	}
 	inline int IsWorldLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2260])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2268])(m_pSelf);
 	}
 	inline int IsErrorWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2261])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2269])(m_pSelf);
 	}
 	inline int IsMarkedForDeletion() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2262])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2270])(m_pSelf);
 	}
 	inline int GetWorldBounds(Vector* vMin, Vector* vMax) 
 	{
 		return
-		((int(*)(void* self, Vector* vMin, Vector* vMax))g_nativeFunctions[2263])(m_pSelf, vMin, vMax);
+		((int(*)(void* self, Vector* vMin, Vector* vMax))g_nativeFunctions[2271])(m_pSelf, vMin, vMax);
 	}
 	inline int GetSceneWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2264])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2272])(m_pSelf);
 	}
 	inline void PrecacheAllWorldNodes(unsigned int flags) 
 	{
-		((void(*)(void* self, unsigned int flags))g_nativeFunctions[2265])(m_pSelf, flags);
+		((void(*)(void* self, unsigned int flags))g_nativeFunctions[2273])(m_pSelf, flags);
 	}
 	inline const char* GetFolder() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2266])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2274])(m_pSelf);
 	}
 	inline int GetEntityCount(const char* pEntityLumpName) 
 	{
 		return
-		((int(*)(void* __self, const char* __pEntityLumpName))g_nativeFunctions[2267])(m_pSelf, pEntityLumpName);
+		((int(*)(void* __self, const char* __pEntityLumpName))g_nativeFunctions[2275])(m_pSelf, pEntityLumpName);
 	}
 	inline const CEntityKeyValues* GetEntityKeyValues(const char* pEntityLumpName, int index) 
 	{
 		return
-		((const CEntityKeyValues*(*)(void* __self, const char* __pEntityLumpName, int __index))g_nativeFunctions[2268])(m_pSelf, pEntityLumpName, index);
+		((const CEntityKeyValues*(*)(void* __self, const char* __pEntityLumpName, int __index))g_nativeFunctions[2276])(m_pSelf, pEntityLumpName, index);
 	}
 	inline void SetWorldTransform(CTransformUnaligned transform) 
 	{
-		((void(*)(void* __self, CTransformUnaligned __transform))g_nativeFunctions[2269])(m_pSelf, transform);
+		((void(*)(void* __self, CTransformUnaligned __transform))g_nativeFunctions[2277])(m_pSelf, transform);
 	}
 };
 class KeyValues3
@@ -10744,166 +10789,166 @@ class KeyValues3
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2270])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2278])(m_pSelf);
 	}
 	KeyValues3() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[2271])();
+		m_pSelf = ((void*(*)())g_nativeFunctions[2279])();
 	}
 	inline int IsArray() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2272])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2280])(m_pSelf);
 	}
 	inline int IsTable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2273])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2281])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2274])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2282])(m_pSelf);
 	}
 	inline int GetValueBool() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2275])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2283])(m_pSelf);
 	}
 	inline int GetValueInt() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2276])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2284])(m_pSelf);
 	}
 	inline int64 GetValueInt64() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2277])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2285])(m_pSelf);
 	}
 	inline uint64 GetValueUint64() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2278])(m_pSelf);
+		((uint64(*)(void* self))g_nativeFunctions[2286])(m_pSelf);
 	}
 	inline float GetValueFloat() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2279])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[2287])(m_pSelf);
 	}
 	inline double GetValueDouble() 
 	{
 		return
-		((double(*)(void* self))g_nativeFunctions[2280])(m_pSelf);
+		((double(*)(void* self))g_nativeFunctions[2288])(m_pSelf);
 	}
 	inline const char* GetValueString() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2281])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2289])(m_pSelf);
 	}
 	inline Vector GetValueVector() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2282])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[2290])(m_pSelf);
 	}
 	inline Color GetValueColor() 
 	{
 		return
-		((Color(*)(void* self))g_nativeFunctions[2283])(m_pSelf);
+		((Color(*)(void* self))g_nativeFunctions[2291])(m_pSelf);
 	}
 	inline void SetValueBool(int o) 
 	{
-		((void(*)(void* self, int o))g_nativeFunctions[2284])(m_pSelf, o);
+		((void(*)(void* self, int o))g_nativeFunctions[2292])(m_pSelf, o);
 	}
 	inline void SetValueString(const char* o) 
 	{
-		((void(*)(void* self, const char* o))g_nativeFunctions[2285])(m_pSelf, o);
+		((void(*)(void* self, const char* o))g_nativeFunctions[2293])(m_pSelf, o);
 	}
 	inline void SetValueResourceString(const char* o) 
 	{
-		((void(*)(void* self, const char* o))g_nativeFunctions[2286])(m_pSelf, o);
+		((void(*)(void* self, const char* o))g_nativeFunctions[2294])(m_pSelf, o);
 	}
 	inline void SetValueInt(int o) 
 	{
-		((void(*)(void* self, int o))g_nativeFunctions[2287])(m_pSelf, o);
+		((void(*)(void* self, int o))g_nativeFunctions[2295])(m_pSelf, o);
 	}
 	inline void SetValueFloat(float o) 
 	{
-		((void(*)(void* self, float o))g_nativeFunctions[2288])(m_pSelf, o);
+		((void(*)(void* self, float o))g_nativeFunctions[2296])(m_pSelf, o);
 	}
 	inline void SetMemberString(const char* key, const char* value) 
 	{
-		((void(*)(void* self, const char* key, const char* value))g_nativeFunctions[2289])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, const char* value))g_nativeFunctions[2297])(m_pSelf, key, value);
 	}
 	inline void SetMemberInt(const char* key, int value) 
 	{
-		((void(*)(void* self, const char* key, int value))g_nativeFunctions[2290])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, int value))g_nativeFunctions[2298])(m_pSelf, key, value);
 	}
 	inline void SetMemberFloat(const char* key, float value) 
 	{
-		((void(*)(void* self, const char* key, float value))g_nativeFunctions[2291])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, float value))g_nativeFunctions[2299])(m_pSelf, key, value);
 	}
 	inline const char* GetMemberString(const char* key) 
 	{
 		return
-		((const char*(*)(void* self, const char* key))g_nativeFunctions[2292])(m_pSelf, key);
+		((const char*(*)(void* self, const char* key))g_nativeFunctions[2300])(m_pSelf, key);
 	}
 	inline int GetMemberInt(const char* key, int defaultValue) 
 	{
 		return
-		((int(*)(void* self, const char* key, int defaultValue))g_nativeFunctions[2293])(m_pSelf, key, defaultValue);
+		((int(*)(void* self, const char* key, int defaultValue))g_nativeFunctions[2301])(m_pSelf, key, defaultValue);
 	}
 	inline float GetMemberFloat(const char* key, float defaultValue) 
 	{
 		return
-		((float(*)(void* self, const char* key, float defaultValue))g_nativeFunctions[2294])(m_pSelf, key, defaultValue);
+		((float(*)(void* self, const char* key, float defaultValue))g_nativeFunctions[2302])(m_pSelf, key, defaultValue);
 	}
 	inline Vector GetMemberVector(const char* key, Vector defaultValue) 
 	{
 		return
-		((Vector(*)(void* self, const char* key, Vector defaultValue))g_nativeFunctions[2295])(m_pSelf, key, defaultValue);
+		((Vector(*)(void* self, const char* key, Vector defaultValue))g_nativeFunctions[2303])(m_pSelf, key, defaultValue);
 	}
 	inline void SetToEmptyArray() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2296])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2304])(m_pSelf);
 	}
 	inline int GetArrayLength() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2297])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2305])(m_pSelf);
 	}
 	inline const KeyValues3* ArrayAddToTail() 
 	{
 		return
-		((const KeyValues3*(*)(void* self))g_nativeFunctions[2298])(m_pSelf);
+		((const KeyValues3*(*)(void* self))g_nativeFunctions[2306])(m_pSelf);
 	}
 	inline const KeyValues3* GetArrayElement(int i) 
 	{
 		return
-		((const KeyValues3*(*)(void* self, int i))g_nativeFunctions[2299])(m_pSelf, i);
+		((const KeyValues3*(*)(void* self, int i))g_nativeFunctions[2307])(m_pSelf, i);
 	}
 	inline const KeyValues3* FindOrCreateMember(const char* name) 
 	{
 		return
-		((const KeyValues3*(*)(void* self, const char* name))g_nativeFunctions[2300])(m_pSelf, name);
+		((const KeyValues3*(*)(void* self, const char* name))g_nativeFunctions[2308])(m_pSelf, name);
 	}
 	inline void SetToEmptyTable() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2301])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2309])(m_pSelf);
 	}
 	inline int GetMemberCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2302])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2310])(m_pSelf);
 	}
 	inline const KeyValues3* GetMember(int idx) 
 	{
 		return
-		((const KeyValues3*(*)(void* self, int idx))g_nativeFunctions[2303])(m_pSelf, idx);
+		((const KeyValues3*(*)(void* self, int idx))g_nativeFunctions[2311])(m_pSelf, idx);
 	}
 	inline const char* GetMemberName(int idx) 
 	{
 		return
-		((const char*(*)(void* self, int idx))g_nativeFunctions[2304])(m_pSelf, idx);
+		((const char*(*)(void* self, int idx))g_nativeFunctions[2312])(m_pSelf, idx);
 	}
 };
 class MeshGlue
@@ -10917,132 +10962,132 @@ class MeshGlue
 	inline HRenderMesh_InternalStrong* CreateRenderMesh(HMaterialStrong* material, int nPrimType, const char* pName) 
 	{
 		return
-		((HRenderMesh_InternalStrong*(*)(HMaterialStrong* material, int nPrimType, const char* pName))g_nativeFunctions[2305])(material, nPrimType, pName);
+		((HRenderMesh_InternalStrong*(*)(HMaterialStrong* material, int nPrimType, const char* pName))g_nativeFunctions[2313])(material, nPrimType, pName);
 	}
 	inline HModelStrong* CreateModel(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask) 
 	{
 		return
-		((HModelStrong*(*)(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask))g_nativeFunctions[2306])(anim, pBodies, pMaterialGroups, mass, surfaceProp, lodSwitchDistance, meshes, numMeshes, lodMasks, meshGroupMasks, meshGroups, numMeshGroups, vertices, numVertices, indices, numIndices, spheres, numSpheres, capsules, numCapsules, boxes, numBoxes, hulls, numHulls, meshShapes, numMeshShapes, bones, numBones, boneNames, startTraceVertex, startTraceIndex, numTraceVertices, numTraceIndices, _defaultMeshGroupMask);
+		((HModelStrong*(*)(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask))g_nativeFunctions[2314])(anim, pBodies, pMaterialGroups, mass, surfaceProp, lodSwitchDistance, meshes, numMeshes, lodMasks, meshGroupMasks, meshGroups, numMeshGroups, vertices, numVertices, indices, numIndices, spheres, numSpheres, capsules, numCapsules, boxes, numBoxes, hulls, numHulls, meshShapes, numMeshShapes, bones, numBones, boneNames, startTraceVertex, startTraceIndex, numTraceVertices, numTraceIndices, _defaultMeshGroupMask);
 	}
 	inline int GetModelNumVertices(HModelStrong* model) 
 	{
 		return
-		((int(*)(HModelStrong* model))g_nativeFunctions[2307])(model);
+		((int(*)(HModelStrong* model))g_nativeFunctions[2315])(model);
 	}
 	inline void GetModelVertices(HModelStrong* model, void* vertices, unsigned int numVertices) 
 	{
-		((void(*)(HModelStrong* model, void* vertices, unsigned int numVertices))g_nativeFunctions[2308])(model, vertices, numVertices);
+		((void(*)(HModelStrong* model, void* vertices, unsigned int numVertices))g_nativeFunctions[2316])(model, vertices, numVertices);
 	}
 	inline int GetModelNumIndices(HModelStrong* model) 
 	{
 		return
-		((int(*)(HModelStrong* model))g_nativeFunctions[2309])(model);
+		((int(*)(HModelStrong* model))g_nativeFunctions[2317])(model);
 	}
 	inline void GetModelIndices(HModelStrong* model, void* indices, unsigned int numIndices) 
 	{
-		((void(*)(HModelStrong* model, void* indices, unsigned int numIndices))g_nativeFunctions[2310])(model, indices, numIndices);
+		((void(*)(HModelStrong* model, void* indices, unsigned int numIndices))g_nativeFunctions[2318])(model, indices, numIndices);
 	}
 	inline int GetModelIndexCount(HModelStrong* model, int drawCall) 
 	{
 		return
-		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2311])(model, drawCall);
+		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2319])(model, drawCall);
 	}
 	inline int GetModelIndexStart(HModelStrong* model, int drawCall) 
 	{
 		return
-		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2312])(model, drawCall);
+		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2320])(model, drawCall);
 	}
 	inline int GetModelBaseVertex(HModelStrong* model, int drawCall) 
 	{
 		return
-		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2313])(model, drawCall);
+		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2321])(model, drawCall);
 	}
 	inline void SetMeshMaterial(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material))g_nativeFunctions[2314])(renderMesh, material);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material))g_nativeFunctions[2322])(renderMesh, material);
 	}
 	inline void SetMeshPrimType(HRenderMesh_InternalStrong* renderMesh, int nPrimType) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, int nPrimType))g_nativeFunctions[2315])(renderMesh, nPrimType);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, int nPrimType))g_nativeFunctions[2323])(renderMesh, nPrimType);
 	}
 	inline void SetMeshBounds(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs))g_nativeFunctions[2316])(renderMesh, mins, maxs);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs))g_nativeFunctions[2324])(renderMesh, mins, maxs);
 	}
 	inline void SetMeshUvDensity(HRenderMesh_InternalStrong* renderMesh, float flDensity) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, float flDensity))g_nativeFunctions[2317])(renderMesh, flDensity);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, float flDensity))g_nativeFunctions[2325])(renderMesh, flDensity);
 	}
 	inline void SetMeshVertexRange(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount))g_nativeFunctions[2318])(renderMesh, startVertex, vertexCount);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount))g_nativeFunctions[2326])(renderMesh, startVertex, vertexCount);
 	}
 	inline void SetMeshIndexRange(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount))g_nativeFunctions[2319])(renderMesh, startIndex, indexCount);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount))g_nativeFunctions[2327])(renderMesh, startIndex, indexCount);
 	}
 	inline void SetMeshVertexBuffer(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize))g_nativeFunctions[2320])(renderMesh, hVB, pData, nDataSize);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize))g_nativeFunctions[2328])(renderMesh, hVB, pData, nDataSize);
 	}
 	inline void SetMeshIndexBuffer(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize))g_nativeFunctions[2321])(renderMesh, hIB, pData, nDataSize);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize))g_nativeFunctions[2329])(renderMesh, hIB, pData, nDataSize);
 	}
 	inline VertexBufferHandle_t CreateVertexBuffer(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize) 
 	{
 		return
-		((VertexBufferHandle_t(*)(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize))g_nativeFunctions[2322])(nElementSizeInBytes, nElementCount, fieldNames, pFields, nFields, pData, nDataSize);
+		((VertexBufferHandle_t(*)(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize))g_nativeFunctions[2330])(nElementSizeInBytes, nElementCount, fieldNames, pFields, nFields, pData, nDataSize);
 	}
 	inline IndexBufferHandle_t CreateIndexBuffer(int nElementCount, int b32Bit, void* pData, int nDataSize) 
 	{
 		return
-		((IndexBufferHandle_t(*)(int nElementCount, int b32Bit, void* pData, int nDataSize))g_nativeFunctions[2323])(nElementCount, b32Bit, pData, nDataSize);
+		((IndexBufferHandle_t(*)(int nElementCount, int b32Bit, void* pData, int nDataSize))g_nativeFunctions[2331])(nElementCount, b32Bit, pData, nDataSize);
 	}
 	inline const void* LockVertexBuffer(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset) 
 	{
 		return
-		((const void*(*)(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset))g_nativeFunctions[2324])(hVB, nDataSize, nDataOffset);
+		((const void*(*)(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset))g_nativeFunctions[2332])(hVB, nDataSize, nDataOffset);
 	}
 	inline void UnlockVertexBuffer(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2325])(hVB, pData, nDataSize, nDataOffset);
+		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2333])(hVB, pData, nDataSize, nDataOffset);
 	}
 	inline const void* LockIndexBuffer(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset) 
 	{
 		return
-		((const void*(*)(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset))g_nativeFunctions[2326])(hIB, nDataSize, nDataOffset);
+		((const void*(*)(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset))g_nativeFunctions[2334])(hIB, nDataSize, nDataOffset);
 	}
 	inline void UnlockIndexBuffer(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2327])(hIB, pData, nDataSize, nDataOffset);
+		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2335])(hIB, pData, nDataSize, nDataOffset);
 	}
 	inline void SetVertexBufferData(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2328])(hVB, pData, nDataSize, nDataOffset);
+		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2336])(hVB, pData, nDataSize, nDataOffset);
 	}
 	inline void SetIndexBufferData(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2329])(hIB, pData, nDataSize, nDataOffset);
+		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2337])(hIB, pData, nDataSize, nDataOffset);
 	}
 	inline VertexBufferHandle_t SetVertexBufferSize(VertexBufferHandle_t hVB, int nDataSize) 
 	{
 		return
-		((VertexBufferHandle_t(*)(VertexBufferHandle_t hVB, int nDataSize))g_nativeFunctions[2330])(hVB, nDataSize);
+		((VertexBufferHandle_t(*)(VertexBufferHandle_t hVB, int nDataSize))g_nativeFunctions[2338])(hVB, nDataSize);
 	}
 	inline IndexBufferHandle_t SetIndexBufferSize(IndexBufferHandle_t hIB, int nDataSize) 
 	{
 		return
-		((IndexBufferHandle_t(*)(IndexBufferHandle_t hIB, int nDataSize))g_nativeFunctions[2331])(hIB, nDataSize);
+		((IndexBufferHandle_t(*)(IndexBufferHandle_t hIB, int nDataSize))g_nativeFunctions[2339])(hIB, nDataSize);
 	}
 	inline int TriangulatePolygon(void* pPolygonVerts, int nNumVerts, void* pOutIndexList, int nMaxIndices) 
 	{
 		return
-		((int(*)(void* __pPolygonVerts, int __nNumVerts, void* __pOutIndexList, int __nMaxIndices))g_nativeFunctions[2332])(pPolygonVerts, nNumVerts, pOutIndexList, nMaxIndices);
+		((int(*)(void* __pPolygonVerts, int __nNumVerts, void* __pOutIndexList, int __nMaxIndices))g_nativeFunctions[2340])(pPolygonVerts, nNumVerts, pOutIndexList, nMaxIndices);
 	}
 	inline void ClipPolygonLineSegment(void* pPolygonVerts, int nNumVerts, Vector vA, Vector vB, CUtlVector<Vector>* pOutSegmentPointsInside) 
 	{
-		((void(*)(void* __pPolygonVerts, int __nNumVerts, Vector __vA, Vector __vB, CUtlVector<Vector>* __pOutSegmentPointsInside))g_nativeFunctions[2333])(pPolygonVerts, nNumVerts, vA, vB, pOutSegmentPointsInside);
+		((void(*)(void* __pPolygonVerts, int __nNumVerts, Vector __vA, Vector __vB, CUtlVector<Vector>* __pOutSegmentPointsInside))g_nativeFunctions[2341])(pPolygonVerts, nNumVerts, vA, vB, pOutSegmentPointsInside);
 	}
 };
 class NativeEngine::SDLGameController
@@ -11056,42 +11101,42 @@ class NativeEngine::SDLGameController
 	inline int GetAxis(int joystickId, int64 axis) 
 	{
 		return
-		((int(*)(int joystickId, int64 axis))g_nativeFunctions[2334])(joystickId, axis);
+		((int(*)(int joystickId, int64 axis))g_nativeFunctions[2342])(joystickId, axis);
 	}
 	inline int64 GetControllerType(int joystickId) 
 	{
 		return
-		((int64(*)(int joystickId))g_nativeFunctions[2335])(joystickId);
+		((int64(*)(int joystickId))g_nativeFunctions[2343])(joystickId);
 	}
 	inline int Close(int joystickId) 
 	{
 		return
-		((int(*)(int joystickId))g_nativeFunctions[2336])(joystickId);
+		((int(*)(int joystickId))g_nativeFunctions[2344])(joystickId);
 	}
 	inline int SetLEDColor(int joystickId, int red, int green, int blue) 
 	{
 		return
-		((int(*)(int joystickId, int red, int green, int blue))g_nativeFunctions[2337])(joystickId, red, green, blue);
+		((int(*)(int joystickId, int red, int green, int blue))g_nativeFunctions[2345])(joystickId, red, green, blue);
 	}
 	inline int Rumble(int joystickId, int lowFreq, int highFreq, int duration) 
 	{
 		return
-		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2338])(joystickId, lowFreq, highFreq, duration);
+		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2346])(joystickId, lowFreq, highFreq, duration);
 	}
 	inline int RumbleTriggers(int joystickId, int lowFreq, int highFreq, int duration) 
 	{
 		return
-		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2339])(joystickId, lowFreq, highFreq, duration);
+		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2347])(joystickId, lowFreq, highFreq, duration);
 	}
 	inline Vector GetGyroscope(int joystickId) 
 	{
 		return
-		((Vector(*)(int joystickId))g_nativeFunctions[2340])(joystickId);
+		((Vector(*)(int joystickId))g_nativeFunctions[2348])(joystickId);
 	}
 	inline Vector GetAccelerometer(int joystickId) 
 	{
 		return
-		((Vector(*)(int joystickId))g_nativeFunctions[2341])(joystickId);
+		((Vector(*)(int joystickId))g_nativeFunctions[2349])(joystickId);
 	}
 };
 class NativeLowLevel
@@ -11104,7 +11149,7 @@ class NativeLowLevel
 	}
 	inline void Copy(void* dest, void* src, int64 count) 
 	{
-		((void(*)(void* __dest, void* __src, int64 __count))g_nativeFunctions[2342])(dest, src, count);
+		((void(*)(void* __dest, void* __src, int64 __count))g_nativeFunctions[2350])(dest, src, count);
 	}
 };
 class PerformanceTrace
@@ -11118,12 +11163,12 @@ class PerformanceTrace
 	static
 	inline void BeginEvent(void* name, const char* data, unsigned int color) 
 	{
-		((void(*)(void* __name, const char* __data, unsigned int __color))g_nativeFunctions[2343])(name, data, color);
+		((void(*)(void* __name, const char* __data, unsigned int __color))g_nativeFunctions[2351])(name, data, color);
 	}
 	static
 	inline void EndEvent() 
 	{
-		((void(*)())g_nativeFunctions[2344])();
+		((void(*)())g_nativeFunctions[2352])();
 	}
 };
 class PhysicsTrace_
@@ -11137,26 +11182,26 @@ class PhysicsTrace_
 	inline PhysicsTrace::Result Trace(PhysicsTrace::Request request) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request))g_nativeFunctions[2345])(request);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request))g_nativeFunctions[2353])(request);
 	}
 	inline void TraceAll(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results) 
 	{
-		((void(*)(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results))g_nativeFunctions[2346])(request, results);
+		((void(*)(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results))g_nativeFunctions[2354])(request, results);
 	}
 	inline PhysicsTrace::Result TraceAgainstCapsule(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx))g_nativeFunctions[2347])(request, capsule, tx);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx))g_nativeFunctions[2355])(request, capsule, tx);
 	}
 	inline PhysicsTrace::Result TraceAgainstBBox(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx))g_nativeFunctions[2348])(request, box, tx);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx))g_nativeFunctions[2356])(request, box, tx);
 	}
 	inline PhysicsTrace::Result TraceAgainstSphere(PhysicsTrace::Request request, RnSphere_t sphere, CTransformUnaligned tx) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnSphere_t sphere, CTransformUnaligned tx))g_nativeFunctions[2349])(request, sphere, tx);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnSphere_t sphere, CTransformUnaligned tx))g_nativeFunctions[2357])(request, sphere, tx);
 	}
 };
 class RenderTools
@@ -11170,59 +11215,67 @@ class RenderTools
 	inline int SetRenderState(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats) 
 	{
 		return
-		((int(*)(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2350])(context, attributes, materialMode, layout, stats);
+		((int(*)(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2358])(context, attributes, materialMode, layout, stats);
 	}
 	inline void Draw(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats) 
 	{
-		((void(*)(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2351])(context, type, layout, vertices, numVertices, indices, numIndices, stats);
+		((void(*)(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2359])(context, type, layout, vertices, numVertices, indices, numIndices, stats);
 	}
 	inline void ResolveFrameBuffer(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport) 
 	{
-		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2352])(renderContext, texture, viewport);
+		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2360])(renderContext, texture, viewport);
 	}
 	inline void ResolveDepthBuffer(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport) 
 	{
-		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2353])(renderContext, texture, viewport);
+		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2361])(renderContext, texture, viewport);
 	}
 	inline void DrawSceneObject(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes) 
 	{
-		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes))g_nativeFunctions[2354])(renderContext, sceneLayer, sceneObject, transform, color, material, attributes);
+		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes))g_nativeFunctions[2362])(renderContext, sceneLayer, sceneObject, transform, color, material, attributes);
 	}
 	inline void DrawModel(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes) 
 	{
-		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes))g_nativeFunctions[2355])(renderContext, sceneLayer, hModel, transforms, numTransforms, attributes);
+		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes))g_nativeFunctions[2363])(renderContext, sceneLayer, hModel, transforms, numTransforms, attributes);
 	}
 	inline void DrawModel(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes) 
 	{
-		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes))g_nativeFunctions[2356])(renderContext, sceneLayer, hModel, hDrawArgBuffer, nBufferOffset, attributes);
+		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes))g_nativeFunctions[2364])(renderContext, sceneLayer, hModel, hDrawArgBuffer, nBufferOffset, attributes);
 	}
 	inline void Compute(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz) 
 	{
-		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz))g_nativeFunctions[2357])(renderContext, attributes, pMode, tx, ty, tz);
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz))g_nativeFunctions[2365])(renderContext, attributes, pMode, tx, ty, tz);
 	}
 	inline void ComputeIndirect(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset) 
 	{
-		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_nativeFunctions[2358])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_nativeFunctions[2366])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
+	}
+	inline void TraceRays(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, unsigned int tx, unsigned int ty, unsigned int tz) 
+	{
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, unsigned int tx, unsigned int ty, unsigned int tz))g_nativeFunctions[2367])(renderContext, attributes, pMode, tx, ty, tz);
+	}
+	inline void TraceRaysIndirect(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset) 
+	{
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_nativeFunctions[2368])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
 	}
 	inline void SetDynamicConstantBufferData(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize) 
 	{
-		((void(*)(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize))g_nativeFunctions[2359])(attributes, nTokenID, renderContext, data, dataSize);
+		((void(*)(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize))g_nativeFunctions[2369])(attributes, nTokenID, renderContext, data, dataSize);
 	}
 	inline void CopyTexture(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice) 
 	{
-		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice))g_nativeFunctions[2360])(renderContext, sourceTexture, destTexture, pSrcRect, nDestX, nDestY, nSrcMipSlice, nSrcArraySlice, nDstMipSlice, nDstArraySlice);
+		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice))g_nativeFunctions[2370])(renderContext, sourceTexture, destTexture, pSrcRect, nDestX, nDestY, nSrcMipSlice, nSrcArraySlice, nDstMipSlice, nDstArraySlice);
 	}
 	inline void SetGPUBufferData(IRenderContext* renderContext, RenderBufferHandle_t hGpuBuffer, void* pData, unsigned int nDataSize, unsigned int nOffset) 
 	{
-		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hGpuBuffer, void* __pData, unsigned int __nDataSize, unsigned int __nOffset))g_nativeFunctions[2361])(renderContext, hGpuBuffer, pData, nDataSize, nOffset);
+		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hGpuBuffer, void* __pData, unsigned int __nDataSize, unsigned int __nOffset))g_nativeFunctions[2371])(renderContext, hGpuBuffer, pData, nDataSize, nOffset);
 	}
 	inline void CopyGPUBufferHiddenStructureCount(IRenderContext* renderContext, RenderBufferHandle_t hSrcBuffer, RenderBufferHandle_t hDestBuffer, unsigned int nDestBufferOffset) 
 	{
-		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hSrcBuffer, RenderBufferHandle_t __hDestBuffer, unsigned int __nDestBufferOffset))g_nativeFunctions[2362])(renderContext, hSrcBuffer, hDestBuffer, nDestBufferOffset);
+		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hSrcBuffer, RenderBufferHandle_t __hDestBuffer, unsigned int __nDestBufferOffset))g_nativeFunctions[2372])(renderContext, hSrcBuffer, hDestBuffer, nDestBufferOffset);
 	}
 	inline void SetGPUBufferHiddenStructureCount(IRenderContext* renderContext, RenderBufferHandle_t hBuffer, unsigned int nCounter) 
 	{
-		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hBuffer, unsigned int __nCounter))g_nativeFunctions[2363])(renderContext, hBuffer, nCounter);
+		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hBuffer, unsigned int __nCounter))g_nativeFunctions[2373])(renderContext, hBuffer, nCounter);
 	}
 };
 class RnCapsuleDesc_t
@@ -11233,9 +11286,9 @@ class RnCapsuleDesc_t
 	{
 		return (RnCapsuleDesc_t*)m_pSelf;
 	}
-	RW_VAR(RnCapsule_t,m_Capsule,RnCapsuleDesc_t,g_nativeFunctions[2364],g_nativeFunctions[2365]);
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnCapsuleDesc_t,g_nativeFunctions[2366],g_nativeFunctions[2367]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnCapsuleDesc_t,g_nativeFunctions[2368],g_nativeFunctions[2369]);
+	RW_VAR(RnCapsule_t,m_Capsule,RnCapsuleDesc_t,g_nativeFunctions[2374],g_nativeFunctions[2375]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnCapsuleDesc_t,g_nativeFunctions[2376],g_nativeFunctions[2377]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnCapsuleDesc_t,g_nativeFunctions[2378],g_nativeFunctions[2379]);
 };
 class RnHull_t
 {
@@ -11248,51 +11301,51 @@ class RnHull_t
 	inline int GetVertexCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2370])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2380])(m_pSelf);
 	}
 	inline int GetEdgeCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2371])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2381])(m_pSelf);
 	}
 	inline float GetVolume() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2372])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[2382])(m_pSelf);
 	}
 	inline Vector GetMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2373])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[2383])(m_pSelf);
 	}
 	inline Vector GetCentroid() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2374])(m_pSelf);
+		((Vector(*)(void* self))g_nativeFunctions[2384])(m_pSelf);
 	}
 	inline float GetSurfaceArea() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2375])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[2385])(m_pSelf);
 	}
 	inline int GetMemory() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2376])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2386])(m_pSelf);
 	}
 	inline AABB_t GetBbox() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[2377])(m_pSelf);
+		((AABB_t(*)(void* self))g_nativeFunctions[2387])(m_pSelf);
 	}
 	inline Vector GetVertex(int nVertex) 
 	{
 		return
-		((Vector(*)(void* self, int nVertex))g_nativeFunctions[2378])(m_pSelf, nVertex);
+		((Vector(*)(void* self, int nVertex))g_nativeFunctions[2388])(m_pSelf, nVertex);
 	}
 	inline void GetEdgeVertex(int edge, Vector* a, Vector* b) 
 	{
-		((void(*)(void* __self, int __edge, Vector* __a, Vector* __b))g_nativeFunctions[2379])(m_pSelf, edge, a, b);
+		((void(*)(void* __self, int __edge, Vector* __a, Vector* __b))g_nativeFunctions[2389])(m_pSelf, edge, a, b);
 	}
 };
 class RnHullDesc_t
@@ -11306,10 +11359,10 @@ class RnHullDesc_t
 	inline const RnHull_t* GetHull() 
 	{
 		return
-		((const RnHull_t*(*)(void* __self))g_nativeFunctions[2380])(m_pSelf);
+		((const RnHull_t*(*)(void* __self))g_nativeFunctions[2390])(m_pSelf);
 	}
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnHullDesc_t,g_nativeFunctions[2381],g_nativeFunctions[2382]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnHullDesc_t,g_nativeFunctions[2383],g_nativeFunctions[2384]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnHullDesc_t,g_nativeFunctions[2391],g_nativeFunctions[2392]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnHullDesc_t,g_nativeFunctions[2393],g_nativeFunctions[2394]);
 };
 class RnMesh_t
 {
@@ -11322,31 +11375,31 @@ class RnMesh_t
 	inline int GetTriangleCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2385])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2395])(m_pSelf);
 	}
 	inline int GetHeight() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2386])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2396])(m_pSelf);
 	}
 	inline int GetMemory() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2387])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2397])(m_pSelf);
 	}
 	inline AABB_t GetBbox() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[2388])(m_pSelf);
+		((AABB_t(*)(void* self))g_nativeFunctions[2398])(m_pSelf);
 	}
 	inline int GetMaterialCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2389])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2399])(m_pSelf);
 	}
 	inline void GetTriangle(int triangle, Vector* a, Vector* b, Vector* c) 
 	{
-		((void(*)(void* __self, int __triangle, Vector* __a, Vector* __b, Vector* __c))g_nativeFunctions[2390])(m_pSelf, triangle, a, b, c);
+		((void(*)(void* __self, int __triangle, Vector* __a, Vector* __b, Vector* __c))g_nativeFunctions[2400])(m_pSelf, triangle, a, b, c);
 	}
 };
 class RnMeshDesc_t
@@ -11360,10 +11413,10 @@ class RnMeshDesc_t
 	inline const RnMesh_t* GetMesh() 
 	{
 		return
-		((const RnMesh_t*(*)(void* __self))g_nativeFunctions[2391])(m_pSelf);
+		((const RnMesh_t*(*)(void* __self))g_nativeFunctions[2401])(m_pSelf);
 	}
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnMeshDesc_t,g_nativeFunctions[2392],g_nativeFunctions[2393]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnMeshDesc_t,g_nativeFunctions[2394],g_nativeFunctions[2395]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnMeshDesc_t,g_nativeFunctions[2402],g_nativeFunctions[2403]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnMeshDesc_t,g_nativeFunctions[2404],g_nativeFunctions[2405]);
 };
 class RnSphereDesc_t
 {
@@ -11373,9 +11426,9 @@ class RnSphereDesc_t
 	{
 		return (RnSphereDesc_t*)m_pSelf;
 	}
-	RW_VAR(RnSphere_t,m_Sphere,RnSphereDesc_t,g_nativeFunctions[2396],g_nativeFunctions[2397]);
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnSphereDesc_t,g_nativeFunctions[2398],g_nativeFunctions[2399]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnSphereDesc_t,g_nativeFunctions[2400],g_nativeFunctions[2401]);
+	RW_VAR(RnSphere_t,m_Sphere,RnSphereDesc_t,g_nativeFunctions[2406],g_nativeFunctions[2407]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnSphereDesc_t,g_nativeFunctions[2408],g_nativeFunctions[2409]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnSphereDesc_t,g_nativeFunctions[2410],g_nativeFunctions[2411]);
 };
 class SceneSystemPerFrameStats_t
 {
@@ -11385,57 +11438,57 @@ class SceneSystemPerFrameStats_t
 	{
 		return (SceneSystemPerFrameStats_t*)m_pSelf;
 	}
-	RW_VAR(unsigned int,m_nTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2402],g_nativeFunctions[2403]);
-	RW_VAR(unsigned int,m_nArtistTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2404],g_nativeFunctions[2405]);
-	RW_VAR(unsigned int,m_nRenderBatchDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2406],g_nativeFunctions[2407]);
-	RW_VAR(unsigned int,m_nDrawCalls,SceneSystemPerFrameStats_t,g_nativeFunctions[2408],g_nativeFunctions[2409]);
-	RW_VAR(unsigned int,m_nDrawPrimitives,SceneSystemPerFrameStats_t,g_nativeFunctions[2410],g_nativeFunctions[2411]);
-	RW_VAR(unsigned int,m_nBaseSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2412],g_nativeFunctions[2413]);
-	RW_VAR(unsigned int,m_nAnimatableObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2414],g_nativeFunctions[2415]);
-	RW_VAR(unsigned int,m_nAggregateSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2416],g_nativeFunctions[2417]);
-	RW_VAR(unsigned int,m_nAggregateSceneObjectsFullyCulled,SceneSystemPerFrameStats_t,g_nativeFunctions[2418],g_nativeFunctions[2419]);
-	RW_VAR(unsigned int,m_nAggregateSceneObjectDrawCalls,SceneSystemPerFrameStats_t,g_nativeFunctions[2420],g_nativeFunctions[2421]);
-	RW_VAR(unsigned int,m_nNumMaterialCompute,SceneSystemPerFrameStats_t,g_nativeFunctions[2422],g_nativeFunctions[2423]);
-	RW_VAR(unsigned int,m_nNumMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2424],g_nativeFunctions[2425]);
-	RW_VAR(unsigned int,m_nNumSimilarMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2426],g_nativeFunctions[2427]);
-	RW_VAR(unsigned int,m_nNumTextureOnlyMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2428],g_nativeFunctions[2429]);
-	RW_VAR(unsigned int,m_nNumVfxEval,SceneSystemPerFrameStats_t,g_nativeFunctions[2430],g_nativeFunctions[2431]);
-	RW_VAR(unsigned int,m_nNumVfxRule,SceneSystemPerFrameStats_t,g_nativeFunctions[2432],g_nativeFunctions[2433]);
-	RW_VAR(unsigned int,m_nNumConstantBufferUpdates,SceneSystemPerFrameStats_t,g_nativeFunctions[2434],g_nativeFunctions[2435]);
-	RW_VAR(unsigned int,m_nNumConstantBufferBytes,SceneSystemPerFrameStats_t,g_nativeFunctions[2436],g_nativeFunctions[2437]);
-	RW_VAR(unsigned int,m_nMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2438],g_nativeFunctions[2439]);
-	RW_VAR(unsigned int,m_nMaterialChangesNonShadowInitial,SceneSystemPerFrameStats_t,g_nativeFunctions[2440],g_nativeFunctions[2441]);
-	RW_VAR(unsigned int,m_nMaterialChangesShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2442],g_nativeFunctions[2443]);
-	RW_VAR(unsigned int,m_nMaterialChangesShadowInitial,SceneSystemPerFrameStats_t,g_nativeFunctions[2444],g_nativeFunctions[2445]);
-	RW_VAR(unsigned int,m_nMaterialChangesShadowAlphaTested,SceneSystemPerFrameStats_t,g_nativeFunctions[2446],g_nativeFunctions[2447]);
-	RW_VAR(unsigned int,m_nCopyMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2448],g_nativeFunctions[2449]);
-	RW_VAR(unsigned int,m_nMaxTransformRow,SceneSystemPerFrameStats_t,g_nativeFunctions[2450],g_nativeFunctions[2451]);
-	RW_VAR(unsigned int,m_nNumRowsUsed,SceneSystemPerFrameStats_t,g_nativeFunctions[2452],g_nativeFunctions[2453]);
-	RW_VAR(unsigned int,m_nNumObjectsTested,SceneSystemPerFrameStats_t,g_nativeFunctions[2454],g_nativeFunctions[2455]);
-	RW_VAR(unsigned int,m_nNumObjectsPreCullCheck,SceneSystemPerFrameStats_t,g_nativeFunctions[2456],g_nativeFunctions[2457]);
-	RW_VAR(unsigned int,m_nNumObjectsPassingCullCheck,SceneSystemPerFrameStats_t,g_nativeFunctions[2458],g_nativeFunctions[2459]);
-	RW_VAR(unsigned int,m_nNumVerticesReferenced,SceneSystemPerFrameStats_t,g_nativeFunctions[2460],g_nativeFunctions[2461]);
-	RW_VAR(unsigned int,m_nNumPrimaryContexts,SceneSystemPerFrameStats_t,g_nativeFunctions[2462],g_nativeFunctions[2463]);
-	RW_VAR(unsigned int,m_nNumSecondaryContexts,SceneSystemPerFrameStats_t,g_nativeFunctions[2464],g_nativeFunctions[2465]);
-	RW_VAR(unsigned int,m_nNumDisplayListsSubmitted,SceneSystemPerFrameStats_t,g_nativeFunctions[2466],g_nativeFunctions[2467]);
-	RW_VAR(int,m_nNumViewsRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2468],g_nativeFunctions[2469]);
-	RW_VAR(unsigned int,m_nNumResolves,SceneSystemPerFrameStats_t,g_nativeFunctions[2470],g_nativeFunctions[2471]);
-	RW_VAR(unsigned int,m_nNumCullBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2472],g_nativeFunctions[2473]);
-	RW_VAR(uint64,m_nCullingBoxCycleCount,SceneSystemPerFrameStats_t,g_nativeFunctions[2474],g_nativeFunctions[2475]);
-	RW_VAR(unsigned int,m_nNumObjectsTestedAgainstCullingBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2476],g_nativeFunctions[2477]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByBoundsIndex,SceneSystemPerFrameStats_t,g_nativeFunctions[2478],g_nativeFunctions[2479]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByCullBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2480],g_nativeFunctions[2481]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByVis,SceneSystemPerFrameStats_t,g_nativeFunctions[2482],g_nativeFunctions[2483]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByBackfaceCulling,SceneSystemPerFrameStats_t,g_nativeFunctions[2484],g_nativeFunctions[2485]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByScreenSizeCulling,SceneSystemPerFrameStats_t,g_nativeFunctions[2486],g_nativeFunctions[2487]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByFading,SceneSystemPerFrameStats_t,g_nativeFunctions[2488],g_nativeFunctions[2489]);
-	RW_VAR(unsigned int,m_nNumFadingObjects,SceneSystemPerFrameStats_t,g_nativeFunctions[2490],g_nativeFunctions[2491]);
-	RW_VAR(unsigned int,m_nNumUniqueMaterialsSeen,SceneSystemPerFrameStats_t,g_nativeFunctions[2492],g_nativeFunctions[2493]);
-	RW_VAR(unsigned int,m_nNumUnshadowedLightsInView,SceneSystemPerFrameStats_t,g_nativeFunctions[2494],g_nativeFunctions[2495]);
-	RW_VAR(unsigned int,m_nNumShadowedLightsInView,SceneSystemPerFrameStats_t,g_nativeFunctions[2496],g_nativeFunctions[2497]);
-	RW_VAR(unsigned int,m_nNumShadowMaps,SceneSystemPerFrameStats_t,g_nativeFunctions[2498],g_nativeFunctions[2499]);
-	RW_VAR(unsigned int,m_nNumRenderTargetBinds,SceneSystemPerFrameStats_t,g_nativeFunctions[2500],g_nativeFunctions[2501]);
-	RW_VAR(unsigned int,m_nPushConstantSets,SceneSystemPerFrameStats_t,g_nativeFunctions[2502],g_nativeFunctions[2503]);
+	RW_VAR(unsigned int,m_nTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2412],g_nativeFunctions[2413]);
+	RW_VAR(unsigned int,m_nArtistTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2414],g_nativeFunctions[2415]);
+	RW_VAR(unsigned int,m_nRenderBatchDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2416],g_nativeFunctions[2417]);
+	RW_VAR(unsigned int,m_nDrawCalls,SceneSystemPerFrameStats_t,g_nativeFunctions[2418],g_nativeFunctions[2419]);
+	RW_VAR(unsigned int,m_nDrawPrimitives,SceneSystemPerFrameStats_t,g_nativeFunctions[2420],g_nativeFunctions[2421]);
+	RW_VAR(unsigned int,m_nBaseSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2422],g_nativeFunctions[2423]);
+	RW_VAR(unsigned int,m_nAnimatableObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2424],g_nativeFunctions[2425]);
+	RW_VAR(unsigned int,m_nAggregateSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2426],g_nativeFunctions[2427]);
+	RW_VAR(unsigned int,m_nAggregateSceneObjectsFullyCulled,SceneSystemPerFrameStats_t,g_nativeFunctions[2428],g_nativeFunctions[2429]);
+	RW_VAR(unsigned int,m_nAggregateSceneObjectDrawCalls,SceneSystemPerFrameStats_t,g_nativeFunctions[2430],g_nativeFunctions[2431]);
+	RW_VAR(unsigned int,m_nNumMaterialCompute,SceneSystemPerFrameStats_t,g_nativeFunctions[2432],g_nativeFunctions[2433]);
+	RW_VAR(unsigned int,m_nNumMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2434],g_nativeFunctions[2435]);
+	RW_VAR(unsigned int,m_nNumSimilarMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2436],g_nativeFunctions[2437]);
+	RW_VAR(unsigned int,m_nNumTextureOnlyMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2438],g_nativeFunctions[2439]);
+	RW_VAR(unsigned int,m_nNumVfxEval,SceneSystemPerFrameStats_t,g_nativeFunctions[2440],g_nativeFunctions[2441]);
+	RW_VAR(unsigned int,m_nNumVfxRule,SceneSystemPerFrameStats_t,g_nativeFunctions[2442],g_nativeFunctions[2443]);
+	RW_VAR(unsigned int,m_nNumConstantBufferUpdates,SceneSystemPerFrameStats_t,g_nativeFunctions[2444],g_nativeFunctions[2445]);
+	RW_VAR(unsigned int,m_nNumConstantBufferBytes,SceneSystemPerFrameStats_t,g_nativeFunctions[2446],g_nativeFunctions[2447]);
+	RW_VAR(unsigned int,m_nMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2448],g_nativeFunctions[2449]);
+	RW_VAR(unsigned int,m_nMaterialChangesNonShadowInitial,SceneSystemPerFrameStats_t,g_nativeFunctions[2450],g_nativeFunctions[2451]);
+	RW_VAR(unsigned int,m_nMaterialChangesShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2452],g_nativeFunctions[2453]);
+	RW_VAR(unsigned int,m_nMaterialChangesShadowInitial,SceneSystemPerFrameStats_t,g_nativeFunctions[2454],g_nativeFunctions[2455]);
+	RW_VAR(unsigned int,m_nMaterialChangesShadowAlphaTested,SceneSystemPerFrameStats_t,g_nativeFunctions[2456],g_nativeFunctions[2457]);
+	RW_VAR(unsigned int,m_nCopyMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2458],g_nativeFunctions[2459]);
+	RW_VAR(unsigned int,m_nMaxTransformRow,SceneSystemPerFrameStats_t,g_nativeFunctions[2460],g_nativeFunctions[2461]);
+	RW_VAR(unsigned int,m_nNumRowsUsed,SceneSystemPerFrameStats_t,g_nativeFunctions[2462],g_nativeFunctions[2463]);
+	RW_VAR(unsigned int,m_nNumObjectsTested,SceneSystemPerFrameStats_t,g_nativeFunctions[2464],g_nativeFunctions[2465]);
+	RW_VAR(unsigned int,m_nNumObjectsPreCullCheck,SceneSystemPerFrameStats_t,g_nativeFunctions[2466],g_nativeFunctions[2467]);
+	RW_VAR(unsigned int,m_nNumObjectsPassingCullCheck,SceneSystemPerFrameStats_t,g_nativeFunctions[2468],g_nativeFunctions[2469]);
+	RW_VAR(unsigned int,m_nNumVerticesReferenced,SceneSystemPerFrameStats_t,g_nativeFunctions[2470],g_nativeFunctions[2471]);
+	RW_VAR(unsigned int,m_nNumPrimaryContexts,SceneSystemPerFrameStats_t,g_nativeFunctions[2472],g_nativeFunctions[2473]);
+	RW_VAR(unsigned int,m_nNumSecondaryContexts,SceneSystemPerFrameStats_t,g_nativeFunctions[2474],g_nativeFunctions[2475]);
+	RW_VAR(unsigned int,m_nNumDisplayListsSubmitted,SceneSystemPerFrameStats_t,g_nativeFunctions[2476],g_nativeFunctions[2477]);
+	RW_VAR(int,m_nNumViewsRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2478],g_nativeFunctions[2479]);
+	RW_VAR(unsigned int,m_nNumResolves,SceneSystemPerFrameStats_t,g_nativeFunctions[2480],g_nativeFunctions[2481]);
+	RW_VAR(unsigned int,m_nNumCullBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2482],g_nativeFunctions[2483]);
+	RW_VAR(uint64,m_nCullingBoxCycleCount,SceneSystemPerFrameStats_t,g_nativeFunctions[2484],g_nativeFunctions[2485]);
+	RW_VAR(unsigned int,m_nNumObjectsTestedAgainstCullingBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2486],g_nativeFunctions[2487]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByBoundsIndex,SceneSystemPerFrameStats_t,g_nativeFunctions[2488],g_nativeFunctions[2489]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByCullBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2490],g_nativeFunctions[2491]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByVis,SceneSystemPerFrameStats_t,g_nativeFunctions[2492],g_nativeFunctions[2493]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByBackfaceCulling,SceneSystemPerFrameStats_t,g_nativeFunctions[2494],g_nativeFunctions[2495]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByScreenSizeCulling,SceneSystemPerFrameStats_t,g_nativeFunctions[2496],g_nativeFunctions[2497]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByFading,SceneSystemPerFrameStats_t,g_nativeFunctions[2498],g_nativeFunctions[2499]);
+	RW_VAR(unsigned int,m_nNumFadingObjects,SceneSystemPerFrameStats_t,g_nativeFunctions[2500],g_nativeFunctions[2501]);
+	RW_VAR(unsigned int,m_nNumUniqueMaterialsSeen,SceneSystemPerFrameStats_t,g_nativeFunctions[2502],g_nativeFunctions[2503]);
+	RW_VAR(unsigned int,m_nNumUnshadowedLightsInView,SceneSystemPerFrameStats_t,g_nativeFunctions[2504],g_nativeFunctions[2505]);
+	RW_VAR(unsigned int,m_nNumShadowedLightsInView,SceneSystemPerFrameStats_t,g_nativeFunctions[2506],g_nativeFunctions[2507]);
+	RW_VAR(unsigned int,m_nNumShadowMaps,SceneSystemPerFrameStats_t,g_nativeFunctions[2508],g_nativeFunctions[2509]);
+	RW_VAR(unsigned int,m_nNumRenderTargetBinds,SceneSystemPerFrameStats_t,g_nativeFunctions[2510],g_nativeFunctions[2511]);
+	RW_VAR(unsigned int,m_nPushConstantSets,SceneSystemPerFrameStats_t,g_nativeFunctions[2512],g_nativeFunctions[2513]);
 };
 class ShaderTools
 {
@@ -11449,13 +11502,13 @@ class ShaderTools
 	inline const char* GetShaderSource(const char* pShaderFile) 
 	{
 		return
-		((const char*(*)(const char* __pShaderFile))g_nativeFunctions[2504])(pShaderFile);
+		((const char*(*)(const char* __pShaderFile))g_nativeFunctions[2514])(pShaderFile);
 	}
 	static
 	inline const char* MaskShaderSource(const char* sourcecode, int64 program, int bIsForCrc) 
 	{
 		return
-		((const char*(*)(const char* __sourcecode, int64 __program, int __bIsForCrc))g_nativeFunctions[2505])(sourcecode, program, bIsForCrc);
+		((const char*(*)(const char* __sourcecode, int64 __program, int __bIsForCrc))g_nativeFunctions[2515])(sourcecode, program, bIsForCrc);
 	}
 };
 class SheetSequence_t
@@ -11469,14 +11522,14 @@ class SheetSequence_t
 	inline int FrameCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2506])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2516])(m_pSelf);
 	}
-	RW_VAR(unsigned int,m_nId,SheetSequence_t,g_nativeFunctions[2507],g_nativeFunctions[2508]);
-	RW_VAR(int,m_bClamp,SheetSequence_t,g_nativeFunctions[2509],g_nativeFunctions[2510]);
-	RW_VAR(int,m_bAlphaCrop,SheetSequence_t,g_nativeFunctions[2511],g_nativeFunctions[2512]);
-	RW_VAR(int,m_bNoColor,SheetSequence_t,g_nativeFunctions[2513],g_nativeFunctions[2514]);
-	RW_VAR(int,m_bNoAlpha,SheetSequence_t,g_nativeFunctions[2515],g_nativeFunctions[2516]);
-	RW_VAR(float,m_flTotalTime,SheetSequence_t,g_nativeFunctions[2517],g_nativeFunctions[2518]);
+	RW_VAR(unsigned int,m_nId,SheetSequence_t,g_nativeFunctions[2517],g_nativeFunctions[2518]);
+	RW_VAR(int,m_bClamp,SheetSequence_t,g_nativeFunctions[2519],g_nativeFunctions[2520]);
+	RW_VAR(int,m_bAlphaCrop,SheetSequence_t,g_nativeFunctions[2521],g_nativeFunctions[2522]);
+	RW_VAR(int,m_bNoColor,SheetSequence_t,g_nativeFunctions[2523],g_nativeFunctions[2524]);
+	RW_VAR(int,m_bNoAlpha,SheetSequence_t,g_nativeFunctions[2525],g_nativeFunctions[2526]);
+	RW_VAR(float,m_flTotalTime,SheetSequence_t,g_nativeFunctions[2527],g_nativeFunctions[2528]);
 };
 class SheetSequenceFrame_t
 {
@@ -11489,14 +11542,14 @@ class SheetSequenceFrame_t
 	inline int ImageCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2519])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2529])(m_pSelf);
 	}
 	inline SheetFrameImage_t GetImage(int i) 
 	{
 		return
-		((SheetFrameImage_t(*)(void* __self, int __i))g_nativeFunctions[2520])(m_pSelf, i);
+		((SheetFrameImage_t(*)(void* __self, int __i))g_nativeFunctions[2530])(m_pSelf, i);
 	}
-	RW_VAR(float,m_flDisplayTime,SheetSequenceFrame_t,g_nativeFunctions[2521],g_nativeFunctions[2522]);
+	RW_VAR(float,m_flDisplayTime,SheetSequenceFrame_t,g_nativeFunctions[2531],g_nativeFunctions[2532]);
 };
 class Steam::Inventory
 {
@@ -11509,51 +11562,51 @@ class Steam::Inventory
 	inline const CSteamInventoryResult* GetAllItems() 
 	{
 		return
-		((const CSteamInventoryResult*(*)())g_nativeFunctions[2523])();
+		((const CSteamInventoryResult*(*)())g_nativeFunctions[2533])();
 	}
 	inline int DefinitionCount() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2524])();
+		((int(*)())g_nativeFunctions[2534])();
 	}
 	inline int GetDefinitionId(int index) 
 	{
 		return
-		((int(*)(int index))g_nativeFunctions[2525])(index);
+		((int(*)(int index))g_nativeFunctions[2535])(index);
 	}
 	inline const char* GetDefinitionProperty(int definitionId, const char* propertyName) 
 	{
 		return
-		((const char*(*)(int definitionId, const char* propertyName))g_nativeFunctions[2526])(definitionId, propertyName);
+		((const char*(*)(int definitionId, const char* propertyName))g_nativeFunctions[2536])(definitionId, propertyName);
 	}
 	inline int GetDefinitionPrice(int index, uint64* price, uint64* baseprice) 
 	{
 		return
-		((int(*)(int index, uint64* price, uint64* baseprice))g_nativeFunctions[2527])(index, price, baseprice);
+		((int(*)(int index, uint64* price, uint64* baseprice))g_nativeFunctions[2537])(index, price, baseprice);
 	}
 	inline int HasPrices() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2528])();
+		((int(*)())g_nativeFunctions[2538])();
 	}
 	inline const char* GetCurrency() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[2529])();
+		((const char*(*)())g_nativeFunctions[2539])();
 	}
 	inline void CheckOut(int* defs, int count) 
 	{
-		((void(*)(int* defs, int count))g_nativeFunctions[2530])(defs, count);
+		((void(*)(int* defs, int count))g_nativeFunctions[2540])(defs, count);
 	}
 	inline int IsCheckingOut() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2531])();
+		((int(*)())g_nativeFunctions[2541])();
 	}
 	inline int WasCheckoutSuccessful() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2532])();
+		((int(*)())g_nativeFunctions[2542])();
 	}
 };
 class Steam::Screenshots
@@ -11567,7 +11620,7 @@ class Steam::Screenshots
 	inline int WriteScreenshot(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight) 
 	{
 		return
-		((int(*)(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight))g_nativeFunctions[2533])(pubRGB, cubRGB, nWidth, nHeight);
+		((int(*)(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight))g_nativeFunctions[2543])(pubRGB, cubRGB, nWidth, nHeight);
 	}
 };
 class Steam::Ugc::CUgcInstall
@@ -11582,20 +11635,20 @@ class Steam::Ugc::CUgcInstall
 	inline const Steam::Ugc::CUgcInstall* Create(uint64 fileid) 
 	{
 		return
-		((const Steam::Ugc::CUgcInstall*(*)(uint64 __fileid))g_nativeFunctions[2534])(fileid);
+		((const Steam::Ugc::CUgcInstall*(*)(uint64 __fileid))g_nativeFunctions[2544])(fileid);
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2535])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2545])(m_pSelf);
 	}
 	inline const char* GetResultJson() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2536])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2546])(m_pSelf);
 	}
-	RW_VAR(int,m_complete,Steam::Ugc::CUgcInstall,g_nativeFunctions[2537],g_nativeFunctions[2538]);
-	RW_VAR(int,m_success,Steam::Ugc::CUgcInstall,g_nativeFunctions[2539],g_nativeFunctions[2540]);
-	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcInstall,g_nativeFunctions[2541],g_nativeFunctions[2542]);
+	RW_VAR(int,m_complete,Steam::Ugc::CUgcInstall,g_nativeFunctions[2547],g_nativeFunctions[2548]);
+	RW_VAR(int,m_success,Steam::Ugc::CUgcInstall,g_nativeFunctions[2549],g_nativeFunctions[2550]);
+	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcInstall,g_nativeFunctions[2551],g_nativeFunctions[2552]);
 };
 class Steam::Ugc::CUgcQuery
 {
@@ -11609,20 +11662,20 @@ class Steam::Ugc::CUgcQuery
 	inline const Steam::Ugc::CUgcQuery* CreateQuery(const char* json, const char* cursor) 
 	{
 		return
-		((const Steam::Ugc::CUgcQuery*(*)(const char* json, const char* cursor))g_nativeFunctions[2543])(json, cursor);
+		((const Steam::Ugc::CUgcQuery*(*)(const char* json, const char* cursor))g_nativeFunctions[2553])(json, cursor);
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2544])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2554])(m_pSelf);
 	}
 	inline const char* GetResultJson() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2545])(m_pSelf);
+		((const char*(*)(void* self))g_nativeFunctions[2555])(m_pSelf);
 	}
-	RW_VAR(int,m_complete,Steam::Ugc::CUgcQuery,g_nativeFunctions[2546],g_nativeFunctions[2547]);
-	RW_VAR(int,m_success,Steam::Ugc::CUgcQuery,g_nativeFunctions[2548],g_nativeFunctions[2549]);
-	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcQuery,g_nativeFunctions[2550],g_nativeFunctions[2551]);
+	RW_VAR(int,m_complete,Steam::Ugc::CUgcQuery,g_nativeFunctions[2556],g_nativeFunctions[2557]);
+	RW_VAR(int,m_success,Steam::Ugc::CUgcQuery,g_nativeFunctions[2558],g_nativeFunctions[2559]);
+	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcQuery,g_nativeFunctions[2560],g_nativeFunctions[2561]);
 };
 class Steam::Ugc::CUgcUpdate
 {
@@ -11636,128 +11689,128 @@ class Steam::Ugc::CUgcUpdate
 	inline const Steam::Ugc::CUgcUpdate* CreateCommunityItem() 
 	{
 		return
-		((const Steam::Ugc::CUgcUpdate*(*)())g_nativeFunctions[2552])();
+		((const Steam::Ugc::CUgcUpdate*(*)())g_nativeFunctions[2562])();
 	}
 	static
 	inline const Steam::Ugc::CUgcUpdate* CreateMtxItem() 
 	{
 		return
-		((const Steam::Ugc::CUgcUpdate*(*)())g_nativeFunctions[2553])();
+		((const Steam::Ugc::CUgcUpdate*(*)())g_nativeFunctions[2563])();
 	}
 	static
 	inline const Steam::Ugc::CUgcUpdate* OpenCommunityItem(uint64 itemid) 
 	{
 		return
-		((const Steam::Ugc::CUgcUpdate*(*)(uint64 __itemid))g_nativeFunctions[2554])(itemid);
+		((const Steam::Ugc::CUgcUpdate*(*)(uint64 __itemid))g_nativeFunctions[2564])(itemid);
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2555])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2565])(m_pSelf);
 	}
 	inline uint64 GetPublishedFileId() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2556])(m_pSelf);
+		((uint64(*)(void* self))g_nativeFunctions[2566])(m_pSelf);
 	}
 	inline void SetTitle(const char* title) 
 	{
-		((void(*)(void* self, const char* title))g_nativeFunctions[2557])(m_pSelf, title);
+		((void(*)(void* self, const char* title))g_nativeFunctions[2567])(m_pSelf, title);
 	}
 	inline void SetDescription(const char* description) 
 	{
-		((void(*)(void* self, const char* description))g_nativeFunctions[2558])(m_pSelf, description);
+		((void(*)(void* self, const char* description))g_nativeFunctions[2568])(m_pSelf, description);
 	}
 	inline void SetLanguage(const char* language) 
 	{
-		((void(*)(void* self, const char* language))g_nativeFunctions[2559])(m_pSelf, language);
+		((void(*)(void* self, const char* language))g_nativeFunctions[2569])(m_pSelf, language);
 	}
 	inline void SetMetadata(const char* metadata) 
 	{
-		((void(*)(void* self, const char* metadata))g_nativeFunctions[2560])(m_pSelf, metadata);
+		((void(*)(void* self, const char* metadata))g_nativeFunctions[2570])(m_pSelf, metadata);
 	}
 	inline void SetVisibility(int visibility) 
 	{
-		((void(*)(void* self, int visibility))g_nativeFunctions[2561])(m_pSelf, visibility);
+		((void(*)(void* self, int visibility))g_nativeFunctions[2571])(m_pSelf, visibility);
 	}
 	inline void SetTag(const char* tag) 
 	{
-		((void(*)(void* self, const char* tag))g_nativeFunctions[2562])(m_pSelf, tag);
+		((void(*)(void* self, const char* tag))g_nativeFunctions[2572])(m_pSelf, tag);
 	}
 	inline void SetContentFolder(const char* contentFolder) 
 	{
-		((void(*)(void* self, const char* contentFolder))g_nativeFunctions[2563])(m_pSelf, contentFolder);
+		((void(*)(void* self, const char* contentFolder))g_nativeFunctions[2573])(m_pSelf, contentFolder);
 	}
 	inline void SetPreviewImage(const char* previewFile) 
 	{
-		((void(*)(void* self, const char* previewFile))g_nativeFunctions[2564])(m_pSelf, previewFile);
+		((void(*)(void* self, const char* previewFile))g_nativeFunctions[2574])(m_pSelf, previewFile);
 	}
 	inline void SetAllowLegacyUpload(int allow) 
 	{
-		((void(*)(void* self, int allow))g_nativeFunctions[2565])(m_pSelf, allow);
+		((void(*)(void* self, int allow))g_nativeFunctions[2575])(m_pSelf, allow);
 	}
 	inline void AddKeyValueTag(const char* key, const char* value) 
 	{
-		((void(*)(void* self, const char* key, const char* value))g_nativeFunctions[2566])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, const char* value))g_nativeFunctions[2576])(m_pSelf, key, value);
 	}
 	inline void RemoveKeyValueTags(const char* key) 
 	{
-		((void(*)(void* self, const char* key))g_nativeFunctions[2567])(m_pSelf, key);
+		((void(*)(void* self, const char* key))g_nativeFunctions[2577])(m_pSelf, key);
 	}
 	inline void RemoveAllKeyValueTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2568])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2578])(m_pSelf);
 	}
 	inline void AddPreviewFile(const char* previewFile, int type) 
 	{
-		((void(*)(void* self, const char* previewFile, int type))g_nativeFunctions[2569])(m_pSelf, previewFile, type);
+		((void(*)(void* self, const char* previewFile, int type))g_nativeFunctions[2579])(m_pSelf, previewFile, type);
 	}
 	inline void AddPreviewVideo(const char* videoId) 
 	{
-		((void(*)(void* self, const char* videoId))g_nativeFunctions[2570])(m_pSelf, videoId);
+		((void(*)(void* self, const char* videoId))g_nativeFunctions[2580])(m_pSelf, videoId);
 	}
 	inline void UpdatePreviewFile(unsigned int index, const char* previewFile) 
 	{
-		((void(*)(void* self, unsigned int index, const char* previewFile))g_nativeFunctions[2571])(m_pSelf, index, previewFile);
+		((void(*)(void* self, unsigned int index, const char* previewFile))g_nativeFunctions[2581])(m_pSelf, index, previewFile);
 	}
 	inline void UpdatePreviewVideo(unsigned int index, const char* videoId) 
 	{
-		((void(*)(void* self, unsigned int index, const char* videoId))g_nativeFunctions[2572])(m_pSelf, index, videoId);
+		((void(*)(void* self, unsigned int index, const char* videoId))g_nativeFunctions[2582])(m_pSelf, index, videoId);
 	}
 	inline void RemovePreview(unsigned int index) 
 	{
-		((void(*)(void* self, unsigned int index))g_nativeFunctions[2573])(m_pSelf, index);
+		((void(*)(void* self, unsigned int index))g_nativeFunctions[2583])(m_pSelf, index);
 	}
 	inline void SetRequiredGameVersions(const char* minVersion, const char* maxVersion) 
 	{
-		((void(*)(void* self, const char* minVersion, const char* maxVersion))g_nativeFunctions[2574])(m_pSelf, minVersion, maxVersion);
+		((void(*)(void* self, const char* minVersion, const char* maxVersion))g_nativeFunctions[2584])(m_pSelf, minVersion, maxVersion);
 	}
 	inline int Submit(const char* changeNote) 
 	{
 		return
-		((int(*)(void* self, const char* changeNote))g_nativeFunctions[2575])(m_pSelf, changeNote);
+		((int(*)(void* self, const char* changeNote))g_nativeFunctions[2585])(m_pSelf, changeNote);
 	}
 	inline float GetProgressPercent() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2576])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[2586])(m_pSelf);
 	}
 	inline uint64 GetBytesProcessed() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2577])(m_pSelf);
+		((uint64(*)(void* self))g_nativeFunctions[2587])(m_pSelf);
 	}
 	inline uint64 GetBytesTotal() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2578])(m_pSelf);
+		((uint64(*)(void* self))g_nativeFunctions[2588])(m_pSelf);
 	}
-	RW_VAR(int,m_creating,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2579],g_nativeFunctions[2580]);
-	RW_VAR(int,m_created,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2581],g_nativeFunctions[2582]);
-	RW_VAR(int,m_submitted,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2583],g_nativeFunctions[2584]);
-	RW_VAR(int,m_complete,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2585],g_nativeFunctions[2586]);
-	RW_VAR(int,m_success,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2587],g_nativeFunctions[2588]);
-	RW_VAR(int,m_bNeedsLegalAgreement,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2589],g_nativeFunctions[2590]);
-	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2591],g_nativeFunctions[2592]);
+	RW_VAR(int,m_creating,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2589],g_nativeFunctions[2590]);
+	RW_VAR(int,m_created,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2591],g_nativeFunctions[2592]);
+	RW_VAR(int,m_submitted,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2593],g_nativeFunctions[2594]);
+	RW_VAR(int,m_complete,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2595],g_nativeFunctions[2596]);
+	RW_VAR(int,m_success,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2597],g_nativeFunctions[2598]);
+	RW_VAR(int,m_bNeedsLegalAgreement,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2599],g_nativeFunctions[2600]);
+	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2601],g_nativeFunctions[2602]);
 };
 class VertexLayout
 {
@@ -11769,23 +11822,23 @@ class VertexLayout
 	}
 	VertexLayout(const char* name, int size) 
 	{
-		m_pSelf = ((void*(*)(const char* name, int size))g_nativeFunctions[2593])(name, size);
+		m_pSelf = ((void*(*)(const char* name, int size))g_nativeFunctions[2603])(name, size);
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2594])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2604])(m_pSelf);
 	}
 	inline void Free() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2595])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2605])(m_pSelf);
 	}
 	inline void Add(const char* semanticName, int semanticIndex, unsigned int format, int offset) 
 	{
-		((void(*)(void* self, const char* semanticName, int semanticIndex, unsigned int format, int offset))g_nativeFunctions[2596])(m_pSelf, semanticName, semanticIndex, format, offset);
+		((void(*)(void* self, const char* semanticName, int semanticIndex, unsigned int format, int offset))g_nativeFunctions[2606])(m_pSelf, semanticName, semanticIndex, format, offset);
 	}
 	inline void Build() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2597])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2607])(m_pSelf);
 	}
 };
 class VfxCompiledShaderInfo_t
@@ -11798,10 +11851,10 @@ class VfxCompiledShaderInfo_t
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2598])(m_pSelf);
+		((void(*)(void* __self))g_nativeFunctions[2608])(m_pSelf);
 	}
-	RW_VAR(const char *,compilerOutput,VfxCompiledShaderInfo_t,g_nativeFunctions[2599],g_nativeFunctions[2600]);
-	RW_VAR(int,compileFailed,VfxCompiledShaderInfo_t,g_nativeFunctions[2601],g_nativeFunctions[2602]);
+	RW_VAR(const char *,compilerOutput,VfxCompiledShaderInfo_t,g_nativeFunctions[2609],g_nativeFunctions[2610]);
+	RW_VAR(int,compileFailed,VfxCompiledShaderInfo_t,g_nativeFunctions[2611],g_nativeFunctions[2612]);
 };
 class VPhysXBodyPart_t
 {
@@ -11814,61 +11867,61 @@ class VPhysXBodyPart_t
 	inline int GetSphereCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2603])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2613])(m_pSelf);
 	}
 	inline const RnSphereDesc_t* GetSphere(int index) 
 	{
 		return
-		((const RnSphereDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2604])(m_pSelf, index);
+		((const RnSphereDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2614])(m_pSelf, index);
 	}
 	inline int GetCapsuleCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2605])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2615])(m_pSelf);
 	}
 	inline const RnCapsuleDesc_t* GetCapsule(int index) 
 	{
 		return
-		((const RnCapsuleDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2606])(m_pSelf, index);
+		((const RnCapsuleDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2616])(m_pSelf, index);
 	}
 	inline int GetHullCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2607])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2617])(m_pSelf);
 	}
 	inline const RnHullDesc_t* GetHull(int index) 
 	{
 		return
-		((const RnHullDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2608])(m_pSelf, index);
+		((const RnHullDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2618])(m_pSelf, index);
 	}
 	inline int GetMeshCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2609])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2619])(m_pSelf);
 	}
 	inline const RnMeshDesc_t* GetMesh(int index) 
 	{
 		return
-		((const RnMeshDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2610])(m_pSelf, index);
+		((const RnMeshDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2620])(m_pSelf, index);
 	}
 	inline int GetCollisionAttributeCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2611])(m_pSelf);
+		((int(*)(void* __self))g_nativeFunctions[2621])(m_pSelf);
 	}
 	inline unsigned short GetCollisionAttributeIndex(int index) 
 	{
 		return
-		((unsigned short(*)(void* __self, int __index))g_nativeFunctions[2612])(m_pSelf, index);
+		((unsigned short(*)(void* __self, int __index))g_nativeFunctions[2622])(m_pSelf, index);
 	}
-	RW_VAR(unsigned int,m_nFlags,VPhysXBodyPart_t,g_nativeFunctions[2613],g_nativeFunctions[2614]);
-	RW_VAR(float,m_flMass,VPhysXBodyPart_t,g_nativeFunctions[2615],g_nativeFunctions[2616]);
-	RW_VAR(unsigned short,m_nCollisionAttributeIndex,VPhysXBodyPart_t,g_nativeFunctions[2617],g_nativeFunctions[2618]);
-	RW_VAR(float,m_flInertiaScale,VPhysXBodyPart_t,g_nativeFunctions[2619],g_nativeFunctions[2620]);
-	RW_VAR(float,m_flLinearDamping,VPhysXBodyPart_t,g_nativeFunctions[2621],g_nativeFunctions[2622]);
-	RW_VAR(float,m_flAngularDamping,VPhysXBodyPart_t,g_nativeFunctions[2623],g_nativeFunctions[2624]);
-	RW_VAR(int,m_bOverrideMassCenter,VPhysXBodyPart_t,g_nativeFunctions[2625],g_nativeFunctions[2626]);
-	RW_VAR(Vector,m_vMassCenterOverride,VPhysXBodyPart_t,g_nativeFunctions[2627],g_nativeFunctions[2628]);
+	RW_VAR(unsigned int,m_nFlags,VPhysXBodyPart_t,g_nativeFunctions[2623],g_nativeFunctions[2624]);
+	RW_VAR(float,m_flMass,VPhysXBodyPart_t,g_nativeFunctions[2625],g_nativeFunctions[2626]);
+	RW_VAR(unsigned short,m_nCollisionAttributeIndex,VPhysXBodyPart_t,g_nativeFunctions[2627],g_nativeFunctions[2628]);
+	RW_VAR(float,m_flInertiaScale,VPhysXBodyPart_t,g_nativeFunctions[2629],g_nativeFunctions[2630]);
+	RW_VAR(float,m_flLinearDamping,VPhysXBodyPart_t,g_nativeFunctions[2631],g_nativeFunctions[2632]);
+	RW_VAR(float,m_flAngularDamping,VPhysXBodyPart_t,g_nativeFunctions[2633],g_nativeFunctions[2634]);
+	RW_VAR(int,m_bOverrideMassCenter,VPhysXBodyPart_t,g_nativeFunctions[2635],g_nativeFunctions[2636]);
+	RW_VAR(Vector,m_vMassCenterOverride,VPhysXBodyPart_t,g_nativeFunctions[2637],g_nativeFunctions[2638]);
 };
 class VPhysXJoint_t
 {
@@ -11881,79 +11934,79 @@ class VPhysXJoint_t
 	inline float GetLinearLimitMin() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2629])(m_pSelf);
+		((float(*)(void* __self))g_nativeFunctions[2639])(m_pSelf);
 	}
 	inline float GetLinearLimitMax() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2630])(m_pSelf);
+		((float(*)(void* __self))g_nativeFunctions[2640])(m_pSelf);
 	}
 	inline float GetSwingLimitMin() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2631])(m_pSelf);
+		((float(*)(void* __self))g_nativeFunctions[2641])(m_pSelf);
 	}
 	inline float GetSwingLimitMax() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2632])(m_pSelf);
+		((float(*)(void* __self))g_nativeFunctions[2642])(m_pSelf);
 	}
 	inline float GetTwistLimitMin() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2633])(m_pSelf);
+		((float(*)(void* __self))g_nativeFunctions[2643])(m_pSelf);
 	}
 	inline float GetTwistLimitMax() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2634])(m_pSelf);
+		((float(*)(void* __self))g_nativeFunctions[2644])(m_pSelf);
 	}
 	inline void SetLinearLimitMin(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2635])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_nativeFunctions[2645])(m_pSelf, value);
 	}
 	inline void SetLinearLimitMax(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2636])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_nativeFunctions[2646])(m_pSelf, value);
 	}
 	inline void SetSwingLimitMin(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2637])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_nativeFunctions[2647])(m_pSelf, value);
 	}
 	inline void SetSwingLimitMax(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2638])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_nativeFunctions[2648])(m_pSelf, value);
 	}
 	inline void SetTwistLimitMin(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2639])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_nativeFunctions[2649])(m_pSelf, value);
 	}
 	inline void SetTwistLimitMax(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2640])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_nativeFunctions[2650])(m_pSelf, value);
 	}
-	RW_VAR(unsigned short,m_nType,VPhysXJoint_t,g_nativeFunctions[2641],g_nativeFunctions[2642]);
-	RW_VAR(unsigned short,m_nBody1,VPhysXJoint_t,g_nativeFunctions[2643],g_nativeFunctions[2644]);
-	RW_VAR(unsigned short,m_nBody2,VPhysXJoint_t,g_nativeFunctions[2645],g_nativeFunctions[2646]);
-	RW_VAR(unsigned short,m_nFlags,VPhysXJoint_t,g_nativeFunctions[2647],g_nativeFunctions[2648]);
-	RW_VAR(int,m_bEnableCollision,VPhysXJoint_t,g_nativeFunctions[2649],g_nativeFunctions[2650]);
-	RW_VAR(int,m_bEnableLinearLimit,VPhysXJoint_t,g_nativeFunctions[2651],g_nativeFunctions[2652]);
-	RW_VAR(int,m_bEnableLinearMotor,VPhysXJoint_t,g_nativeFunctions[2653],g_nativeFunctions[2654]);
-	RW_VAR(Vector,m_vLinearTargetVelocity,VPhysXJoint_t,g_nativeFunctions[2655],g_nativeFunctions[2656]);
-	RW_VAR(float,m_flMaxForce,VPhysXJoint_t,g_nativeFunctions[2657],g_nativeFunctions[2658]);
-	RW_VAR(int,m_bEnableSwingLimit,VPhysXJoint_t,g_nativeFunctions[2659],g_nativeFunctions[2660]);
-	RW_VAR(int,m_bEnableTwistLimit,VPhysXJoint_t,g_nativeFunctions[2661],g_nativeFunctions[2662]);
-	RW_VAR(int,m_bEnableAngularMotor,VPhysXJoint_t,g_nativeFunctions[2663],g_nativeFunctions[2664]);
-	RW_VAR(Vector,m_vAngularTargetVelocity,VPhysXJoint_t,g_nativeFunctions[2665],g_nativeFunctions[2666]);
-	RW_VAR(float,m_flMaxTorque,VPhysXJoint_t,g_nativeFunctions[2667],g_nativeFunctions[2668]);
-	RW_VAR(float,m_flLinearFrequency,VPhysXJoint_t,g_nativeFunctions[2669],g_nativeFunctions[2670]);
-	RW_VAR(float,m_flLinearDampingRatio,VPhysXJoint_t,g_nativeFunctions[2671],g_nativeFunctions[2672]);
-	RW_VAR(float,m_flAngularFrequency,VPhysXJoint_t,g_nativeFunctions[2673],g_nativeFunctions[2674]);
-	RW_VAR(float,m_flAngularDampingRatio,VPhysXJoint_t,g_nativeFunctions[2675],g_nativeFunctions[2676]);
-	RW_VAR(float,m_flLinearStrength,VPhysXJoint_t,g_nativeFunctions[2677],g_nativeFunctions[2678]);
-	RW_VAR(float,m_flAngularStrength,VPhysXJoint_t,g_nativeFunctions[2679],g_nativeFunctions[2680]);
-	RW_VAR(CTransformUnaligned,m_Frame1,VPhysXJoint_t,g_nativeFunctions[2681],g_nativeFunctions[2682]);
-	RW_VAR(CTransformUnaligned,m_Frame2,VPhysXJoint_t,g_nativeFunctions[2683],g_nativeFunctions[2684]);
+	RW_VAR(unsigned short,m_nType,VPhysXJoint_t,g_nativeFunctions[2651],g_nativeFunctions[2652]);
+	RW_VAR(unsigned short,m_nBody1,VPhysXJoint_t,g_nativeFunctions[2653],g_nativeFunctions[2654]);
+	RW_VAR(unsigned short,m_nBody2,VPhysXJoint_t,g_nativeFunctions[2655],g_nativeFunctions[2656]);
+	RW_VAR(unsigned short,m_nFlags,VPhysXJoint_t,g_nativeFunctions[2657],g_nativeFunctions[2658]);
+	RW_VAR(int,m_bEnableCollision,VPhysXJoint_t,g_nativeFunctions[2659],g_nativeFunctions[2660]);
+	RW_VAR(int,m_bEnableLinearLimit,VPhysXJoint_t,g_nativeFunctions[2661],g_nativeFunctions[2662]);
+	RW_VAR(int,m_bEnableLinearMotor,VPhysXJoint_t,g_nativeFunctions[2663],g_nativeFunctions[2664]);
+	RW_VAR(Vector,m_vLinearTargetVelocity,VPhysXJoint_t,g_nativeFunctions[2665],g_nativeFunctions[2666]);
+	RW_VAR(float,m_flMaxForce,VPhysXJoint_t,g_nativeFunctions[2667],g_nativeFunctions[2668]);
+	RW_VAR(int,m_bEnableSwingLimit,VPhysXJoint_t,g_nativeFunctions[2669],g_nativeFunctions[2670]);
+	RW_VAR(int,m_bEnableTwistLimit,VPhysXJoint_t,g_nativeFunctions[2671],g_nativeFunctions[2672]);
+	RW_VAR(int,m_bEnableAngularMotor,VPhysXJoint_t,g_nativeFunctions[2673],g_nativeFunctions[2674]);
+	RW_VAR(Vector,m_vAngularTargetVelocity,VPhysXJoint_t,g_nativeFunctions[2675],g_nativeFunctions[2676]);
+	RW_VAR(float,m_flMaxTorque,VPhysXJoint_t,g_nativeFunctions[2677],g_nativeFunctions[2678]);
+	RW_VAR(float,m_flLinearFrequency,VPhysXJoint_t,g_nativeFunctions[2679],g_nativeFunctions[2680]);
+	RW_VAR(float,m_flLinearDampingRatio,VPhysXJoint_t,g_nativeFunctions[2681],g_nativeFunctions[2682]);
+	RW_VAR(float,m_flAngularFrequency,VPhysXJoint_t,g_nativeFunctions[2683],g_nativeFunctions[2684]);
+	RW_VAR(float,m_flAngularDampingRatio,VPhysXJoint_t,g_nativeFunctions[2685],g_nativeFunctions[2686]);
+	RW_VAR(float,m_flLinearStrength,VPhysXJoint_t,g_nativeFunctions[2687],g_nativeFunctions[2688]);
+	RW_VAR(float,m_flAngularStrength,VPhysXJoint_t,g_nativeFunctions[2689],g_nativeFunctions[2690]);
+	RW_VAR(CTransformUnaligned,m_Frame1,VPhysXJoint_t,g_nativeFunctions[2691],g_nativeFunctions[2692]);
+	RW_VAR(CTransformUnaligned,m_Frame2,VPhysXJoint_t,g_nativeFunctions[2693],g_nativeFunctions[2694]);
 };
 class VSound_t
 {
@@ -11965,67 +12018,67 @@ class VSound_t
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2685])(m_pSelf);
+		((void(*)(void* self))g_nativeFunctions[2695])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2686])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2696])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2687])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2697])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2688])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2698])(m_pSelf);
 	}
 	inline HSoundStrong* CopyStrongHandle() 
 	{
 		return
-		((HSoundStrong*(*)(void* self))g_nativeFunctions[2689])(m_pSelf);
+		((HSoundStrong*(*)(void* self))g_nativeFunctions[2699])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[2690])(m_pSelf);
+		((const void*(*)(void* self))g_nativeFunctions[2700])(m_pSelf);
 	}
 	inline int64 format() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2691])(m_pSelf);
+		((int64(*)(void* self))g_nativeFunctions[2701])(m_pSelf);
 	}
 	inline int BitsPerSample() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2692])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2702])(m_pSelf);
 	}
 	inline int channels() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2693])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2703])(m_pSelf);
 	}
 	inline int BytesPerSample() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2694])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2704])(m_pSelf);
 	}
 	inline int m_sampleFrameSize() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2695])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2705])(m_pSelf);
 	}
 	inline int m_rate() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2696])(m_pSelf);
+		((int(*)(void* self))g_nativeFunctions[2706])(m_pSelf);
 	}
 	inline float Duration() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2697])(m_pSelf);
+		((float(*)(void* self))g_nativeFunctions[2707])(m_pSelf);
 	}
 };
 class WindowsGlue
@@ -12039,7 +12092,7 @@ class WindowsGlue
 	inline const char* FindFile() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[2698])();
+		((const char*(*)())g_nativeFunctions[2708])();
 	}
 };
 inline void engineFree()
