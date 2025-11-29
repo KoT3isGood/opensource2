@@ -1,0 +1,3 @@
+[submodule "opensource2-sbox"]
+	path = opensource2-sbox
+	url = https://github.com/KoT3isGood/opensource2-sbox.git
