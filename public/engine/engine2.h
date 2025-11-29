@@ -144,7 +144,7 @@ inline void engineBindingsInitialize()
 	};
 	
 	int iStructSizes[149]={24,1,16,2,24,4,0x11,4,4,3,4,8,0x14,0x1c,0x28,4,4,0x10,4,4,8,4,8,4,4,4,4,4,0x10,4,4,4,0xc,0xc,0x20,0x2dc,4,0x10,0x288,0x101,0x40,4,0x60,0x2c,0x20,4,4,4,4,8,8,4,4,4,4,8,4,4,1,4,4,0x28,0x28,0x88,0x78,4,4,0x28,4,4,4,4,4,4,0xc,0x10,0x10,0x18,4,4,4,8,4,1,4,0x30,4,8,4,4,8,4,4,1,0x1c,200,0x88,0x1c,0x10,1,4,4,4,8,0x4c,4,4,4,4,0x2c,4,0x1c,0x74,0x20,0x78,4,8,0x2c,4,4,4,4,0xc,8,0x10,8,0x14,4,4,0x40,4,1,0x18,4,8,4,4,4,4,4,4,8,8,4,4,4,8,4,};
-	igen_engine( 48688, managedFunctions, g_nativeFunctions, iStructSizes );
+	igen_engine( 64712, managedFunctions, g_nativeFunctions, iStructSizes );
 	g_bIsengineInitialized = true;
 }
 class CAnimationGroupBuilder
@@ -8207,6 +8207,11 @@ class IAnimParameter
 		return
 		((CAnimVariant(*)(void* self))g_nativeFunctions[1767])(m_pSelf);
 	}
+	inline CAnimVariant GetMinValue() 
+	{
+		return
+		((CAnimVariant(*)(void* self))g_nativeFunctions[1768])(m_pSelf);
+	}
 	inline CAnimVariant GetMaxValue() 
 	{
 		return
@@ -8230,10 +8235,6 @@ class IAnimParameterInstance
 	inline operator IAnimParameterInstance*()
 	{
 		return (IAnimParameterInstance*)m_pSelf;
-	}
-	inline void SetValue(int val) 
-	{
-		((void(*)(void* self, int val))g_nativeFunctions[1772])(m_pSelf, val);
 	}
 	inline void SetValue(int val) 
 	{

@@ -146,6 +146,7 @@ class CSfxTable;
 class CAudioProcessor;
 class HMaterialStrong;
 class ISceneWorld;
+class IRayTraceSceneWorld;
 class CRenderAttributes;
 class SwapChainHandle_t {
 	uint64_t nHandle;
