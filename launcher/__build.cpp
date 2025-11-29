@@ -14,7 +14,8 @@ DECLARE_BUILD_STAGE(launcher)
 	stCompile.m_szName = "launcher";
 	stCompile.files = {
 		"launcher/launcher.cpp",
-		"engine/engine2.cpp"
+		"engine/engine2.cpp",
+		"engine/testrender.cpp",
 	};
 	stCompile.includeDirectories = {
 		"public"

@@ -21,23 +21,23 @@ class RWVariable
 {
 	private:
 	Parent *m_parent;
-	A(*m_ReadOp)(Parent);
-	void(*m_WriteOp)(Parent, A);
+	A(*m_ReadOp)(Parent*);
+	void(*m_WriteOp)(Parent*, A);
 	public:
 	RWVariable(void* WriteOp, void* ReadOp, Parent *parent)
 	{
-		m_ReadOp = (A(*)(Parent))ReadOp;
-		m_WriteOp = (void(*)(Parent, A))WriteOp;
+		m_ReadOp = (A(*)(Parent*))ReadOp;
+		m_WriteOp = (void(*)(Parent*, A))WriteOp;
 		m_parent = parent;
 	}
 	inline RWVariable& operator = (const A& other)
 	{
-		m_WriteOp( (void*)m_parent , (void*)other);
+		m_WriteOp( m_parent , other);
 		return *this;
 	}
 	inline operator A()
 	{
-		return m_ReadOp( (void*)m_parent );
+		return m_ReadOp( m_parent );
 	}
 };
 #define RW_VAR(type, name, parent, readop, writeop) RWVariable<type, parent> name{readop, writeop,this};
@@ -151,6 +151,10 @@ class CAnimationGroupBuilder
 {
 	public:
 	void *m_pSelf;
+	inline operator CAnimationGroupBuilder*()
+	{
+		return (CAnimationGroupBuilder*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1])(m_pSelf);
@@ -193,6 +197,10 @@ class CAttachment
 {
 	public:
 	void *m_pSelf;
+	inline operator CAttachment*()
+	{
+		return (CAttachment*)m_pSelf;
+	}
 	inline const char * GetInfluenceName(int index) 
 	{
 		return
@@ -216,6 +224,10 @@ class CAudioMixBuffer
 {
 	public:
 	void *m_pSelf;
+	inline operator CAudioMixBuffer*()
+	{
+		return (CAudioMixBuffer*)m_pSelf;
+	}
 	CAudioMixBuffer() 
 	{
 		m_pSelf = ((void*(*)())g_nativeFunctions[19])();
@@ -264,6 +276,10 @@ class CAudioMixDeviceBuffers
 {
 	public:
 	void *m_pSelf;
+	inline operator CAudioMixDeviceBuffers*()
+	{
+		return (CAudioMixDeviceBuffers*)m_pSelf;
+	}
 	CAudioMixDeviceBuffers(int channels) 
 	{
 		m_pSelf = ((void*(*)(int channels))g_nativeFunctions[29])(channels);
@@ -282,6 +298,10 @@ class CAudioMixer
 {
 	public:
 	void *m_pSelf;
+	inline operator CAudioMixer*()
+	{
+		return (CAudioMixer*)m_pSelf;
+	}
 	inline void Dispose() 
 	{
 		((void(*)(void* self))g_nativeFunctions[32])(m_pSelf);
@@ -364,6 +384,10 @@ class CAudioProcessor
 {
 	public:
 	void *m_pSelf;
+	inline operator CAudioProcessor*()
+	{
+		return (CAudioProcessor*)m_pSelf;
+	}
 	inline void Dispose() 
 	{
 		((void(*)(void* self))g_nativeFunctions[49])(m_pSelf);
@@ -399,6 +423,10 @@ class CAudioStreamManaged
 {
 	public:
 	void *m_pSelf;
+	inline operator CAudioStreamManaged*()
+	{
+		return (CAudioStreamManaged*)m_pSelf;
+	}
 	static
 	inline int Create(int nChannels, unsigned int nSampleRate) 
 	{
@@ -451,6 +479,10 @@ class CBinauralEffect
 {
 	public:
 	void *m_pSelf;
+	inline operator CBinauralEffect*()
+	{
+		return (CBinauralEffect*)m_pSelf;
+	}
 	CBinauralEffect() 
 	{
 		m_pSelf = ((void*(*)())g_nativeFunctions[65])();
@@ -468,6 +500,10 @@ class CBuilderMaterialGroup
 {
 	public:
 	void *m_pSelf;
+	inline operator CBuilderMaterialGroup*()
+	{
+		return (CBuilderMaterialGroup*)m_pSelf;
+	}
 	inline void AddMaterial(HMaterialStrong* hMat) 
 	{
 		((void(*)(void* self, HMaterialStrong* hMat))g_nativeFunctions[68])(m_pSelf, hMat);
@@ -478,6 +514,10 @@ class CBuilderMaterialGroupArray
 {
 	public:
 	void *m_pSelf;
+	inline operator CBuilderMaterialGroupArray*()
+	{
+		return (CBuilderMaterialGroupArray*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[71])(m_pSelf);
@@ -496,6 +536,10 @@ class CCameraRenderer
 {
 	public:
 	void *m_pSelf;
+	inline operator CCameraRenderer*()
+	{
+		return (CCameraRenderer*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[74])(m_pSelf);
@@ -587,6 +631,10 @@ class CDecalSceneObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CDecalSceneObject*()
+	{
+		return (CDecalSceneObject*)m_pSelf;
+	}
 	//NativeEngine.CDecalSceneObject.__N.From_CSceneObject_To_CDecalSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[134];
 	//NativeEngine.CDecalSceneObject.__N.To_CSceneObject_From_CDecalSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[135];
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
@@ -871,6 +919,10 @@ class CDynamicSceneObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CDynamicSceneObject*()
+	{
+		return (CDynamicSceneObject*)m_pSelf;
+	}
 	//CDynamicSceneObject.__N.From_CSceneObject_To_CDynamicSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[224];
 	//CDynamicSceneObject.__N.To_CSceneObject_From_CDynamicSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[225];
 	static
@@ -1168,6 +1220,10 @@ class CEntityKeyValues
 {
 	public:
 	void *m_pSelf;
+	inline operator CEntityKeyValues*()
+	{
+		return (CEntityKeyValues*)m_pSelf;
+	}
 	inline const char* GetValueString(uint32 key, const char* pDefaultValue) 
 	{
 		return
@@ -1193,6 +1249,10 @@ class CEnvMapSceneObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CEnvMapSceneObject*()
+	{
+		return (CEnvMapSceneObject*)m_pSelf;
+	}
 	//NativeEngine.CEnvMapSceneObject.__N.From_CSceneLightObject_To_CEnvMapSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[298];
 	//NativeEngine.CEnvMapSceneObject.__N.To_CSceneLightObject_From_CEnvMapSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[299];
 	//NativeEngine.CEnvMapSceneObject.__N.From_CSceneObject_To_CEnvMapSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[300];
@@ -1459,6 +1519,10 @@ class CFrustum
 {
 	public:
 	void *m_pSelf;
+	inline operator CFrustum*()
+	{
+		return (CFrustum*)m_pSelf;
+	}
 	CFrustum() 
 	{
 		m_pSelf = ((void*(*)())g_nativeFunctions[375])();
@@ -1570,6 +1634,10 @@ class CHitBox
 {
 	public:
 	void *m_pSelf;
+	inline operator CHitBox*()
+	{
+		return (CHitBox*)m_pSelf;
+	}
 	inline const char* GetTag(int index) 
 	{
 		return
@@ -1594,6 +1662,10 @@ class CHitBoxSet
 {
 	public:
 	void *m_pSelf;
+	inline operator CHitBoxSet*()
+	{
+		return (CHitBoxSet*)m_pSelf;
+	}
 	inline int numhitboxes() 
 	{
 		return
@@ -1611,6 +1683,10 @@ class CManagedSceneObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CManagedSceneObject*()
+	{
+		return (CManagedSceneObject*)m_pSelf;
+	}
 	//NativeEngine.CManagedSceneObject.__N.From_CSceneObject_To_CManagedSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[433];
 	//NativeEngine.CManagedSceneObject.__N.To_CSceneObject_From_CManagedSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[434];
 	static
@@ -1888,6 +1964,10 @@ class CMaterialSystem2AppSystemDict
 {
 	public:
 	void *m_pSelf;
+	inline operator CMaterialSystem2AppSystemDict*()
+	{
+		return (CMaterialSystem2AppSystemDict*)m_pSelf;
+	}
 	CMaterialSystem2AppSystemDict(MaterialSystem2AppSystemDictCreateInfo createInfo) 
 	{
 		m_pSelf = ((void*(*)(MaterialSystem2AppSystemDictCreateInfo createInfo))g_nativeFunctions[498])(createInfo);
@@ -2086,6 +2166,10 @@ class CModel
 {
 	public:
 	void *m_pSelf;
+	inline operator CModel*()
+	{
+		return (CModel*)m_pSelf;
+	}
 	inline void DestroyStrongHandle() 
 	{
 		((void(*)(void* self))g_nativeFunctions[541])(m_pSelf);
@@ -2409,6 +2493,10 @@ class ConCommand
 {
 	public:
 	void *m_pSelf;
+	inline operator ConCommand*()
+	{
+		return (ConCommand*)m_pSelf;
+	}
 	inline const char* GetName() 
 	{
 		return
@@ -2433,6 +2521,10 @@ class ConVar
 {
 	public:
 	void *m_pSelf;
+	inline operator ConVar*()
+	{
+		return (ConVar*)m_pSelf;
+	}
 	inline const char* GetName() 
 	{
 		return
@@ -2499,6 +2591,10 @@ class CPhysAggregateData
 {
 	public:
 	void *m_pSelf;
+	inline operator CPhysAggregateData*()
+	{
+		return (CPhysAggregateData*)m_pSelf;
+	}
 	inline void AddRef() 
 	{
 		((void(*)(void* self))g_nativeFunctions[622])(m_pSelf);
@@ -2588,6 +2684,10 @@ class CPhysBodyDesc
 {
 	public:
 	void *m_pSelf;
+	inline operator CPhysBodyDesc*()
+	{
+		return (CPhysBodyDesc*)m_pSelf;
+	}
 	inline void SetBoneName(const char* boneName) 
 	{
 		((void(*)(void* __self, const char* __boneName))g_nativeFunctions[641])(m_pSelf, boneName);
@@ -2622,6 +2722,10 @@ class CPhysBodyDescArray
 {
 	public:
 	void *m_pSelf;
+	inline operator CPhysBodyDescArray*()
+	{
+		return (CPhysBodyDescArray*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[650])(m_pSelf);
@@ -2645,6 +2749,10 @@ class CPhysSurfaceProperties
 {
 	public:
 	void *m_pSelf;
+	inline operator CPhysSurfaceProperties*()
+	{
+		return (CPhysSurfaceProperties*)m_pSelf;
+	}
 	inline void UpdatePhysics(float Friction, float Elasticity, float Density, float RollingResistance, float BounceThreshold) 
 	{
 		((void(*)(void* self, float Friction, float Elasticity, float Density, float RollingResistance, float BounceThreshold))g_nativeFunctions[654])(m_pSelf, Friction, Elasticity, Density, RollingResistance, BounceThreshold);
@@ -2662,6 +2770,10 @@ class CQueryResult
 {
 	public:
 	void *m_pSelf;
+	inline operator CQueryResult*()
+	{
+		return (CQueryResult*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[671])(m_pSelf);
@@ -2685,6 +2797,10 @@ class CReadBufferManagedCallback
 {
 	public:
 	void *m_pSelf;
+	inline operator CReadBufferManagedCallback*()
+	{
+		return (CReadBufferManagedCallback*)m_pSelf;
+	}
 	//NativeEngine.CReadBufferManagedCallback.__N.From_IReadBufferCallback_To_CReadBufferManagedCallback = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[675];
 	//NativeEngine.CReadBufferManagedCallback.__N.To_IReadBufferCallback_From_CReadBufferManagedCallback = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[676];
 	inline void DeleteThis() 
@@ -2713,6 +2829,10 @@ class CReadTexturePixelsManagedCallback
 {
 	public:
 	void *m_pSelf;
+	inline operator CReadTexturePixelsManagedCallback*()
+	{
+		return (CReadTexturePixelsManagedCallback*)m_pSelf;
+	}
 	//NativeEngine.CReadTexturePixelsManagedCallback.__N.From_IReadTexturePixelsCallback_To_CReadTexturePixelsManagedCallback = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[682];
 	//NativeEngine.CReadTexturePixelsManagedCallback.__N.To_IReadTexturePixelsCallback_From_CReadTexturePixelsManagedCallback = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[683];
 	inline void DeleteThis() 
@@ -2741,6 +2861,10 @@ class CRenderAttributes
 {
 	public:
 	void *m_pSelf;
+	inline operator CRenderAttributes*()
+	{
+		return (CRenderAttributes*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[689])(m_pSelf);
@@ -2912,6 +3036,10 @@ class CRenderMesh
 {
 	public:
 	void *m_pSelf;
+	inline operator CRenderMesh*()
+	{
+		return (CRenderMesh*)m_pSelf;
+	}
 	inline void DestroyStrongHandle() 
 	{
 		((void(*)(void* self))g_nativeFunctions[728])(m_pSelf);
@@ -2946,6 +3074,10 @@ class CSceneAnimatableObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CSceneAnimatableObject*()
+	{
+		return (CSceneAnimatableObject*)m_pSelf;
+	}
 	//NativeEngine.CSceneAnimatableObject.__N.From_CSceneObject_To_CSceneAnimatableObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[734];
 	//NativeEngine.CSceneAnimatableObject.__N.To_CSceneObject_From_CSceneAnimatableObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[735];
 	inline void SetWorldSpaceRenderBoneTransform(int nBoneIndex, CTransformUnaligned pRenderWorldTransform) 
@@ -3481,6 +3613,10 @@ class CSceneLightObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CSceneLightObject*()
+	{
+		return (CSceneLightObject*)m_pSelf;
+	}
 	//NativeEngine.CSceneLightObject.__N.From_CSceneObject_To_CSceneLightObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[860];
 	//NativeEngine.CSceneLightObject.__N.To_CSceneObject_From_CSceneLightObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[861];
 	inline void SetWorldPosition(Vector pos) 
@@ -3984,6 +4120,10 @@ class CSceneLightProbeVolumeObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CSceneLightProbeVolumeObject*()
+	{
+		return (CSceneLightProbeVolumeObject*)m_pSelf;
+	}
 	//NativeEngine.CSceneLightProbeVolumeObject.__N.From_CSceneObject_To_CSceneLightProbeVolumeObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[975];
 	//NativeEngine.CSceneLightProbeVolumeObject.__N.To_CSceneObject_From_CSceneLightProbeVolumeObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[976];
 	inline void CreateConstants() 
@@ -4265,6 +4405,10 @@ class CSceneObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CSceneObject*()
+	{
+		return (CSceneObject*)m_pSelf;
+	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
 		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[1052])(m_pSelf, nNewFlags, nNewFlagsMask);
@@ -4533,6 +4677,10 @@ class CSceneSkyBoxObject
 {
 	public:
 	void *m_pSelf;
+	inline operator CSceneSkyBoxObject*()
+	{
+		return (CSceneSkyBoxObject*)m_pSelf;
+	}
 	//NativeEngine.CSceneSkyBoxObject.__N.From_CSceneObject_To_CSceneSkyBoxObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[1112];
 	//NativeEngine.CSceneSkyBoxObject.__N.To_CSceneObject_From_CSceneSkyBoxObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[1113];
 	inline void SetLighting_ConstantColorHemisphere(Vector vSkyColor) 
@@ -4862,6 +5010,10 @@ class CServerList
 {
 	public:
 	void *m_pSelf;
+	inline operator CServerList*()
+	{
+		return (CServerList*)m_pSelf;
+	}
 	CServerList(uint serverObj) 
 	{
 		m_pSelf = ((void*(*)(uint serverObj))g_nativeFunctions[1187])(serverObj);
@@ -4883,6 +5035,10 @@ class CSfxTable
 {
 	public:
 	void *m_pSelf;
+	inline operator CSfxTable*()
+	{
+		return (CSfxTable*)m_pSelf;
+	}
 	inline int GetCacheStatus() 
 	{
 		return
@@ -4923,6 +5079,10 @@ class CSteamInventoryResult
 {
 	public:
 	void *m_pSelf;
+	inline operator CSteamInventoryResult*()
+	{
+		return (CSteamInventoryResult*)m_pSelf;
+	}
 	inline void Destroy() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1198])(m_pSelf);
@@ -4962,6 +5122,10 @@ class CSteamItemInstance
 {
 	public:
 	void *m_pSelf;
+	inline operator CSteamItemInstance*()
+	{
+		return (CSteamItemInstance*)m_pSelf;
+	}
 	inline uint64 ItemId() 
 	{
 		return
@@ -4977,6 +5141,10 @@ class CTextureBase
 {
 	public:
 	void *m_pSelf;
+	inline operator CTextureBase*()
+	{
+		return (CTextureBase*)m_pSelf;
+	}
 	inline void DestroyStrongHandle() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1207])(m_pSelf);
@@ -5011,6 +5179,10 @@ class CUtlBuffer
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlBuffer*()
+	{
+		return (CUtlBuffer*)m_pSelf;
+	}
 	CUtlBuffer() 
 	{
 		m_pSelf = ((void*(*)())g_nativeFunctions[1213])();
@@ -5034,6 +5206,10 @@ class CUtlSymbolTable
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlSymbolTable*()
+	{
+		return (CUtlSymbolTable*)m_pSelf;
+	}
 	inline void AddString(const char* pString) 
 	{
 		((void(*)(void* self, const char* pString))g_nativeFunctions[1217])(m_pSelf, pString);
@@ -5044,6 +5220,10 @@ class CUtlVector<CUtlString>
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlVector<CUtlString>*()
+	{
+		return (CUtlVector<CUtlString>*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1218])(m_pSelf);
@@ -5072,6 +5252,10 @@ class CUtlVector<float>
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlVector<float>*()
+	{
+		return (CUtlVector<float>*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1223])(m_pSelf);
@@ -5100,6 +5284,10 @@ class CUtlVector<HRenderTexture>
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlVector<HRenderTexture>*()
+	{
+		return (CUtlVector<HRenderTexture>*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1228])(m_pSelf);
@@ -5124,6 +5312,10 @@ class CUtlVector<PhysicsTrace::Result>
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlVector<PhysicsTrace::Result>*()
+	{
+		return (CUtlVector<PhysicsTrace::Result>*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1232])(m_pSelf);
@@ -5148,6 +5340,10 @@ class CUtlVector<uint32>
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlVector<uint32>*()
+	{
+		return (CUtlVector<uint32>*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1236])(m_pSelf);
@@ -5176,6 +5372,10 @@ class CUtlVector<Vector>
 {
 	public:
 	void *m_pSelf;
+	inline operator CUtlVector<Vector>*()
+	{
+		return (CUtlVector<Vector>*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1241])(m_pSelf);
@@ -5203,6 +5403,10 @@ class CVfx
 {
 	public:
 	void *m_pSelf;
+	inline operator CVfx*()
+	{
+		return (CVfx*)m_pSelf;
+	}
 	inline void DestroyStrongHandle() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1246])(m_pSelf);
@@ -5303,6 +5507,10 @@ class CVfxByteCodeManager
 {
 	public:
 	void *m_pSelf;
+	inline operator CVfxByteCodeManager*()
+	{
+		return (CVfxByteCodeManager*)m_pSelf;
+	}
 	CVfxByteCodeManager() 
 	{
 		m_pSelf = ((void*(*)())g_nativeFunctions[1265])();
@@ -5328,6 +5536,10 @@ class CVfxCombo
 {
 	public:
 	void *m_pSelf;
+	inline operator CVfxCombo*()
+	{
+		return (CVfxCombo*)m_pSelf;
+	}
 	inline const char* GetName() 
 	{
 		return
@@ -5345,6 +5557,10 @@ class CVfxComboIterator
 {
 	public:
 	void *m_pSelf;
+	inline operator CVfxComboIterator*()
+	{
+		return (CVfxComboIterator*)m_pSelf;
+	}
 	inline void Delete() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1276])(m_pSelf);
@@ -5389,12 +5605,20 @@ class CVfxProgramData
 {
 	public:
 	void *m_pSelf;
+	inline operator CVfxProgramData*()
+	{
+		return (CVfxProgramData*)m_pSelf;
+	}
 	RW_VAR(int,m_bLoadedFromVcsFile,CVfxProgramData,g_nativeFunctions[1284],g_nativeFunctions[1285]);
 };
 class CVideoPlayer
 {
 	public:
 	void *m_pSelf;
+	inline operator CVideoPlayer*()
+	{
+		return (CVideoPlayer*)m_pSelf;
+	}
 	CVideoPlayer(uint managedObject) 
 	{
 		m_pSelf = ((void*(*)(uint managedObject))g_nativeFunctions[1286])(managedObject);
@@ -5509,6 +5733,10 @@ class CVideoRecorder
 {
 	public:
 	void *m_pSelf;
+	inline operator CVideoRecorder*()
+	{
+		return (CVideoRecorder*)m_pSelf;
+	}
 	CVideoRecorder() 
 	{
 		m_pSelf = ((void*(*)())g_nativeFunctions[1310])();
@@ -5539,6 +5767,10 @@ class DspInstance
 {
 	public:
 	void *m_pSelf;
+	inline operator DspInstance*()
+	{
+		return (DspInstance*)m_pSelf;
+	}
 	inline void Dispose() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1316])(m_pSelf);
@@ -5552,6 +5784,10 @@ class DspPreset
 {
 	public:
 	void *m_pSelf;
+	inline operator DspPreset*()
+	{
+		return (DspPreset*)m_pSelf;
+	}
 	DspPreset(const char* name) 
 	{
 		m_pSelf = ((void*(*)(const char* name))g_nativeFunctions[1318])(name);
@@ -5578,6 +5814,10 @@ class EngineGlue
 {
 	public:
 	void *m_pSelf;
+	inline operator EngineGlue*()
+	{
+		return (EngineGlue*)m_pSelf;
+	}
 	inline const KeyValues3* JsonToKeyValues3(const char* json) 
 	{
 		return
@@ -5659,6 +5899,10 @@ class ErrorReports
 {
 	public:
 	void *m_pSelf;
+	inline operator ErrorReports*()
+	{
+		return (ErrorReports*)m_pSelf;
+	}
 	inline void SetTag(const char* key, const char* value) 
 	{
 		((void(*)(const char* key, const char* value))g_nativeFunctions[1339])(key, value);
@@ -5672,6 +5916,10 @@ class FloatBitMap_t
 {
 	public:
 	void *m_pSelf;
+	inline operator FloatBitMap_t*()
+	{
+		return (FloatBitMap_t*)m_pSelf;
+	}
 	FloatBitMap_t() 
 	{
 		m_pSelf = ((void*(*)())g_nativeFunctions[1341])();
@@ -5839,6 +6087,10 @@ class fpxr::ApplicationConfig
 {
 	public:
 	void *m_pSelf;
+	inline operator fpxr::ApplicationConfig*()
+	{
+		return (fpxr::ApplicationConfig*)m_pSelf;
+	}
 	static
 	inline void SetDebugCallback(void* dbgCallback) 
 	{
@@ -5849,6 +6101,10 @@ class fpxr::Compositor
 {
 	public:
 	void *m_pSelf;
+	inline operator fpxr::Compositor*()
+	{
+		return (fpxr::Compositor*)m_pSelf;
+	}
 	inline const fpxr::EventManager* EventManager() 
 	{
 		return
@@ -5909,6 +6165,10 @@ class fpxr::EventManager
 {
 	public:
 	void *m_pSelf;
+	inline operator fpxr::EventManager*()
+	{
+		return (fpxr::EventManager*)m_pSelf;
+	}
 	inline int64 PumpEvent(fpxr::Event* ev) 
 	{
 		return
@@ -5919,6 +6179,10 @@ class fpxr::Input
 {
 	public:
 	void *m_pSelf;
+	inline operator fpxr::Input*()
+	{
+		return (fpxr::Input*)m_pSelf;
+	}
 	inline int64 GetBooleanActionState(const char* path, int64 inputSource, fpxr::InputBooleanActionState* outState) 
 	{
 		return
@@ -5959,6 +6223,10 @@ class fpxr::Instance
 {
 	public:
 	void *m_pSelf;
+	inline operator fpxr::Instance*()
+	{
+		return (fpxr::Instance*)m_pSelf;
+	}
 	Instance(fpxr::InstanceInfo instanceInfo) 
 	{
 		m_pSelf = ((void*(*)(fpxr::InstanceInfo __instanceInfo))g_nativeFunctions[1396])(instanceInfo);
@@ -5999,6 +6267,10 @@ class g_pAudioDevice
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pAudioDevice*()
+	{
+		return (g_pAudioDevice*)m_pSelf;
+	}
 	inline const char* Name() 
 	{
 		return
@@ -6068,6 +6340,10 @@ class g_pEnginePVSManager
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pEnginePVSManager*()
+	{
+		return (g_pEnginePVSManager*)m_pSelf;
+	}
 	inline const IPVS* BuildPvs(IWorldReference* world) 
 	{
 		return
@@ -6082,6 +6358,10 @@ class g_pEngineServiceMgr
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pEngineServiceMgr*()
+	{
+		return (g_pEngineServiceMgr*)m_pSelf;
+	}
 	inline SwapChainHandle_t GetEngineSwapChain() 
 	{
 		return
@@ -6104,6 +6384,10 @@ class g_pFullFileSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pFullFileSystem*()
+	{
+		return (g_pFullFileSystem*)m_pSelf;
+	}
 	inline const char* GetSymLink(const char* pPath, const char* pathID) 
 	{
 		return
@@ -6134,6 +6418,10 @@ class g_pInputService
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pInputService*()
+	{
+		return (g_pInputService*)m_pSelf;
+	}
 	inline int IsAppActive() 
 	{
 		return
@@ -6167,6 +6455,10 @@ class g_pInputSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pInputSystem*()
+	{
+		return (g_pInputSystem*)m_pSelf;
+	}
 	inline void RegisterWindowWithSDL(void* hwnd) 
 	{
 		((void(*)(void* hwnd))g_nativeFunctions[1435])(hwnd);
@@ -6265,6 +6557,10 @@ class g_pMaterialSystem2
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pMaterialSystem2*()
+	{
+		return (g_pMaterialSystem2*)m_pSelf;
+	}
 	inline HMaterialStrong* CreateRawMaterial(const char* materialName, const char* shader, int anonymous) 
 	{
 		return
@@ -6289,6 +6585,10 @@ class g_pMeshSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pMeshSystem*()
+	{
+		return (g_pMeshSystem*)m_pSelf;
+	}
 	inline int CreateSceneObject(HModelStrong* model, CTransformUnaligned modelToWorld, const char* pDescName, int64 nFlags, int64 nObjectTypeFlags, ISceneWorld* pWorld, int creationFlags) 
 	{
 		return
@@ -6303,6 +6603,10 @@ class g_pPhysicsSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pPhysicsSystem*()
+	{
+		return (g_pPhysicsSystem*)m_pSelf;
+	}
 	inline int NumWorlds() 
 	{
 		return
@@ -6341,6 +6645,10 @@ class g_pRenderDevice
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pRenderDevice*()
+	{
+		return (g_pRenderDevice*)m_pSelf;
+	}
 	inline SamplerStateHandle_t FindOrCreateSamplerState(CSamplerStateDesc samplerDesc) 
 	{
 		return
@@ -6536,6 +6844,10 @@ class g_pRenderService
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pRenderService*()
+	{
+		return (g_pRenderService*)m_pSelf;
+	}
 	inline int64 GetMultisampleType() 
 	{
 		return
@@ -6546,6 +6858,10 @@ class g_pResourceCompilerSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pResourceCompilerSystem*()
+	{
+		return (g_pResourceCompilerSystem*)m_pSelf;
+	}
 	inline int GenerateResourceFile(const char* path, void* pData, int size) 
 	{
 		return
@@ -6566,6 +6882,10 @@ class g_pResourceSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pResourceSystem*()
+	{
+		return (g_pResourceSystem*)m_pSelf;
+	}
 	inline void ReloadSymlinkedResidentResources() 
 	{
 		((void(*)())g_nativeFunctions[1513])();
@@ -6602,6 +6922,10 @@ class g_pSceneSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pSceneSystem*()
+	{
+		return (g_pSceneSystem*)m_pSelf;
+	}
 	inline void DeleteSceneObject(CSceneObject* pObj) 
 	{
 		((void(*)(CSceneObject* pObj))g_nativeFunctions[1520])(pObj);
@@ -6725,6 +7049,10 @@ class g_pSceneUtils
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pSceneUtils*()
+	{
+		return (g_pSceneUtils*)m_pSelf;
+	}
 	inline const ITonemapSystem* CreateTonemapSystem() 
 	{
 		return
@@ -6748,6 +7076,10 @@ class g_pSoundSystemInternal
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pSoundSystemInternal*()
+	{
+		return (g_pSoundSystemInternal*)m_pSelf;
+	}
 	inline int GetNumAudioDevices() 
 	{
 		return
@@ -6800,6 +7132,10 @@ class g_pWorldRendererMgr
 {
 	public:
 	void *m_pSelf;
+	inline operator g_pWorldRendererMgr*()
+	{
+		return (g_pWorldRendererMgr*)m_pSelf;
+	}
 	inline void ServiceWorldRequests() 
 	{
 		((void(*)())g_nativeFunctions[1560])();
@@ -6971,6 +7307,10 @@ class globalOVRLipSync
 {
 	public:
 	void *m_pSelf;
+	inline operator globalOVRLipSync*()
+	{
+		return (globalOVRLipSync*)m_pSelf;
+	}
 	static
 	inline int64 ovrLipSync_Initialize(int sampleRate, int bufferSize) 
 	{
@@ -7119,6 +7459,10 @@ class globalYoga
 {
 	public:
 	void *m_pSelf;
+	inline operator globalYoga*()
+	{
+		return (globalYoga*)m_pSelf;
+	}
 	inline YGNodeRef YGNodeNew() 
 	{
 		return
@@ -7564,6 +7908,10 @@ class Glue::Networking
 {
 	public:
 	void *m_pSelf;
+	inline operator Glue::Networking*()
+	{
+		return (Glue::Networking*)m_pSelf;
+	}
 	static
 	inline void RunCallbacks() 
 	{
@@ -7704,6 +8052,10 @@ class Glue::RenderDeviceManager
 {
 	public:
 	void *m_pSelf;
+	inline operator Glue::RenderDeviceManager*()
+	{
+		return (Glue::RenderDeviceManager*)m_pSelf;
+	}
 	inline void WriteVideoConfig() 
 	{
 		((void(*)())g_nativeFunctions[1744])();
@@ -7726,6 +8078,10 @@ class Glue::Resources
 {
 	public:
 	void *m_pSelf;
+	inline operator Glue::Resources*()
+	{
+		return (Glue::Resources*)m_pSelf;
+	}
 	inline HMaterialStrong* GetMaterial(const char* name) 
 	{
 		return
@@ -7756,11 +8112,19 @@ class HResourceManifest__
 {
 	public:
 	void *m_pSelf;
+	inline operator HResourceManifest__*()
+	{
+		return (HResourceManifest__*)m_pSelf;
+	}
 };
 class IAnimationGraph
 {
 	public:
 	void *m_pSelf;
+	inline operator IAnimationGraph*()
+	{
+		return (IAnimationGraph*)m_pSelf;
+	}
 	inline void DestroyStrongHandle() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1753])(m_pSelf);
@@ -7805,6 +8169,10 @@ class IAnimParameter
 {
 	public:
 	void *m_pSelf;
+	inline operator IAnimParameter*()
+	{
+		return (IAnimParameter*)m_pSelf;
+	}
 	inline const char* GetName() 
 	{
 		return
@@ -7845,6 +8213,10 @@ class IAnimParameterInstance
 {
 	public:
 	void *m_pSelf;
+	inline operator IAnimParameterInstance*()
+	{
+		return (IAnimParameterInstance*)m_pSelf;
+	}
 	inline void SetValue(int val) 
 	{
 		((void(*)(void* self, int val))g_nativeFunctions[1769])(m_pSelf, val);
@@ -7885,6 +8257,10 @@ class IAnimParameterList
 {
 	public:
 	void *m_pSelf;
+	inline operator IAnimParameterList*()
+	{
+		return (IAnimParameterList*)m_pSelf;
+	}
 	inline int Count() 
 	{
 		return
@@ -7905,6 +8281,10 @@ class IAsyncResourceDataRequest
 {
 	public:
 	void *m_pSelf;
+	inline operator IAsyncResourceDataRequest*()
+	{
+		return (IAsyncResourceDataRequest*)m_pSelf;
+	}
 	inline const char* GetFileName() 
 	{
 		return
@@ -7925,6 +8305,10 @@ class ImageLoader
 {
 	public:
 	void *m_pSelf;
+	inline operator ImageLoader*()
+	{
+		return (ImageLoader*)m_pSelf;
+	}
 	inline int GetMemRequired(int width, int height, int depth, int64 imageFormat, int mipmap) 
 	{
 		return
@@ -7945,6 +8329,10 @@ class IMaterial2
 {
 	public:
 	void *m_pSelf;
+	inline operator IMaterial2*()
+	{
+		return (IMaterial2*)m_pSelf;
+	}
 	inline void DestroyStrongHandle() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1786])(m_pSelf);
@@ -8093,11 +8481,19 @@ class IMaterialMode
 {
 	public:
 	void *m_pSelf;
+	inline operator IMaterialMode*()
+	{
+		return (IMaterialMode*)m_pSelf;
+	}
 };
 class IPhysAggregateInstance
 {
 	public:
 	void *m_pSelf;
+	inline operator IPhysAggregateInstance*()
+	{
+		return (IPhysAggregateInstance*)m_pSelf;
+	}
 	inline void WakeUp() 
 	{
 		((void(*)(void* self))g_nativeFunctions[1816])(m_pSelf);
@@ -8217,6 +8613,10 @@ class IPhysicsBody
 {
 	public:
 	void *m_pSelf;
+	inline operator IPhysicsBody*()
+	{
+		return (IPhysicsBody*)m_pSelf;
+	}
 	inline int GetWorld() 
 	{
 		return
@@ -8578,6 +8978,10 @@ class IPhysicsJoint
 {
 	public:
 	void *m_pSelf;
+	inline operator IPhysicsJoint*()
+	{
+		return (IPhysicsJoint*)m_pSelf;
+	}
 	inline int GetWorld() 
 	{
 		return
@@ -8829,6 +9233,10 @@ class IPhysicsShape
 {
 	public:
 	void *m_pSelf;
+	inline operator IPhysicsShape*()
+	{
+		return (IPhysicsShape*)m_pSelf;
+	}
 	inline void AddCollisionFunctionMask(unsigned char nMask) 
 	{
 		((void(*)(void* self, unsigned char nMask))g_nativeFunctions[1975])(m_pSelf, nMask);
@@ -8999,6 +9407,10 @@ class IPhysicsWorld
 {
 	public:
 	void *m_pSelf;
+	inline operator IPhysicsWorld*()
+	{
+		return (IPhysicsWorld*)m_pSelf;
+	}
 	inline int AddBody() 
 	{
 		return
@@ -9147,6 +9559,10 @@ class IPhysSurfacePropertyController
 {
 	public:
 	void *m_pSelf;
+	inline operator IPhysSurfacePropertyController*()
+	{
+		return (IPhysSurfacePropertyController*)m_pSelf;
+	}
 	inline int GetSurfacePropCount() 
 	{
 		return
@@ -9167,6 +9583,10 @@ class IPVS
 {
 	public:
 	void *m_pSelf;
+	inline operator IPVS*()
+	{
+		return (IPVS*)m_pSelf;
+	}
 	inline int IsEmptyPVS() 
 	{
 		return
@@ -9197,6 +9617,10 @@ class IRD_RegisterResourceDataUtils
 {
 	public:
 	void *m_pSelf;
+	inline operator IRD_RegisterResourceDataUtils*()
+	{
+		return (IRD_RegisterResourceDataUtils*)m_pSelf;
+	}
 	inline void SetDataRegistrationFailed() 
 	{
 		((void(*)(void* self))g_nativeFunctions[2052])(m_pSelf);
@@ -9230,16 +9654,28 @@ class IReadBufferCallback
 {
 	public:
 	void *m_pSelf;
+	inline operator IReadBufferCallback*()
+	{
+		return (IReadBufferCallback*)m_pSelf;
+	}
 };
 class IReadTexturePixelsCallback
 {
 	public:
 	void *m_pSelf;
+	inline operator IReadTexturePixelsCallback*()
+	{
+		return (IReadTexturePixelsCallback*)m_pSelf;
+	}
 };
 class IRenderContext
 {
 	public:
 	void *m_pSelf;
+	inline operator IRenderContext*()
+	{
+		return (IRenderContext*)m_pSelf;
+	}
 	inline void Draw(int64 type, int nFirstVertex, int nVertexCount) 
 	{
 		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCount))g_nativeFunctions[2058])(m_pSelf, type, nFirstVertex, nVertexCount);
@@ -9397,6 +9833,10 @@ class ISceneLayer
 {
 	public:
 	void *m_pSelf;
+	inline operator ISceneLayer*()
+	{
+		return (ISceneLayer*)m_pSelf;
+	}
 	inline void SetObjectMatchID(uint32 nTok) 
 	{
 		((void(*)(void* self, uint32 nTok))g_nativeFunctions[2094])(m_pSelf, nTok);
@@ -9482,6 +9922,10 @@ class ISceneView
 {
 	public:
 	void *m_pSelf;
+	inline operator ISceneView*()
+	{
+		return (ISceneView*)m_pSelf;
+	}
 	inline RenderViewport_t GetMainViewport() 
 	{
 		return
@@ -9578,6 +10022,10 @@ class ISceneWorld
 {
 	public:
 	void *m_pSelf;
+	inline operator ISceneWorld*()
+	{
+		return (ISceneWorld*)m_pSelf;
+	}
 	inline void DeleteAllObjects() 
 	{
 		((void(*)(void* self))g_nativeFunctions[2142])(m_pSelf);
@@ -9645,6 +10093,10 @@ class IShaderCompileContext
 {
 	public:
 	void *m_pSelf;
+	inline operator IShaderCompileContext*()
+	{
+		return (IShaderCompileContext*)m_pSelf;
+	}
 	inline void Delete() 
 	{
 		((void(*)(void* self))g_nativeFunctions[2156])(m_pSelf);
@@ -9658,6 +10110,10 @@ class ISteamApps
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamApps*()
+	{
+		return (ISteamApps*)m_pSelf;
+	}
 	inline int BIsAppInstalled(int appid) 
 	{
 		return
@@ -9723,6 +10179,10 @@ class ISteamFriends
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamFriends*()
+	{
+		return (ISteamFriends*)m_pSelf;
+	}
 	inline const char* GetProfileItemPropertyString(uint64 steamID, int itemType, int prop) 
 	{
 		return
@@ -9752,6 +10212,10 @@ class ISteamGameServer
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamGameServer*()
+	{
+		return (ISteamGameServer*)m_pSelf;
+	}
 	inline void SetServerName(const char* name) 
 	{
 		((void(*)(void* self, const char* name))g_nativeFunctions[2175])(m_pSelf, name);
@@ -9828,6 +10292,10 @@ class ISteamHTMLSurface
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamHTMLSurface*()
+	{
+		return (ISteamHTMLSurface*)m_pSelf;
+	}
 	inline int Init() 
 	{
 		return
@@ -9932,6 +10400,10 @@ class ISteamMatchmaking
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamMatchmaking*()
+	{
+		return (ISteamMatchmaking*)m_pSelf;
+	}
 	inline void LeaveLobby(uint64 steamid) 
 	{
 		((void(*)(void* self, uint64 steamid))g_nativeFunctions[2216])(m_pSelf, steamid);
@@ -9975,6 +10447,10 @@ class ISteamNetworkingMessages
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamNetworkingMessages*()
+	{
+		return (ISteamNetworkingMessages*)m_pSelf;
+	}
 	inline int SendMessageToUser(uint64 steamid, void* data, int dataSize, int flags, int channel) 
 	{
 		return
@@ -10009,6 +10485,10 @@ class ISteamNetworkingSockets
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamNetworkingSockets*()
+	{
+		return (ISteamNetworkingSockets*)m_pSelf;
+	}
 	inline SteamNetConnectionRealTimeStatus_t GetConnectionInfo(HSteamNetConnection handle) 
 	{
 		return
@@ -10031,6 +10511,10 @@ class ISteamNetworkingUtils
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamNetworkingUtils*()
+	{
+		return (ISteamNetworkingUtils*)m_pSelf;
+	}
 	inline void SetConfig(int64 key, int value) 
 	{
 		((void(*)(void* __self, int64 __key, int __value))g_nativeFunctions[2234])(m_pSelf, key, value);
@@ -10048,6 +10532,10 @@ class ISteamUser
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamUser*()
+	{
+		return (ISteamUser*)m_pSelf;
+	}
 	inline int BLoggedOn() 
 	{
 		return
@@ -10109,6 +10597,10 @@ class ISteamUtils
 {
 	public:
 	void *m_pSelf;
+	inline operator ISteamUtils*()
+	{
+		return (ISteamUtils*)m_pSelf;
+	}
 	inline int InitFilterText(unsigned int unFilterOptions) 
 	{
 		return
@@ -10124,6 +10616,10 @@ class ITonemapSystem
 {
 	public:
 	void *m_pSelf;
+	inline operator ITonemapSystem*()
+	{
+		return (ITonemapSystem*)m_pSelf;
+	}
 	inline void SetTonemapParameters(SceneTonemapParameters_t* pParams) 
 	{
 		((void(*)(void* self, SceneTonemapParameters_t* pParams))g_nativeFunctions[2251])(m_pSelf, pParams);
@@ -10137,6 +10633,10 @@ class IVfx
 {
 	public:
 	void *m_pSelf;
+	inline operator IVfx*()
+	{
+		return (IVfx*)m_pSelf;
+	}
 	inline void Init(void* factory) 
 	{
 		((void(*)(void* __self, void* __factory))g_nativeFunctions[2253])(m_pSelf, factory);
@@ -10160,6 +10660,10 @@ class IVolumetricFog
 {
 	public:
 	void *m_pSelf;
+	inline operator IVolumetricFog*()
+	{
+		return (IVolumetricFog*)m_pSelf;
+	}
 	inline void IsFoggingEnabled() 
 	{
 		((void(*)(void* self))g_nativeFunctions[2257])(m_pSelf);
@@ -10173,6 +10677,10 @@ class IWorldReference
 {
 	public:
 	void *m_pSelf;
+	inline operator IWorldReference*()
+	{
+		return (IWorldReference*)m_pSelf;
+	}
 	inline void Release() 
 	{
 		((void(*)(void* self))g_nativeFunctions[2259])(m_pSelf);
@@ -10230,6 +10738,10 @@ class KeyValues3
 {
 	public:
 	void *m_pSelf;
+	inline operator KeyValues3*()
+	{
+		return (KeyValues3*)m_pSelf;
+	}
 	inline void DeleteThis() 
 	{
 		((void(*)(void* self))g_nativeFunctions[2270])(m_pSelf);
@@ -10398,6 +10910,10 @@ class MeshGlue
 {
 	public:
 	void *m_pSelf;
+	inline operator MeshGlue*()
+	{
+		return (MeshGlue*)m_pSelf;
+	}
 	inline HRenderMesh_InternalStrong* CreateRenderMesh(HMaterialStrong* material, int nPrimType, const char* pName) 
 	{
 		return
@@ -10533,6 +11049,10 @@ class NativeEngine::SDLGameController
 {
 	public:
 	void *m_pSelf;
+	inline operator NativeEngine::SDLGameController*()
+	{
+		return (NativeEngine::SDLGameController*)m_pSelf;
+	}
 	inline int GetAxis(int joystickId, int64 axis) 
 	{
 		return
@@ -10578,6 +11098,10 @@ class NativeLowLevel
 {
 	public:
 	void *m_pSelf;
+	inline operator NativeLowLevel*()
+	{
+		return (NativeLowLevel*)m_pSelf;
+	}
 	inline void Copy(void* dest, void* src, int64 count) 
 	{
 		((void(*)(void* __dest, void* __src, int64 __count))g_nativeFunctions[2342])(dest, src, count);
@@ -10587,6 +11111,10 @@ class PerformanceTrace
 {
 	public:
 	void *m_pSelf;
+	inline operator PerformanceTrace*()
+	{
+		return (PerformanceTrace*)m_pSelf;
+	}
 	static
 	inline void BeginEvent(void* name, const char* data, unsigned int color) 
 	{
@@ -10602,6 +11130,10 @@ class PhysicsTrace_
 {
 	public:
 	void *m_pSelf;
+	inline operator PhysicsTrace*()
+	{
+		return (PhysicsTrace*)m_pSelf;
+	}
 	inline PhysicsTrace::Result Trace(PhysicsTrace::Request request) 
 	{
 		return
@@ -10631,6 +11163,10 @@ class RenderTools
 {
 	public:
 	void *m_pSelf;
+	inline operator RenderTools*()
+	{
+		return (RenderTools*)m_pSelf;
+	}
 	inline int SetRenderState(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats) 
 	{
 		return
@@ -10693,6 +11229,10 @@ class RnCapsuleDesc_t
 {
 	public:
 	void *m_pSelf;
+	inline operator RnCapsuleDesc_t*()
+	{
+		return (RnCapsuleDesc_t*)m_pSelf;
+	}
 	RW_VAR(RnCapsule_t,m_Capsule,RnCapsuleDesc_t,g_nativeFunctions[2364],g_nativeFunctions[2365]);
 	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnCapsuleDesc_t,g_nativeFunctions[2366],g_nativeFunctions[2367]);
 	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnCapsuleDesc_t,g_nativeFunctions[2368],g_nativeFunctions[2369]);
@@ -10701,6 +11241,10 @@ class RnHull_t
 {
 	public:
 	void *m_pSelf;
+	inline operator RnHull_t*()
+	{
+		return (RnHull_t*)m_pSelf;
+	}
 	inline int GetVertexCount() 
 	{
 		return
@@ -10755,6 +11299,10 @@ class RnHullDesc_t
 {
 	public:
 	void *m_pSelf;
+	inline operator RnHullDesc_t*()
+	{
+		return (RnHullDesc_t*)m_pSelf;
+	}
 	inline const RnHull_t* GetHull() 
 	{
 		return
@@ -10767,6 +11315,10 @@ class RnMesh_t
 {
 	public:
 	void *m_pSelf;
+	inline operator RnMesh_t*()
+	{
+		return (RnMesh_t*)m_pSelf;
+	}
 	inline int GetTriangleCount() 
 	{
 		return
@@ -10801,6 +11353,10 @@ class RnMeshDesc_t
 {
 	public:
 	void *m_pSelf;
+	inline operator RnMeshDesc_t*()
+	{
+		return (RnMeshDesc_t*)m_pSelf;
+	}
 	inline const RnMesh_t* GetMesh() 
 	{
 		return
@@ -10813,6 +11369,10 @@ class RnSphereDesc_t
 {
 	public:
 	void *m_pSelf;
+	inline operator RnSphereDesc_t*()
+	{
+		return (RnSphereDesc_t*)m_pSelf;
+	}
 	RW_VAR(RnSphere_t,m_Sphere,RnSphereDesc_t,g_nativeFunctions[2396],g_nativeFunctions[2397]);
 	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnSphereDesc_t,g_nativeFunctions[2398],g_nativeFunctions[2399]);
 	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnSphereDesc_t,g_nativeFunctions[2400],g_nativeFunctions[2401]);
@@ -10821,6 +11381,10 @@ class SceneSystemPerFrameStats_t
 {
 	public:
 	void *m_pSelf;
+	inline operator SceneSystemPerFrameStats_t*()
+	{
+		return (SceneSystemPerFrameStats_t*)m_pSelf;
+	}
 	RW_VAR(unsigned int,m_nTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2402],g_nativeFunctions[2403]);
 	RW_VAR(unsigned int,m_nArtistTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2404],g_nativeFunctions[2405]);
 	RW_VAR(unsigned int,m_nRenderBatchDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2406],g_nativeFunctions[2407]);
@@ -10877,6 +11441,10 @@ class ShaderTools
 {
 	public:
 	void *m_pSelf;
+	inline operator ShaderTools*()
+	{
+		return (ShaderTools*)m_pSelf;
+	}
 	static
 	inline const char* GetShaderSource(const char* pShaderFile) 
 	{
@@ -10894,6 +11462,10 @@ class SheetSequence_t
 {
 	public:
 	void *m_pSelf;
+	inline operator SheetSequence_t*()
+	{
+		return (SheetSequence_t*)m_pSelf;
+	}
 	inline int FrameCount() 
 	{
 		return
@@ -10910,6 +11482,10 @@ class SheetSequenceFrame_t
 {
 	public:
 	void *m_pSelf;
+	inline operator SheetSequenceFrame_t*()
+	{
+		return (SheetSequenceFrame_t*)m_pSelf;
+	}
 	inline int ImageCount() 
 	{
 		return
@@ -10926,6 +11502,10 @@ class Steam::Inventory
 {
 	public:
 	void *m_pSelf;
+	inline operator Steam::Inventory*()
+	{
+		return (Steam::Inventory*)m_pSelf;
+	}
 	inline const CSteamInventoryResult* GetAllItems() 
 	{
 		return
@@ -10980,6 +11560,10 @@ class Steam::Screenshots
 {
 	public:
 	void *m_pSelf;
+	inline operator Steam::Screenshots*()
+	{
+		return (Steam::Screenshots*)m_pSelf;
+	}
 	inline int WriteScreenshot(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight) 
 	{
 		return
@@ -10990,6 +11574,10 @@ class Steam::Ugc::CUgcInstall
 {
 	public:
 	void *m_pSelf;
+	inline operator Steam::Ugc::CUgcInstall*()
+	{
+		return (Steam::Ugc::CUgcInstall*)m_pSelf;
+	}
 	static
 	inline const Steam::Ugc::CUgcInstall* Create(uint64 fileid) 
 	{
@@ -11013,6 +11601,10 @@ class Steam::Ugc::CUgcQuery
 {
 	public:
 	void *m_pSelf;
+	inline operator Steam::Ugc::CUgcQuery*()
+	{
+		return (Steam::Ugc::CUgcQuery*)m_pSelf;
+	}
 	static
 	inline const Steam::Ugc::CUgcQuery* CreateQuery(const char* json, const char* cursor) 
 	{
@@ -11036,6 +11628,10 @@ class Steam::Ugc::CUgcUpdate
 {
 	public:
 	void *m_pSelf;
+	inline operator Steam::Ugc::CUgcUpdate*()
+	{
+		return (Steam::Ugc::CUgcUpdate*)m_pSelf;
+	}
 	static
 	inline const Steam::Ugc::CUgcUpdate* CreateCommunityItem() 
 	{
@@ -11167,6 +11763,10 @@ class VertexLayout
 {
 	public:
 	void *m_pSelf;
+	inline operator VertexLayout*()
+	{
+		return (VertexLayout*)m_pSelf;
+	}
 	VertexLayout(const char* name, int size) 
 	{
 		m_pSelf = ((void*(*)(const char* name, int size))g_nativeFunctions[2593])(name, size);
@@ -11192,6 +11792,10 @@ class VfxCompiledShaderInfo_t
 {
 	public:
 	void *m_pSelf;
+	inline operator VfxCompiledShaderInfo_t*()
+	{
+		return (VfxCompiledShaderInfo_t*)m_pSelf;
+	}
 	inline void Delete() 
 	{
 		((void(*)(void* __self))g_nativeFunctions[2598])(m_pSelf);
@@ -11203,6 +11807,10 @@ class VPhysXBodyPart_t
 {
 	public:
 	void *m_pSelf;
+	inline operator VPhysXBodyPart_t*()
+	{
+		return (VPhysXBodyPart_t*)m_pSelf;
+	}
 	inline int GetSphereCount() 
 	{
 		return
@@ -11266,6 +11874,10 @@ class VPhysXJoint_t
 {
 	public:
 	void *m_pSelf;
+	inline operator VPhysXJoint_t*()
+	{
+		return (VPhysXJoint_t*)m_pSelf;
+	}
 	inline float GetLinearLimitMin() 
 	{
 		return
@@ -11347,6 +11959,10 @@ class VSound_t
 {
 	public:
 	void *m_pSelf;
+	inline operator VSound_t*()
+	{
+		return (VSound_t*)m_pSelf;
+	}
 	inline void DestroyStrongHandle() 
 	{
 		((void(*)(void* self))g_nativeFunctions[2685])(m_pSelf);
@@ -11416,6 +12032,10 @@ class WindowsGlue
 {
 	public:
 	void *m_pSelf;
+	inline operator WindowsGlue*()
+	{
+		return (WindowsGlue*)m_pSelf;
+	}
 	inline const char* FindFile() 
 	{
 		return

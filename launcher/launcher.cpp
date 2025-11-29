@@ -11,7 +11,7 @@
 #include "libloaderapi.h"
 #include "engine/structs.h"
 #include "engine/engine2.h"
-#include "engine/engine2.h"
+#include "engine/testrender.h"
 #include <cstdlib>
 
 int iStructSizes[149]={24,1,16,2,24,4,0x11,4,4,3,4,8,0x14,0x1c,0x28,4,4,0x10,4,4,8,4,8,4,4,4,4,4,0x10,4,4,4,0xc,0xc,0x20,0x2dc,4,0x10,0x288,0x101,0x40,4,0x60,0x2c,0x20,4,4,4,4,8,8,4,4,4,4,8,4,4,1,4,4,0x28,0x28,0x88,0x78,4,4,0x28,4,4,4,4,4,4,0xc,0x10,0x10,0x18,4,4,4,8,4,1,4,0x30,4,8,4,4,8,4,4,1,0x1c,200,0x88,0x1c,0x10,1,4,4,4,8,0x4c,4,4,4,4,0x2c,4,0x1c,0x74,0x20,0x78,4,8,0x2c,4,4,4,4,0xc,8,0x10,8,0x14,4,4,0x40,4,1,0x18,4,8,4,4,4,4,4,4,8,8,4,4,4,8,4,};
@@ -21,18 +21,16 @@ CMaterialSystem2AppSystemDict *AppSystem;
 fpxr::Instance *FPXRInstance;
 
 // fix this bullshit
-class g_pEngineServiceMgr EngineServiceMgr;
+class g_pEngineServiceMgr *g_pEngineServiceMgr = new class g_pEngineServiceMgr;
 
 void CC RegisterEngineLogger( int id, const char *v )
 {
 	printf("EngineLogger %s\n",v);
 }
+static CCameraRenderer *s_pCameraRenderer;
 void CC OnClientOutput()
 {
-	int x;
-	int y;
-	EngineServiceMgr.GetEngineSwapChainSize(&x, &y);
-	printf("%ix%i\n",x,y);
+	pTestRendering->Frame(g_pEngineServiceMgr->GetEngineSwapChain());
 }
 void CC SetSystemInfo()
 {
@@ -73,17 +71,14 @@ int InternalWantsInit()
 
 const char *GetVulkanInstanceExtensionsRequired()
 {
-	printf("-------------------------------GetVulkanInstanceExtensionsRequired\n");
-	printf("%s\n",FPXRInstance->GetRequiredInstanceExtensions());
 	if (!FPXRInstance->HasHeadset()) return "";
-	return FPXRInstance->GetRequiredInstanceExtensions();
+	return NULL;
 }
 
 const char *GetVulkanDeviceExtensionsRequired()
 {
-	printf("%s\n",FPXRInstance->GetRequiredInstanceExtensions());
 	if (!FPXRInstance->HasHeadset()) return "";
-	return FPXRInstance->GetRequiredDeviceExtensions();
+	return NULL;
 }
 
 void OnWindowActive(int bIsActive)
@@ -173,7 +168,6 @@ int main( int nArgc, char **argv )
 	fpxr::InstanceInfo fpxrInstanceInfo = {};
 	fpxrInstanceInfo.eGraphicsAPI = 2;
 	fpxrInstanceInfo.bUseDebugMessenger = true;
-	FPXRInstance = new fpxr::Instance(fpxrInstanceInfo);
 
 	printf("STEAM APP ID %i\n",AppSystem->GetSteamAppId());
 	int v = SourceEnginePreInit("engine2.exe", (CMaterialSystem2AppSystemDict*)AppSystem->m_pSelf);
@@ -181,7 +175,11 @@ int main( int nArgc, char **argv )
 	v = SourceEngineInit((CMaterialSystem2AppSystemDict*)AppSystem->m_pSelf);
 	if (!v) printf("Failed to SourceEngineInit\n");
 
+	pTestRendering->Init();
+
 	Plat_SetCurrentFrame(0);
+
+	ISceneWorld *pSceneWorld = new ISceneWorld();
 
 	while(true)
 	{
@@ -193,8 +191,3 @@ int main( int nArgc, char **argv )
 	return 0;
 }
 
-class CGameAppSystem: CAppSystem
-{
-public:
-	virtual void Init() override;
-};

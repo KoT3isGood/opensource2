@@ -4,9 +4,11 @@
 #include "stdint.h"
 #define uint unsigned int
 typedef unsigned int long uint32;
-#define int64 long long
+typedef long long int64;
 #define uint64 unsigned long long
 #define nint long long
+
+#define abstract_class class
 
 struct AABB_t
 {
@@ -145,7 +147,9 @@ class CAudioProcessor;
 class HMaterialStrong;
 class ISceneWorld;
 class CRenderAttributes;
-class SwapChainHandle_t {};
+class SwapChainHandle_t {
+	uint64_t nHandle;
+};
 class HRenderTextureStrong;
 class ISceneView;
 class CTransformUnaligned {};
@@ -260,7 +264,24 @@ class HResourceManifest__;
 struct SceneSystemPerFrameStats_t;
 class ISceneLayer;
 struct SceneVolumetricFogVolume_t {};
-struct RenderViewport_t {};
+struct RenderViewport_t {
+	int m_nVersion = 1;
+	int m_nTopLeftX;
+	int m_nTopLeftY;
+	int m_nWidth;
+	int m_nHeight;
+	float m_fMinZ = 0;
+	float m_fMaxZ = 1;
+	void Init(int nTopLeftX, int nTopLeftY, int nWidth, int nHeight, float fMinZ, float fMaxZ)
+	{
+		m_nTopLeftX = nTopLeftX;
+		m_nTopLeftY = nTopLeftY;
+		m_nWidth = nWidth;
+		m_nHeight = nHeight;
+		m_fMinZ = fMinZ;
+		m_fMaxZ = fMaxZ;
+	}
+};
 class ITonemapSystem;
 class IVolumetricFog;
 class SteamHTMLSurface;
