@@ -32,12 +32,12 @@ class RWVariable
 	}
 	inline RWVariable& operator = (const A& other)
 	{
-		m_WriteOp( m_parent , other);
+		m_WriteOp( (Parent*)(m_parent)->m_pSelf , other);
 		return *this;
 	}
 	inline operator A()
 	{
-		return m_ReadOp( m_parent );
+		return m_ReadOp( ((Parent*)m_parent)->m_pSelf );
 	}
 };
 #define RW_VAR(type, name, parent, readop, writeop) RWVariable<type, parent> name{readop, writeop,this};

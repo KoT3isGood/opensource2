@@ -111,6 +111,11 @@ void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRe
 	printf("%i\n",pRenderAttributes->IsEmpty());
 }
 
+void PipelineEnd(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
+{
+
+}
+
 int InternalIsActive()
 {
 	return true;
@@ -206,7 +211,7 @@ int main( int nArgc, char **argv )
 	g_callbackFunctions[28] = (void*)OnClientOutput;
 	g_callbackFunctions[31] = (void*)RegisterHandle;
 	g_callbackFunctions[49] = (void*)AddLayersToView; // https://github.com/Facepunch/sbox-public/blob/16809db7875c3a9bd405b6482a3c5c7d7038cb3e/engine/Sandbox.Engine/Systems/Render/RenderPipeline/RenderPipeline.cs#L23
-	g_callbackFunctions[50] = (void*)SetSystemInfo; // 
+	g_callbackFunctions[50] = (void*)&PipelineEnd; // 
 	g_callbackFunctions[56] = (void*)SetSystemInfo;
 	g_callbackFunctions[70] = (void*)InternalIsActive;
 	g_callbackFunctions[71] = (void*)InternalWantsInit;

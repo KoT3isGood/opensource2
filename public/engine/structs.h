@@ -148,7 +148,8 @@ class HMaterialStrong;
 class ISceneWorld;
 class IRayTraceSceneWorld;
 class CRenderAttributes;
-class SwapChainHandle_t {
+struct SwapChainHandle_t {
+public:
 	uint64_t nHandle;
 };
 class HRenderTextureStrong;
