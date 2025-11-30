@@ -1,3 +1,6 @@
 [submodule "opensource2-sbox"]
 	path = opensource2-sbox
 	url = https://github.com/KoT3isGood/opensource2-sbox.git
+[submodule "external/murmur2"]
+	path = external/murmur2
+	url = https://github.com/abrandoned/murmur2.git

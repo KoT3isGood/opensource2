@@ -16,9 +16,13 @@ DECLARE_BUILD_STAGE(launcher)
 		"launcher/launcher.cpp",
 		"engine/engine2.cpp",
 		"engine/testrender.cpp",
+		"engine/murmur2.cpp",
+		"engine/stringtoken.cpp",
+		"external/murmur2/MurmurHash2.c",
 	};
 	stCompile.includeDirectories = {
-		"public"
+		"public",
+		"external/murmur2",
 	};
 	stCompile.m_target.kernel = TARGET_KERNEL_WINDOWS_GNU;
 	stLink = ccompiler->Compile(&stCompile);

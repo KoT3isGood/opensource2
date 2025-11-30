@@ -5818,77 +5818,93 @@ class EngineGlue
 	{
 		return (EngineGlue*)m_pSelf;
 	}
+	static
 	inline const KeyValues3* JsonToKeyValues3(const char* json) 
 	{
 		return
 		((const KeyValues3*(*)(const char* json))g_nativeFunctions[1323])(json);
 	}
+	static
 	inline const char* KeyValuesToJson(const char* kv) 
 	{
 		return
 		((const char*(*)(const char* kv))g_nativeFunctions[1324])(kv);
 	}
+	static
 	inline const char* KeyValues3ToJson(KeyValues3* kv) 
 	{
 		return
 		((const char*(*)(KeyValues3* kv))g_nativeFunctions[1325])(kv);
 	}
+	static
 	inline const KeyValues3* LoadKeyValues3(const char* kvString) 
 	{
 		return
 		((const KeyValues3*(*)(const char* kvString))g_nativeFunctions[1326])(kvString);
 	}
+	static
 	inline unsigned int GetStringToken(const char* str) 
 	{
 		return
 		((unsigned int(*)(const char* str))g_nativeFunctions[1327])(str);
 	}
+	static
 	inline const char* GetStringTokenValue(unsigned int token) 
 	{
 		return
 		((const char*(*)(unsigned int token))g_nativeFunctions[1328])(token);
 	}
+	static
 	inline void AddSearchPath(const char* path, const char* groupid, int head) 
 	{
 		((void(*)(const char* path, const char* groupid, int head))g_nativeFunctions[1329])(path, groupid, head);
 	}
+	static
 	inline int RemoveSearchPath(const char* path, const char* groupid) 
 	{
 		return
 		((int(*)(const char* path, const char* groupid))g_nativeFunctions[1330])(path, groupid);
 	}
+	static
 	inline uint64 ApproximateProcessMemoryUsage() 
 	{
 		return
 		((uint64(*)())g_nativeFunctions[1331])();
 	}
+	static
 	inline const char* ReadCompiledResourceFileJson(void* data) 
 	{
 		return
 		((const char*(*)(void* data))g_nativeFunctions[1332])(data);
 	}
+	static
 	inline const void* ReadCompiledResourceFileBlock(const char* blockName, void* pHeader, int* nSize) 
 	{
 		return
 		((const void*(*)(const char* __blockName, void* __pHeader, int* __nSize))g_nativeFunctions[1333])(blockName, pHeader, nSize);
 	}
+	static
 	inline const char* ReadCompiledResourceFileJsonFromFilesystem(const char* filename) 
 	{
 		return
 		((const char*(*)(const char* filename))g_nativeFunctions[1334])(filename);
 	}
+	static
 	inline void SetEngineLoggingVerbose(int verbose) 
 	{
 		((void(*)(int verbose))g_nativeFunctions[1335])(verbose);
 	}
+	static
 	inline void RequestWebAuthTicket() 
 	{
 		((void(*)())g_nativeFunctions[1336])();
 	}
+	static
 	inline void CancelWebAuthTicket() 
 	{
 		((void(*)())g_nativeFunctions[1337])();
 	}
+	static
 	inline const char* GetWebAuthTicket() 
 	{
 		return
@@ -5903,10 +5919,12 @@ class ErrorReports
 	{
 		return (ErrorReports*)m_pSelf;
 	}
+	static
 	inline void SetTag(const char* key, const char* value) 
 	{
 		((void(*)(const char* key, const char* value))g_nativeFunctions[1339])(key, value);
 	}
+	static
 	inline void Breadcrumb(int action, const char* category, const char* description) 
 	{
 		((void(*)(int action, const char* category, const char* description))g_nativeFunctions[1340])(action, category, description);
@@ -7180,144 +7198,175 @@ class g_pWorldRendererMgr
 		((int(*)(const char* pWorldName))g_nativeFunctions[1568])(pWorldName);
 	}
 };
+static
 inline void Plat_ScreenToWindowCoords(void* hwnd, int* x, int* y) 
 {
 	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1569])(hwnd, x, y);
 }
+static
 inline void Plat_WindowToScreenCoords(void* hwnd, int* x, int* y) 
 {
 	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1570])(hwnd, x, y);
 }
+static
 inline void Plat_MessageBox(const char* title, const char* message) 
 {
 	((void(*)(const char* title, const char* message))g_nativeFunctions[1571])(title, message);
 }
+static
 inline int Plat_GetDesktopResolution(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate) 
 {
 	return
 	((int(*)(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate))g_nativeFunctions[1572])(nMonitorIndex, pWidth, pHeight, pRefreshRate);
 }
+static
 inline int Plat_GetDefaultMonitorIndex() 
 {
 	return
 	((int(*)())g_nativeFunctions[1573])();
 }
+static
 inline int Plat_SafeRemoveFile(const char* file) 
 {
 	return
 	((int(*)(const char* file))g_nativeFunctions[1574])(file);
 }
+static
 inline void Plat_SetModuleFilename(const char* filename) 
 {
 	((void(*)(const char* filename))g_nativeFunctions[1575])(filename);
 }
+static
 inline void Plat_SetCurrentDirectory(const char* filename) 
 {
 	((void(*)(const char* filename))g_nativeFunctions[1576])(filename);
 }
+static
 inline uint64 Plat_GetCurrentFrame() 
 {
 	return
 	((uint64(*)())g_nativeFunctions[1577])();
 }
+static
 inline void Plat_SetCurrentFrame(uint64 nFrame) 
 {
 	((void(*)(uint64 nFrame))g_nativeFunctions[1578])(nFrame);
 }
+static
 inline void Plat_ChangeCurrentFrame(int64 nDelta) 
 {
 	((void(*)(int64 nDelta))g_nativeFunctions[1579])(nDelta);
 }
+static
 inline int Plat_IsRunningOnCustomerMachine() 
 {
 	return
 	((int(*)())g_nativeFunctions[1580])();
 }
+static
 inline int Plat_HasClipboardText() 
 {
 	return
 	((int(*)())g_nativeFunctions[1581])();
 }
+static
 inline void Plat_SetClipboardText(const char* text) 
 {
 	((void(*)(const char* text))g_nativeFunctions[1582])(text);
 }
+static
 inline const char* Plat_GetClipboardText() 
 {
 	return
 	((const char*(*)())g_nativeFunctions[1583])();
 }
+static
 inline void Plat_ClearClipboardText() 
 {
 	((void(*)())g_nativeFunctions[1584])();
 }
+static
 inline int IsWindowFocused() 
 {
 	return
 	((int(*)())g_nativeFunctions[1585])();
 }
+static
 inline int IsRetail() 
 {
 	return
 	((int(*)())g_nativeFunctions[1586])();
 }
+static
 inline int HasLaunchParameter(const char* name) 
 {
 	return
 	((int(*)(const char* __name))g_nativeFunctions[1587])(name);
 }
+static
 inline void Plat_SetNoAssert() 
 {
 	((void(*)())g_nativeFunctions[1588])();
 }
+static
 inline const char* GetGameRootFolder() 
 {
 	return
 	((const char*(*)())g_nativeFunctions[1589])();
 }
+static
 inline const char* GetGameSearchPath() 
 {
 	return
 	((const char*(*)())g_nativeFunctions[1590])();
 }
+static
 inline int SourceEngineUnitTestInit() 
 {
 	return
 	((int(*)())g_nativeFunctions[1591])();
 }
+static
 inline int SourceEnginePreInit(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict) 
 {
 	return
 	((int(*)(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1592])(lpCmdLine, appDict);
 }
+static
 inline int SourceEngineInit(CMaterialSystem2AppSystemDict* appDict) 
 {
 	return
 	((int(*)(CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1593])(appDict);
 }
+static
 inline int SourceEngineFrame(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime) 
 {
 	return
 	((int(*)(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime))g_nativeFunctions[1594])(appDict, currentTime, previousTime);
 }
+static
 inline void SourceEngineShutdown(CMaterialSystem2AppSystemDict* appDict, int forced) 
 {
 	((void(*)(CMaterialSystem2AppSystemDict* appDict, int forced))g_nativeFunctions[1595])(appDict, forced);
 }
+static
 inline void UpdateWindowSize() 
 {
 	((void(*)())g_nativeFunctions[1596])();
 }
+static
 inline float GetDiagonalDpi() 
 {
 	return
 	((float(*)())g_nativeFunctions[1597])();
 }
+static
 inline int AppIsDedicatedServer() 
 {
 	return
 	((int(*)())g_nativeFunctions[1598])();
 }
+static
 inline void ToolsStallMonitor_IndicateActivity() 
 {
 	((void(*)())g_nativeFunctions[1599])();
@@ -7465,11 +7514,13 @@ inline void SteamGameServer_ReleaseCurrentThreadMemory()
 {
 	((void(*)())g_nativeFunctions[1622])();
 }
+static
 inline const ISteamNetworkingSockets* SteamNetworkingSockets() 
 {
 	return
 	((const ISteamNetworkingSockets*(*)())g_nativeFunctions[1623])();
 }
+static
 inline void SteamGameServer_Init(int gamePort, int queryPort, const char* serverVersion) 
 {
 	((void(*)(int __gamePort, int __queryPort, const char* __serverVersion))g_nativeFunctions[1624])(gamePort, queryPort, serverVersion);
@@ -7482,441 +7533,540 @@ class globalYoga
 	{
 		return (globalYoga*)m_pSelf;
 	}
+	static
 	inline YGNodeRef YGNodeNew() 
 	{
 		return
 		((YGNodeRef(*)())g_nativeFunctions[1625])();
 	}
+	static
 	inline YGNodeRef YGNodeNewWithConfig(YGConfigRef config) 
 	{
 		return
 		((YGNodeRef(*)(YGConfigRef config))g_nativeFunctions[1626])(config);
 	}
+	static
 	inline void YGNodeFree(YGNodeRef r) 
 	{
 		((void(*)(YGNodeRef r))g_nativeFunctions[1627])(r);
 	}
+	static
 	inline void YGNodeReset(YGNodeRef r) 
 	{
 		((void(*)(YGNodeRef r))g_nativeFunctions[1628])(r);
 	}
+	static
 	inline void YGNodeCalculateLayout(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction) 
 	{
 		((void(*)(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction))g_nativeFunctions[1629])(r, ownerWidth, ownerHeight, direction);
 	}
+	static
 	inline int YGNodeGetHasNewLayout(YGNodeRef r) 
 	{
 		return
 		((int(*)(YGNodeRef r))g_nativeFunctions[1630])(r);
 	}
+	static
 	inline void YGNodeSetHasNewLayout(YGNodeRef r, int b) 
 	{
 		((void(*)(YGNodeRef r, int b))g_nativeFunctions[1631])(r, b);
 	}
+	static
 	inline void YGNodeIsDirty(YGNodeRef r) 
 	{
 		((void(*)(YGNodeRef r))g_nativeFunctions[1632])(r);
 	}
+	static
 	inline void YGNodeMarkDirty(YGNodeRef r) 
 	{
 		((void(*)(YGNodeRef r))g_nativeFunctions[1633])(r);
 	}
+	static
 	inline void YGNodeInsertChild(YGNodeRef owner, YGNodeRef child, int index) 
 	{
 		((void(*)(YGNodeRef owner, YGNodeRef child, int index))g_nativeFunctions[1634])(owner, child, index);
 	}
+	static
 	inline void YGNodeRemoveChild(YGNodeRef owner, YGNodeRef child) 
 	{
 		((void(*)(YGNodeRef owner, YGNodeRef child))g_nativeFunctions[1635])(owner, child);
 	}
+	static
 	inline void YGNodeRemoveAllChildren(YGNodeRef owner) 
 	{
 		((void(*)(YGNodeRef owner))g_nativeFunctions[1636])(owner);
 	}
+	static
 	inline uint64 YGNodeGetChildCount(YGNodeRef owner) 
 	{
 		return
 		((uint64(*)(YGNodeRef owner))g_nativeFunctions[1637])(owner);
 	}
+	static
 	inline YGNodeRef YGNodeGetParent(YGNodeRef owner) 
 	{
 		return
 		((YGNodeRef(*)(YGNodeRef owner))g_nativeFunctions[1638])(owner);
 	}
+	static
 	inline void YGNodeSetConfig(YGNodeRef r, YGConfigRef congig) 
 	{
 		((void(*)(YGNodeRef r, YGConfigRef congig))g_nativeFunctions[1639])(r, congig);
 	}
+	static
 	inline float YGNodeLayoutGetLeft(YGNodeRef r) 
 	{
 		return
 		((float(*)(YGNodeRef r))g_nativeFunctions[1640])(r);
 	}
+	static
 	inline float YGNodeLayoutGetTop(YGNodeRef r) 
 	{
 		return
 		((float(*)(YGNodeRef r))g_nativeFunctions[1641])(r);
 	}
+	static
 	inline float YGNodeLayoutGetRight(YGNodeRef r) 
 	{
 		return
 		((float(*)(YGNodeRef r))g_nativeFunctions[1642])(r);
 	}
+	static
 	inline float YGNodeLayoutGetBottom(YGNodeRef r) 
 	{
 		return
 		((float(*)(YGNodeRef r))g_nativeFunctions[1643])(r);
 	}
+	static
 	inline float YGNodeLayoutGetWidth(YGNodeRef r) 
 	{
 		return
 		((float(*)(YGNodeRef r))g_nativeFunctions[1644])(r);
 	}
+	static
 	inline float YGNodeLayoutGetHeight(YGNodeRef r) 
 	{
 		return
 		((float(*)(YGNodeRef r))g_nativeFunctions[1645])(r);
 	}
+	static
 	inline int64 YGNodeLayoutGetDirection(YGNodeRef r) 
 	{
 		return
 		((int64(*)(YGNodeRef r))g_nativeFunctions[1646])(r);
 	}
+	static
 	inline float YGNodeLayoutGetHadOverflow(YGNodeRef r) 
 	{
 		return
 		((float(*)(YGNodeRef r))g_nativeFunctions[1647])(r);
 	}
+	static
 	inline float YGNodeLayoutGetMargin(YGNodeRef node, int64 edge) 
 	{
 		return
 		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1648])(node, edge);
 	}
+	static
 	inline float YGNodeLayoutGetBorder(YGNodeRef node, int64 edge) 
 	{
 		return
 		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1649])(node, edge);
 	}
+	static
 	inline float YGNodeLayoutGetPadding(YGNodeRef node, int64 edge) 
 	{
 		return
 		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1650])(node, edge);
 	}
+	static
 	inline YGConfigRef YGConfigNew() 
 	{
 		return
 		((YGConfigRef(*)())g_nativeFunctions[1651])();
 	}
+	static
 	inline void YGConfigFree(YGConfigRef c) 
 	{
 		((void(*)(YGConfigRef c))g_nativeFunctions[1652])(c);
 	}
+	static
 	inline void YGConfigSetUseWebDefaults(YGConfigRef config, int enabled) 
 	{
 		((void(*)(YGConfigRef config, int enabled))g_nativeFunctions[1653])(config, enabled);
 	}
+	static
 	inline void YGConfigSetPointScaleFactor(YGConfigRef config, float pixelsInPoint) 
 	{
 		((void(*)(YGConfigRef config, float pixelsInPoint))g_nativeFunctions[1654])(config, pixelsInPoint);
 	}
+	static
 	inline void YGNodeCopyStyle(YGNodeRef dstNode, YGNodeRef srcNode) 
 	{
 		((void(*)(YGNodeRef dstNode, YGNodeRef srcNode))g_nativeFunctions[1655])(dstNode, srcNode);
 	}
+	static
 	inline void YGNodeStyleSetDirection(YGNodeRef node, int64 direction) 
 	{
 		((void(*)(YGNodeRef node, int64 direction))g_nativeFunctions[1656])(node, direction);
 	}
+	static
 	inline int64 YGNodeStyleGetDirection(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1657])(node);
 	}
+	static
 	inline void YGNodeStyleSetFlexDirection(YGNodeRef node, int64 flexDirection) 
 	{
 		((void(*)(YGNodeRef node, int64 flexDirection))g_nativeFunctions[1658])(node, flexDirection);
 	}
+	static
 	inline int64 YGNodeStyleGetFlexDirection(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1659])(node);
 	}
+	static
 	inline void YGNodeStyleSetJustifyContent(YGNodeRef node, int64 justifyContent) 
 	{
 		((void(*)(YGNodeRef node, int64 justifyContent))g_nativeFunctions[1660])(node, justifyContent);
 	}
+	static
 	inline int64 YGNodeStyleGetJustifyContent(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1661])(node);
 	}
+	static
 	inline void YGNodeStyleSetAlignContent(YGNodeRef node, int64 alignContent) 
 	{
 		((void(*)(YGNodeRef node, int64 alignContent))g_nativeFunctions[1662])(node, alignContent);
 	}
+	static
 	inline int64 YGNodeStyleGetAlignContent(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1663])(node);
 	}
+	static
 	inline void YGNodeStyleSetAlignItems(YGNodeRef node, int64 alignItems) 
 	{
 		((void(*)(YGNodeRef node, int64 alignItems))g_nativeFunctions[1664])(node, alignItems);
 	}
+	static
 	inline int64 YGNodeStyleGetAlignItems(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1665])(node);
 	}
+	static
 	inline void YGNodeStyleSetAlignSelf(YGNodeRef node, int64 alignSelf) 
 	{
 		((void(*)(YGNodeRef node, int64 alignSelf))g_nativeFunctions[1666])(node, alignSelf);
 	}
+	static
 	inline int64 YGNodeStyleGetAlignSelf(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1667])(node);
 	}
+	static
 	inline void YGNodeStyleSetPositionType(YGNodeRef node, int64 positionType) 
 	{
 		((void(*)(YGNodeRef node, int64 positionType))g_nativeFunctions[1668])(node, positionType);
 	}
+	static
 	inline int64 YGNodeStyleGetPositionType(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1669])(node);
 	}
+	static
 	inline void YGNodeStyleSetFlexWrap(YGNodeRef node, int64 flexWrap) 
 	{
 		((void(*)(YGNodeRef node, int64 flexWrap))g_nativeFunctions[1670])(node, flexWrap);
 	}
+	static
 	inline int64 YGNodeStyleGetFlexWrap(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1671])(node);
 	}
+	static
 	inline void YGNodeStyleSetOverflow(YGNodeRef node, int64 overflow) 
 	{
 		((void(*)(YGNodeRef node, int64 overflow))g_nativeFunctions[1672])(node, overflow);
 	}
+	static
 	inline int64 YGNodeStyleGetOverflow(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1673])(node);
 	}
+	static
 	inline void YGNodeStyleSetDisplay(YGNodeRef node, int64 display) 
 	{
 		((void(*)(YGNodeRef node, int64 display))g_nativeFunctions[1674])(node, display);
 	}
+	static
 	inline int64 YGNodeStyleGetDisplay(YGNodeRef node) 
 	{
 		return
 		((int64(*)(YGNodeRef node))g_nativeFunctions[1675])(node);
 	}
+	static
 	inline void YGNodeStyleSetFlex(YGNodeRef node, float flex) 
 	{
 		((void(*)(YGNodeRef node, float flex))g_nativeFunctions[1676])(node, flex);
 	}
+	static
 	inline float YGNodeStyleGetFlex(YGNodeRef node) 
 	{
 		return
 		((float(*)(YGNodeRef node))g_nativeFunctions[1677])(node);
 	}
+	static
 	inline void YGNodeStyleSetFlexGrow(YGNodeRef node, float flexGrow) 
 	{
 		((void(*)(YGNodeRef node, float flexGrow))g_nativeFunctions[1678])(node, flexGrow);
 	}
+	static
 	inline float YGNodeStyleGetFlexGrow(YGNodeRef node) 
 	{
 		return
 		((float(*)(YGNodeRef node))g_nativeFunctions[1679])(node);
 	}
+	static
 	inline void YGNodeStyleSetFlexShrink(YGNodeRef node, float flexShrink) 
 	{
 		((void(*)(YGNodeRef node, float flexShrink))g_nativeFunctions[1680])(node, flexShrink);
 	}
+	static
 	inline float YGNodeStyleGetFlexShrink(YGNodeRef node) 
 	{
 		return
 		((float(*)(YGNodeRef node))g_nativeFunctions[1681])(node);
 	}
+	static
 	inline void YGNodeStyleSetFlexBasis(YGNodeRef node, float flexBasis) 
 	{
 		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1682])(node, flexBasis);
 	}
+	static
 	inline void YGNodeStyleSetFlexBasisPercent(YGNodeRef node, float flexBasis) 
 	{
 		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1683])(node, flexBasis);
 	}
+	static
 	inline void YGNodeStyleSetFlexBasisAuto(YGNodeRef node) 
 	{
 		((void(*)(YGNodeRef node))g_nativeFunctions[1684])(node);
 	}
+	static
 	inline YGValue YGNodeStyleGetFlexBasis(YGNodeRef node) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1685])(node);
 	}
+	static
 	inline void YGNodeStyleSetPosition(YGNodeRef node, int64 edge, float position) 
 	{
 		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1686])(node, edge, position);
 	}
+	static
 	inline void YGNodeStyleSetPositionPercent(YGNodeRef node, int64 edge, float position) 
 	{
 		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1687])(node, edge, position);
 	}
+	static
 	inline YGValue YGNodeStyleGetPosition(YGNodeRef node, int64 edge) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1688])(node, edge);
 	}
+	static
 	inline void YGNodeStyleSetMargin(YGNodeRef node, int64 edge, float margin) 
 	{
 		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1689])(node, edge, margin);
 	}
+	static
 	inline void YGNodeStyleSetMarginPercent(YGNodeRef node, int64 edge, float margin) 
 	{
 		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1690])(node, edge, margin);
 	}
+	static
 	inline void YGNodeStyleSetMarginAuto(YGNodeRef node, int64 edge) 
 	{
 		((void(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1691])(node, edge);
 	}
+	static
 	inline YGValue YGNodeStyleGetMargin(YGNodeRef node, int64 edge) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1692])(node, edge);
 	}
+	static
 	inline void YGNodeStyleSetPadding(YGNodeRef node, int64 edge, float padding) 
 	{
 		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1693])(node, edge, padding);
 	}
+	static
 	inline void YGNodeStyleSetPaddingPercent(YGNodeRef node, int64 edge, float padding) 
 	{
 		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1694])(node, edge, padding);
 	}
+	static
 	inline YGValue YGNodeStyleGetPadding(YGNodeRef node, int64 edge) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1695])(node, edge);
 	}
+	static
 	inline void YGNodeStyleSetBorder(YGNodeRef node, int64 edge, float border) 
 	{
 		((void(*)(YGNodeRef node, int64 edge, float border))g_nativeFunctions[1696])(node, edge, border);
 	}
+	static
 	inline float YGNodeStyleGetBorder(YGNodeRef node, int64 edge) 
 	{
 		return
 		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1697])(node, edge);
 	}
+	static
 	inline void YGNodeStyleSetGap(YGNodeRef node, int64 gutter, float gapLength) 
 	{
 		((void(*)(YGNodeRef node, int64 gutter, float gapLength))g_nativeFunctions[1698])(node, gutter, gapLength);
 	}
+	static
 	inline float YGNodeStyleGetGap(YGNodeRef node, int64 gutter) 
 	{
 		return
 		((float(*)(YGNodeRef node, int64 gutter))g_nativeFunctions[1699])(node, gutter);
 	}
+	static
 	inline void YGNodeStyleSetWidth(YGNodeRef node, float width) 
 	{
 		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1700])(node, width);
 	}
+	static
 	inline void YGNodeStyleSetWidthPercent(YGNodeRef node, float width) 
 	{
 		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1701])(node, width);
 	}
+	static
 	inline void YGNodeStyleSetWidthAuto(YGNodeRef node) 
 	{
 		((void(*)(YGNodeRef node))g_nativeFunctions[1702])(node);
 	}
+	static
 	inline YGValue YGNodeStyleGetWidth(YGNodeRef node) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1703])(node);
 	}
+	static
 	inline void YGNodeStyleSetHeight(YGNodeRef node, float height) 
 	{
 		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1704])(node, height);
 	}
+	static
 	inline void YGNodeStyleSetHeightPercent(YGNodeRef node, float height) 
 	{
 		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1705])(node, height);
 	}
+	static
 	inline void YGNodeStyleSetHeightAuto(YGNodeRef node) 
 	{
 		((void(*)(YGNodeRef node))g_nativeFunctions[1706])(node);
 	}
+	static
 	inline YGValue YGNodeStyleGetHeight(YGNodeRef node) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1707])(node);
 	}
+	static
 	inline void YGNodeStyleSetMinWidth(YGNodeRef node, float minWidth) 
 	{
 		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1708])(node, minWidth);
 	}
+	static
 	inline void YGNodeStyleSetMinWidthPercent(YGNodeRef node, float minWidth) 
 	{
 		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1709])(node, minWidth);
 	}
+	static
 	inline YGValue YGNodeStyleGetMinWidth(YGNodeRef node) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1710])(node);
 	}
+	static
 	inline void YGNodeStyleSetMinHeight(YGNodeRef node, float minHeight) 
 	{
 		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1711])(node, minHeight);
 	}
+	static
 	inline void YGNodeStyleSetMinHeightPercent(YGNodeRef node, float minHeight) 
 	{
 		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1712])(node, minHeight);
 	}
+	static
 	inline YGValue YGNodeStyleGetMinHeight(YGNodeRef node) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1713])(node);
 	}
+	static
 	inline void YGNodeStyleSetMaxWidth(YGNodeRef node, float maxWidth) 
 	{
 		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1714])(node, maxWidth);
 	}
+	static
 	inline void YGNodeStyleSetMaxWidthPercent(YGNodeRef node, float maxWidth) 
 	{
 		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1715])(node, maxWidth);
 	}
+	static
 	inline YGValue YGNodeStyleGetMaxWidth(YGNodeRef node) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1716])(node);
 	}
+	static
 	inline void YGNodeStyleSetMaxHeight(YGNodeRef node, float maxHeight) 
 	{
 		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1717])(node, maxHeight);
 	}
+	static
 	inline void YGNodeStyleSetMaxHeightPercent(YGNodeRef node, float maxHeight) 
 	{
 		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1718])(node, maxHeight);
 	}
+	static
 	inline YGValue YGNodeStyleGetMaxHeight(YGNodeRef node) 
 	{
 		return
 		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1719])(node);
 	}
+	static
 	inline void YGNodeStyleSetAspectRatio(YGNodeRef node, float aspectRatio) 
 	{
 		((void(*)(YGNodeRef node, float aspectRatio))g_nativeFunctions[1720])(node, aspectRatio);
 	}
+	static
 	inline float YGNodeStyleGetAspectRatio(YGNodeRef node) 
 	{
 		return
 		((float(*)(YGNodeRef node))g_nativeFunctions[1721])(node);
 	}
+	static
 	inline void YGNodeSetMeasureFunc(YGNodeRef node, YGMeasureFunc measureFunc) 
 	{
 		((void(*)(YGNodeRef node, YGMeasureFunc measureFunc))g_nativeFunctions[1722])(node, measureFunc);
 	}
+	static
 	inline int YGNodeHasMeasureFunc(YGNodeRef node) 
 	{
 		return
@@ -8075,18 +8225,22 @@ class Glue::RenderDeviceManager
 	{
 		return (Glue::RenderDeviceManager*)m_pSelf;
 	}
+	static
 	inline void WriteVideoConfig() 
 	{
 		((void(*)())g_nativeFunctions[1748])();
 	}
+	static
 	inline void ResetVideoConfig() 
 	{
 		((void(*)())g_nativeFunctions[1749])();
 	}
+	static
 	inline void ChangeVideoMode(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample) 
 	{
 		((void(*)(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample))g_nativeFunctions[1750])(fullscreen, noborder, vsync, width, height, multisample);
 	}
+	static
 	inline int GetDisplayModes(DisplayMode_t* modes, int max, int windowed) 
 	{
 		return
@@ -8101,26 +8255,31 @@ class Glue::Resources
 	{
 		return (Glue::Resources*)m_pSelf;
 	}
+	static
 	inline HMaterialStrong* GetMaterial(const char* name) 
 	{
 		return
 		((HMaterialStrong*(*)(const char* name))g_nativeFunctions[1752])(name);
 	}
+	static
 	inline HRenderTextureStrong* GetTexture(const char* name) 
 	{
 		return
 		((HRenderTextureStrong*(*)(const char* name))g_nativeFunctions[1753])(name);
 	}
+	static
 	inline HModelStrong* GetModel(const char* name) 
 	{
 		return
 		((HModelStrong*(*)(const char* name))g_nativeFunctions[1754])(name);
 	}
+	static
 	inline HAnimationGraphStrong* GetAnimationGraph(const char* name) 
 	{
 		return
 		((HAnimationGraphStrong*(*)(const char* name))g_nativeFunctions[1755])(name);
 	}
+	static
 	inline HShaderStrong* GetShader(const char* name) 
 	{
 		return
@@ -8328,16 +8487,19 @@ class ImageLoader
 	{
 		return (ImageLoader*)m_pSelf;
 	}
+	static
 	inline int GetMemRequired(int width, int height, int depth, int64 imageFormat, int mipmap) 
 	{
 		return
 		((int(*)(int width, int height, int depth, int64 imageFormat, int mipmap))g_nativeFunctions[1787])(width, height, depth, imageFormat, mipmap);
 	}
+	static
 	inline int GetMemRequired(int width, int height, int depth, int mipmaps, int64 imageFormat) 
 	{
 		return
 		((int(*)(int width, int height, int depth, int mipmaps, int64 imageFormat))g_nativeFunctions[1788])(width, height, depth, mipmaps, imageFormat);
 	}
+	static
 	inline int ConvertImageFormat(void* src, int64 srcImageFormat, void* dst, int64 dstImageFormat, int width, int height, int srcStride, int dstStride) 
 	{
 		return
@@ -10960,132 +11122,161 @@ class MeshGlue
 	{
 		return (MeshGlue*)m_pSelf;
 	}
+	static
 	inline HRenderMesh_InternalStrong* CreateRenderMesh(HMaterialStrong* material, int nPrimType, const char* pName) 
 	{
 		return
 		((HRenderMesh_InternalStrong*(*)(HMaterialStrong* material, int nPrimType, const char* pName))g_nativeFunctions[2313])(material, nPrimType, pName);
 	}
+	static
 	inline HModelStrong* CreateModel(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask) 
 	{
 		return
 		((HModelStrong*(*)(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask))g_nativeFunctions[2314])(anim, pBodies, pMaterialGroups, mass, surfaceProp, lodSwitchDistance, meshes, numMeshes, lodMasks, meshGroupMasks, meshGroups, numMeshGroups, vertices, numVertices, indices, numIndices, spheres, numSpheres, capsules, numCapsules, boxes, numBoxes, hulls, numHulls, meshShapes, numMeshShapes, bones, numBones, boneNames, startTraceVertex, startTraceIndex, numTraceVertices, numTraceIndices, _defaultMeshGroupMask);
 	}
+	static
 	inline int GetModelNumVertices(HModelStrong* model) 
 	{
 		return
 		((int(*)(HModelStrong* model))g_nativeFunctions[2315])(model);
 	}
+	static
 	inline void GetModelVertices(HModelStrong* model, void* vertices, unsigned int numVertices) 
 	{
 		((void(*)(HModelStrong* model, void* vertices, unsigned int numVertices))g_nativeFunctions[2316])(model, vertices, numVertices);
 	}
+	static
 	inline int GetModelNumIndices(HModelStrong* model) 
 	{
 		return
 		((int(*)(HModelStrong* model))g_nativeFunctions[2317])(model);
 	}
+	static
 	inline void GetModelIndices(HModelStrong* model, void* indices, unsigned int numIndices) 
 	{
 		((void(*)(HModelStrong* model, void* indices, unsigned int numIndices))g_nativeFunctions[2318])(model, indices, numIndices);
 	}
+	static
 	inline int GetModelIndexCount(HModelStrong* model, int drawCall) 
 	{
 		return
 		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2319])(model, drawCall);
 	}
+	static
 	inline int GetModelIndexStart(HModelStrong* model, int drawCall) 
 	{
 		return
 		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2320])(model, drawCall);
 	}
+	static
 	inline int GetModelBaseVertex(HModelStrong* model, int drawCall) 
 	{
 		return
 		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2321])(model, drawCall);
 	}
+	static
 	inline void SetMeshMaterial(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material))g_nativeFunctions[2322])(renderMesh, material);
 	}
+	static
 	inline void SetMeshPrimType(HRenderMesh_InternalStrong* renderMesh, int nPrimType) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, int nPrimType))g_nativeFunctions[2323])(renderMesh, nPrimType);
 	}
+	static
 	inline void SetMeshBounds(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs))g_nativeFunctions[2324])(renderMesh, mins, maxs);
 	}
+	static
 	inline void SetMeshUvDensity(HRenderMesh_InternalStrong* renderMesh, float flDensity) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, float flDensity))g_nativeFunctions[2325])(renderMesh, flDensity);
 	}
+	static
 	inline void SetMeshVertexRange(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount))g_nativeFunctions[2326])(renderMesh, startVertex, vertexCount);
 	}
+	static
 	inline void SetMeshIndexRange(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount))g_nativeFunctions[2327])(renderMesh, startIndex, indexCount);
 	}
+	static
 	inline void SetMeshVertexBuffer(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize))g_nativeFunctions[2328])(renderMesh, hVB, pData, nDataSize);
 	}
+	static
 	inline void SetMeshIndexBuffer(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize) 
 	{
 		((void(*)(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize))g_nativeFunctions[2329])(renderMesh, hIB, pData, nDataSize);
 	}
+	static
 	inline VertexBufferHandle_t CreateVertexBuffer(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize) 
 	{
 		return
 		((VertexBufferHandle_t(*)(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize))g_nativeFunctions[2330])(nElementSizeInBytes, nElementCount, fieldNames, pFields, nFields, pData, nDataSize);
 	}
+	static
 	inline IndexBufferHandle_t CreateIndexBuffer(int nElementCount, int b32Bit, void* pData, int nDataSize) 
 	{
 		return
 		((IndexBufferHandle_t(*)(int nElementCount, int b32Bit, void* pData, int nDataSize))g_nativeFunctions[2331])(nElementCount, b32Bit, pData, nDataSize);
 	}
+	static
 	inline const void* LockVertexBuffer(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset) 
 	{
 		return
 		((const void*(*)(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset))g_nativeFunctions[2332])(hVB, nDataSize, nDataOffset);
 	}
+	static
 	inline void UnlockVertexBuffer(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset) 
 	{
 		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2333])(hVB, pData, nDataSize, nDataOffset);
 	}
+	static
 	inline const void* LockIndexBuffer(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset) 
 	{
 		return
 		((const void*(*)(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset))g_nativeFunctions[2334])(hIB, nDataSize, nDataOffset);
 	}
+	static
 	inline void UnlockIndexBuffer(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset) 
 	{
 		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2335])(hIB, pData, nDataSize, nDataOffset);
 	}
+	static
 	inline void SetVertexBufferData(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset) 
 	{
 		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2336])(hVB, pData, nDataSize, nDataOffset);
 	}
+	static
 	inline void SetIndexBufferData(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset) 
 	{
 		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2337])(hIB, pData, nDataSize, nDataOffset);
 	}
+	static
 	inline VertexBufferHandle_t SetVertexBufferSize(VertexBufferHandle_t hVB, int nDataSize) 
 	{
 		return
 		((VertexBufferHandle_t(*)(VertexBufferHandle_t hVB, int nDataSize))g_nativeFunctions[2338])(hVB, nDataSize);
 	}
+	static
 	inline IndexBufferHandle_t SetIndexBufferSize(IndexBufferHandle_t hIB, int nDataSize) 
 	{
 		return
 		((IndexBufferHandle_t(*)(IndexBufferHandle_t hIB, int nDataSize))g_nativeFunctions[2339])(hIB, nDataSize);
 	}
+	static
 	inline int TriangulatePolygon(void* pPolygonVerts, int nNumVerts, void* pOutIndexList, int nMaxIndices) 
 	{
 		return
 		((int(*)(void* __pPolygonVerts, int __nNumVerts, void* __pOutIndexList, int __nMaxIndices))g_nativeFunctions[2340])(pPolygonVerts, nNumVerts, pOutIndexList, nMaxIndices);
 	}
+	static
 	inline void ClipPolygonLineSegment(void* pPolygonVerts, int nNumVerts, Vector vA, Vector vB, CUtlVector<Vector>* pOutSegmentPointsInside) 
 	{
 		((void(*)(void* __pPolygonVerts, int __nNumVerts, Vector __vA, Vector __vB, CUtlVector<Vector>* __pOutSegmentPointsInside))g_nativeFunctions[2341])(pPolygonVerts, nNumVerts, vA, vB, pOutSegmentPointsInside);
@@ -11099,41 +11290,49 @@ class NativeEngine::SDLGameController
 	{
 		return (NativeEngine::SDLGameController*)m_pSelf;
 	}
+	static
 	inline int GetAxis(int joystickId, int64 axis) 
 	{
 		return
 		((int(*)(int joystickId, int64 axis))g_nativeFunctions[2342])(joystickId, axis);
 	}
+	static
 	inline int64 GetControllerType(int joystickId) 
 	{
 		return
 		((int64(*)(int joystickId))g_nativeFunctions[2343])(joystickId);
 	}
+	static
 	inline int Close(int joystickId) 
 	{
 		return
 		((int(*)(int joystickId))g_nativeFunctions[2344])(joystickId);
 	}
+	static
 	inline int SetLEDColor(int joystickId, int red, int green, int blue) 
 	{
 		return
 		((int(*)(int joystickId, int red, int green, int blue))g_nativeFunctions[2345])(joystickId, red, green, blue);
 	}
+	static
 	inline int Rumble(int joystickId, int lowFreq, int highFreq, int duration) 
 	{
 		return
 		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2346])(joystickId, lowFreq, highFreq, duration);
 	}
+	static
 	inline int RumbleTriggers(int joystickId, int lowFreq, int highFreq, int duration) 
 	{
 		return
 		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2347])(joystickId, lowFreq, highFreq, duration);
 	}
+	static
 	inline Vector GetGyroscope(int joystickId) 
 	{
 		return
 		((Vector(*)(int joystickId))g_nativeFunctions[2348])(joystickId);
 	}
+	static
 	inline Vector GetAccelerometer(int joystickId) 
 	{
 		return
@@ -11148,6 +11347,7 @@ class NativeLowLevel
 	{
 		return (NativeLowLevel*)m_pSelf;
 	}
+	static
 	inline void Copy(void* dest, void* src, int64 count) 
 	{
 		((void(*)(void* __dest, void* __src, int64 __count))g_nativeFunctions[2350])(dest, src, count);
@@ -11180,25 +11380,30 @@ class PhysicsTrace_
 	{
 		return (PhysicsTrace*)m_pSelf;
 	}
+	static
 	inline PhysicsTrace::Result Trace(PhysicsTrace::Request request) 
 	{
 		return
 		((PhysicsTrace::Result(*)(PhysicsTrace::Request request))g_nativeFunctions[2353])(request);
 	}
+	static
 	inline void TraceAll(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results) 
 	{
 		((void(*)(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results))g_nativeFunctions[2354])(request, results);
 	}
+	static
 	inline PhysicsTrace::Result TraceAgainstCapsule(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx) 
 	{
 		return
 		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx))g_nativeFunctions[2355])(request, capsule, tx);
 	}
+	static
 	inline PhysicsTrace::Result TraceAgainstBBox(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx) 
 	{
 		return
 		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx))g_nativeFunctions[2356])(request, box, tx);
 	}
+	static
 	inline PhysicsTrace::Result TraceAgainstSphere(PhysicsTrace::Request request, RnSphere_t sphere, CTransformUnaligned tx) 
 	{
 		return
@@ -11213,67 +11418,83 @@ class RenderTools
 	{
 		return (RenderTools*)m_pSelf;
 	}
+	static
 	inline int SetRenderState(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats) 
 	{
 		return
 		((int(*)(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2358])(context, attributes, materialMode, layout, stats);
 	}
+	static
 	inline void Draw(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats) 
 	{
 		((void(*)(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2359])(context, type, layout, vertices, numVertices, indices, numIndices, stats);
 	}
+	static
 	inline void ResolveFrameBuffer(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport) 
 	{
 		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2360])(renderContext, texture, viewport);
 	}
+	static
 	inline void ResolveDepthBuffer(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport) 
 	{
 		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2361])(renderContext, texture, viewport);
 	}
+	static
 	inline void DrawSceneObject(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes) 
 	{
 		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes))g_nativeFunctions[2362])(renderContext, sceneLayer, sceneObject, transform, color, material, attributes);
 	}
+	static
 	inline void DrawModel(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes) 
 	{
 		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes))g_nativeFunctions[2363])(renderContext, sceneLayer, hModel, transforms, numTransforms, attributes);
 	}
+	static
 	inline void DrawModel(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes) 
 	{
 		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes))g_nativeFunctions[2364])(renderContext, sceneLayer, hModel, hDrawArgBuffer, nBufferOffset, attributes);
 	}
+	static
 	inline void Compute(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz) 
 	{
 		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz))g_nativeFunctions[2365])(renderContext, attributes, pMode, tx, ty, tz);
 	}
+	static
 	inline void ComputeIndirect(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset) 
 	{
 		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_nativeFunctions[2366])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
 	}
+	static
 	inline void TraceRays(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, unsigned int tx, unsigned int ty, unsigned int tz) 
 	{
 		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, unsigned int tx, unsigned int ty, unsigned int tz))g_nativeFunctions[2367])(renderContext, attributes, pMode, tx, ty, tz);
 	}
+	static
 	inline void TraceRaysIndirect(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset) 
 	{
 		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_nativeFunctions[2368])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
 	}
+	static
 	inline void SetDynamicConstantBufferData(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize) 
 	{
 		((void(*)(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize))g_nativeFunctions[2369])(attributes, nTokenID, renderContext, data, dataSize);
 	}
+	static
 	inline void CopyTexture(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice) 
 	{
 		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice))g_nativeFunctions[2370])(renderContext, sourceTexture, destTexture, pSrcRect, nDestX, nDestY, nSrcMipSlice, nSrcArraySlice, nDstMipSlice, nDstArraySlice);
 	}
+	static
 	inline void SetGPUBufferData(IRenderContext* renderContext, RenderBufferHandle_t hGpuBuffer, void* pData, unsigned int nDataSize, unsigned int nOffset) 
 	{
 		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hGpuBuffer, void* __pData, unsigned int __nDataSize, unsigned int __nOffset))g_nativeFunctions[2371])(renderContext, hGpuBuffer, pData, nDataSize, nOffset);
 	}
+	static
 	inline void CopyGPUBufferHiddenStructureCount(IRenderContext* renderContext, RenderBufferHandle_t hSrcBuffer, RenderBufferHandle_t hDestBuffer, unsigned int nDestBufferOffset) 
 	{
 		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hSrcBuffer, RenderBufferHandle_t __hDestBuffer, unsigned int __nDestBufferOffset))g_nativeFunctions[2372])(renderContext, hSrcBuffer, hDestBuffer, nDestBufferOffset);
 	}
+	static
 	inline void SetGPUBufferHiddenStructureCount(IRenderContext* renderContext, RenderBufferHandle_t hBuffer, unsigned int nCounter) 
 	{
 		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hBuffer, unsigned int __nCounter))g_nativeFunctions[2373])(renderContext, hBuffer, nCounter);
@@ -11560,50 +11781,60 @@ class Steam::Inventory
 	{
 		return (Steam::Inventory*)m_pSelf;
 	}
+	static
 	inline const CSteamInventoryResult* GetAllItems() 
 	{
 		return
 		((const CSteamInventoryResult*(*)())g_nativeFunctions[2533])();
 	}
+	static
 	inline int DefinitionCount() 
 	{
 		return
 		((int(*)())g_nativeFunctions[2534])();
 	}
+	static
 	inline int GetDefinitionId(int index) 
 	{
 		return
 		((int(*)(int index))g_nativeFunctions[2535])(index);
 	}
+	static
 	inline const char* GetDefinitionProperty(int definitionId, const char* propertyName) 
 	{
 		return
 		((const char*(*)(int definitionId, const char* propertyName))g_nativeFunctions[2536])(definitionId, propertyName);
 	}
+	static
 	inline int GetDefinitionPrice(int index, uint64* price, uint64* baseprice) 
 	{
 		return
 		((int(*)(int index, uint64* price, uint64* baseprice))g_nativeFunctions[2537])(index, price, baseprice);
 	}
+	static
 	inline int HasPrices() 
 	{
 		return
 		((int(*)())g_nativeFunctions[2538])();
 	}
+	static
 	inline const char* GetCurrency() 
 	{
 		return
 		((const char*(*)())g_nativeFunctions[2539])();
 	}
+	static
 	inline void CheckOut(int* defs, int count) 
 	{
 		((void(*)(int* defs, int count))g_nativeFunctions[2540])(defs, count);
 	}
+	static
 	inline int IsCheckingOut() 
 	{
 		return
 		((int(*)())g_nativeFunctions[2541])();
 	}
+	static
 	inline int WasCheckoutSuccessful() 
 	{
 		return
@@ -11618,6 +11849,7 @@ class Steam::Screenshots
 	{
 		return (Steam::Screenshots*)m_pSelf;
 	}
+	static
 	inline int WriteScreenshot(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight) 
 	{
 		return
@@ -12090,6 +12322,7 @@ class WindowsGlue
 	{
 		return (WindowsGlue*)m_pSelf;
 	}
+	static
 	inline const char* FindFile() 
 	{
 		return

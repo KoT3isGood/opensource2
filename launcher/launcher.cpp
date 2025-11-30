@@ -11,7 +11,9 @@
 #include "libloaderapi.h"
 #include "engine/structs.h"
 #include "engine/engine2.h"
+#include "engine/engine2vars.h"
 #include "engine/testrender.h"
+#include "engine/stringtoken.h"
 #include <cstdlib>
 
 int iStructSizes[149]={24,1,16,2,24,4,0x11,4,4,3,4,8,0x14,0x1c,0x28,4,4,0x10,4,4,8,4,8,4,4,4,4,4,0x10,4,4,4,0xc,0xc,0x20,0x2dc,4,0x10,0x288,0x101,0x40,4,0x60,0x2c,0x20,4,4,4,4,8,8,4,4,4,4,8,4,4,1,4,4,0x28,0x28,0x88,0x78,4,4,0x28,4,4,4,4,4,4,0xc,0x10,0x10,0x18,4,4,4,8,4,1,4,0x30,4,8,4,4,8,4,4,1,0x1c,200,0x88,0x1c,0x10,1,4,4,4,8,0x4c,4,4,4,4,0x2c,4,0x1c,0x74,0x20,0x78,4,8,0x2c,4,4,4,4,0xc,8,0x10,8,0x14,4,4,0x40,4,1,0x18,4,8,4,4,4,4,4,4,8,8,4,4,4,8,4,};
@@ -21,7 +23,6 @@ CMaterialSystem2AppSystemDict *AppSystem;
 fpxr::Instance *FPXRInstance;
 
 // fix this bullshit
-class g_pEngineServiceMgr *g_pEngineServiceMgr = new class g_pEngineServiceMgr;
 
 void CC RegisterEngineLogger( int id, const char *v )
 {
@@ -59,6 +60,57 @@ void CC OnConsoleCommand(const char *szCommand)
 	printf("Command %s\n",szCommand);
 }
 
+struct SourceHandle_t
+{
+	void *pObject;
+	unsigned int handle;
+	struct SourceHandle_t *pNext;
+};
+SourceHandle_t *g_pCurrentSourceHandle = NULL;
+
+int iLastHandleIndex = 0;
+void *AcquireNextHandle(int hHandle)
+{
+	g_pCurrentSourceHandle->handle = hHandle;
+	return g_pCurrentSourceHandle->pObject;
+}
+
+int CC RegisterHandle( void *ptr, unsigned int type )
+{
+	printf("Created %i\n",type);
+	if (type==StringToken("SceneWorld"))
+	{
+		SourceHandle_t *pHandle = new SourceHandle_t;
+		ISceneWorld *pSceneWorld = new ISceneWorld;
+		pSceneWorld->m_pSelf = ptr;
+		pHandle->pObject = pSceneWorld;
+		pHandle->pNext = g_pCurrentSourceHandle;
+		g_pCurrentSourceHandle = pHandle;
+		iLastHandleIndex++;
+		return iLastHandleIndex; 
+	}
+	if (type==StringToken("SceneObject"))
+	{
+		SourceHandle_t *pHandle = new SourceHandle_t;
+		CSceneObject *pSceneObject = new CSceneObject;
+		pSceneObject->m_pSelf = ptr;
+		pHandle->pObject = pSceneObject;
+		pHandle->pNext = g_pCurrentSourceHandle;
+		g_pCurrentSourceHandle = pHandle;
+		iLastHandleIndex++;
+		return iLastHandleIndex; 
+	}
+	return -1;
+}
+
+void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
+{
+	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
+	printf("n %p\n",_pRenderAttributes);
+	printf("w %p\n",pRenderAttributes);
+	printf("%i\n",pRenderAttributes->IsEmpty());
+}
+
 int InternalIsActive()
 {
 	return true;
@@ -89,6 +141,11 @@ void OnWindowActive(int bIsActive)
 void CC EnginePrint( int severitty, const char* logger, const char* message )
 {
 	printf("%s\n", message);
+}
+
+void CC EnvironmentExit(int nCode)
+{
+	printf("EnvironmentExit: %i\n", nCode);
 }
 
 int main( int nArgc, char **argv )
@@ -134,18 +191,22 @@ int main( int nArgc, char **argv )
 
 	for (int i = 0; i<80;i++)
 	{
-		g_callbackFunctions[i] = (void*)(0x123400+i);
+		g_callbackFunctions[i] = (void*)(0x9900+i);
 	}
 	g_callbackFunctions[3] = (void*)RegisterNativeVar;
 	g_callbackFunctions[4] = (void*)RegisterNativeCommand;
 	g_callbackFunctions[5] = (void*)OnConVarChanged;
 	g_callbackFunctions[6] = (void*)RegisterEngineLogger;
+	g_callbackFunctions[7] = (void*)EnvironmentExit;
 	g_callbackFunctions[13] = (void*)OnWindowActive;
 	g_callbackFunctions[22] = (void*)OnConsoleCommand;
 	g_callbackFunctions[24] = (void*)SetSystemInfo;
 	g_callbackFunctions[25] = (void*)SetSystemInfo;
 	g_callbackFunctions[26] = (void*)EnginePrint;
 	g_callbackFunctions[28] = (void*)OnClientOutput;
+	g_callbackFunctions[31] = (void*)RegisterHandle;
+	g_callbackFunctions[49] = (void*)AddLayersToView; // https://github.com/Facepunch/sbox-public/blob/16809db7875c3a9bd405b6482a3c5c7d7038cb3e/engine/Sandbox.Engine/Systems/Render/RenderPipeline/RenderPipeline.cs#L23
+	g_callbackFunctions[50] = (void*)SetSystemInfo; // 
 	g_callbackFunctions[56] = (void*)SetSystemInfo;
 	g_callbackFunctions[70] = (void*)InternalIsActive;
 	g_callbackFunctions[71] = (void*)InternalWantsInit;
@@ -172,7 +233,7 @@ int main( int nArgc, char **argv )
 	printf("STEAM APP ID %i\n",AppSystem->GetSteamAppId());
 	int v = SourceEnginePreInit("engine2.exe", (CMaterialSystem2AppSystemDict*)AppSystem->m_pSelf);
 	if (!v) printf("Failed to SourceEnginePreInit\n");
-	v = SourceEngineInit((CMaterialSystem2AppSystemDict*)AppSystem->m_pSelf);
+	v = SourceEngineInit(GN(AppSystem));
 	if (!v) printf("Failed to SourceEngineInit\n");
 
 	pTestRendering->Init();
