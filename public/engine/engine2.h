@@ -19,12 +19,11 @@ extern bool g_bIsengineInitialized;
 template <typename A, typename Parent>
 class RWVariable
 {
-	private:
+public:
 	Parent *m_parent;
 	A(*m_ReadOp)(Parent*);
 	void(*m_WriteOp)(Parent*, A);
-	public:
-	RWVariable(void* WriteOp, void* ReadOp, Parent *parent)
+	RWVariable(void* ReadOp, void* WriteOp, Parent *parent)
 	{
 		m_ReadOp = (A(*)(Parent*))ReadOp;
 		m_WriteOp = (void(*)(Parent*, A))WriteOp;
@@ -35,7 +34,7 @@ class RWVariable
 		m_WriteOp( (Parent*)m_parent->m_pSelf , other);
 		return *this;
 	}
-	inline operator A()
+	[[nodiscard]] inline operator A() const
 	{
 		return m_ReadOp( (Parent*)m_parent->m_pSelf );
 	}

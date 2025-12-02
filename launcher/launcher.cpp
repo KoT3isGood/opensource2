@@ -116,6 +116,7 @@ void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRe
 {
 	FROM_NATIVE(ISceneView, pView);
 	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
+	
 
 	/*
 	CREATE_NATIVE(ISceneLayer, pSceneLayer);
@@ -143,7 +144,7 @@ struct ManagedRenderSetup_t
 	ISceneLayer *sceneLayer;
 	int colorImageFormat;
 	int msaaLevel;
-	SceneSystemPerFrameStats_t stats;
+	SceneSystemPerFrameStats_t *stats;
 };
 enum class Stage: int
 {
@@ -160,17 +161,25 @@ enum class Stage: int
 
 void OnLayer( Stage renderHookStage, ManagedRenderSetup_t _setup)
 {
-	ManagedRenderSetup_t setup = {};
+	CREATE_NATIVE(IRenderContext, renderContext);
+	SET_NATIVE(renderContext, _setup.renderContext);
 	CREATE_NATIVE(ISceneLayer, sceneLayer);
 	SET_NATIVE(sceneLayer, _setup.sceneLayer);
-	printf("%s\n",sceneLayer->GetDebugName());
+	
+	CREATE_NATIVE(ISceneView, sceneView);
+	SET_NATIVE(sceneView, _setup.sceneView);
+	
+	CREATE_NATIVE(SceneSystemPerFrameStats_t, stats);
+	SET_NATIVE(stats, _setup.stats);
 
+
+	CREATE_NATIVE(CFrustum, pFrustum);
+	SET_NATIVE(pFrustum, sceneView->GetFrustum());
 	
 }
 
 void OnSceneViewSubmitted( ISceneView* view )
 {
-
 }
 
 int InternalIsActive()
@@ -253,7 +262,7 @@ int main( int nArgc, char **argv )
 
 	for (int i = 0; i<80;i++)
 	{
-		g_callbackFunctions[i] = (void*)(0x9900+i);
+		g_callbackFunctions[i] = (void*)(0x123400+i);
 	}
 	g_callbackFunctions[3] = (void*)RegisterNativeVar;
 	g_callbackFunctions[4] = (void*)RegisterNativeCommand;
@@ -269,8 +278,8 @@ int main( int nArgc, char **argv )
 	g_callbackFunctions[29] = (void*)OnSceneViewSubmitted;
 	g_callbackFunctions[30] = (void*)OnLayer;
 	g_callbackFunctions[31] = (void*)RegisterHandle;
-	g_callbackFunctions[49] = (void*)AddLayersToView; // https://github.com/Facepunch/sbox-public/blob/16809db7875c3a9bd405b6482a3c5c7d7038cb3e/engine/Sandbox.Engine/Systems/Render/RenderPipeline/RenderPipeline.cs#L23
-	g_callbackFunctions[50] = (void*)PipelineEnd; // 
+	g_callbackFunctions[49] = (void*)AddLayersToView;	
+	g_callbackFunctions[50] = (void*)PipelineEnd;
 	g_callbackFunctions[56] = (void*)SetSystemInfo;
 	g_callbackFunctions[70] = (void*)InternalIsActive;
 	g_callbackFunctions[71] = (void*)InternalWantsInit;

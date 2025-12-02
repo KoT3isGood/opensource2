@@ -4,3 +4,6 @@
 [submodule "external/murmur2"]
 	path = external/murmur2
 	url = https://github.com/abrandoned/murmur2.git
+[submodule "external/cglm"]
+	path = external/cglm
+	url = https://github.com/recp/cglm.git
