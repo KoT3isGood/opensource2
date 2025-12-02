@@ -28,7 +28,6 @@ void CC RegisterEngineLogger( int id, const char *v )
 {
 	printf("EngineLogger %s\n",v);
 }
-static CCameraRenderer *s_pCameraRenderer;
 void CC OnClientOutput()
 {
 	pTestRendering->Frame(g_pEngineServiceMgr->GetEngineSwapChain());
@@ -75,6 +74,16 @@ void *AcquireNextHandle(int hHandle)
 	return g_pCurrentSourceHandle->pObject;
 }
 
+void *GetByHandle(int hHandle)
+{
+	for (SourceHandle_t *pHandle = g_pCurrentSourceHandle; pHandle; pHandle = pHandle->pNext)
+	{
+		if (hHandle == pHandle->handle)
+			return pHandle->pObject;
+	}
+	return NULL;
+}
+
 int CC RegisterHandle( void *ptr, unsigned int type )
 {
 	printf("Created %i %p\n",type, ptr);
@@ -107,9 +116,6 @@ void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRe
 {
 	FROM_NATIVE(ISceneView, pView);
 	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
-	printf("n %p\n",_pRenderAttributes);
-	printf("w %p\n",pRenderAttributes);
-	printf("%i\n",pRenderAttributes->IsEmpty());
 
 	/*
 	CREATE_NATIVE(ISceneLayer, pSceneLayer);
@@ -125,7 +131,9 @@ void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRe
 
 void PipelineEnd(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
 {
-
+	
+	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
+	FROM_NATIVE(ISceneView, pView);
 }
 
 struct ManagedRenderSetup_t
@@ -308,8 +316,6 @@ int main( int nArgc, char **argv )
 	pTestRendering->Init();
 
 	Plat_SetCurrentFrame(0);
-
-	ISceneWorld *pSceneWorld = new ISceneWorld();
 
 	while(true)
 	{

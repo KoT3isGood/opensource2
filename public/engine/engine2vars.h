@@ -8,6 +8,8 @@ extern class g_pRenderDevice *g_pRenderDevice;
 extern class g_pMaterialSystem2 *g_pMaterialSystem2;
 extern class g_pMeshSystem *g_pMeshSystem;
 extern class g_pSceneSystem *g_pSceneSystem;
+extern class g_pWorldRendererMgr *g_pWorldRendererMgr;
+extern class g_pEnginePVSManager *g_pEnginePVSManager;
 extern class EngineGlue *EngineGlue;
 extern class Glue::Resources *Glue_Resources;
 

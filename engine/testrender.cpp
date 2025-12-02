@@ -20,6 +20,8 @@ public:
 
 	CREATE_NATIVE(IRenderContext, pRenderContext);
 	CREATE_NATIVE(CSceneObject, pSceneObject);
+	CREATE_NATIVE(IWorldReference, pWorldRef);
+	CREATE_NATIVE(IPVS, pPVS);
 
 	virtual void Init() override;
 	virtual void Frame(SwapChainHandle_t hSwapChain) override;
@@ -35,8 +37,7 @@ void CTestRendering::Init()
 
 
 	pSceneWorld = (ISceneWorld*)AcquireNextHandle(g_pSceneSystem->CreateWorld("testworld"));
-	printf("pSceneWorld %p\n",pSceneWorld->m_pSelf);
-	pModel =Glue::Resources::GetModel("models/dev/error.vmdl");
+	pModel = Glue::Resources::GetModel("models/dev/error.vmdl");
 
 	CTransformUnaligned transform;
 	transform.m_scale = {
@@ -58,8 +59,29 @@ void CTestRendering::Init()
 	printf("%i %i %i %i\n",model->IsStrongHandleLoaded(),model->GetNumMeshes(), model->IsStrongHandleValid(), model->HasSceneObjects());
 
 	SET_NATIVE(pSceneObject, AcquireNextHandle(g_pMeshSystem->CreateSceneObject((HModelStrong*)pModel, transform, NULL, uint64_t(SceneObjectFlags::CastShadows) | uint64_t(SceneObjectFlags::IsLoaded), 0, GN(pSceneWorld), 1)));
-	printf("pCameraRenderer %p\n",pCameraRenderer->m_pSelf);
-	printf("pSceneWorld2 %p\n",pSceneWorld->m_pSelf);
+
+
+	CTransformUnaligned t;
+	t.m_scale = (Vector){1,1,1};
+	SET_NATIVE(pWorldRef,
+		g_pWorldRendererMgr->CreateWorld(
+			"maps/error.vpk",
+			GN(pSceneWorld),
+			false,
+			true,
+			false,
+			false,
+			StringToken(pSceneWorld->GetWorldDebugName()),
+			t
+			)
+	);
+	printf("%i\n", pWorldRef->IsWorldLoaded());
+	pWorldRef->PrecacheAllWorldNodes(0x0080);
+
+	SET_NATIVE(pPVS,g_pEnginePVSManager->BuildPvs(GN(pWorldRef)));
+	pSceneWorld->SetPVS(GN(pPVS));
+
+
 }
 
 void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
@@ -71,7 +93,7 @@ void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
 	pRenderAttributes->SetBoolValue(StringToken("renderSun"), true);
 	pRenderAttributes->SetBoolValue(StringToken("drawShadows"), true);
 	pRenderAttributes->SetVector4DValue(StringToken("ambientColor"), (Vector4D){0.7,0.7,0.7,1});
-	pRenderAttributes->SetVector4DValue(StringToken("clearColor"), (Vector4D){1,1,1,1});
+	pRenderAttributes->SetVectorValue(StringToken("clearColor"), (Vector){1,1,1});
 	pRenderAttributes->SetIntValue(StringToken("clearFlags"), 0x3FF);
 
 	pCameraRenderer->ClearSceneWorlds();
