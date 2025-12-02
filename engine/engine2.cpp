@@ -2,8 +2,10 @@
 
 void *g_pengineLibrary;
 bool g_bIsengineInitialized;
-void *g_nativeFunctions[2709];
+void *g_nativeFunctions[2745];
 void *g_callbackFunctions[80];
+short g_sHash = 0;
+
 
 class g_pEngineServiceMgr *g_pEngineServiceMgr = new class g_pEngineServiceMgr;
 class g_pRenderDevice *g_pRenderDevice = new class g_pRenderDevice;

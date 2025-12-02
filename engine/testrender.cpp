@@ -27,14 +27,15 @@ public:
 
 void CTestRendering::Init()
 {
-	
+	SET_NATIVE(pRenderContext, g_pRenderDevice->CreateRenderContext(0));
+
 	pCameraRenderer = new CCameraRenderer("RenderToSwapChain",1);
-	printf("pCameraRenderer %p\n",pCameraRenderer);
-	printf("m_pSelf %p\n",pCameraRenderer->m_pSelf);
+	printf("pCameraRenderer %p\n",pCameraRenderer->m_pSelf);
 	pRenderAttributes = new CRenderAttributes;
 
 
 	pSceneWorld = (ISceneWorld*)AcquireNextHandle(g_pSceneSystem->CreateWorld("testworld"));
+	printf("pSceneWorld %p\n",pSceneWorld->m_pSelf);
 	pModel =Glue::Resources::GetModel("models/dev/error.vmdl");
 
 	CTransformUnaligned transform;
@@ -57,13 +58,12 @@ void CTestRendering::Init()
 	printf("%i %i %i %i\n",model->IsStrongHandleLoaded(),model->GetNumMeshes(), model->IsStrongHandleValid(), model->HasSceneObjects());
 
 	SET_NATIVE(pSceneObject, AcquireNextHandle(g_pMeshSystem->CreateSceneObject((HModelStrong*)pModel, transform, NULL, uint64_t(SceneObjectFlags::CastShadows) | uint64_t(SceneObjectFlags::IsLoaded), 0, GN(pSceneWorld), 1)));
-	printf("pCameraRenderer %p\n",pCameraRenderer);
-	printf("m_pSelf %p\n",pCameraRenderer->m_pSelf);
+	printf("pCameraRenderer %p\n",pCameraRenderer->m_pSelf);
+	printf("pSceneWorld2 %p\n",pSceneWorld->m_pSelf);
 }
 
 void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
 {
-	pRenderAttributes->Clear(0, 0);
 	pRenderAttributes->SetBoolValue(StringToken("renderOpaque"), true);
 	pRenderAttributes->SetBoolValue(StringToken("renderTranslucent"), true);
 	pRenderAttributes->SetBoolValue(StringToken("directLighting"), true);
@@ -73,21 +73,14 @@ void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
 	pRenderAttributes->SetVector4DValue(StringToken("ambientColor"), (Vector4D){0.7,0.7,0.7,1});
 	pRenderAttributes->SetVector4DValue(StringToken("clearColor"), (Vector4D){1,1,1,1});
 	pRenderAttributes->SetIntValue(StringToken("clearFlags"), 0x3FF);
-	
+
 	pCameraRenderer->ClearSceneWorlds();
 	pCameraRenderer->SetRenderAttributes(GN(pRenderAttributes));
 	pCameraRenderer->ClearExcludeTags();
 	pCameraRenderer->ClearRenderTags();
-	pCameraRenderer->AddSceneWorld(GN(pSceneWorld));
 
-	printf("pCameraRenderer %p\n",pCameraRenderer);
-	printf("m_pSelf %p\n",pCameraRenderer->m_pSelf);
 	pCameraRenderer->ViewUniqueId = 100;
-	printf("pCameraRenderer %p\n",pCameraRenderer);
-	printf("m_pSelf %p\n",pCameraRenderer->m_pSelf);
 	pCameraRenderer->CameraPosition = (Vector){-10,0,0};
-	printf("pCameraRenderer %p\n",pCameraRenderer);
-	printf("m_pSelf %p\n",pCameraRenderer->m_pSelf);
 	pCameraRenderer->CameraRotation = (QAngle){0,0,0};
 	pCameraRenderer->ZNear = 0.01;
 	pCameraRenderer->ZFar = 100;
@@ -100,13 +93,11 @@ void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
 	pCameraRenderer->EnablePostprocessing = false;
 	pCameraRenderer->FlipX = false;
 	pCameraRenderer->FlipY = false;
-	printf("pCameraRenderer %p\n",pCameraRenderer);
-	printf("m_pSelf %p\n",pCameraRenderer->m_pSelf);
-	printf("hSwapChain %p\n",hSwapChain);
 
+	pCameraRenderer->AddSceneWorld(GN(pSceneWorld));
 	pCameraRenderer->Render(hSwapChain);
 
-	g_pRenderDevice->Present(hSwapChain);
+	printf("Hi\n");
 }
 static CTestRendering s_testRendering;
 ITestRendering *pTestRendering = &s_testRendering;

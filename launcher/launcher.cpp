@@ -14,7 +14,7 @@
 #include "engine/engine2vars.h"
 #include "engine/testrender.h"
 #include "engine/stringtoken.h"
-#include <cstdlib>
+#include "stdlib.h"
 
 int iStructSizes[149]={24,1,16,2,24,4,0x11,4,4,3,4,8,0x14,0x1c,0x28,4,4,0x10,4,4,8,4,8,4,4,4,4,4,0x10,4,4,4,0xc,0xc,0x20,0x2dc,4,0x10,0x288,0x101,0x40,4,0x60,0x2c,0x20,4,4,4,4,8,8,4,4,4,4,8,4,4,1,4,4,0x28,0x28,0x88,0x78,4,4,0x28,4,4,4,4,4,4,0xc,0x10,0x10,0x18,4,4,4,8,4,1,4,0x30,4,8,4,4,8,4,4,1,0x1c,200,0x88,0x1c,0x10,1,4,4,4,8,0x4c,4,4,4,4,0x2c,4,0x1c,0x74,0x20,0x78,4,8,0x2c,4,4,4,4,0xc,8,0x10,8,0x14,4,4,0x40,4,1,0x18,4,8,4,4,4,4,4,4,8,8,4,4,4,8,4,};
 
@@ -77,7 +77,7 @@ void *AcquireNextHandle(int hHandle)
 
 int CC RegisterHandle( void *ptr, unsigned int type )
 {
-	printf("Created %i\n",type);
+	printf("Created %i %p\n",type, ptr);
 	if (type==StringToken("SceneWorld"))
 	{
 		SourceHandle_t *pHandle = new SourceHandle_t;
@@ -105,13 +105,62 @@ int CC RegisterHandle( void *ptr, unsigned int type )
 
 void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
 {
+	FROM_NATIVE(ISceneView, pView);
 	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
 	printf("n %p\n",_pRenderAttributes);
 	printf("w %p\n",pRenderAttributes);
 	printf("%i\n",pRenderAttributes->IsEmpty());
+
+	/*
+	CREATE_NATIVE(ISceneLayer, pSceneLayer);
+	SET_NATIVE(pSceneLayer, pView->AddRenderLayer("TestLayer", viewport, StringToken("Forward"), NULL));
+	HSceneViewRenderTarget rt;
+	rt.hHandle = -1;
+	pSceneLayer->SetOutput(hColor, hDepth);
+	pSceneLayer->SetClearColor((Vector4D){1,0.5,0,1}, 0);
+	pSceneLayer->m_nClearFlags = 0xFF;
+	pRenderAttributes->MergeToPtr((CRenderAttributes*)pSceneLayer->GetRenderAttributesPtr());
+	*/
 }
 
 void PipelineEnd(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
+{
+
+}
+
+struct ManagedRenderSetup_t
+{
+	IRenderContext *renderContext;
+	ISceneView *sceneView;
+	ISceneLayer *sceneLayer;
+	int colorImageFormat;
+	int msaaLevel;
+	SceneSystemPerFrameStats_t stats;
+};
+enum class Stage: int
+{
+	AfterDepthPrepass = 1000,
+	AfterOpaque = 2000,
+	AfterSkybox = 3000,
+	AfterTransparent = 4000,
+	AfterViewmodel = 5000,
+	BeforePostProcess = 6000,
+	Tonemapping = 6500,
+	AfterPostProcess = 7000,
+	AfterUI = 8000,
+};
+
+void OnLayer( Stage renderHookStage, ManagedRenderSetup_t _setup)
+{
+	ManagedRenderSetup_t setup = {};
+	CREATE_NATIVE(ISceneLayer, sceneLayer);
+	SET_NATIVE(sceneLayer, _setup.sceneLayer);
+	printf("%s\n",sceneLayer->GetDebugName());
+
+	
+}
+
+void OnSceneViewSubmitted( ISceneView* view )
 {
 
 }
@@ -209,9 +258,11 @@ int main( int nArgc, char **argv )
 	g_callbackFunctions[25] = (void*)SetSystemInfo;
 	g_callbackFunctions[26] = (void*)EnginePrint;
 	g_callbackFunctions[28] = (void*)OnClientOutput;
+	g_callbackFunctions[29] = (void*)OnSceneViewSubmitted;
+	g_callbackFunctions[30] = (void*)OnLayer;
 	g_callbackFunctions[31] = (void*)RegisterHandle;
 	g_callbackFunctions[49] = (void*)AddLayersToView; // https://github.com/Facepunch/sbox-public/blob/16809db7875c3a9bd405b6482a3c5c7d7038cb3e/engine/Sandbox.Engine/Systems/Render/RenderPipeline/RenderPipeline.cs#L23
-	g_callbackFunctions[50] = (void*)&PipelineEnd; // 
+	g_callbackFunctions[50] = (void*)PipelineEnd; // 
 	g_callbackFunctions[56] = (void*)SetSystemInfo;
 	g_callbackFunctions[70] = (void*)InternalIsActive;
 	g_callbackFunctions[71] = (void*)InternalWantsInit;
@@ -220,6 +271,19 @@ int main( int nArgc, char **argv )
 	g_callbackFunctions[78] = (void*)SetSystemInfo;
 
 	printf("Lucky\n");
+	LoadLibraryA("engine2.dll");
+
+	g_pengineLibrary = LoadLibraryA("engine2.dll");
+	if(!g_pengineLibrary)
+		_exit(1);
+	
+	FnBindingsImportDelegate igen_engine = (FnBindingsImportDelegate)GetProcAddress( (HMODULE)g_pengineLibrary, "igen_engine" );
+	if(!igen_engine)
+		_exit(1);
+
+	g_sHash = *(short*)(((uint64_t)igen_engine)+23);
+	printf("Hijacked hash: %i\n", g_sHash);
+
 	engineBindingsInitialize();
 	LoadLibraryA("coreclr.dll");
 

@@ -9,6 +9,7 @@ typedef long long int64;
 #define nint long long
 
 #define abstract_class class
+extern short g_sHash;
 
 struct AABB_t
 {
@@ -327,7 +328,10 @@ namespace Glue
 	class RenderDeviceManager;
 	class Resources;
 }
-class HSceneViewRenderTarget {};
+class HSceneViewRenderTarget {
+public:
+	uint64_t hHandle;
+};
 class HAuthTicket {};
 struct SteamNetConnectionRealTimeStatus_t {};
 struct SheetFrameImage_t {};
