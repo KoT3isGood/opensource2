@@ -146,20 +146,20 @@ struct ManagedRenderSetup_t
 	int msaaLevel;
 	SceneSystemPerFrameStats_t *stats;
 };
-enum class Stage: int
+enum LayerStage: int
 {
-	AfterDepthPrepass = 1000,
-	AfterOpaque = 2000,
-	AfterSkybox = 3000,
-	AfterTransparent = 4000,
-	AfterViewmodel = 5000,
-	BeforePostProcess = 6000,
-	Tonemapping = 6500,
-	AfterPostProcess = 7000,
-	AfterUI = 8000,
+	LAYER_STAGE_AfterDepthPrepass = 1000,
+	LAYER_STAGE_AfterOpaque = 2000,
+	LAYER_STAGE_AfterSkybox = 3000,
+	LAYER_STAGE_AfterTransparent = 4000,
+	LAYER_STAGE_AfterViewmodel = 5000,
+	LAYER_STAGE_BeforePostProcess = 6000,
+	LAYER_STAGE_Tonemapping = 6500,
+	LAYER_STAGE_AfterPostProcess = 7000,
+	LAYER_STAGE_AfterUI = 8000,
 };
 
-void OnLayer( Stage renderHookStage, ManagedRenderSetup_t _setup)
+void OnLayer( LayerStage renderHookStage, ManagedRenderSetup_t _setup)
 {
 	CREATE_NATIVE(IRenderContext, renderContext);
 	SET_NATIVE(renderContext, _setup.renderContext);
@@ -172,10 +172,8 @@ void OnLayer( Stage renderHookStage, ManagedRenderSetup_t _setup)
 	CREATE_NATIVE(SceneSystemPerFrameStats_t, stats);
 	SET_NATIVE(stats, _setup.stats);
 
-
 	CREATE_NATIVE(CFrustum, pFrustum);
 	SET_NATIVE(pFrustum, sceneView->GetFrustum());
-	
 }
 
 void OnSceneViewSubmitted( ISceneView* view )
@@ -287,7 +285,6 @@ int main( int nArgc, char **argv )
 	g_callbackFunctions[76] = (void*)GetVulkanDeviceExtensionsRequired;
 	g_callbackFunctions[78] = (void*)SetSystemInfo;
 
-	printf("Lucky\n");
 	LoadLibraryA("engine2.dll");
 
 	g_pengineLibrary = LoadLibraryA("engine2.dll");
@@ -316,7 +313,6 @@ int main( int nArgc, char **argv )
 	fpxrInstanceInfo.eGraphicsAPI = 2;
 	fpxrInstanceInfo.bUseDebugMessenger = true;
 
-	printf("STEAM APP ID %i\n",AppSystem->GetSteamAppId());
 	int v = SourceEnginePreInit("engine2.exe", (CMaterialSystem2AppSystemDict*)AppSystem->m_pSelf);
 	if (!v) printf("Failed to SourceEnginePreInit\n");
 	v = SourceEngineInit(GN(AppSystem));
