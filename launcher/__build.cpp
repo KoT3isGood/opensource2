@@ -20,6 +20,10 @@ DECLARE_BUILD_STAGE(launcher)
 		"engine/murmur2.cpp",
 		"engine/stringtoken.cpp",
 		"external/murmur2/MurmurHash2.c",
+
+		"server/maploader.cpp",
+		"server/baseentity.cpp",
+		"server/basemodelentity.cpp",
 	};
 	stCompile.includeDirectories = {
 		"public",

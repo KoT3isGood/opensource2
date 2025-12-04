@@ -1,6 +1,4 @@
 //================= Copyright kotofyt, All rights reserved ==================//
-// Copyright Facepunch Studios
-//
 // Purpose: Helper functions for compilers, filesystem2 and build stages.
 //===========================================================================//
 
@@ -14,6 +12,7 @@
 #include "engine/engine2vars.h"
 #include "engine/testrender.h"
 #include "engine/stringtoken.h"
+#include "maploader.h"
 #include "stdlib.h"
 
 int iStructSizes[149]={24,1,16,2,24,4,0x11,4,4,3,4,8,0x14,0x1c,0x28,4,4,0x10,4,4,8,4,8,4,4,4,4,4,0x10,4,4,4,0xc,0xc,0x20,0x2dc,4,0x10,0x288,0x101,0x40,4,0x60,0x2c,0x20,4,4,4,4,8,8,4,4,4,4,8,4,4,1,4,4,0x28,0x28,0x88,0x78,4,4,0x28,4,4,4,4,4,4,0xc,0x10,0x10,0x18,4,4,4,8,4,1,4,0x30,4,8,4,4,8,4,4,1,0x1c,200,0x88,0x1c,0x10,1,4,4,4,8,0x4c,4,4,4,4,0x2c,4,0x1c,0x74,0x20,0x78,4,8,0x2c,4,4,4,4,0xc,8,0x10,8,0x14,4,4,0x40,4,1,0x18,4,8,4,4,4,4,4,4,8,8,4,4,4,8,4,};
@@ -318,6 +317,7 @@ int main( int nArgc, char **argv )
 	v = SourceEngineInit(GN(AppSystem));
 	if (!v) printf("Failed to SourceEngineInit\n");
 
+	MapLoader()->LoadMap("maps/dev/preview_flat.vpk");
 	pTestRendering->Init();
 
 	Plat_SetCurrentFrame(0);

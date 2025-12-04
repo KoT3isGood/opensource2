@@ -5,6 +5,7 @@
 #include "engine/handle.h"
 #include "engine/stringtoken.h"
 #include "engine/time.h"
+#include "maploader.h"
 #include "stdio.h"
 #include "math.h"
 
@@ -16,17 +17,8 @@
 class CTestRendering: public ITestRendering
 {
 public:
-	int hWorld;
-	ISceneWorld *pSceneWorld;
 	CCameraRenderer *pCameraRenderer;
 	CRenderAttributes *pRenderAttributes;
-	HModelStrong *pModel;
-	HMaterialStrong *pMaterial;
-
-	CREATE_NATIVE(IRenderContext, pRenderContext);
-	CREATE_NATIVE(CSceneObject, pSceneObject);
-	CREATE_NATIVE(IWorldReference, pWorldRef);
-	CREATE_NATIVE(IPVS, pPVS);
 
 	virtual void Init() override;
 	virtual void Frame(SwapChainHandle_t hSwapChain) override;
@@ -34,13 +26,11 @@ public:
 
 void CTestRendering::Init()
 {
-	SET_NATIVE(pRenderContext, g_pRenderDevice->CreateRenderContext(0));
-
 	pCameraRenderer = new CCameraRenderer("RenderToSwapChain",1);
-	printf("pCameraRenderer %p\n",pCameraRenderer->m_pSelf);
 	pRenderAttributes = new CRenderAttributes;
 
 
+	/*
 	pSceneWorld = (ISceneWorld*)AcquireNextHandle(g_pSceneSystem->CreateWorld("testworld"));
 
 	CTransformUnaligned transform;
@@ -88,8 +78,10 @@ void CTestRendering::Init()
 					0, GN(pSceneWorld), 1));
 
 
+					*/
+
 	pCameraRenderer->ClearSceneWorlds();
-	pCameraRenderer->AddSceneWorld(GN(pSceneWorld));
+	pCameraRenderer->AddSceneWorld(GN(MapLoader()->GetMainWorld()));
 
 
 }
@@ -98,40 +90,8 @@ void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
 {	
 	pCameraRenderer->ClearExcludeTags();
 	pCameraRenderer->ClearRenderTags();
-	CTransformUnaligned transform;
-	transform.m_scale = {
-		1,
-		1,
-		1,
-	};
-	transform.m_position = {
-		0,0,0
-	};
-	pSceneObject->SetTransform(transform);
-
-	mat4 m;
-	glm_mat4_identity(m);
-	glm_mat4_quat(m, *(versor*)&transform.m_rotation);
-	pWorldRef->SetWorldTransform(transform);
-	glm_mat4_identity(m);
-	glm_rotate(m, glm_rad(180), (vec3){0,0,1});
-	glm_mat4_quat(m, *(versor*)&transform.m_rotation);
-
-	void *pm = pSceneObject->GetModelHandle();
-	CREATE_NATIVE(CModel, model);
-	model->m_pSelf = pm;
-	transform.m_scale = {
-		3,
-		3,
-		3,
-	};
-	transform.m_position = {
-		200,0,0
-	};
-	pSceneObject->SetTransform(transform);
-	pSceneObject->SetTintRGBA((Vector4D){1,0,0,1});
-
-	g_pWorldRendererMgr->UpdateObjectsForRendering(StringToken(pSceneWorld->GetWorldDebugName()), (Vector){}, 1,500);
+	
+	g_pWorldRendererMgr->UpdateObjectsForRendering(StringToken(MapLoader()->GetMainWorld()->GetWorldDebugName()), (Vector){}, 1,500);
 
 	pRenderAttributes->SetBoolValue(StringToken("renderOpaque"), true);
 	pRenderAttributes->SetBoolValue(StringToken("renderTranslucent"), true);
@@ -170,7 +130,7 @@ void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
 	pCameraRenderer->FlipY = false;
 
 	pCameraRenderer->ClearSceneWorlds();
-	pCameraRenderer->AddSceneWorld(GN(pSceneWorld));
+	pCameraRenderer->AddSceneWorld(GN(MapLoader()->GetMainWorld()));
 
 	pCameraRenderer->Render(hSwapChain);
 }

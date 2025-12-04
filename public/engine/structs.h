@@ -157,6 +157,12 @@ class HRenderTextureStrong;
 class ISceneView;
 class CTransformUnaligned {
 public:
+	CTransformUnaligned()
+	{
+		m_position = (Vector){0,0,0};
+		m_scale = (Vector){1,1,1};
+		m_rotation = (Quaternion){0,0,1,0};
+	}
 	Vector m_position;
 	Vector m_scale;
 	Quaternion m_rotation;	
