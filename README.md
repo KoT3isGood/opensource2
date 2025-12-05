@@ -3,7 +3,8 @@
 It is a game base written using Facepunch's fork of Valve's Source 2.
 
 The goal for this project is to recreate game base (entities) from Valve's games using Source 2 fork provided by s&box.
-The reason for this fork is bindings for C# (even though we don't use it) allow us to interact with most of the stuff within the engine via `igen_engine`, even using native code, which we are using. The problem is we are using them and not vtables, which doesn't make the code as readable, as you would like
+The reason for this fork is bindings for C# (even though we don't use it) allow us to interact with most of the stuff within the engine via `igen_engine`, even using native code, which we are using. 
+The problem is we are using them and not vtables, which doesn't make the code as readable, as you would like
 
 ## Installation
 

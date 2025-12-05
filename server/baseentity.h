@@ -1,7 +1,16 @@
+//================= Copyright kotofyt, All rights reserved ==================//
+//
+// Purpose:
+//
+//===========================================================================//
+
 #ifndef BASEENTITY_H
 #define BASEENTITY_H
 
 #include "engine/structs.h"
+#include "entitysystem.h"
+#include "stdio.h"
+#include "datamap.h"
 
 #define DECLARE_CLASS_NOBASE( className ) \
 	typedef className ThisClass;
@@ -10,7 +19,7 @@
 	typedef className ThisClass;
 
 #define LINK_ENTITY_TO_CLASS( mapClassName, DLLClassName) \
-	static CEntityFactory<DLLClassName> mapClassName( #mapClassName );
+	static CEntityFactory<DLLClassName> g_EntityFactory_##mapClassName( #mapClassName );
 
 class CBaseEntity;
 
@@ -20,14 +29,14 @@ public:
 	virtual CBaseEntity *Create() = 0;
 };
 
-void InstallEntityFactory( IEntityFactory *pFactory, const char *szClassName );
 
 template<class T>
 class CEntityFactory : public IEntityFactory
 {
+public:
 	CEntityFactory( const char *szClassName )
 	{
-		InstallEntityFactory(this, szClassName);
+		EntitySystem()->RegisterEntityClass(this, szClassName);
 	};
 	virtual CBaseEntity *Create() {
 		return new T;
@@ -41,8 +50,10 @@ class CBaseEntity
 {
 public: 
 	DECLARE_CLASS_NOBASE(CBaseEntity);
+	DECLARE_DATADESC_NOBASE()
 
 	virtual ~CBaseEntity();
+	virtual void Spawn();
 
 	virtual void SetAbsAngles( float fPitch, float fYaw, float fRoll );
 	virtual void SetAbsOrigin( Vector origin );
@@ -53,13 +64,11 @@ public:
 	virtual float GetScale( void );
 
 	virtual void SetThink( fnThink pfnThink );
-private:
-	struct ThinkFunction_t
-	{
-		struct ThinkFunction_t *m_pNext;
-		fnThink m_pfnThink;
-		float m_fNextTime;
-	} *g_pThinkFunctions;
+	virtual void SetNextThink( float fThink );
+	
+	fnThink m_pfnThink = NULL;
+	CTransformUnaligned m_transform;
+
 };
 
 #endif

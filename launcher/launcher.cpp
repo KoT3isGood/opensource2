@@ -1,5 +1,5 @@
 //================= Copyright kotofyt, All rights reserved ==================//
-// Purpose: Helper functions for compilers, filesystem2 and build stages.
+// Purpose: Runs the engine and sets all the bindings.
 //===========================================================================//
 
 
@@ -215,6 +215,8 @@ void CC EnvironmentExit(int nCode)
 {
 	printf("EnvironmentExit: %i\n", nCode);
 }
+void ServerInit();
+void ServerFrame();
 
 int main( int nArgc, char **argv )
 {
@@ -317,8 +319,10 @@ int main( int nArgc, char **argv )
 	v = SourceEngineInit(GN(AppSystem));
 	if (!v) printf("Failed to SourceEngineInit\n");
 
-	MapLoader()->LoadMap("maps/dev/preview_flat.vpk");
 	pTestRendering->Init();
+	ServerInit();
+
+
 
 	Plat_SetCurrentFrame(0);
 
@@ -326,6 +330,7 @@ int main( int nArgc, char **argv )
 	{
 		SteamGameServer_RunCallbacks();
 		SteamAPI_RunCallbacks();
+		ServerFrame();
 		SourceEngineFrame(AppSystem, 0, 0);
 	}
 

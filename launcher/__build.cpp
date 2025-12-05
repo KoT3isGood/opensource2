@@ -1,3 +1,9 @@
+//================= Copyright kotofyt, All rights reserved ==================//
+// Purpose: Builds launcher, the engine and the game.
+//
+// At some point they will have to be built separately.
+//===========================================================================//
+
 #include "helper.h"
 #include "target.h"
 #include "c.h"
@@ -21,9 +27,14 @@ DECLARE_BUILD_STAGE(launcher)
 		"engine/stringtoken.cpp",
 		"external/murmur2/MurmurHash2.c",
 
+		"server/game.cpp",
 		"server/maploader.cpp",
+		"server/entitysystem.cpp",
 		"server/baseentity.cpp",
 		"server/basemodelentity.cpp",
+		"server/pointentity.cpp",
+		"server/lightentity.cpp",
+		"server/directionallight.cpp",
 	};
 	stCompile.includeDirectories = {
 		"public",
