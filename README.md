@@ -42,3 +42,9 @@ s&box supports it but is it worth it?
     - [ ] CServerOnlyEntity
       - [ ] CLogicalEntity
     - [ ] CPointEntity
+
+You may look here for function names.
+- https://moddota.com/api/#!/vscripts
+
+And here for the inheritance.
+- https://docs.cssharp.dev/api/CounterStrikeSharp.API.html
