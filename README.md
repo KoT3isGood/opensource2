@@ -17,14 +17,15 @@ For now you can use WSL.
 
 Prerequisites:
 - [funny project compiler](https://github.com/KoT3isGood/fpc)
-- DOTNET 10
+- .NET 10 both for windows and linux, idk why but you need.
 
 1. `git clone https://github.com/KoT3isGood/opensource2.git --recursive`
 2. `cd opensource2/opensource2-sbox`
 3. `./pull.sh`
-4. `cp `
-5. `cd ../`
-6. `fpc build`
+4. `cd ../`
+5. `cp -r opensource2-sbox/game .`
+6. Copy coreclr.dll into the directory from Windows .NET dlls.
+7. `fpc build`
 
 Now you can run `game/launcher.exe`
 
