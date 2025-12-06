@@ -8,6 +8,7 @@
 #include "engine/structs.h"
 #include "engine/engine2vars.h"
 #include "engine/handle.h"
+#include "engine/stringtoken.h"
 #include "maploader.h"
 
 #define TEST_MODEL_NAME "models/dev/error.vmdl"

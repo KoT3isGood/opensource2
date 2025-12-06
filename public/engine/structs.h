@@ -1,7 +1,10 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+#include "cglm/quat.h"
+#include "cglm/types.h"
 #include "stdint.h"
+#include "cglm/euler.h"
 #define uint unsigned int
 typedef unsigned int long uint32;
 typedef long long int64;
@@ -82,20 +85,52 @@ struct Color
 	float z;
 };
 
-struct Quaternion 
-{
-	float x;
-	float y;
-	float z;
-	float w;
-};
-
 struct QAngle
 {
 	float x;
 	float y;
 	float z;
 };
+
+struct Quaternion 
+{
+	float x;
+	float y;
+	float z;
+	float w;
+
+	inline void FromQAngle(QAngle angle)
+	{
+		mat4 m;
+		versor q;
+		glm_euler((vec3){angle.x, angle.y, angle.z}, m);
+		glm_mat4_quat(m, q);
+		x = q[0];
+		y = q[1];
+		z = q[2];
+		w = q[3];
+	};
+
+	inline QAngle ToQAngle()
+	{
+		mat4 m;
+		QAngle v;
+		
+		glm_quat_mat4((float*)this, m);
+		glm_euler_angles(m, (float*)&v);
+
+		return v;
+	};
+
+	inline Vector GetForwardAxis()
+	{
+		vec3 f = {1,0,0};
+		versor q = {x,y,z,w};
+
+		return *(Vector*)&f;
+	}
+};
+
 
 struct Rect_t
 {
@@ -438,4 +473,7 @@ enum class SceneObjectFlags :uint64_t
 #define SET_NATIVE(var, v) var->m_pSelf = (void*)(v)
 #define CREATE_NATIVE(type, var) type __##var; type *var = &__##var
 #define FROM_NATIVE(type, var) CREATE_NATIVE(type, var); SET_NATIVE(var, _##var) 
+
+
+
 #endif

@@ -52,6 +52,9 @@ public:
 	DECLARE_CLASS_NOBASE(CBaseEntity);
 	DECLARE_DATADESC_NOBASE()
 
+	typedescription_t *FindDataByName( const char *szName );
+	typedescription_t *FindDataByMapName( const char *szName );
+
 	virtual ~CBaseEntity();
 	virtual void Spawn();
 

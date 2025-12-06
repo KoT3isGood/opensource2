@@ -11,6 +11,10 @@ public:
 	DECLARE_DATADESC()
 
 	CREATE_NATIVE(CSceneLightObject, m_pLightObject);
+
+	virtual void Spawn() override;
+
+	Vector4D m_lightColor;
 };
 
 #endif

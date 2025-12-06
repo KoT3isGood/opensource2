@@ -9,13 +9,19 @@
 
 #ifndef DATAMAP_H
 #define DATAMAP_H
+#include "stddef.h"
 
 enum fieldtype_t {
 	FIELD_VOID = 0,
 	FIELD_FLOAT,
 	FIELD_STRING,
+	FIELD_VECTOR2D,
 	FIELD_VECTOR,
+	FIELD_VECTOR4D,
 	FIELD_QUATERNION,
+	FIELD_QUATERNION_QANGLE,
+	FIELD_COLOR255,
+	FIELD_COLOR1,
 	FIELD_INTEGER,
 	FIELD_BOOLEAN,
 };
@@ -23,9 +29,11 @@ enum fieldtype_t {
 struct typedescription_t
 {
 	const char *m_szFieldName;
+	const char *m_szEditorName;
 	fieldtype_t m_eFieldType;
-	int m_iFieldOffset;
-	unsigned int m_usFieldSize;
+	size_t m_iFieldOffset;
+	unsigned int m_uFieldCount;
+	unsigned short m_uFieldSize;
 	unsigned int m_iFlags;
 };
 
@@ -55,11 +63,11 @@ struct datamap_t
 	BEGIN_DATADESC_INTERNAL(className)
 
 #define BEGIN_DATADESC_INTERNAL( className ) \
-	datamap_t *className::GetDataMap() { static datamap_t s_DataMap = DataMapInit(); return &s_DataMap; } \
+	datamap_t *className::GetDataMap() { static datamap_t s_DataMap = ThisClass::DataMapInit(); return &s_DataMap; } \
 	datamap_t className::DataMapInit() \
 	{ \
 		datamap_t map; \
-		map.m_pBase = GetBaseMap(); \
+		map.m_pBase = ThisClass::GetBaseMap(); \
 		static typedescription_t dataDesc[] \
 		{\
 
@@ -73,6 +81,11 @@ struct datamap_t
 #define IMPLEMENT_NULL_DATADESC( className ) \
 	BEGIN_DATADESC(className) \
 	END_DATADESC()
+
+#define _class_offsetof( class, var ) ((size_t)&(((class*)0)->var))
+
+#define _FIELD( name, fieldtype, count, flags, mapname, tolerance) { #name, mapname, fieldtype, _class_offsetof(ThisClass, name), count, sizeof(((ThisClass*)0)->name), flags },
+#define DEFINE_KEYFIELD( name, fieldtype, mapname ) _FIELD( name, fieldtype, 1, FTYPEDESC_KEY, mapname, 0)
 
 #define FTYPEDESC_KEY 0x0004
 

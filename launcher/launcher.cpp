@@ -108,6 +108,18 @@ int CC RegisterHandle( void *ptr, unsigned int type )
 		iLastHandleIndex++;
 		return iLastHandleIndex; 
 	}
+	if (type==StringToken("SceneLightObject"))
+	{
+		printf("Creating light scene object\n");
+		SourceHandle_t *pHandle = new SourceHandle_t;
+		CSceneLightObject *pSceneObject = new CSceneLightObject;
+		pSceneObject->m_pSelf = ptr;
+		pHandle->pObject = pSceneObject;
+		pHandle->pNext = g_pCurrentSourceHandle;
+		g_pCurrentSourceHandle = pHandle;
+		iLastHandleIndex++;
+		return iLastHandleIndex; 
+	}
 	return -1;
 }
 
