@@ -15,6 +15,7 @@
 
 void CBaseModelEntity::Spawn()
 {
+	
 	SetAbsOrigin({200,0,0});
 	SetModel(TEST_MODEL_NAME);
 }
@@ -27,6 +28,9 @@ void CBaseModelEntity::SetModel( const char *szModelName )
 				uint64_t(SceneObjectFlags::IsLoaded),
 				0, GN(MapLoader()->GetMainWorld()), 1));
 	m_pSceneObject->SetTintRGBA((Vector4D){1,1,1,1});
+	
+	HMaterialStrong* pMaterialHandle = Glue::Resources::GetMaterial("materials/error.vmat");
+	m_pSceneObject->SetMaterialOverrideForMeshInstances(pMaterialHandle);
 }
 void CBaseModelEntity::SetAbsAngles( float fPitch, float fYaw, float fRoll )
 {

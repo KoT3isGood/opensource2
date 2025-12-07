@@ -3,8 +3,8 @@
 // Changes to this file may cause incorrect behavior and will be lost if
 // the code is regenerated.
 // </auto-generated>
-#ifndef ENGINE_GEN_H
-#define ENGINE_GEN_H
+#ifndef engine_GEN_H
+#define engine_GEN_H
 extern void *g_pengineLibrary;
 extern bool g_bIsengineInitialized;
 
@@ -16,34 +16,17 @@ extern bool g_bIsengineInitialized;
 #define CC
 #endif
 
-template <typename A, typename Parent>
-class RWVariable
-{
-public:
-	Parent *m_parent;
-	A(*m_ReadOp)(Parent*);
-	void(*m_WriteOp)(Parent*, A);
-	RWVariable(void* ReadOp, void* WriteOp, Parent *parent)
-	{
-		m_ReadOp = (A(*)(Parent*))ReadOp;
-		m_WriteOp = (void(*)(Parent*, A))WriteOp;
-		m_parent = parent;
-	}
-	inline RWVariable& operator = (const A& other)
-	{
-		m_WriteOp( (Parent*)m_parent->m_pSelf , other);
-		return *this;
-	}
-	[[nodiscard]] inline operator A() const
-	{
-		return m_ReadOp( (Parent*)m_parent->m_pSelf );
-	}
-};
 #define RW_VAR(type, name, parent, readop, writeop) RWVariable<type, parent> name{readop, writeop,this};
+#define ConVar _ConVar
+#define ConCommand _ConCommand
+#define CUtlBuffer _CUtlBuffer
+#define CUtlString _CUtlString
+#define CUtlVector _CUtlVector
 
 
-extern void *g_nativeFunctions[2745];
-extern void *g_callbackFunctions[80];
+extern void *g_engine_nativeFunctions[2747];
+extern void *g_engine_callbackFunctions[79];
+extern int g_engine_iStructSizes[148];
 typedef int(*FnBindingsImportDelegate)( int hash, void* imports, void* exports, int* structSizes );
 
 inline void engineBindingsInitialize()
@@ -61,89 +44,88 @@ inline void engineBindingsInitialize()
 	void *managedFunctions[79] = 
 	
 	{
-		(void*) (g_callbackFunctions[0]),
-		(void*) (g_callbackFunctions[1]),
-		(void*) (g_callbackFunctions[2]),
-		(void*) (g_callbackFunctions[3]),
-		(void*) (g_callbackFunctions[4]),
-		(void*) (g_callbackFunctions[5]),
-		(void*) (g_callbackFunctions[6]),
-		(void*) (g_callbackFunctions[7]),
-		(void*) (g_callbackFunctions[8]),
-		(void*) (g_callbackFunctions[9]),
-		(void*) (g_callbackFunctions[10]),
-		(void*) (g_callbackFunctions[11]),
-		(void*) (g_callbackFunctions[12]),
-		(void*) (g_callbackFunctions[13]),
-		(void*) (g_callbackFunctions[14]),
-		(void*) (g_callbackFunctions[15]),
-		(void*) (g_callbackFunctions[16]),
-		(void*) (g_callbackFunctions[17]),
-		(void*) (g_callbackFunctions[18]),
-		(void*) (g_callbackFunctions[19]),
-		(void*) (g_callbackFunctions[20]),
-		(void*) (g_callbackFunctions[21]),
-		(void*) (g_callbackFunctions[22]),
-		(void*) (g_callbackFunctions[23]),
-		(void*) (g_callbackFunctions[24]),
-		(void*) (g_callbackFunctions[25]),
-		(void*) (g_callbackFunctions[26]),
-		(void*) (g_callbackFunctions[27]),
-		(void*) (g_callbackFunctions[28]),
-		(void*) (g_callbackFunctions[29]),
-		(void*) (g_callbackFunctions[30]),
-		(void*) (g_callbackFunctions[31]),
-		(void*) (g_callbackFunctions[32]),
-		(void*) (g_callbackFunctions[33]),
-		(void*) (g_callbackFunctions[34]),
-		(void*) (g_callbackFunctions[35]),
-		(void*) (g_callbackFunctions[36]),
-		(void*) (g_callbackFunctions[37]),
-		(void*) (g_callbackFunctions[38]),
-		(void*) (g_callbackFunctions[39]),
-		(void*) (g_callbackFunctions[40]),
-		(void*) (g_callbackFunctions[41]),
-		(void*) (g_callbackFunctions[42]),
-		(void*) (g_callbackFunctions[43]),
-		(void*) (g_callbackFunctions[44]),
-		(void*) (g_callbackFunctions[45]),
-		(void*) (g_callbackFunctions[46]),
-		(void*) (g_callbackFunctions[47]),
-		(void*) (g_callbackFunctions[48]),
-		(void*) (g_callbackFunctions[49]),
-		(void*) (g_callbackFunctions[50]),
-		(void*) (g_callbackFunctions[51]),
-		(void*) (g_callbackFunctions[52]),
-		(void*) (g_callbackFunctions[53]),
-		(void*) (g_callbackFunctions[54]),
-		(void*) (g_callbackFunctions[55]),
-		(void*) (g_callbackFunctions[56]),
-		(void*) (g_callbackFunctions[57]),
-		(void*) (g_callbackFunctions[58]),
-		(void*) (g_callbackFunctions[59]),
-		(void*) (g_callbackFunctions[60]),
-		(void*) (g_callbackFunctions[61]),
-		(void*) (g_callbackFunctions[62]),
-		(void*) (g_callbackFunctions[63]),
-		(void*) (g_callbackFunctions[64]),
-		(void*) (g_callbackFunctions[65]),
-		(void*) (g_callbackFunctions[66]),
-		(void*) (g_callbackFunctions[67]),
-		(void*) (g_callbackFunctions[68]),
-		(void*) (g_callbackFunctions[69]),
-		(void*) (g_callbackFunctions[70]),
-		(void*) (g_callbackFunctions[71]),
-		(void*) (g_callbackFunctions[72]),
-		(void*) (g_callbackFunctions[73]),
-		(void*) (g_callbackFunctions[74]),
-		(void*) (g_callbackFunctions[75]),
-		(void*) (g_callbackFunctions[76]),
-		(void*) (g_callbackFunctions[77]),
-		(void*) (g_callbackFunctions[78]),
+		(void*) (g_engine_callbackFunctions[0]),
+		(void*) (g_engine_callbackFunctions[1]),
+		(void*) (g_engine_callbackFunctions[2]),
+		(void*) (g_engine_callbackFunctions[3]),
+		(void*) (g_engine_callbackFunctions[4]),
+		(void*) (g_engine_callbackFunctions[5]),
+		(void*) (g_engine_callbackFunctions[6]),
+		(void*) (g_engine_callbackFunctions[7]),
+		(void*) (g_engine_callbackFunctions[8]),
+		(void*) (g_engine_callbackFunctions[9]),
+		(void*) (g_engine_callbackFunctions[10]),
+		(void*) (g_engine_callbackFunctions[11]),
+		(void*) (g_engine_callbackFunctions[12]),
+		(void*) (g_engine_callbackFunctions[13]),
+		(void*) (g_engine_callbackFunctions[14]),
+		(void*) (g_engine_callbackFunctions[15]),
+		(void*) (g_engine_callbackFunctions[16]),
+		(void*) (g_engine_callbackFunctions[17]),
+		(void*) (g_engine_callbackFunctions[18]),
+		(void*) (g_engine_callbackFunctions[19]),
+		(void*) (g_engine_callbackFunctions[20]),
+		(void*) (g_engine_callbackFunctions[21]),
+		(void*) (g_engine_callbackFunctions[22]),
+		(void*) (g_engine_callbackFunctions[23]),
+		(void*) (g_engine_callbackFunctions[24]),
+		(void*) (g_engine_callbackFunctions[25]),
+		(void*) (g_engine_callbackFunctions[26]),
+		(void*) (g_engine_callbackFunctions[27]),
+		(void*) (g_engine_callbackFunctions[28]),
+		(void*) (g_engine_callbackFunctions[29]),
+		(void*) (g_engine_callbackFunctions[30]),
+		(void*) (g_engine_callbackFunctions[31]),
+		(void*) (g_engine_callbackFunctions[32]),
+		(void*) (g_engine_callbackFunctions[33]),
+		(void*) (g_engine_callbackFunctions[34]),
+		(void*) (g_engine_callbackFunctions[35]),
+		(void*) (g_engine_callbackFunctions[36]),
+		(void*) (g_engine_callbackFunctions[37]),
+		(void*) (g_engine_callbackFunctions[38]),
+		(void*) (g_engine_callbackFunctions[39]),
+		(void*) (g_engine_callbackFunctions[40]),
+		(void*) (g_engine_callbackFunctions[41]),
+		(void*) (g_engine_callbackFunctions[42]),
+		(void*) (g_engine_callbackFunctions[43]),
+		(void*) (g_engine_callbackFunctions[44]),
+		(void*) (g_engine_callbackFunctions[45]),
+		(void*) (g_engine_callbackFunctions[46]),
+		(void*) (g_engine_callbackFunctions[47]),
+		(void*) (g_engine_callbackFunctions[48]),
+		(void*) (g_engine_callbackFunctions[49]),
+		(void*) (g_engine_callbackFunctions[50]),
+		(void*) (g_engine_callbackFunctions[51]),
+		(void*) (g_engine_callbackFunctions[52]),
+		(void*) (g_engine_callbackFunctions[53]),
+		(void*) (g_engine_callbackFunctions[54]),
+		(void*) (g_engine_callbackFunctions[55]),
+		(void*) (g_engine_callbackFunctions[56]),
+		(void*) (g_engine_callbackFunctions[57]),
+		(void*) (g_engine_callbackFunctions[58]),
+		(void*) (g_engine_callbackFunctions[59]),
+		(void*) (g_engine_callbackFunctions[60]),
+		(void*) (g_engine_callbackFunctions[61]),
+		(void*) (g_engine_callbackFunctions[62]),
+		(void*) (g_engine_callbackFunctions[63]),
+		(void*) (g_engine_callbackFunctions[64]),
+		(void*) (g_engine_callbackFunctions[65]),
+		(void*) (g_engine_callbackFunctions[66]),
+		(void*) (g_engine_callbackFunctions[67]),
+		(void*) (g_engine_callbackFunctions[68]),
+		(void*) (g_engine_callbackFunctions[69]),
+		(void*) (g_engine_callbackFunctions[70]),
+		(void*) (g_engine_callbackFunctions[71]),
+		(void*) (g_engine_callbackFunctions[72]),
+		(void*) (g_engine_callbackFunctions[73]),
+		(void*) (g_engine_callbackFunctions[74]),
+		(void*) (g_engine_callbackFunctions[75]),
+		(void*) (g_engine_callbackFunctions[76]),
+		(void*) (g_engine_callbackFunctions[77]),
+		(void*) (g_engine_callbackFunctions[78]),
 	};
 	
-	int iStructSizes[149]={24,1,16,2,24,4,0x11,4,4,3,4,8,0x14,0x1c,0x28,4,4,0x10,4,4,8,4,8,4,4,4,4,4,0x10,4,4,4,0xc,0xc,0x20,0x2dc,4,0x10,0x288,0x101,0x40,4,0x60,0x2c,0x20,4,4,4,4,8,8,4,4,4,4,8,4,4,1,4,4,0x28,0x28,0x88,0x78,4,4,0x28,4,4,4,4,4,4,0xc,0x10,0x10,0x18,4,4,4,8,4,1,4,0x30,4,8,4,4,8,4,4,1,0x1c,200,0x88,0x1c,0x10,1,4,4,4,8,0x4c,4,4,4,4,0x2c,4,0x1c,0x74,0x20,0x78,4,8,0x2c,4,4,4,4,0xc,8,0x10,8,0x14,4,4,0x40,4,1,0x18,4,8,4,4,4,4,4,4,8,8,4,4,4,8,4,};
-	igen_engine( g_sHash, managedFunctions, g_nativeFunctions, iStructSizes );
+	igen_engine( *(unsigned short*)(((uint64_t)igen_engine)+23), managedFunctions, g_engine_nativeFunctions, g_engine_iStructSizes );
 	g_bIsengineInitialized = true;
 }
 class CAnimationGroupBuilder
@@ -156,40 +138,40 @@ class CAnimationGroupBuilder
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1])(m_pSelf);
 	}
 	CAnimationGroupBuilder() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[2])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[2])();
 	}
 	inline int AddAnimation() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[3])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[3])(m_pSelf);
 	}
 	inline void AddFrame(int nAnimation, void* pBoneTransforms, int nNumBoneTransforms) 
 	{
-		((void(*)(void* self, int nAnimation, void* pBoneTransforms, int nNumBoneTransforms))g_nativeFunctions[4])(m_pSelf, nAnimation, pBoneTransforms, nNumBoneTransforms);
+		((void(*)(void* self, int nAnimation, void* pBoneTransforms, int nNumBoneTransforms))g_engine_nativeFunctions[4])(m_pSelf, nAnimation, pBoneTransforms, nNumBoneTransforms);
 	}
 	inline void SetName(int nAnimation, const char* pName) 
 	{
-		((void(*)(void* self, int nAnimation, const char* pName))g_nativeFunctions[5])(m_pSelf, nAnimation, pName);
+		((void(*)(void* self, int nAnimation, const char* pName))g_engine_nativeFunctions[5])(m_pSelf, nAnimation, pName);
 	}
 	inline void SetFrameRate(int nAnimation, float fps) 
 	{
-		((void(*)(void* self, int nAnimation, float fps))g_nativeFunctions[6])(m_pSelf, nAnimation, fps);
+		((void(*)(void* self, int nAnimation, float fps))g_engine_nativeFunctions[6])(m_pSelf, nAnimation, fps);
 	}
 	inline void SetLooping(int nAnimation, int looping) 
 	{
-		((void(*)(void* self, int nAnimation, int looping))g_nativeFunctions[7])(m_pSelf, nAnimation, looping);
+		((void(*)(void* self, int nAnimation, int looping))g_engine_nativeFunctions[7])(m_pSelf, nAnimation, looping);
 	}
 	inline void SetDelta(int nAnimation, int delta) 
 	{
-		((void(*)(void* self, int nAnimation, int delta))g_nativeFunctions[8])(m_pSelf, nAnimation, delta);
+		((void(*)(void* self, int nAnimation, int delta))g_engine_nativeFunctions[8])(m_pSelf, nAnimation, delta);
 	}
 	inline void SetDisableInterpolation(int nAnimation, int disableInterpolation) 
 	{
-		((void(*)(void* self, int nAnimation, int disableInterpolation))g_nativeFunctions[9])(m_pSelf, nAnimation, disableInterpolation);
+		((void(*)(void* self, int nAnimation, int disableInterpolation))g_engine_nativeFunctions[9])(m_pSelf, nAnimation, disableInterpolation);
 	}
 };
 class CAttachment
@@ -203,21 +185,21 @@ class CAttachment
 	inline const char * GetInfluenceName(int index) 
 	{
 		return
-		((const char *(*)(void* __self, int __index))g_nativeFunctions[10])(m_pSelf, index);
+		((const char *(*)(void* __self, int __index))g_engine_nativeFunctions[10])(m_pSelf, index);
 	}
 	inline Vector GetInfluenceOffset(int index) 
 	{
 		return
-		((Vector(*)(void* __self, int __index))g_nativeFunctions[11])(m_pSelf, index);
+		((Vector(*)(void* __self, int __index))g_engine_nativeFunctions[11])(m_pSelf, index);
 	}
 	inline Quaternion GetInfluenceRotation(int index) 
 	{
 		return
-		((Quaternion(*)(void* __self, int __index))g_nativeFunctions[12])(m_pSelf, index);
+		((Quaternion(*)(void* __self, int __index))g_engine_nativeFunctions[12])(m_pSelf, index);
 	}
-	RW_VAR(const char *,m_name,CAttachment,g_nativeFunctions[13],g_nativeFunctions[14]);
-	RW_VAR(unsigned char,m_nInfluences,CAttachment,g_nativeFunctions[15],g_nativeFunctions[16]);
-	RW_VAR(int,m_bIgnoreRotation,CAttachment,g_nativeFunctions[17],g_nativeFunctions[18]);
+	RW_VAR(const char *,m_name,CAttachment,g_engine_nativeFunctions[13],g_engine_nativeFunctions[14]);
+	RW_VAR(unsigned char,m_nInfluences,CAttachment,g_engine_nativeFunctions[15],g_engine_nativeFunctions[16]);
+	RW_VAR(int,m_bIgnoreRotation,CAttachment,g_engine_nativeFunctions[17],g_engine_nativeFunctions[18]);
 };
 class CAudioMixBuffer
 {
@@ -229,46 +211,46 @@ class CAudioMixBuffer
 	}
 	CAudioMixBuffer() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[19])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[19])();
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[20])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[20])(m_pSelf);
 	}
 	inline const void* GetDataPointer() 
 	{
 		return
-		((const void*(*)(void* __self))g_nativeFunctions[21])(m_pSelf);
+		((const void*(*)(void* __self))g_engine_nativeFunctions[21])(m_pSelf);
 	}
 	inline void Silence() 
 	{
-		((void(*)(void* self))g_nativeFunctions[22])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[22])(m_pSelf);
 	}
 	inline float AbsLevel() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[23])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[23])(m_pSelf);
 	}
 	inline float AvergeLevel() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[24])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[24])(m_pSelf);
 	}
 	inline void Ramp(float flStart, float flEnd) 
 	{
-		((void(*)(void* self, float flStart, float flEnd))g_nativeFunctions[25])(m_pSelf, flStart, flEnd);
+		((void(*)(void* self, float flStart, float flEnd))g_engine_nativeFunctions[25])(m_pSelf, flStart, flEnd);
 	}
 	inline void CopyFrom(CAudioMixBuffer* addThis) 
 	{
-		((void(*)(void* self, CAudioMixBuffer* addThis))g_nativeFunctions[26])(m_pSelf, addThis);
+		((void(*)(void* self, CAudioMixBuffer* addThis))g_engine_nativeFunctions[26])(m_pSelf, addThis);
 	}
 	inline void Mix(CAudioMixBuffer* addThis, float flScale) 
 	{
-		((void(*)(void* self, CAudioMixBuffer* addThis, float flScale))g_nativeFunctions[27])(m_pSelf, addThis, flScale);
+		((void(*)(void* self, CAudioMixBuffer* addThis, float flScale))g_engine_nativeFunctions[27])(m_pSelf, addThis, flScale);
 	}
 	inline void MixRamp(CAudioMixBuffer* addThis, float flScaleStart, float flScaleEnd) 
 	{
-		((void(*)(void* self, CAudioMixBuffer* addThis, float flScaleStart, float flScaleEnd))g_nativeFunctions[28])(m_pSelf, addThis, flScaleStart, flScaleEnd);
+		((void(*)(void* self, CAudioMixBuffer* addThis, float flScaleStart, float flScaleEnd))g_engine_nativeFunctions[28])(m_pSelf, addThis, flScaleStart, flScaleEnd);
 	}
 };
 class CAudioMixDeviceBuffers
@@ -281,16 +263,16 @@ class CAudioMixDeviceBuffers
 	}
 	CAudioMixDeviceBuffers(int channels) 
 	{
-		m_pSelf = ((void*(*)(int channels))g_nativeFunctions[29])(channels);
+		m_pSelf = ((void*(*)(int channels))g_engine_nativeFunctions[29])(channels);
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[30])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[30])(m_pSelf);
 	}
 	inline const CAudioMixBuffer* GetBuffer(int i) 
 	{
 		return
-		((const CAudioMixBuffer*(*)(void* __self, int __i))g_nativeFunctions[31])(m_pSelf, i);
+		((const CAudioMixBuffer*(*)(void* __self, int __i))g_engine_nativeFunctions[31])(m_pSelf, i);
 	}
 };
 class CAudioMixer
@@ -303,80 +285,80 @@ class CAudioMixer
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[32])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[32])(m_pSelf);
 	}
 	inline int GetSamplePosition() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[33])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[33])(m_pSelf);
 	}
 	inline int ShouldContinueMixing() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[34])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[34])(m_pSelf);
 	}
 	inline void SetSamplePosition(int position) 
 	{
-		((void(*)(void* self, int position))g_nativeFunctions[35])(m_pSelf, position);
+		((void(*)(void* self, int position))g_engine_nativeFunctions[35])(m_pSelf, position);
 	}
 	inline void SetSampleEnd(unsigned int nEndSample) 
 	{
-		((void(*)(void* self, unsigned int nEndSample))g_nativeFunctions[36])(m_pSelf, nEndSample);
+		((void(*)(void* self, unsigned int nEndSample))g_engine_nativeFunctions[36])(m_pSelf, nEndSample);
 	}
 	inline void DelayOrSkipSamples(int nDelaySamples) 
 	{
-		((void(*)(void* self, int nDelaySamples))g_nativeFunctions[37])(m_pSelf, nDelaySamples);
+		((void(*)(void* self, int nDelaySamples))g_engine_nativeFunctions[37])(m_pSelf, nDelaySamples);
 	}
 	inline int IsReadyToMix() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[38])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[38])(m_pSelf);
 	}
 	inline int GetPositionForSave() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[39])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[39])(m_pSelf);
 	}
 	inline void SetPositionFromSaved(int savedPosition) 
 	{
-		((void(*)(void* self, int savedPosition))g_nativeFunctions[40])(m_pSelf, savedPosition);
+		((void(*)(void* self, int savedPosition))g_engine_nativeFunctions[40])(m_pSelf, savedPosition);
 	}
 	inline void UpdateMixerState(audio_source_indexstate_t state) 
 	{
-		((void(*)(void* self, audio_source_indexstate_t state))g_nativeFunctions[41])(m_pSelf, state);
+		((void(*)(void* self, audio_source_indexstate_t state))g_engine_nativeFunctions[41])(m_pSelf, state);
 	}
 	inline audio_source_indexstate_t GetIndexState() 
 	{
 		return
-		((audio_source_indexstate_t(*)(void* __self))g_nativeFunctions[42])(m_pSelf);
+		((audio_source_indexstate_t(*)(void* __self))g_engine_nativeFunctions[42])(m_pSelf);
 	}
 	inline const CSfxTable* GetSfxTable() 
 	{
 		return
-		((const CSfxTable*(*)(void* self))g_nativeFunctions[43])(m_pSelf);
+		((const CSfxTable*(*)(void* self))g_engine_nativeFunctions[43])(m_pSelf);
 	}
 	inline int GetSampleCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[44])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[44])(m_pSelf);
 	}
 	inline int GetChannelCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[45])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[45])(m_pSelf);
 	}
 	inline int SetTimeScale(float flTimeScale) 
 	{
 		return
-		((int(*)(void* self, float flTimeScale))g_nativeFunctions[46])(m_pSelf, flTimeScale);
+		((int(*)(void* self, float flTimeScale))g_engine_nativeFunctions[46])(m_pSelf, flTimeScale);
 	}
 	inline void EnableLooping(int bEnable) 
 	{
-		((void(*)(void* self, int bEnable))g_nativeFunctions[47])(m_pSelf, bEnable);
+		((void(*)(void* self, int bEnable))g_engine_nativeFunctions[47])(m_pSelf, bEnable);
 	}
 	inline void ReadToBuffer(float pitch, CAudioMixDeviceBuffers* buffers) 
 	{
-		((void(*)(void* self, float pitch, CAudioMixDeviceBuffers* buffers))g_nativeFunctions[48])(m_pSelf, pitch, buffers);
+		((void(*)(void* self, float pitch, CAudioMixDeviceBuffers* buffers))g_engine_nativeFunctions[48])(m_pSelf, pitch, buffers);
 	}
 };
 class CAudioProcessor
@@ -389,33 +371,33 @@ class CAudioProcessor
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[49])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[49])(m_pSelf);
 	}
 	inline void Process(CAudioMixDeviceBuffers* pInput, CAudioMixDeviceBuffers* pOutput, int nChannelCount) 
 	{
-		((void(*)(void* self, CAudioMixDeviceBuffers* pInput, CAudioMixDeviceBuffers* pOutput, int nChannelCount))g_nativeFunctions[50])(m_pSelf, pInput, pOutput, nChannelCount);
+		((void(*)(void* self, CAudioMixDeviceBuffers* pInput, CAudioMixDeviceBuffers* pOutput, int nChannelCount))g_engine_nativeFunctions[50])(m_pSelf, pInput, pOutput, nChannelCount);
 	}
 	inline int SetControlParameter(uint32 name, float flValue) 
 	{
 		return
-		((int(*)(void* self, uint32 name, float flValue))g_nativeFunctions[51])(m_pSelf, name, flValue);
+		((int(*)(void* self, uint32 name, float flValue))g_engine_nativeFunctions[51])(m_pSelf, name, flValue);
 	}
 	inline int SetNameParameter(uint32 name, uint32 nNameValue) 
 	{
 		return
-		((int(*)(void* self, uint32 name, uint32 nNameValue))g_nativeFunctions[52])(m_pSelf, name, nNameValue);
+		((int(*)(void* self, uint32 name, uint32 nNameValue))g_engine_nativeFunctions[52])(m_pSelf, name, nNameValue);
 	}
 	static
 	inline const CAudioProcessor* CreateDelay(int channels) 
 	{
 		return
-		((const CAudioProcessor*(*)(int __channels))g_nativeFunctions[53])(channels);
+		((const CAudioProcessor*(*)(int __channels))g_engine_nativeFunctions[53])(channels);
 	}
 	static
 	inline const CAudioProcessor* CreatePitchShift(int channels) 
 	{
 		return
-		((const CAudioProcessor*(*)(int __channels))g_nativeFunctions[54])(channels);
+		((const CAudioProcessor*(*)(int __channels))g_engine_nativeFunctions[54])(channels);
 	}
 };
 class CAudioStreamManaged
@@ -430,48 +412,48 @@ class CAudioStreamManaged
 	inline int Create(int nChannels, unsigned int nSampleRate) 
 	{
 		return
-		((int(*)(int nChannels, unsigned int nSampleRate))g_nativeFunctions[55])(nChannels, nSampleRate);
+		((int(*)(int nChannels, unsigned int nSampleRate))g_engine_nativeFunctions[55])(nChannels, nSampleRate);
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[56])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[56])(m_pSelf);
 	}
 	inline void WriteAudioData(void* pData, unsigned int nSampleCount, unsigned int nChannels) 
 	{
-		((void(*)(void* self, void* pData, unsigned int nSampleCount, unsigned int nChannels))g_nativeFunctions[57])(m_pSelf, pData, nSampleCount, nChannels);
+		((void(*)(void* self, void* pData, unsigned int nSampleCount, unsigned int nChannels))g_engine_nativeFunctions[57])(m_pSelf, pData, nSampleCount, nChannels);
 	}
 	inline unsigned int QueuedSampleCount() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[58])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[58])(m_pSelf);
 	}
 	inline unsigned int MaxWriteSampleCount() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[59])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[59])(m_pSelf);
 	}
 	inline unsigned int LatencySamplesCount() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[60])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[60])(m_pSelf);
 	}
 	inline void Pause() 
 	{
-		((void(*)(void* self))g_nativeFunctions[61])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[61])(m_pSelf);
 	}
 	inline void Resume() 
 	{
-		((void(*)(void* self))g_nativeFunctions[62])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[62])(m_pSelf);
 	}
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[63])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[63])(m_pSelf);
 	}
 	inline const CSfxTable* GetSfxTable() 
 	{
 		return
-		((const CSfxTable*(*)(void* self))g_nativeFunctions[64])(m_pSelf);
+		((const CSfxTable*(*)(void* self))g_engine_nativeFunctions[64])(m_pSelf);
 	}
 };
 class CBinauralEffect
@@ -484,15 +466,15 @@ class CBinauralEffect
 	}
 	CBinauralEffect() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[65])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[65])();
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[66])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[66])(m_pSelf);
 	}
 	inline void Apply(Vector localDirection, float spatialBlend, CAudioMixDeviceBuffers* input, CAudioMixDeviceBuffers* output) 
 	{
-		((void(*)(void* self, Vector localDirection, float spatialBlend, CAudioMixDeviceBuffers* input, CAudioMixDeviceBuffers* output))g_nativeFunctions[67])(m_pSelf, localDirection, spatialBlend, input, output);
+		((void(*)(void* self, Vector localDirection, float spatialBlend, CAudioMixDeviceBuffers* input, CAudioMixDeviceBuffers* output))g_engine_nativeFunctions[67])(m_pSelf, localDirection, spatialBlend, input, output);
 	}
 };
 class CBuilderMaterialGroup
@@ -505,9 +487,9 @@ class CBuilderMaterialGroup
 	}
 	inline void AddMaterial(HMaterialStrong* hMat) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMat))g_nativeFunctions[68])(m_pSelf, hMat);
+		((void(*)(void* self, HMaterialStrong* hMat))g_engine_nativeFunctions[68])(m_pSelf, hMat);
 	}
-	RW_VAR(const char *,m_name,CBuilderMaterialGroup,g_nativeFunctions[69],g_nativeFunctions[70]);
+	RW_VAR(const char *,m_name,CBuilderMaterialGroup,g_engine_nativeFunctions[69],g_engine_nativeFunctions[70]);
 };
 class CBuilderMaterialGroupArray
 {
@@ -519,16 +501,16 @@ class CBuilderMaterialGroupArray
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[71])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[71])(m_pSelf);
 	}
 	CBuilderMaterialGroupArray(int count) 
 	{
-		m_pSelf = ((void*(*)(int count))g_nativeFunctions[72])(count);
+		m_pSelf = ((void*(*)(int count))g_engine_nativeFunctions[72])(count);
 	}
 	inline const CBuilderMaterialGroup* Get(int index) 
 	{
 		return
-		((const CBuilderMaterialGroup*(*)(void* self, int index))g_nativeFunctions[73])(m_pSelf, index);
+		((const CBuilderMaterialGroup*(*)(void* self, int index))g_engine_nativeFunctions[73])(m_pSelf, index);
 	}
 };
 class CCameraRenderer
@@ -541,90 +523,90 @@ class CCameraRenderer
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[74])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[74])(m_pSelf);
 	}
 	CCameraRenderer(const char* name, int cameraId) 
 	{
-		m_pSelf = ((void*(*)(const char* name, int cameraId))g_nativeFunctions[75])(name, cameraId);
+		m_pSelf = ((void*(*)(const char* name, int cameraId))g_engine_nativeFunctions[75])(name, cameraId);
 	}
 	inline void ClearSceneWorlds() 
 	{
-		((void(*)(void* self))g_nativeFunctions[76])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[76])(m_pSelf);
 	}
 	inline void AddSceneWorld(ISceneWorld* world) 
 	{
-		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[77])(m_pSelf, world);
+		((void(*)(void* self, ISceneWorld* world))g_engine_nativeFunctions[77])(m_pSelf, world);
 	}
 	inline void SetRenderAttributes(CRenderAttributes* attributes) 
 	{
-		((void(*)(void* self, CRenderAttributes* attributes))g_nativeFunctions[78])(m_pSelf, attributes);
+		((void(*)(void* self, CRenderAttributes* attributes))g_engine_nativeFunctions[78])(m_pSelf, attributes);
 	}
 	inline void Render(SwapChainHandle_t targetSwapChain) 
 	{
-		((void(*)(void* self, SwapChainHandle_t targetSwapChain))g_nativeFunctions[79])(m_pSelf, targetSwapChain);
+		((void(*)(void* self, SwapChainHandle_t targetSwapChain))g_engine_nativeFunctions[79])(m_pSelf, targetSwapChain);
 	}
 	inline void RenderToTexture(HRenderTextureStrong* hTexture, ISceneView* parentView) 
 	{
-		((void(*)(void* self, HRenderTextureStrong* hTexture, ISceneView* parentView))g_nativeFunctions[80])(m_pSelf, hTexture, parentView);
+		((void(*)(void* self, HRenderTextureStrong* hTexture, ISceneView* parentView))g_engine_nativeFunctions[80])(m_pSelf, hTexture, parentView);
 	}
 	inline void RenderToCubeTexture(HRenderTextureStrong* hTexture, int nSlice) 
 	{
-		((void(*)(void* self, HRenderTextureStrong* hTexture, int nSlice))g_nativeFunctions[81])(m_pSelf, hTexture, nSlice);
+		((void(*)(void* self, HRenderTextureStrong* hTexture, int nSlice))g_engine_nativeFunctions[81])(m_pSelf, hTexture, nSlice);
 	}
 	inline void RenderToBitmap(void* pixels, int width, int height, int bytesPerPixel) 
 	{
-		((void(*)(void* self, void* pixels, int width, int height, int bytesPerPixel))g_nativeFunctions[82])(m_pSelf, pixels, width, height, bytesPerPixel);
+		((void(*)(void* self, void* pixels, int width, int height, int bytesPerPixel))g_engine_nativeFunctions[82])(m_pSelf, pixels, width, height, bytesPerPixel);
 	}
 	inline void RenderStereo(int eye, int eyeWidth, int eyeHeight, int bSubmitThisEye) 
 	{
-		((void(*)(void* self, int eye, int eyeWidth, int eyeHeight, int bSubmitThisEye))g_nativeFunctions[83])(m_pSelf, eye, eyeWidth, eyeHeight, bSubmitThisEye);
+		((void(*)(void* self, int eye, int eyeWidth, int eyeHeight, int bSubmitThisEye))g_engine_nativeFunctions[83])(m_pSelf, eye, eyeWidth, eyeHeight, bSubmitThisEye);
 	}
 	inline void SubmitStereo(int eyeWidth, int eyeHeight) 
 	{
-		((void(*)(void* self, int eyeWidth, int eyeHeight))g_nativeFunctions[84])(m_pSelf, eyeWidth, eyeHeight);
+		((void(*)(void* self, int eyeWidth, int eyeHeight))g_engine_nativeFunctions[84])(m_pSelf, eyeWidth, eyeHeight);
 	}
 	inline void BlitStereo(int eyeWidth, int eyeHeight) 
 	{
-		((void(*)(void* self, int eyeWidth, int eyeHeight))g_nativeFunctions[85])(m_pSelf, eyeWidth, eyeHeight);
+		((void(*)(void* self, int eyeWidth, int eyeHeight))g_engine_nativeFunctions[85])(m_pSelf, eyeWidth, eyeHeight);
 	}
 	inline void ClearRenderTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[86])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[86])(m_pSelf);
 	}
 	inline void ClearExcludeTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[87])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[87])(m_pSelf);
 	}
 	inline void AddRenderTag(unsigned int hash) 
 	{
-		((void(*)(void* self, unsigned int hash))g_nativeFunctions[88])(m_pSelf, hash);
+		((void(*)(void* self, unsigned int hash))g_engine_nativeFunctions[88])(m_pSelf, hash);
 	}
 	inline void AddExcludeTag(unsigned int hash) 
 	{
-		((void(*)(void* self, unsigned int hash))g_nativeFunctions[89])(m_pSelf, hash);
+		((void(*)(void* self, unsigned int hash))g_engine_nativeFunctions[89])(m_pSelf, hash);
 	}
-	RW_VAR(int,ViewUniqueId,CCameraRenderer,g_nativeFunctions[90],g_nativeFunctions[91]);
-	RW_VAR(Vector,CameraPosition,CCameraRenderer,g_nativeFunctions[92],g_nativeFunctions[93]);
-	RW_VAR(QAngle,CameraRotation,CCameraRenderer,g_nativeFunctions[94],g_nativeFunctions[95]);
-	RW_VAR(float,FieldOfView,CCameraRenderer,g_nativeFunctions[96],g_nativeFunctions[97]);
-	RW_VAR(float,ZNear,CCameraRenderer,g_nativeFunctions[98],g_nativeFunctions[99]);
-	RW_VAR(float,ZFar,CCameraRenderer,g_nativeFunctions[100],g_nativeFunctions[101]);
-	RW_VAR(Rect_t,Rect,CCameraRenderer,g_nativeFunctions[102],g_nativeFunctions[103]);
-	RW_VAR(Vector4D,Viewport,CCameraRenderer,g_nativeFunctions[104],g_nativeFunctions[105]);
-	RW_VAR(Vector4D,ClipSpaceBounds,CCameraRenderer,g_nativeFunctions[106],g_nativeFunctions[107]);
-	RW_VAR(int,EnablePostprocessing,CCameraRenderer,g_nativeFunctions[108],g_nativeFunctions[109]);
-	RW_VAR(int,EnableEngineOverlays,CCameraRenderer,g_nativeFunctions[110],g_nativeFunctions[111]);
-	RW_VAR(int,Ortho,CCameraRenderer,g_nativeFunctions[112],g_nativeFunctions[113]);
-	RW_VAR(float,OrthoSize,CCameraRenderer,g_nativeFunctions[114],g_nativeFunctions[115]);
-	RW_VAR(int,NeedTonemapRenderer,CCameraRenderer,g_nativeFunctions[116],g_nativeFunctions[117]);
-	RW_VAR(int64,SceneViewFlags,CCameraRenderer,g_nativeFunctions[118],g_nativeFunctions[119]);
-	RW_VAR(int,IsRenderingStereo,CCameraRenderer,g_nativeFunctions[120],g_nativeFunctions[121]);
-	RW_VAR(Vector,MiddleEyePosition,CCameraRenderer,g_nativeFunctions[122],g_nativeFunctions[123]);
-	RW_VAR(QAngle,MiddleEyeRotation,CCameraRenderer,g_nativeFunctions[124],g_nativeFunctions[125]);
-	RW_VAR(VMatrix,OverrideProjection,CCameraRenderer,g_nativeFunctions[126],g_nativeFunctions[127]);
-	RW_VAR(int,HasOverrideProjection,CCameraRenderer,g_nativeFunctions[128],g_nativeFunctions[129]);
-	RW_VAR(int,FlipX,CCameraRenderer,g_nativeFunctions[130],g_nativeFunctions[131]);
-	RW_VAR(int,FlipY,CCameraRenderer,g_nativeFunctions[132],g_nativeFunctions[133]);
+	RW_VAR(int,ViewUniqueId,CCameraRenderer,g_engine_nativeFunctions[90],g_engine_nativeFunctions[91]);
+	RW_VAR(Vector,CameraPosition,CCameraRenderer,g_engine_nativeFunctions[92],g_engine_nativeFunctions[93]);
+	RW_VAR(QAngle,CameraRotation,CCameraRenderer,g_engine_nativeFunctions[94],g_engine_nativeFunctions[95]);
+	RW_VAR(float,FieldOfView,CCameraRenderer,g_engine_nativeFunctions[96],g_engine_nativeFunctions[97]);
+	RW_VAR(float,ZNear,CCameraRenderer,g_engine_nativeFunctions[98],g_engine_nativeFunctions[99]);
+	RW_VAR(float,ZFar,CCameraRenderer,g_engine_nativeFunctions[100],g_engine_nativeFunctions[101]);
+	RW_VAR(Rect_t,Rect,CCameraRenderer,g_engine_nativeFunctions[102],g_engine_nativeFunctions[103]);
+	RW_VAR(Vector4D,Viewport,CCameraRenderer,g_engine_nativeFunctions[104],g_engine_nativeFunctions[105]);
+	RW_VAR(Vector4D,ClipSpaceBounds,CCameraRenderer,g_engine_nativeFunctions[106],g_engine_nativeFunctions[107]);
+	RW_VAR(int,EnablePostprocessing,CCameraRenderer,g_engine_nativeFunctions[108],g_engine_nativeFunctions[109]);
+	RW_VAR(int,EnableEngineOverlays,CCameraRenderer,g_engine_nativeFunctions[110],g_engine_nativeFunctions[111]);
+	RW_VAR(int,Ortho,CCameraRenderer,g_engine_nativeFunctions[112],g_engine_nativeFunctions[113]);
+	RW_VAR(float,OrthoSize,CCameraRenderer,g_engine_nativeFunctions[114],g_engine_nativeFunctions[115]);
+	RW_VAR(int,NeedTonemapRenderer,CCameraRenderer,g_engine_nativeFunctions[116],g_engine_nativeFunctions[117]);
+	RW_VAR(int64,SceneViewFlags,CCameraRenderer,g_engine_nativeFunctions[118],g_engine_nativeFunctions[119]);
+	RW_VAR(int,IsRenderingStereo,CCameraRenderer,g_engine_nativeFunctions[120],g_engine_nativeFunctions[121]);
+	RW_VAR(Vector,MiddleEyePosition,CCameraRenderer,g_engine_nativeFunctions[122],g_engine_nativeFunctions[123]);
+	RW_VAR(QAngle,MiddleEyeRotation,CCameraRenderer,g_engine_nativeFunctions[124],g_engine_nativeFunctions[125]);
+	RW_VAR(VMatrix,OverrideProjection,CCameraRenderer,g_engine_nativeFunctions[126],g_engine_nativeFunctions[127]);
+	RW_VAR(int,HasOverrideProjection,CCameraRenderer,g_engine_nativeFunctions[128],g_engine_nativeFunctions[129]);
+	RW_VAR(int,FlipX,CCameraRenderer,g_engine_nativeFunctions[130],g_engine_nativeFunctions[131]);
+	RW_VAR(int,FlipY,CCameraRenderer,g_engine_nativeFunctions[132],g_engine_nativeFunctions[133]);
 };
 class CDecalSceneObject
 {
@@ -638,281 +620,281 @@ class CDecalSceneObject
 	//NativeEngine.CDecalSceneObject.__N.To_CSceneObject_From_CDecalSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[135];
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[136])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[136])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[137])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[137])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[138])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[138])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[139])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[139])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[140])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[140])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[141])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[141])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[142])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[142])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[143])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[143])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[144])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[144])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[145])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[145])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[146])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[146])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[147])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[147])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[148])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[148])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[149])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[149])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[150])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[150])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[151])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[151])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[152])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[152])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[153])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[153])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[154])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[154])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[155])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[155])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[156])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[156])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[157])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[157])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[158])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[158])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[159])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[159])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[160])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[160])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[161])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[161])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[162])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[162])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[163])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[163])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[164])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[164])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[165])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[165])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[166])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[166])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[167])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[167])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[168])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[168])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[169])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[169])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[170])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[170])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[171])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[171])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[172])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[172])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[173])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[173])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[174])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[174])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[175])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[175])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[176])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[176])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[177])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[177])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[178])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[178])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[179])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[179])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[180])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[180])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[181])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[181])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[182])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[182])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[183])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[183])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[184])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[184])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[185])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[185])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[186])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[186])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[187])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[187])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[188])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[188])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[189])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[189])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[190])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[190])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[191])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[191])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[192])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[192])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[193])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[193])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[194])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[194])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[195])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[195])(m_pSelf, index, material);
 	}
-	RW_VAR(HRenderTextureStrong*,m_hColor,CDecalSceneObject,g_nativeFunctions[196],g_nativeFunctions[197]);
-	RW_VAR(HRenderTextureStrong*,m_hNormal,CDecalSceneObject,g_nativeFunctions[198],g_nativeFunctions[199]);
-	RW_VAR(HRenderTextureStrong*,m_hRMO,CDecalSceneObject,g_nativeFunctions[200],g_nativeFunctions[201]);
-	RW_VAR(unsigned int,m_nSortOrder,CDecalSceneObject,g_nativeFunctions[202],g_nativeFunctions[203]);
-	RW_VAR(unsigned int,m_nExclusionBitMask,CDecalSceneObject,g_nativeFunctions[204],g_nativeFunctions[205]);
-	RW_VAR(Vector4D,m_vColorTint,CDecalSceneObject,g_nativeFunctions[206],g_nativeFunctions[207]);
-	RW_VAR(float,m_flAttenuationAngle,CDecalSceneObject,g_nativeFunctions[208],g_nativeFunctions[209]);
-	RW_VAR(float,m_flColorMix,CDecalSceneObject,g_nativeFunctions[210],g_nativeFunctions[211]);
-	RW_VAR(HRenderTextureStrong*,m_hEmission,CDecalSceneObject,g_nativeFunctions[212],g_nativeFunctions[213]);
-	RW_VAR(float,m_flEmissionEnergy,CDecalSceneObject,g_nativeFunctions[214],g_nativeFunctions[215]);
-	RW_VAR(unsigned int,m_nSequenceIndex,CDecalSceneObject,g_nativeFunctions[216],g_nativeFunctions[217]);
-	RW_VAR(HRenderTextureStrong*,m_hHeight,CDecalSceneObject,g_nativeFunctions[218],g_nativeFunctions[219]);
-	RW_VAR(float,m_flParallaxStrength,CDecalSceneObject,g_nativeFunctions[220],g_nativeFunctions[221]);
-	RW_VAR(int,m_nSamplerIndex,CDecalSceneObject,g_nativeFunctions[222],g_nativeFunctions[223]);
+	RW_VAR(HRenderTextureStrong*,m_hColor,CDecalSceneObject,g_engine_nativeFunctions[196],g_engine_nativeFunctions[197]);
+	RW_VAR(HRenderTextureStrong*,m_hNormal,CDecalSceneObject,g_engine_nativeFunctions[198],g_engine_nativeFunctions[199]);
+	RW_VAR(HRenderTextureStrong*,m_hRMO,CDecalSceneObject,g_engine_nativeFunctions[200],g_engine_nativeFunctions[201]);
+	RW_VAR(unsigned int,m_nSortOrder,CDecalSceneObject,g_engine_nativeFunctions[202],g_engine_nativeFunctions[203]);
+	RW_VAR(unsigned int,m_nExclusionBitMask,CDecalSceneObject,g_engine_nativeFunctions[204],g_engine_nativeFunctions[205]);
+	RW_VAR(Vector4D,m_vColorTint,CDecalSceneObject,g_engine_nativeFunctions[206],g_engine_nativeFunctions[207]);
+	RW_VAR(float,m_flAttenuationAngle,CDecalSceneObject,g_engine_nativeFunctions[208],g_engine_nativeFunctions[209]);
+	RW_VAR(float,m_flColorMix,CDecalSceneObject,g_engine_nativeFunctions[210],g_engine_nativeFunctions[211]);
+	RW_VAR(HRenderTextureStrong*,m_hEmission,CDecalSceneObject,g_engine_nativeFunctions[212],g_engine_nativeFunctions[213]);
+	RW_VAR(float,m_flEmissionEnergy,CDecalSceneObject,g_engine_nativeFunctions[214],g_engine_nativeFunctions[215]);
+	RW_VAR(unsigned int,m_nSequenceIndex,CDecalSceneObject,g_engine_nativeFunctions[216],g_engine_nativeFunctions[217]);
+	RW_VAR(HRenderTextureStrong*,m_hHeight,CDecalSceneObject,g_engine_nativeFunctions[218],g_engine_nativeFunctions[219]);
+	RW_VAR(float,m_flParallaxStrength,CDecalSceneObject,g_engine_nativeFunctions[220],g_engine_nativeFunctions[221]);
+	RW_VAR(int,m_nSamplerIndex,CDecalSceneObject,g_engine_nativeFunctions[222],g_engine_nativeFunctions[223]);
 };
 class CDynamicSceneObject
 {
@@ -928,292 +910,292 @@ class CDynamicSceneObject
 	inline int Create(ISceneWorld* world) 
 	{
 		return
-		((int(*)(ISceneWorld* world))g_nativeFunctions[226])(world);
+		((int(*)(ISceneWorld* world))g_engine_nativeFunctions[226])(world);
 	}
 	inline void Begin(int64 type, int vertexCount) 
 	{
-		((void(*)(void* self, int64 type, int vertexCount))g_nativeFunctions[227])(m_pSelf, type, vertexCount);
+		((void(*)(void* self, int64 type, int vertexCount))g_engine_nativeFunctions[227])(m_pSelf, type, vertexCount);
 	}
 	inline void End() 
 	{
-		((void(*)(void* self))g_nativeFunctions[228])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[228])(m_pSelf);
 	}
 	inline void AddVertex(SboxVertex_t vertex) 
 	{
-		((void(*)(void* self, SboxVertex_t vertex))g_nativeFunctions[229])(m_pSelf, vertex);
+		((void(*)(void* self, SboxVertex_t vertex))g_engine_nativeFunctions[229])(m_pSelf, vertex);
 	}
 	inline void AddVertexRange(void* vertex, int length) 
 	{
-		((void(*)(void* self, void* vertex, int length))g_nativeFunctions[230])(m_pSelf, vertex, length);
+		((void(*)(void* self, void* vertex, int length))g_engine_nativeFunctions[230])(m_pSelf, vertex, length);
 	}
 	inline void Reset() 
 	{
-		((void(*)(void* self))g_nativeFunctions[231])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[231])(m_pSelf);
 	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[232])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[232])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[233])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[233])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[234])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[234])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[235])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[235])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[236])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[236])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[237])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[237])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[238])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[238])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[239])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[239])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[240])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[240])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[241])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[241])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[242])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[242])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[243])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[243])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[244])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[244])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[245])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[245])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[246])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[246])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[247])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[247])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[248])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[248])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[249])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[249])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[250])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[250])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[251])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[251])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[252])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[252])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[253])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[253])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[254])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[254])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[255])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[255])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[256])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[256])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[257])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[257])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[258])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[258])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[259])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[259])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[260])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[260])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[261])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[261])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[262])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[262])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[263])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[263])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[264])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[264])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[265])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[265])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[266])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[266])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[267])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[267])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[268])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[268])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[269])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[269])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[270])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[270])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[271])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[271])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[272])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[272])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[273])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[273])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[274])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[274])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[275])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[275])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[276])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[276])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[277])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[277])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[278])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[278])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[279])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[279])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[280])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[280])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[281])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[281])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[282])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[282])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[283])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[283])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[284])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[284])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[285])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[285])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[286])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[286])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[287])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[287])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[288])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[288])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[289])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[289])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[290])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[290])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[291])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[291])(m_pSelf, index, material);
 	}
-	RW_VAR(HMaterialStrong*,Material,CDynamicSceneObject,g_nativeFunctions[292],g_nativeFunctions[293]);
+	RW_VAR(HMaterialStrong*,Material,CDynamicSceneObject,g_engine_nativeFunctions[292],g_engine_nativeFunctions[293]);
 };
 class CEntityKeyValues
 {
@@ -1226,22 +1208,22 @@ class CEntityKeyValues
 	inline const char* GetValueString(uint32 key, const char* pDefaultValue) 
 	{
 		return
-		((const char*(*)(void* self, uint32 key, const char* pDefaultValue))g_nativeFunctions[294])(m_pSelf, key, pDefaultValue);
+		((const char*(*)(void* self, uint32 key, const char* pDefaultValue))g_engine_nativeFunctions[294])(m_pSelf, key, pDefaultValue);
 	}
 	inline int GetKeyCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[295])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[295])(m_pSelf);
 	}
 	inline unsigned int GetKey(int nIdx) 
 	{
 		return
-		((unsigned int(*)(void* __self, int __nIdx))g_nativeFunctions[296])(m_pSelf, nIdx);
+		((unsigned int(*)(void* __self, int __nIdx))g_engine_nativeFunctions[296])(m_pSelf, nIdx);
 	}
 	inline const char* GetValueString(unsigned int key, const char* pDefaultValue) 
 	{
 		return
-		((const char*(*)(void* __self, unsigned int __key, const char* __pDefaultValue))g_nativeFunctions[297])(m_pSelf, key, pDefaultValue);
+		((const char*(*)(void* __self, unsigned int __key, const char* __pDefaultValue))g_engine_nativeFunctions[297])(m_pSelf, key, pDefaultValue);
 	}
 };
 class CEnvMapSceneObject
@@ -1258,261 +1240,261 @@ class CEnvMapSceneObject
 	//NativeEngine.CEnvMapSceneObject.__N.To_CSceneObject_From_CEnvMapSceneObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[301];
 	inline void CalculateRadianceSH() 
 	{
-		((void(*)(void* self))g_nativeFunctions[302])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[302])(m_pSelf);
 	}
 	inline void CalculateRadianceSH(HRenderTextureStrong* hTexture) 
 	{
-		((void(*)(void* self, HRenderTextureStrong* hTexture))g_nativeFunctions[303])(m_pSelf, hTexture);
+		((void(*)(void* self, HRenderTextureStrong* hTexture))g_engine_nativeFunctions[303])(m_pSelf, hTexture);
 	}
 	inline void CalculateNormalizationSH() 
 	{
-		((void(*)(void* self))g_nativeFunctions[304])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[304])(m_pSelf);
 	}
 	inline void CalculateBounds() 
 	{
-		((void(*)(void* self))g_nativeFunctions[305])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[305])(m_pSelf);
 	}
 	inline void SetWorldPosition(Vector pos) 
 	{
-		((void(*)(void* self, Vector pos))g_nativeFunctions[306])(m_pSelf, pos);
+		((void(*)(void* self, Vector pos))g_engine_nativeFunctions[306])(m_pSelf, pos);
 	}
 	inline Vector GetWorldPosition() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[307])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[307])(m_pSelf);
 	}
 	inline void SetWorldDirection(Quaternion dir) 
 	{
-		((void(*)(void* self, Quaternion dir))g_nativeFunctions[308])(m_pSelf, dir);
+		((void(*)(void* self, Quaternion dir))g_engine_nativeFunctions[308])(m_pSelf, dir);
 	}
 	inline Vector GetWorldDirection() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[309])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[309])(m_pSelf);
 	}
 	inline void SetColor(Vector color) 
 	{
-		((void(*)(void* self, Vector color))g_nativeFunctions[310])(m_pSelf, color);
+		((void(*)(void* self, Vector color))g_engine_nativeFunctions[310])(m_pSelf, color);
 	}
 	inline void SetBounceColor(Vector color) 
 	{
-		((void(*)(void* self, Vector color))g_nativeFunctions[311])(m_pSelf, color);
+		((void(*)(void* self, Vector color))g_engine_nativeFunctions[311])(m_pSelf, color);
 	}
 	inline Vector GetColor() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[312])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[312])(m_pSelf);
 	}
 	inline void SetRadius(float radius) 
 	{
-		((void(*)(void* self, float radius))g_nativeFunctions[313])(m_pSelf, radius);
+		((void(*)(void* self, float radius))g_engine_nativeFunctions[313])(m_pSelf, radius);
 	}
 	inline float GetRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[314])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[314])(m_pSelf);
 	}
 	inline void SetTheta(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[315])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[315])(m_pSelf, f);
 	}
 	inline float GetTheta() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[316])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[316])(m_pSelf);
 	}
 	inline void SetPhi(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[317])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[317])(m_pSelf, f);
 	}
 	inline float GetPhi() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[318])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[318])(m_pSelf);
 	}
 	inline void SetFallOff(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[319])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[319])(m_pSelf, f);
 	}
 	inline float GetFallOff() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[320])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[320])(m_pSelf);
 	}
 	inline int GetShadowTextureResolution() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[321])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[321])(m_pSelf);
 	}
 	inline void SetShadowTextureResolution(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[322])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[322])(m_pSelf, v);
 	}
 	inline int GetShadows() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[323])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[323])(m_pSelf);
 	}
 	inline void SetShadows(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[324])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[324])(m_pSelf, v);
 	}
 	inline void SetConstantAttn(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[325])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[325])(m_pSelf, f);
 	}
 	inline float GetConstantAttn() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[326])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[326])(m_pSelf);
 	}
 	inline void SetLinearAttn(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[327])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[327])(m_pSelf, f);
 	}
 	inline float GetLinearAttn() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[328])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[328])(m_pSelf);
 	}
 	inline void SetQuadraticAttn(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[329])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[329])(m_pSelf, f);
 	}
 	inline float GetQuadraticAttn() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[330])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[330])(m_pSelf);
 	}
 	inline void SetLightCookie(HRenderTextureStrong* f) 
 	{
-		((void(*)(void* self, HRenderTextureStrong* f))g_nativeFunctions[331])(m_pSelf, f);
+		((void(*)(void* self, HRenderTextureStrong* f))g_engine_nativeFunctions[331])(m_pSelf, f);
 	}
 	inline HRenderTextureStrong* GetLightCookie() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self))g_nativeFunctions[332])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* self))g_engine_nativeFunctions[332])(m_pSelf);
 	}
 	inline int GetShadowCascades() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[333])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[333])(m_pSelf);
 	}
 	inline void SetShadowCascades(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[334])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[334])(m_pSelf, v);
 	}
 	inline float GetCascadeDistanceScale() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[335])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[335])(m_pSelf);
 	}
 	inline void SetCascadeDistanceScale(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[336])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[336])(m_pSelf, dist);
 	}
 	inline float GetFogContributionStength() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[337])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[337])(m_pSelf);
 	}
 	inline void SetFogContributionStength(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[338])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[338])(m_pSelf, v);
 	}
 	inline int GetFogLightingMode() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[339])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[339])(m_pSelf);
 	}
 	inline void SetFogLightingMode(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[340])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[340])(m_pSelf, v);
 	}
 	inline void SetBakeLightIndex(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[341])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[341])(m_pSelf, v);
 	}
 	inline void SetBakeLightIndexScale(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[342])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[342])(m_pSelf, v);
 	}
 	inline void SetUsesIndexedBakedLighting(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[343])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[343])(m_pSelf, v);
 	}
 	inline void SetRenderDiffuse(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[344])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[344])(m_pSelf, v);
 	}
 	inline void SetRenderSpecular(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[345])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[345])(m_pSelf, v);
 	}
 	inline void SetRenderTransmissive(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[346])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[346])(m_pSelf, v);
 	}
 	inline void SetLightSourceSize0(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[347])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[347])(m_pSelf, v);
 	}
 	inline void SetLightSourceSize1(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[348])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[348])(m_pSelf, v);
 	}
 	inline void SetShadowTextureWidth(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[349])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[349])(m_pSelf, v);
 	}
 	inline void SetShadowTextureHeight(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[350])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[350])(m_pSelf, v);
 	}
 	inline int GetShadowTextureWidth() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[351])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[351])(m_pSelf);
 	}
 	inline int GetShadowTextureHeight() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[352])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[352])(m_pSelf);
 	}
 	inline unsigned int GetLightFlags() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[353])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[353])(m_pSelf);
 	}
 	inline void SetLightFlags(unsigned int flags) 
 	{
-		((void(*)(void* self, unsigned int flags))g_nativeFunctions[354])(m_pSelf, flags);
+		((void(*)(void* self, unsigned int flags))g_engine_nativeFunctions[354])(m_pSelf, flags);
 	}
 	inline int64 GetLightShape() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[355])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[355])(m_pSelf);
 	}
 	inline void SetLightShape(int64 shape) 
 	{
-		((void(*)(void* self, int64 shape))g_nativeFunctions[356])(m_pSelf, shape);
+		((void(*)(void* self, int64 shape))g_engine_nativeFunctions[356])(m_pSelf, shape);
 	}
 	inline void SetLightSourceDim0(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[357])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[357])(m_pSelf, v);
 	}
 	inline void SetLightSourceDim1(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[358])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[358])(m_pSelf, v);
 	}
-	RW_VAR(int64,m_nProjectionMode,CEnvMapSceneObject,g_nativeFunctions[359],g_nativeFunctions[360]);
-	RW_VAR(Vector,m_vBoxProjectMins,CEnvMapSceneObject,g_nativeFunctions[361],g_nativeFunctions[362]);
-	RW_VAR(Vector,m_vBoxProjectMaxs,CEnvMapSceneObject,g_nativeFunctions[363],g_nativeFunctions[364]);
-	RW_VAR(Vector,m_vColor,CEnvMapSceneObject,g_nativeFunctions[365],g_nativeFunctions[366]);
-	RW_VAR(int,m_nRenderPriority,CEnvMapSceneObject,g_nativeFunctions[367],g_nativeFunctions[368]);
-	RW_VAR(HRenderTextureStrong*,m_hEnvMapTexture,CEnvMapSceneObject,g_nativeFunctions[369],g_nativeFunctions[370]);
-	RW_VAR(Vector4D,m_vNormalizationSH,CEnvMapSceneObject,g_nativeFunctions[371],g_nativeFunctions[372]);
-	RW_VAR(float,m_flFeathering,CEnvMapSceneObject,g_nativeFunctions[373],g_nativeFunctions[374]);
+	RW_VAR(int64,m_nProjectionMode,CEnvMapSceneObject,g_engine_nativeFunctions[359],g_engine_nativeFunctions[360]);
+	RW_VAR(Vector,m_vBoxProjectMins,CEnvMapSceneObject,g_engine_nativeFunctions[361],g_engine_nativeFunctions[362]);
+	RW_VAR(Vector,m_vBoxProjectMaxs,CEnvMapSceneObject,g_engine_nativeFunctions[363],g_engine_nativeFunctions[364]);
+	RW_VAR(Vector,m_vColor,CEnvMapSceneObject,g_engine_nativeFunctions[365],g_engine_nativeFunctions[366]);
+	RW_VAR(int,m_nRenderPriority,CEnvMapSceneObject,g_engine_nativeFunctions[367],g_engine_nativeFunctions[368]);
+	RW_VAR(HRenderTextureStrong*,m_hEnvMapTexture,CEnvMapSceneObject,g_engine_nativeFunctions[369],g_engine_nativeFunctions[370]);
+	RW_VAR(Vector4D,m_vNormalizationSH,CEnvMapSceneObject,g_engine_nativeFunctions[371],g_engine_nativeFunctions[372]);
+	RW_VAR(float,m_flFeathering,CEnvMapSceneObject,g_engine_nativeFunctions[373],g_engine_nativeFunctions[374]);
 };
 class CFrustum
 {
@@ -1524,109 +1506,109 @@ class CFrustum
 	}
 	CFrustum() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[375])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[375])();
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* self))g_nativeFunctions[376])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[376])(m_pSelf);
 	}
 	inline void InitCamera(Vector origin, QAngle angles, float flNear, float flFar, float flFOV, float flAspect, float flClipSpaceBottomLeftX, float flClipSpaceBottomLeftY, float flClipSpaceTopRightX, float flClipSpaceTopRightY) 
 	{
-		((void(*)(void* self, Vector origin, QAngle angles, float flNear, float flFar, float flFOV, float flAspect, float flClipSpaceBottomLeftX, float flClipSpaceBottomLeftY, float flClipSpaceTopRightX, float flClipSpaceTopRightY))g_nativeFunctions[377])(m_pSelf, origin, angles, flNear, flFar, flFOV, flAspect, flClipSpaceBottomLeftX, flClipSpaceBottomLeftY, flClipSpaceTopRightX, flClipSpaceTopRightY);
+		((void(*)(void* self, Vector origin, QAngle angles, float flNear, float flFar, float flFOV, float flAspect, float flClipSpaceBottomLeftX, float flClipSpaceBottomLeftY, float flClipSpaceTopRightX, float flClipSpaceTopRightY))g_engine_nativeFunctions[377])(m_pSelf, origin, angles, flNear, flFar, flFOV, flAspect, flClipSpaceBottomLeftX, flClipSpaceBottomLeftY, flClipSpaceTopRightX, flClipSpaceTopRightY);
 	}
 	inline void InitCamera(Vector origin, QAngle angles, float flNear, float flFar, float flFOV, float flAspect) 
 	{
-		((void(*)(void* self, Vector origin, QAngle angles, float flNear, float flFar, float flFOV, float flAspect))g_nativeFunctions[378])(m_pSelf, origin, angles, flNear, flFar, flFOV, flAspect);
+		((void(*)(void* self, Vector origin, QAngle angles, float flNear, float flFar, float flFOV, float flAspect))g_engine_nativeFunctions[378])(m_pSelf, origin, angles, flNear, flFar, flFOV, flAspect);
 	}
 	inline void InitOrthoCamera(Vector origin, QAngle angles, float flNear, float flFar, float flWidth, float flHeight) 
 	{
-		((void(*)(void* self, Vector origin, QAngle angles, float flNear, float flFar, float flWidth, float flHeight))g_nativeFunctions[379])(m_pSelf, origin, angles, flNear, flFar, flWidth, flHeight);
+		((void(*)(void* self, Vector origin, QAngle angles, float flNear, float flFar, float flWidth, float flHeight))g_engine_nativeFunctions[379])(m_pSelf, origin, angles, flNear, flFar, flWidth, flHeight);
 	}
 	inline void SetCameraWidthHeight(float flWidth, float flHeight) 
 	{
-		((void(*)(void* self, float flWidth, float flHeight))g_nativeFunctions[380])(m_pSelf, flWidth, flHeight);
+		((void(*)(void* self, float flWidth, float flHeight))g_engine_nativeFunctions[380])(m_pSelf, flWidth, flHeight);
 	}
 	inline VMatrix GetProj() 
 	{
 		return
-		((VMatrix(*)(void* self))g_nativeFunctions[381])(m_pSelf);
+		((VMatrix(*)(void* self))g_engine_nativeFunctions[381])(m_pSelf);
 	}
 	inline VMatrix GetInvProj() 
 	{
 		return
-		((VMatrix(*)(void* self))g_nativeFunctions[382])(m_pSelf);
+		((VMatrix(*)(void* self))g_engine_nativeFunctions[382])(m_pSelf);
 	}
 	inline VMatrix GetReverseZProj() 
 	{
 		return
-		((VMatrix(*)(void* self))g_nativeFunctions[383])(m_pSelf);
+		((VMatrix(*)(void* self))g_engine_nativeFunctions[383])(m_pSelf);
 	}
 	inline VMatrix GetInvReverseZProj() 
 	{
 		return
-		((VMatrix(*)(void* self))g_nativeFunctions[384])(m_pSelf);
+		((VMatrix(*)(void* self))g_engine_nativeFunctions[384])(m_pSelf);
 	}
 	inline VMatrix GetViewProj() 
 	{
 		return
-		((VMatrix(*)(void* self))g_nativeFunctions[385])(m_pSelf);
+		((VMatrix(*)(void* self))g_engine_nativeFunctions[385])(m_pSelf);
 	}
 	inline VMatrix GetInvViewProj() 
 	{
 		return
-		((VMatrix(*)(void* self))g_nativeFunctions[386])(m_pSelf);
+		((VMatrix(*)(void* self))g_engine_nativeFunctions[386])(m_pSelf);
 	}
 	inline int BoundingVolumeIntersectsFrustum(AABB_t box) 
 	{
 		return
-		((int(*)(void* self, AABB_t box))g_nativeFunctions[387])(m_pSelf, box);
+		((int(*)(void* self, AABB_t box))g_engine_nativeFunctions[387])(m_pSelf, box);
 	}
 	inline int ScreenTransform(Vector world, Vector* result) 
 	{
 		return
-		((int(*)(void* self, Vector world, Vector* result))g_nativeFunctions[388])(m_pSelf, world, result);
+		((int(*)(void* self, Vector world, Vector* result))g_engine_nativeFunctions[388])(m_pSelf, world, result);
 	}
 	inline void WorldToView(Vector vWorld, Vector2D* pOutViewMinusOneToOne) 
 	{
-		((void(*)(void* self, Vector vWorld, Vector2D* pOutViewMinusOneToOne))g_nativeFunctions[389])(m_pSelf, vWorld, pOutViewMinusOneToOne);
+		((void(*)(void* self, Vector vWorld, Vector2D* pOutViewMinusOneToOne))g_engine_nativeFunctions[389])(m_pSelf, vWorld, pOutViewMinusOneToOne);
 	}
 	inline void ViewToWorld(Vector2D vViewMinusOneToOne, Vector* pOutWorld) 
 	{
-		((void(*)(void* self, Vector2D vViewMinusOneToOne, Vector* pOutWorld))g_nativeFunctions[390])(m_pSelf, vViewMinusOneToOne, pOutWorld);
+		((void(*)(void* self, Vector2D vViewMinusOneToOne, Vector* pOutWorld))g_engine_nativeFunctions[390])(m_pSelf, vViewMinusOneToOne, pOutWorld);
 	}
 	inline Vector GetCameraPosition() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[391])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[391])(m_pSelf);
 	}
 	inline QAngle GetCameraAngles() 
 	{
 		return
-		((QAngle(*)(void* self))g_nativeFunctions[392])(m_pSelf);
+		((QAngle(*)(void* self))g_engine_nativeFunctions[392])(m_pSelf);
 	}
 	inline float GetCameraNearPlane() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[393])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[393])(m_pSelf);
 	}
 	inline float GetCameraFarPlane() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[394])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[394])(m_pSelf);
 	}
 	inline float GetCameraFOV() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[395])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[395])(m_pSelf);
 	}
 	inline float GetCameraAspect() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[396])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[396])(m_pSelf);
 	}
 	inline void GetPlane(int index, Vector* normal, float* distance) 
 	{
-		((void(*)(void* self, int index, Vector* normal, float* distance))g_nativeFunctions[397])(m_pSelf, index, normal, distance);
+		((void(*)(void* self, int index, Vector* normal, float* distance))g_engine_nativeFunctions[397])(m_pSelf, index, normal, distance);
 	}
 };
 class CHitBox
@@ -1640,22 +1622,22 @@ class CHitBox
 	inline const char* GetTag(int index) 
 	{
 		return
-		((const char*(*)(void* self, int index))g_nativeFunctions[398])(m_pSelf, index);
+		((const char*(*)(void* self, int index))g_engine_nativeFunctions[398])(m_pSelf, index);
 	}
-	RW_VAR(Vector,m_vMinBounds,CHitBox,g_nativeFunctions[399],g_nativeFunctions[400]);
-	RW_VAR(Vector,m_vMaxBounds,CHitBox,g_nativeFunctions[401],g_nativeFunctions[402]);
-	RW_VAR(const char *,m_name,CHitBox,g_nativeFunctions[403],g_nativeFunctions[404]);
-	RW_VAR(const char *,m_sSurfaceProperty,CHitBox,g_nativeFunctions[405],g_nativeFunctions[406]);
-	RW_VAR(const char *,m_sBoneName,CHitBox,g_nativeFunctions[407],g_nativeFunctions[408]);
-	RW_VAR(float,m_flShapeRadius,CHitBox,g_nativeFunctions[409],g_nativeFunctions[410]);
-	RW_VAR(unsigned int,m_nBoneNameHash,CHitBox,g_nativeFunctions[411],g_nativeFunctions[412]);
-	RW_VAR(Color,m_cRenderColor,CHitBox,g_nativeFunctions[413],g_nativeFunctions[414]);
-	RW_VAR(unsigned short,m_nHitBoxIndex,CHitBox,g_nativeFunctions[415],g_nativeFunctions[416]);
-	RW_VAR(unsigned char,m_nShapeType,CHitBox,g_nativeFunctions[417],g_nativeFunctions[418]);
-	RW_VAR(int,m_bForcedTransform,CHitBox,g_nativeFunctions[419],g_nativeFunctions[420]);
-	RW_VAR(int,m_bTranslationOnly,CHitBox,g_nativeFunctions[421],g_nativeFunctions[422]);
-	RW_VAR(int,m_bVisible,CHitBox,g_nativeFunctions[423],g_nativeFunctions[424]);
-	RW_VAR(int,m_bSelected,CHitBox,g_nativeFunctions[425],g_nativeFunctions[426]);
+	RW_VAR(Vector,m_vMinBounds,CHitBox,g_engine_nativeFunctions[399],g_engine_nativeFunctions[400]);
+	RW_VAR(Vector,m_vMaxBounds,CHitBox,g_engine_nativeFunctions[401],g_engine_nativeFunctions[402]);
+	RW_VAR(const char *,m_name,CHitBox,g_engine_nativeFunctions[403],g_engine_nativeFunctions[404]);
+	RW_VAR(const char *,m_sSurfaceProperty,CHitBox,g_engine_nativeFunctions[405],g_engine_nativeFunctions[406]);
+	RW_VAR(const char *,m_sBoneName,CHitBox,g_engine_nativeFunctions[407],g_engine_nativeFunctions[408]);
+	RW_VAR(float,m_flShapeRadius,CHitBox,g_engine_nativeFunctions[409],g_engine_nativeFunctions[410]);
+	RW_VAR(unsigned int,m_nBoneNameHash,CHitBox,g_engine_nativeFunctions[411],g_engine_nativeFunctions[412]);
+	RW_VAR(Color,m_cRenderColor,CHitBox,g_engine_nativeFunctions[413],g_engine_nativeFunctions[414]);
+	RW_VAR(unsigned short,m_nHitBoxIndex,CHitBox,g_engine_nativeFunctions[415],g_engine_nativeFunctions[416]);
+	RW_VAR(unsigned char,m_nShapeType,CHitBox,g_engine_nativeFunctions[417],g_engine_nativeFunctions[418]);
+	RW_VAR(int,m_bForcedTransform,CHitBox,g_engine_nativeFunctions[419],g_engine_nativeFunctions[420]);
+	RW_VAR(int,m_bTranslationOnly,CHitBox,g_engine_nativeFunctions[421],g_engine_nativeFunctions[422]);
+	RW_VAR(int,m_bVisible,CHitBox,g_engine_nativeFunctions[423],g_engine_nativeFunctions[424]);
+	RW_VAR(int,m_bSelected,CHitBox,g_engine_nativeFunctions[425],g_engine_nativeFunctions[426]);
 };
 class CHitBoxSet
 {
@@ -1668,15 +1650,15 @@ class CHitBoxSet
 	inline int numhitboxes() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[427])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[427])(m_pSelf);
 	}
 	inline const CHitBox* pHitbox(int nIndex) 
 	{
 		return
-		((const CHitBox*(*)(void* self, int nIndex))g_nativeFunctions[428])(m_pSelf, nIndex);
+		((const CHitBox*(*)(void* self, int nIndex))g_engine_nativeFunctions[428])(m_pSelf, nIndex);
 	}
-	RW_VAR(const char *,m_name,CHitBoxSet,g_nativeFunctions[429],g_nativeFunctions[430]);
-	RW_VAR(const char *,m_SourceFilename,CHitBoxSet,g_nativeFunctions[431],g_nativeFunctions[432]);
+	RW_VAR(const char *,m_name,CHitBoxSet,g_engine_nativeFunctions[429],g_engine_nativeFunctions[430]);
+	RW_VAR(const char *,m_SourceFilename,CHitBoxSet,g_engine_nativeFunctions[431],g_engine_nativeFunctions[432]);
 };
 class CManagedSceneObject
 {
@@ -1692,272 +1674,272 @@ class CManagedSceneObject
 	inline int Create(ISceneWorld* world) 
 	{
 		return
-		((int(*)(ISceneWorld* world))g_nativeFunctions[435])(world);
+		((int(*)(ISceneWorld* world))g_engine_nativeFunctions[435])(world);
 	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[436])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[436])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[437])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[437])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[438])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[438])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[439])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[439])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[440])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[440])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[441])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[441])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[442])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[442])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[443])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[443])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[444])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[444])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[445])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[445])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[446])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[446])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[447])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[447])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[448])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[448])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[449])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[449])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[450])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[450])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[451])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[451])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[452])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[452])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[453])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[453])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[454])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[454])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[455])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[455])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[456])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[456])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[457])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[457])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[458])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[458])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[459])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[459])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[460])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[460])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[461])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[461])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[462])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[462])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[463])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[463])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[464])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[464])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[465])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[465])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[466])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[466])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[467])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[467])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[468])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[468])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[469])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[469])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[470])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[470])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[471])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[471])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[472])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[472])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[473])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[473])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[474])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[474])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[475])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[475])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[476])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[476])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[477])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[477])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[478])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[478])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[479])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[479])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[480])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[480])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[481])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[481])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[482])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[482])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[483])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[483])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[484])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[484])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[485])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[485])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[486])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[486])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[487])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[487])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[488])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[488])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[489])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[489])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[490])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[490])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[491])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[491])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[492])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[492])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[493])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[493])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[494])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[494])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[495])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[495])(m_pSelf, index, material);
 	}
-	RW_VAR(int,ExecuteOnMainThread,CManagedSceneObject,g_nativeFunctions[496],g_nativeFunctions[497]);
+	RW_VAR(int,ExecuteOnMainThread,CManagedSceneObject,g_engine_nativeFunctions[496],g_engine_nativeFunctions[497]);
 };
 class CMaterialSystem2AppSystemDict
 {
@@ -1969,196 +1951,196 @@ class CMaterialSystem2AppSystemDict
 	}
 	CMaterialSystem2AppSystemDict(MaterialSystem2AppSystemDictCreateInfo createInfo) 
 	{
-		m_pSelf = ((void*(*)(MaterialSystem2AppSystemDictCreateInfo createInfo))g_nativeFunctions[498])(createInfo);
+		m_pSelf = ((void*(*)(MaterialSystem2AppSystemDictCreateInfo createInfo))g_engine_nativeFunctions[498])(createInfo);
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[499])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[499])(m_pSelf);
 	}
 	inline int Init() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[500])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[500])(m_pSelf);
 	}
 	inline int InitWithoutMaterialSystem() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[501])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[501])(m_pSelf);
 	}
 	inline int InitFinishSetupMaterialSystem() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[502])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[502])(m_pSelf);
 	}
 	inline const void* GetAppWindow() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[503])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[503])(m_pSelf);
 	}
 	inline SwapChainHandle_t GetAppWindowSwapChain() 
 	{
 		return
-		((SwapChainHandle_t(*)(void* self))g_nativeFunctions[504])(m_pSelf);
+		((SwapChainHandle_t(*)(void* self))g_engine_nativeFunctions[504])(m_pSelf);
 	}
 	inline void SetAppWindowTitle(const char* title) 
 	{
-		((void(*)(void* self, const char* title))g_nativeFunctions[505])(m_pSelf, title);
+		((void(*)(void* self, const char* title))g_engine_nativeFunctions[505])(m_pSelf, title);
 	}
 	inline void SetAppWindowIcon(const char* title) 
 	{
-		((void(*)(void* self, const char* title))g_nativeFunctions[506])(m_pSelf, title);
+		((void(*)(void* self, const char* title))g_engine_nativeFunctions[506])(m_pSelf, title);
 	}
 	inline void SetInitialAppWindowImage(const char* vmat) 
 	{
-		((void(*)(void* self, const char* vmat))g_nativeFunctions[507])(m_pSelf, vmat);
+		((void(*)(void* self, const char* vmat))g_engine_nativeFunctions[507])(m_pSelf, vmat);
 	}
 	inline void SetAppWindowDiscardMouseFocusClick(int discard) 
 	{
-		((void(*)(void* self, int discard))g_nativeFunctions[508])(m_pSelf, discard);
+		((void(*)(void* self, int discard))g_engine_nativeFunctions[508])(m_pSelf, discard);
 	}
 	inline void DrawInitialWindowImage() 
 	{
-		((void(*)(void* self))g_nativeFunctions[509])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[509])(m_pSelf);
 	}
 	inline void SuppressStartupManifestLoad(int b) 
 	{
-		((void(*)(void* self, int b))g_nativeFunctions[510])(m_pSelf, b);
+		((void(*)(void* self, int b))g_engine_nativeFunctions[510])(m_pSelf, b);
 	}
 	inline void SetModuleSearchPath(const char* dir) 
 	{
-		((void(*)(void* self, const char* dir))g_nativeFunctions[511])(m_pSelf, dir);
+		((void(*)(void* self, const char* dir))g_engine_nativeFunctions[511])(m_pSelf, dir);
 	}
 	inline void SetModGameSubdir(const char* dir) 
 	{
-		((void(*)(void* self, const char* dir))g_nativeFunctions[512])(m_pSelf, dir);
+		((void(*)(void* self, const char* dir))g_engine_nativeFunctions[512])(m_pSelf, dir);
 	}
 	inline void SetModFromFileName(const char* filename, int noExeCheck) 
 	{
-		((void(*)(void* self, const char* filename, int noExeCheck))g_nativeFunctions[513])(m_pSelf, filename, noExeCheck);
+		((void(*)(void* self, const char* filename, int noExeCheck))g_engine_nativeFunctions[513])(m_pSelf, filename, noExeCheck);
 	}
 	inline void DisableModPathCheck() 
 	{
-		((void(*)(void* self))g_nativeFunctions[514])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[514])(m_pSelf);
 	}
 	inline void SetDefaultRenderSystemOption(const char* system) 
 	{
-		((void(*)(void* self, const char* system))g_nativeFunctions[515])(m_pSelf, system);
+		((void(*)(void* self, const char* system))g_engine_nativeFunctions[515])(m_pSelf, system);
 	}
 	inline void SetInitializationPhase(int p) 
 	{
-		((void(*)(void* self, int p))g_nativeFunctions[516])(m_pSelf, p);
+		((void(*)(void* self, int p))g_engine_nativeFunctions[516])(m_pSelf, p);
 	}
 	inline int GetInitializationPhase() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[517])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[517])(m_pSelf);
 	}
 	inline void PreShutdown() 
 	{
-		((void(*)(void* self))g_nativeFunctions[518])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[518])(m_pSelf);
 	}
 	inline int InitSDL(unsigned int flags) 
 	{
 		return
-		((int(*)(void* self, unsigned int flags))g_nativeFunctions[519])(m_pSelf, flags);
+		((int(*)(void* self, unsigned int flags))g_engine_nativeFunctions[519])(m_pSelf, flags);
 	}
 	inline void ShutdownSDL() 
 	{
-		((void(*)(void* self))g_nativeFunctions[520])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[520])(m_pSelf);
 	}
 	inline int IsConsoleApp() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[521])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[521])(m_pSelf);
 	}
 	inline int IsGameApp() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[522])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[522])(m_pSelf);
 	}
 	inline void SetDedicatedServer(int bIsDedicatedServer) 
 	{
-		((void(*)(void* self, int bIsDedicatedServer))g_nativeFunctions[523])(m_pSelf, bIsDedicatedServer);
+		((void(*)(void* self, int bIsDedicatedServer))g_engine_nativeFunctions[523])(m_pSelf, bIsDedicatedServer);
 	}
 	inline int IsDedicatedServer() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[524])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[524])(m_pSelf);
 	}
 	inline const char* GetContentPath() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[525])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[525])(m_pSelf);
 	}
 	inline const char* GetModGameSubdir() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[526])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[526])(m_pSelf);
 	}
 	inline void SetInToolsMode() 
 	{
-		((void(*)(void* self))g_nativeFunctions[527])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[527])(m_pSelf);
 	}
 	inline int IsInToolsMode() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[528])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[528])(m_pSelf);
 	}
 	inline int IsInDeveloperMode() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[529])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[529])(m_pSelf);
 	}
 	inline int IsInVRMode() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[530])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[530])(m_pSelf);
 	}
 	inline const void* CreateAppWindow(const char* pTitle, int nPlatWindowFlags, int x, int y, int w, int h, int nRefreshRateHz) 
 	{
 		return
-		((const void*(*)(void* self, const char* pTitle, int nPlatWindowFlags, int x, int y, int w, int h, int nRefreshRateHz))g_nativeFunctions[531])(m_pSelf, pTitle, nPlatWindowFlags, x, y, w, h, nRefreshRateHz);
+		((const void*(*)(void* self, const char* pTitle, int nPlatWindowFlags, int x, int y, int w, int h, int nRefreshRateHz))g_engine_nativeFunctions[531])(m_pSelf, pTitle, nPlatWindowFlags, x, y, w, h, nRefreshRateHz);
 	}
 	inline void SuppressCOMInitialization() 
 	{
-		((void(*)(void* self))g_nativeFunctions[532])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[532])(m_pSelf);
 	}
 	inline int IsRunningOnCustomerMachine() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[533])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[533])(m_pSelf);
 	}
 	inline const void* AddSystem(const char* dllName, const char* interfaceName) 
 	{
 		return
-		((const void*(*)(void* self, const char* dllName, const char* interfaceName))g_nativeFunctions[534])(m_pSelf, dllName, interfaceName);
+		((const void*(*)(void* self, const char* dllName, const char* interfaceName))g_engine_nativeFunctions[534])(m_pSelf, dllName, interfaceName);
 	}
 	inline void SetInTestMode() 
 	{
-		((void(*)(void* self))g_nativeFunctions[535])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[535])(m_pSelf);
 	}
 	inline int IsInTestMode() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[536])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[536])(m_pSelf);
 	}
 	inline void SetInStandaloneApp() 
 	{
-		((void(*)(void* self))g_nativeFunctions[537])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[537])(m_pSelf);
 	}
 	inline int IsStandaloneApp() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[538])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[538])(m_pSelf);
 	}
 	inline void SetSteamAppId(unsigned int appId) 
 	{
-		((void(*)(void* self, unsigned int appId))g_nativeFunctions[539])(m_pSelf, appId);
+		((void(*)(void* self, unsigned int appId))g_engine_nativeFunctions[539])(m_pSelf, appId);
 	}
 	inline unsigned int GetSteamAppId() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[540])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[540])(m_pSelf);
 	}
 };
 class CModel
@@ -2171,321 +2153,321 @@ class CModel
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[541])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[541])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[542])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[542])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[543])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[543])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[544])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[544])(m_pSelf);
 	}
 	inline HModelStrong* CopyStrongHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[545])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[545])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[546])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[546])(m_pSelf);
 	}
 	inline const char* GetModelName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[547])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[547])(m_pSelf);
 	}
 	inline int IsTranslucent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[548])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[548])(m_pSelf);
 	}
 	inline int IsTranslucentTwoPass() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[549])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[549])(m_pSelf);
 	}
 	inline int HasPhysics() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[550])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[550])(m_pSelf);
 	}
 	inline const KeyValues3* FindModelSubKey(const char* name) 
 	{
 		return
-		((const KeyValues3*(*)(void* self, const char* name))g_nativeFunctions[551])(m_pSelf, name);
+		((const KeyValues3*(*)(void* self, const char* name))g_engine_nativeFunctions[551])(m_pSelf, name);
 	}
 	inline int GetAttachmentTransform(uint32 name, CTransformUnaligned* tx) 
 	{
 		return
-		((int(*)(void* self, uint32 name, CTransformUnaligned* tx))g_nativeFunctions[552])(m_pSelf, name, tx);
+		((int(*)(void* self, uint32 name, CTransformUnaligned* tx))g_engine_nativeFunctions[552])(m_pSelf, name, tx);
 	}
 	inline const char* GetAttachmentNameFromIndex(int index) 
 	{
 		return
-		((const char*(*)(void* self, int index))g_nativeFunctions[553])(m_pSelf, index);
+		((const char*(*)(void* self, int index))g_engine_nativeFunctions[553])(m_pSelf, index);
 	}
 	inline int GetBodyPartForName(const char* pName) 
 	{
 		return
-		((int(*)(void* self, const char* pName))g_nativeFunctions[554])(m_pSelf, pName);
+		((int(*)(void* self, const char* pName))g_engine_nativeFunctions[554])(m_pSelf, pName);
 	}
 	inline const char* GetBodyPartName(int nPart) 
 	{
 		return
-		((const char*(*)(void* self, int nPart))g_nativeFunctions[555])(m_pSelf, nPart);
+		((const char*(*)(void* self, int nPart))g_engine_nativeFunctions[555])(m_pSelf, nPart);
 	}
 	inline int GetNumBodyParts() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[556])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[556])(m_pSelf);
 	}
 	inline int GetNumBodyPartMeshes(int nPart) 
 	{
 		return
-		((int(*)(void* self, int nPart))g_nativeFunctions[557])(m_pSelf, nPart);
+		((int(*)(void* self, int nPart))g_engine_nativeFunctions[557])(m_pSelf, nPart);
 	}
 	inline uint64 GetBodyPartMask(int nPart) 
 	{
 		return
-		((uint64(*)(void* self, int nPart))g_nativeFunctions[558])(m_pSelf, nPart);
+		((uint64(*)(void* self, int nPart))g_engine_nativeFunctions[558])(m_pSelf, nPart);
 	}
 	inline uint64 GetBodyPartMeshMask(int nPart, int nMesh) 
 	{
 		return
-		((uint64(*)(void* self, int nPart, int nMesh))g_nativeFunctions[559])(m_pSelf, nPart, nMesh);
+		((uint64(*)(void* self, int nPart, int nMesh))g_engine_nativeFunctions[559])(m_pSelf, nPart, nMesh);
 	}
 	inline int FindMeshIndexForMask(int nPart, uint64 nMask) 
 	{
 		return
-		((int(*)(void* self, int nPart, uint64 nMask))g_nativeFunctions[560])(m_pSelf, nPart, nMask);
+		((int(*)(void* self, int nPart, uint64 nMask))g_engine_nativeFunctions[560])(m_pSelf, nPart, nMask);
 	}
 	inline int GetNumMeshGroups() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[561])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[561])(m_pSelf);
 	}
 	inline uint64 GetDefaultMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[562])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[562])(m_pSelf);
 	}
 	inline const char* GetBodyPartMeshName(int nPart, int nMesh) 
 	{
 		return
-		((const char*(*)(void* __self, int __nPart, int __nMesh))g_nativeFunctions[563])(m_pSelf, nPart, nMesh);
+		((const char*(*)(void* __self, int __nPart, int __nMesh))g_engine_nativeFunctions[563])(m_pSelf, nPart, nMesh);
 	}
 	inline int GetNumMaterialGroups() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[564])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[564])(m_pSelf);
 	}
 	inline const char* GetMaterialGroupName(int iGroup) 
 	{
 		return
-		((const char*(*)(void* self, int iGroup))g_nativeFunctions[565])(m_pSelf, iGroup);
+		((const char*(*)(void* self, int iGroup))g_engine_nativeFunctions[565])(m_pSelf, iGroup);
 	}
 	inline int GetMaterialGroupIndex(uint32 nGroup) 
 	{
 		return
-		((int(*)(void* self, uint32 nGroup))g_nativeFunctions[566])(m_pSelf, nGroup);
+		((int(*)(void* self, uint32 nGroup))g_engine_nativeFunctions[566])(m_pSelf, nGroup);
 	}
 	inline int GetNumMaterialsInGroup(int iGroup) 
 	{
 		return
-		((int(*)(void* self, int iGroup))g_nativeFunctions[567])(m_pSelf, iGroup);
+		((int(*)(void* self, int iGroup))g_engine_nativeFunctions[567])(m_pSelf, iGroup);
 	}
 	inline HMaterialStrong* GetMaterialInGroup(int iGroup, int iIndex) 
 	{
 		return
-		((HMaterialStrong*(*)(void* self, int iGroup, int iIndex))g_nativeFunctions[568])(m_pSelf, iGroup, iIndex);
+		((HMaterialStrong*(*)(void* self, int iGroup, int iIndex))g_engine_nativeFunctions[568])(m_pSelf, iGroup, iIndex);
 	}
 	inline int GetNumSceneObjects(int iMesh) 
 	{
 		return
-		((int(*)(void* __self, int __iMesh))g_nativeFunctions[569])(m_pSelf, iMesh);
+		((int(*)(void* __self, int __iMesh))g_engine_nativeFunctions[569])(m_pSelf, iMesh);
 	}
 	inline int GetNumDrawCalls(int iMesh, int nSceneObject) 
 	{
 		return
-		((int(*)(void* __self, int __iMesh, int __nSceneObject))g_nativeFunctions[570])(m_pSelf, iMesh, nSceneObject);
+		((int(*)(void* __self, int __iMesh, int __nSceneObject))g_engine_nativeFunctions[570])(m_pSelf, iMesh, nSceneObject);
 	}
 	inline HMaterialStrong* GetMaterial(int iMesh, int nSceneObject, int nDrawCall) 
 	{
 		return
-		((HMaterialStrong*(*)(void* __self, int __iMesh, int __nSceneObject, int __nDrawCall))g_nativeFunctions[571])(m_pSelf, iMesh, nSceneObject, nDrawCall);
+		((HMaterialStrong*(*)(void* __self, int __iMesh, int __nSceneObject, int __nDrawCall))g_engine_nativeFunctions[571])(m_pSelf, iMesh, nSceneObject, nDrawCall);
 	}
 	inline int GetNumMeshes() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[572])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[572])(m_pSelf);
 	}
 	inline AABB_t GetMeshBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[573])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[573])(m_pSelf);
 	}
 	inline AABB_t GetPhysicsBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[574])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[574])(m_pSelf);
 	}
 	inline AABB_t GetModelRenderBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[575])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[575])(m_pSelf);
 	}
 	inline int NumBones() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[576])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[576])(m_pSelf);
 	}
 	inline int FindBoneIndex(const char* name) 
 	{
 		return
-		((int(*)(void* self, const char* name))g_nativeFunctions[577])(m_pSelf, name);
+		((int(*)(void* self, const char* name))g_engine_nativeFunctions[577])(m_pSelf, name);
 	}
 	inline const char* boneName(int iBone) 
 	{
 		return
-		((const char*(*)(void* self, int iBone))g_nativeFunctions[578])(m_pSelf, iBone);
+		((const char*(*)(void* self, int iBone))g_engine_nativeFunctions[578])(m_pSelf, iBone);
 	}
 	inline int boneParent(int iBone) 
 	{
 		return
-		((int(*)(void* self, int iBone))g_nativeFunctions[579])(m_pSelf, iBone);
+		((int(*)(void* self, int iBone))g_engine_nativeFunctions[579])(m_pSelf, iBone);
 	}
 	inline CTransformUnaligned GetBoneTransform(int iBone) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, int iBone))g_nativeFunctions[580])(m_pSelf, iBone);
+		((CTransformUnaligned(*)(void* self, int iBone))g_engine_nativeFunctions[580])(m_pSelf, iBone);
 	}
 	inline Vector bonePosParentSpace(int iBone) 
 	{
 		return
-		((Vector(*)(void* self, int iBone))g_nativeFunctions[581])(m_pSelf, iBone);
+		((Vector(*)(void* self, int iBone))g_engine_nativeFunctions[581])(m_pSelf, iBone);
 	}
 	inline Quaternion boneRotParentSpace(int iBone) 
 	{
 		return
-		((Quaternion(*)(void* self, int iBone))g_nativeFunctions[582])(m_pSelf, iBone);
+		((Quaternion(*)(void* self, int iBone))g_engine_nativeFunctions[582])(m_pSelf, iBone);
 	}
 	inline int NumFlexControllers() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[583])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[583])(m_pSelf);
 	}
 	inline const char* GetFlexControllerName(int nFlexController) 
 	{
 		return
-		((const char*(*)(void* __self, int __nFlexController))g_nativeFunctions[584])(m_pSelf, nFlexController);
+		((const char*(*)(void* __self, int __nFlexController))g_engine_nativeFunctions[584])(m_pSelf, nFlexController);
 	}
 	inline float GetVisemeMorph(const char* viseme, int morph) 
 	{
 		return
-		((float(*)(void* self, const char* viseme, int morph))g_nativeFunctions[585])(m_pSelf, viseme, morph);
+		((float(*)(void* self, const char* viseme, int morph))g_engine_nativeFunctions[585])(m_pSelf, viseme, morph);
 	}
 	inline int GetNumAnim() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[586])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[586])(m_pSelf);
 	}
 	inline const char* GetAnimationName(int nAnimation) 
 	{
 		return
-		((const char*(*)(void* self, int nAnimation))g_nativeFunctions[587])(m_pSelf, nAnimation);
+		((const char*(*)(void* self, int nAnimation))g_engine_nativeFunctions[587])(m_pSelf, nAnimation);
 	}
 	inline void GetSequenceNames(CUtlVector<CUtlString>* names) 
 	{
-		((void(*)(void* __self, CUtlVector<CUtlString>* __names))g_nativeFunctions[588])(m_pSelf, names);
+		((void(*)(void* __self, CUtlVector<CUtlString>* __names))g_engine_nativeFunctions[588])(m_pSelf, names);
 	}
 	inline int HasSceneObjects() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[589])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[589])(m_pSelf);
 	}
 	inline int MeshTrace(MeshTraceInput input, MeshTraceOutput* output) 
 	{
 		return
-		((int(*)(void* __self, MeshTraceInput __input, MeshTraceOutput* __output))g_nativeFunctions[590])(m_pSelf, input, output);
+		((int(*)(void* __self, MeshTraceInput __input, MeshTraceOutput* __output))g_engine_nativeFunctions[590])(m_pSelf, input, output);
 	}
 	inline HAnimationGraphStrong* GetAnimationGraph() 
 	{
 		return
-		((HAnimationGraphStrong*(*)(void* self))g_nativeFunctions[591])(m_pSelf);
+		((HAnimationGraphStrong*(*)(void* self))g_engine_nativeFunctions[591])(m_pSelf);
 	}
 	inline const CPhysAggregateData* GetPhysicsContainer() 
 	{
 		return
-		((const CPhysAggregateData*(*)(void* self))g_nativeFunctions[592])(m_pSelf);
+		((const CPhysAggregateData*(*)(void* self))g_engine_nativeFunctions[592])(m_pSelf);
 	}
 	inline const CHitBoxSet* FindHitboxSetByName(const char* pName, int nMesh) 
 	{
 		return
-		((const CHitBoxSet*(*)(void* self, const char* pName, int nMesh))g_nativeFunctions[593])(m_pSelf, pName, nMesh);
+		((const CHitBoxSet*(*)(void* self, const char* pName, int nMesh))g_engine_nativeFunctions[593])(m_pSelf, pName, nMesh);
 	}
 	inline int FindHitboxSetIndexByName(const char* pName, int nMesh) 
 	{
 		return
-		((int(*)(void* self, const char* pName, int nMesh))g_nativeFunctions[594])(m_pSelf, pName, nMesh);
+		((int(*)(void* self, const char* pName, int nMesh))g_engine_nativeFunctions[594])(m_pSelf, pName, nMesh);
 	}
 	inline const CHitBoxSet* GetHitboxSetByIndex(int nIndex, int nMesh) 
 	{
 		return
-		((const CHitBoxSet*(*)(void* self, int nIndex, int nMesh))g_nativeFunctions[595])(m_pSelf, nIndex, nMesh);
+		((const CHitBoxSet*(*)(void* self, int nIndex, int nMesh))g_engine_nativeFunctions[595])(m_pSelf, nIndex, nMesh);
 	}
 	inline int GetBoneIndexForHitbox(CHitBox* pHitBox) 
 	{
 		return
-		((int(*)(void* self, CHitBox* pHitBox))g_nativeFunctions[596])(m_pSelf, pHitBox);
+		((int(*)(void* self, CHitBox* pHitBox))g_engine_nativeFunctions[596])(m_pSelf, pHitBox);
 	}
 	inline int GetHitboxSetCount(int nMesh) 
 	{
 		return
-		((int(*)(void* self, int nMesh))g_nativeFunctions[597])(m_pSelf, nMesh);
+		((int(*)(void* self, int nMesh))g_engine_nativeFunctions[597])(m_pSelf, nMesh);
 	}
 	inline int HasSkinnedMeshes() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[598])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[598])(m_pSelf);
 	}
 	inline int HasAnimationDrivenFlexes() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[599])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[599])(m_pSelf);
 	}
 	inline int64 boneFlags(int iBone) 
 	{
 		return
-		((int64(*)(void* self, int iBone))g_nativeFunctions[600])(m_pSelf, iBone);
+		((int64(*)(void* self, int iBone))g_engine_nativeFunctions[600])(m_pSelf, iBone);
 	}
 	inline int GetNumAttachments() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[601])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[601])(m_pSelf);
 	}
 	inline const CAttachment* GetAttachment(int index) 
 	{
 		return
-		((const CAttachment*(*)(void* __self, int __index))g_nativeFunctions[602])(m_pSelf, index);
+		((const CAttachment*(*)(void* __self, int __index))g_engine_nativeFunctions[602])(m_pSelf, index);
 	}
 	inline int GetMaterialIndexCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[603])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[603])(m_pSelf);
 	}
 	inline HMaterialStrong* GetMaterialByIndex(int index) 
 	{
 		return
-		((HMaterialStrong*(*)(void* self, int index))g_nativeFunctions[604])(m_pSelf, index);
+		((HMaterialStrong*(*)(void* self, int index))g_engine_nativeFunctions[604])(m_pSelf, index);
 	}
 };
 class ConCommand
@@ -2499,21 +2481,21 @@ class ConCommand
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[605])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[605])(m_pSelf);
 	}
 	inline const char* GetHelpText() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[606])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[606])(m_pSelf);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[607])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[607])(m_pSelf);
 	}
 	inline void Run(const char* command) 
 	{
-		((void(*)(void* self, const char* command))g_nativeFunctions[608])(m_pSelf, command);
+		((void(*)(void* self, const char* command))g_engine_nativeFunctions[608])(m_pSelf, command);
 	}
 };
 class ConVar
@@ -2527,63 +2509,63 @@ class ConVar
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[609])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[609])(m_pSelf);
 	}
 	inline const char* GetHelpText() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[610])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[610])(m_pSelf);
 	}
 	inline void SetValue(const char* value) 
 	{
-		((void(*)(void* self, const char* value))g_nativeFunctions[611])(m_pSelf, value);
+		((void(*)(void* self, const char* value))g_engine_nativeFunctions[611])(m_pSelf, value);
 	}
 	inline void SetValue(float flValue) 
 	{
-		((void(*)(void* self, float flValue))g_nativeFunctions[612])(m_pSelf, flValue);
+		((void(*)(void* self, float flValue))g_engine_nativeFunctions[612])(m_pSelf, flValue);
 	}
 	inline void SetValue(int nValue) 
 	{
-		((void(*)(void* self, int nValue))g_nativeFunctions[613])(m_pSelf, nValue);
+		((void(*)(void* self, int nValue))g_engine_nativeFunctions[613])(m_pSelf, nValue);
 	}
 	inline const char* GetString() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[614])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[614])(m_pSelf);
 	}
 	inline void Revert() 
 	{
-		((void(*)(void* self))g_nativeFunctions[615])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[615])(m_pSelf);
 	}
 	inline int HasMin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[616])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[616])(m_pSelf);
 	}
 	inline int HasMax() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[617])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[617])(m_pSelf);
 	}
 	inline float GetMinValue() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[618])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[618])(m_pSelf);
 	}
 	inline float GetMaxValue() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[619])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[619])(m_pSelf);
 	}
 	inline const char* GetDefault() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[620])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[620])(m_pSelf);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[621])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[621])(m_pSelf);
 	}
 };
 class CPhysAggregateData
@@ -2596,88 +2578,88 @@ class CPhysAggregateData
 	}
 	inline void AddRef() 
 	{
-		((void(*)(void* self))g_nativeFunctions[622])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[622])(m_pSelf);
 	}
 	inline void Release() 
 	{
-		((void(*)(void* self))g_nativeFunctions[623])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[623])(m_pSelf);
 	}
 	inline unsigned int GetChecksum() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[624])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[624])(m_pSelf);
 	}
 	inline int GetBoneCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[625])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[625])(m_pSelf);
 	}
 	inline const char* GetBoneName(int nBoneIndex) 
 	{
 		return
-		((const char*(*)(void* self, int nBoneIndex))g_nativeFunctions[626])(m_pSelf, nBoneIndex);
+		((const char*(*)(void* self, int nBoneIndex))g_engine_nativeFunctions[626])(m_pSelf, nBoneIndex);
 	}
 	inline int GetPartCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[627])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[627])(m_pSelf);
 	}
 	inline unsigned int GetBoneHash(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[628])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[628])(m_pSelf, i);
 	}
 	inline unsigned int GetIndexHash(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[629])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[629])(m_pSelf, i);
 	}
 	inline CTransformUnaligned GetBindPose(int index) 
 	{
 		return
-		((CTransformUnaligned(*)(void* __self, int __index))g_nativeFunctions[630])(m_pSelf, index);
+		((CTransformUnaligned(*)(void* __self, int __index))g_engine_nativeFunctions[630])(m_pSelf, index);
 	}
 	inline const VPhysXBodyPart_t* GetPart(int index) 
 	{
 		return
-		((const VPhysXBodyPart_t*(*)(void* __self, int __index))g_nativeFunctions[631])(m_pSelf, index);
+		((const VPhysXBodyPart_t*(*)(void* __self, int __index))g_engine_nativeFunctions[631])(m_pSelf, index);
 	}
 	inline const CPhysSurfaceProperties* GetSurfaceProperties(int index) 
 	{
 		return
-		((const CPhysSurfaceProperties*(*)(void* self, int index))g_nativeFunctions[632])(m_pSelf, index);
+		((const CPhysSurfaceProperties*(*)(void* self, int index))g_engine_nativeFunctions[632])(m_pSelf, index);
 	}
 	inline int GetSurfacePropertiesCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[633])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[633])(m_pSelf);
 	}
 	inline int GetCollisionAttributeCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[634])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[634])(m_pSelf);
 	}
 	inline const char* GetTag(int nAttribute, int nIndex) 
 	{
 		return
-		((const char*(*)(void* __self, int __nAttribute, int __nIndex))g_nativeFunctions[635])(m_pSelf, nAttribute, nIndex);
+		((const char*(*)(void* __self, int __nAttribute, int __nIndex))g_engine_nativeFunctions[635])(m_pSelf, nAttribute, nIndex);
 	}
 	inline int GetTagCount(int nAttribute) 
 	{
 		return
-		((int(*)(void* __self, int __nAttribute))g_nativeFunctions[636])(m_pSelf, nAttribute);
+		((int(*)(void* __self, int __nAttribute))g_engine_nativeFunctions[636])(m_pSelf, nAttribute);
 	}
 	inline int GetJointCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[637])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[637])(m_pSelf);
 	}
 	inline const VPhysXJoint_t* GetJoint(int index) 
 	{
 		return
-		((const VPhysXJoint_t*(*)(void* __self, int __index))g_nativeFunctions[638])(m_pSelf, index);
+		((const VPhysXJoint_t*(*)(void* __self, int __index))g_engine_nativeFunctions[638])(m_pSelf, index);
 	}
-	RW_VAR(unsigned short,m_nFlags,CPhysAggregateData,g_nativeFunctions[639],g_nativeFunctions[640]);
+	RW_VAR(unsigned short,m_nFlags,CPhysAggregateData,g_engine_nativeFunctions[639],g_engine_nativeFunctions[640]);
 };
 class CPhysBodyDesc
 {
@@ -2689,33 +2671,33 @@ class CPhysBodyDesc
 	}
 	inline void SetBoneName(const char* boneName) 
 	{
-		((void(*)(void* __self, const char* __boneName))g_nativeFunctions[641])(m_pSelf, boneName);
+		((void(*)(void* __self, const char* __boneName))g_engine_nativeFunctions[641])(m_pSelf, boneName);
 	}
 	inline void SetSurface(uint32 surface) 
 	{
-		((void(*)(void* __self, uint32 __surface))g_nativeFunctions[642])(m_pSelf, surface);
+		((void(*)(void* __self, uint32 __surface))g_engine_nativeFunctions[642])(m_pSelf, surface);
 	}
 	inline void SetBindPose(CTransformUnaligned transform) 
 	{
-		((void(*)(void* __self, CTransformUnaligned __transform))g_nativeFunctions[643])(m_pSelf, transform);
+		((void(*)(void* __self, CTransformUnaligned __transform))g_engine_nativeFunctions[643])(m_pSelf, transform);
 	}
 	inline void AddSphere(RnSphere_t sphere) 
 	{
-		((void(*)(void* self, RnSphere_t sphere))g_nativeFunctions[644])(m_pSelf, sphere);
+		((void(*)(void* self, RnSphere_t sphere))g_engine_nativeFunctions[644])(m_pSelf, sphere);
 	}
 	inline void AddCapsule(RnCapsule_t capsule) 
 	{
-		((void(*)(void* self, RnCapsule_t capsule))g_nativeFunctions[645])(m_pSelf, capsule);
+		((void(*)(void* self, RnCapsule_t capsule))g_engine_nativeFunctions[645])(m_pSelf, capsule);
 	}
 	inline void AddHull(void* pPoints, int nNumPoints, CTransformUnaligned transform, float flPrecisionDegrees, float flPrecisionInches, int nMaxFaces, int nMaxEdges, int nMaxVerts, int nAlgo) 
 	{
-		((void(*)(void* __self, void* __pPoints, int __nNumPoints, CTransformUnaligned __transform, float __flPrecisionDegrees, float __flPrecisionInches, int __nMaxFaces, int __nMaxEdges, int __nMaxVerts, int __nAlgo))g_nativeFunctions[646])(m_pSelf, pPoints, nNumPoints, transform, flPrecisionDegrees, flPrecisionInches, nMaxFaces, nMaxEdges, nMaxVerts, nAlgo);
+		((void(*)(void* __self, void* __pPoints, int __nNumPoints, CTransformUnaligned __transform, float __flPrecisionDegrees, float __flPrecisionInches, int __nMaxFaces, int __nMaxEdges, int __nMaxVerts, int __nAlgo))g_engine_nativeFunctions[646])(m_pSelf, pPoints, nNumPoints, transform, flPrecisionDegrees, flPrecisionInches, nMaxFaces, nMaxEdges, nMaxVerts, nAlgo);
 	}
 	inline void AddMesh(void* pVertices, unsigned int nNumVertices, void* pIndices, unsigned int nNumIndices, void* pMaterials) 
 	{
-		((void(*)(void* __self, void* __pVertices, unsigned int __nNumVertices, void* __pIndices, unsigned int __nNumIndices, void* __pMaterials))g_nativeFunctions[647])(m_pSelf, pVertices, nNumVertices, pIndices, nNumIndices, pMaterials);
+		((void(*)(void* __self, void* __pVertices, unsigned int __nNumVertices, void* __pIndices, unsigned int __nNumIndices, void* __pMaterials))g_engine_nativeFunctions[647])(m_pSelf, pVertices, nNumVertices, pIndices, nNumIndices, pMaterials);
 	}
-	RW_VAR(float,m_flMass,CPhysBodyDesc,g_nativeFunctions[648],g_nativeFunctions[649]);
+	RW_VAR(float,m_flMass,CPhysBodyDesc,g_engine_nativeFunctions[648],g_engine_nativeFunctions[649]);
 };
 class CPhysBodyDescArray
 {
@@ -2727,21 +2709,21 @@ class CPhysBodyDescArray
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[650])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[650])(m_pSelf);
 	}
 	CPhysBodyDescArray(int count, int jointCount) 
 	{
-		m_pSelf = ((void*(*)(int count, int jointCount))g_nativeFunctions[651])(count, jointCount);
+		m_pSelf = ((void*(*)(int count, int jointCount))g_engine_nativeFunctions[651])(count, jointCount);
 	}
 	inline const CPhysBodyDesc* Get(int index) 
 	{
 		return
-		((const CPhysBodyDesc*(*)(void* self, int index))g_nativeFunctions[652])(m_pSelf, index);
+		((const CPhysBodyDesc*(*)(void* self, int index))g_engine_nativeFunctions[652])(m_pSelf, index);
 	}
 	inline const VPhysXJoint_t* GetJoint(int index) 
 	{
 		return
-		((const VPhysXJoint_t*(*)(void* self, int index))g_nativeFunctions[653])(m_pSelf, index);
+		((const VPhysXJoint_t*(*)(void* self, int index))g_engine_nativeFunctions[653])(m_pSelf, index);
 	}
 };
 class CPhysSurfaceProperties
@@ -2754,16 +2736,16 @@ class CPhysSurfaceProperties
 	}
 	inline void UpdatePhysics(float Friction, float Elasticity, float Density, float RollingResistance, float BounceThreshold) 
 	{
-		((void(*)(void* self, float Friction, float Elasticity, float Density, float RollingResistance, float BounceThreshold))g_nativeFunctions[654])(m_pSelf, Friction, Elasticity, Density, RollingResistance, BounceThreshold);
+		((void(*)(void* self, float Friction, float Elasticity, float Density, float RollingResistance, float BounceThreshold))g_engine_nativeFunctions[654])(m_pSelf, Friction, Elasticity, Density, RollingResistance, BounceThreshold);
 	}
-	RW_VAR(const char*,m_name,CPhysSurfaceProperties,g_nativeFunctions[655],g_nativeFunctions[656]);
-	RW_VAR(unsigned int,m_nameHash,CPhysSurfaceProperties,g_nativeFunctions[657],g_nativeFunctions[658]);
-	RW_VAR(unsigned int,m_baseNameHash,CPhysSurfaceProperties,g_nativeFunctions[659],g_nativeFunctions[660]);
-	RW_VAR(int,m_nIndex,CPhysSurfaceProperties,g_nativeFunctions[661],g_nativeFunctions[662]);
-	RW_VAR(int,m_nBaseIndex,CPhysSurfaceProperties,g_nativeFunctions[663],g_nativeFunctions[664]);
-	RW_VAR(int,m_AudioSurface,CPhysSurfaceProperties,g_nativeFunctions[665],g_nativeFunctions[666]);
-	RW_VAR(int,m_bHidden,CPhysSurfaceProperties,g_nativeFunctions[667],g_nativeFunctions[668]);
-	RW_VAR(const char*,m_description,CPhysSurfaceProperties,g_nativeFunctions[669],g_nativeFunctions[670]);
+	RW_VAR(const char*,m_name,CPhysSurfaceProperties,g_engine_nativeFunctions[655],g_engine_nativeFunctions[656]);
+	RW_VAR(unsigned int,m_nameHash,CPhysSurfaceProperties,g_engine_nativeFunctions[657],g_engine_nativeFunctions[658]);
+	RW_VAR(unsigned int,m_baseNameHash,CPhysSurfaceProperties,g_engine_nativeFunctions[659],g_engine_nativeFunctions[660]);
+	RW_VAR(int,m_nIndex,CPhysSurfaceProperties,g_engine_nativeFunctions[661],g_engine_nativeFunctions[662]);
+	RW_VAR(int,m_nBaseIndex,CPhysSurfaceProperties,g_engine_nativeFunctions[663],g_engine_nativeFunctions[664]);
+	RW_VAR(int,m_AudioSurface,CPhysSurfaceProperties,g_engine_nativeFunctions[665],g_engine_nativeFunctions[666]);
+	RW_VAR(int,m_bHidden,CPhysSurfaceProperties,g_engine_nativeFunctions[667],g_engine_nativeFunctions[668]);
+	RW_VAR(const char*,m_description,CPhysSurfaceProperties,g_engine_nativeFunctions[669],g_engine_nativeFunctions[670]);
 };
 class CQueryResult
 {
@@ -2775,21 +2757,21 @@ class CQueryResult
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[671])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[671])(m_pSelf);
 	}
 	CQueryResult() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[672])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[672])();
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[673])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[673])(m_pSelf);
 	}
 	inline int Element(int i) 
 	{
 		return
-		((int(*)(void* self, int i))g_nativeFunctions[674])(m_pSelf, i);
+		((int(*)(void* self, int i))g_engine_nativeFunctions[674])(m_pSelf, i);
 	}
 };
 class CReadBufferManagedCallback
@@ -2804,24 +2786,24 @@ class CReadBufferManagedCallback
 	//NativeEngine.CReadBufferManagedCallback.__N.To_IReadBufferCallback_From_CReadBufferManagedCallback = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[676];
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[677])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[677])(m_pSelf);
 	}
 	CReadBufferManagedCallback() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[678])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[678])();
 	}
 	inline void SetManagedId(int id) 
 	{
-		((void(*)(void* self, int id))g_nativeFunctions[679])(m_pSelf, id);
+		((void(*)(void* self, int id))g_engine_nativeFunctions[679])(m_pSelf, id);
 	}
 	inline int GetManagedId() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[680])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[680])(m_pSelf);
 	}
 	inline void Done() 
 	{
-		((void(*)(void* self))g_nativeFunctions[681])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[681])(m_pSelf);
 	}
 };
 class CReadTexturePixelsManagedCallback
@@ -2836,24 +2818,24 @@ class CReadTexturePixelsManagedCallback
 	//NativeEngine.CReadTexturePixelsManagedCallback.__N.To_IReadTexturePixelsCallback_From_CReadTexturePixelsManagedCallback = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[683];
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[684])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[684])(m_pSelf);
 	}
 	CReadTexturePixelsManagedCallback() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[685])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[685])();
 	}
 	inline void SetManagedId(int id) 
 	{
-		((void(*)(void* self, int id))g_nativeFunctions[686])(m_pSelf, id);
+		((void(*)(void* self, int id))g_engine_nativeFunctions[686])(m_pSelf, id);
 	}
 	inline int GetManagedId() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[687])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[687])(m_pSelf);
 	}
 	inline void Done() 
 	{
-		((void(*)(void* self))g_nativeFunctions[688])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[688])(m_pSelf);
 	}
 };
 class CRenderAttributes
@@ -2866,169 +2848,169 @@ class CRenderAttributes
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[689])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[689])(m_pSelf);
 	}
 	CRenderAttributes() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[690])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[690])();
 	}
 	inline void SetFloatValue(uint32 nTokenID, float flValue) 
 	{
-		((void(*)(void* self, uint32 nTokenID, float flValue))g_nativeFunctions[691])(m_pSelf, nTokenID, flValue);
+		((void(*)(void* self, uint32 nTokenID, float flValue))g_engine_nativeFunctions[691])(m_pSelf, nTokenID, flValue);
 	}
 	inline float GetFloatValue(uint32 nTokenID, float flDefaultValue) 
 	{
 		return
-		((float(*)(void* self, uint32 nTokenID, float flDefaultValue))g_nativeFunctions[692])(m_pSelf, nTokenID, flDefaultValue);
+		((float(*)(void* self, uint32 nTokenID, float flDefaultValue))g_engine_nativeFunctions[692])(m_pSelf, nTokenID, flDefaultValue);
 	}
 	inline void DeleteFloatValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[693])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[693])(m_pSelf, nTokenID);
 	}
 	inline void SetVector2DValue(uint32 nTokenID, Vector2D vValue) 
 	{
-		((void(*)(void* self, uint32 nTokenID, Vector2D vValue))g_nativeFunctions[694])(m_pSelf, nTokenID, vValue);
+		((void(*)(void* self, uint32 nTokenID, Vector2D vValue))g_engine_nativeFunctions[694])(m_pSelf, nTokenID, vValue);
 	}
 	inline Vector2D GetVector2DValue(uint32 nTokenID, Vector2D vDefaultValue) 
 	{
 		return
-		((Vector2D(*)(void* self, uint32 nTokenID, Vector2D vDefaultValue))g_nativeFunctions[695])(m_pSelf, nTokenID, vDefaultValue);
+		((Vector2D(*)(void* self, uint32 nTokenID, Vector2D vDefaultValue))g_engine_nativeFunctions[695])(m_pSelf, nTokenID, vDefaultValue);
 	}
 	inline void DeleteVector2DValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[696])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[696])(m_pSelf, nTokenID);
 	}
 	inline void SetVectorValue(uint32 nTokenID, Vector vValue) 
 	{
-		((void(*)(void* self, uint32 nTokenID, Vector vValue))g_nativeFunctions[697])(m_pSelf, nTokenID, vValue);
+		((void(*)(void* self, uint32 nTokenID, Vector vValue))g_engine_nativeFunctions[697])(m_pSelf, nTokenID, vValue);
 	}
 	inline Vector GetVectorValue(uint32 nTokenID, Vector vDefaultValue) 
 	{
 		return
-		((Vector(*)(void* self, uint32 nTokenID, Vector vDefaultValue))g_nativeFunctions[698])(m_pSelf, nTokenID, vDefaultValue);
+		((Vector(*)(void* self, uint32 nTokenID, Vector vDefaultValue))g_engine_nativeFunctions[698])(m_pSelf, nTokenID, vDefaultValue);
 	}
 	inline void DeleteVectorValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[699])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[699])(m_pSelf, nTokenID);
 	}
 	inline void SetVector4DValue(uint32 nTokenID, Vector4D vValue) 
 	{
-		((void(*)(void* self, uint32 nTokenID, Vector4D vValue))g_nativeFunctions[700])(m_pSelf, nTokenID, vValue);
+		((void(*)(void* self, uint32 nTokenID, Vector4D vValue))g_engine_nativeFunctions[700])(m_pSelf, nTokenID, vValue);
 	}
 	inline Vector4D GetVector4DValue(uint32 nTokenID, Vector4D vDefaultValue) 
 	{
 		return
-		((Vector4D(*)(void* self, uint32 nTokenID, Vector4D vDefaultValue))g_nativeFunctions[701])(m_pSelf, nTokenID, vDefaultValue);
+		((Vector4D(*)(void* self, uint32 nTokenID, Vector4D vDefaultValue))g_engine_nativeFunctions[701])(m_pSelf, nTokenID, vDefaultValue);
 	}
 	inline void DeleteVector4DValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[702])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[702])(m_pSelf, nTokenID);
 	}
 	inline void SetVMatrixValue(uint32 nTokenID, VMatrix value) 
 	{
-		((void(*)(void* self, uint32 nTokenID, VMatrix value))g_nativeFunctions[703])(m_pSelf, nTokenID, value);
+		((void(*)(void* self, uint32 nTokenID, VMatrix value))g_engine_nativeFunctions[703])(m_pSelf, nTokenID, value);
 	}
 	inline VMatrix GetVMatrixValue(uint32 nTokenID, VMatrix vDefaultValue) 
 	{
 		return
-		((VMatrix(*)(void* self, uint32 nTokenID, VMatrix vDefaultValue))g_nativeFunctions[704])(m_pSelf, nTokenID, vDefaultValue);
+		((VMatrix(*)(void* self, uint32 nTokenID, VMatrix vDefaultValue))g_engine_nativeFunctions[704])(m_pSelf, nTokenID, vDefaultValue);
 	}
 	inline void DeleteVMatrixValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[705])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[705])(m_pSelf, nTokenID);
 	}
 	inline void SetStringValue(uint32 nTokenID, const char* str) 
 	{
-		((void(*)(void* self, uint32 nTokenID, const char* str))g_nativeFunctions[706])(m_pSelf, nTokenID, str);
+		((void(*)(void* self, uint32 nTokenID, const char* str))g_engine_nativeFunctions[706])(m_pSelf, nTokenID, str);
 	}
 	inline void DeleteStringValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[707])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[707])(m_pSelf, nTokenID);
 	}
 	inline void SetIntValue(uint32 nTokenID, int nValue) 
 	{
-		((void(*)(void* self, uint32 nTokenID, int nValue))g_nativeFunctions[708])(m_pSelf, nTokenID, nValue);
+		((void(*)(void* self, uint32 nTokenID, int nValue))g_engine_nativeFunctions[708])(m_pSelf, nTokenID, nValue);
 	}
 	inline int GetIntValue(uint32 nTokenID, int nDefaultValue) 
 	{
 		return
-		((int(*)(void* self, uint32 nTokenID, int nDefaultValue))g_nativeFunctions[709])(m_pSelf, nTokenID, nDefaultValue);
+		((int(*)(void* self, uint32 nTokenID, int nDefaultValue))g_engine_nativeFunctions[709])(m_pSelf, nTokenID, nDefaultValue);
 	}
 	inline void DeleteIntValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[710])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[710])(m_pSelf, nTokenID);
 	}
 	inline void SetComboValue(uint32 nTokenID, unsigned char nValue) 
 	{
-		((void(*)(void* self, uint32 nTokenID, unsigned char nValue))g_nativeFunctions[711])(m_pSelf, nTokenID, nValue);
+		((void(*)(void* self, uint32 nTokenID, unsigned char nValue))g_engine_nativeFunctions[711])(m_pSelf, nTokenID, nValue);
 	}
 	inline unsigned char GetComboValue(uint32 nTokenID, unsigned char nValue) 
 	{
 		return
-		((unsigned char(*)(void* self, uint32 nTokenID, unsigned char nValue))g_nativeFunctions[712])(m_pSelf, nTokenID, nValue);
+		((unsigned char(*)(void* self, uint32 nTokenID, unsigned char nValue))g_engine_nativeFunctions[712])(m_pSelf, nTokenID, nValue);
 	}
 	inline void DeleteComboValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[713])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[713])(m_pSelf, nTokenID);
 	}
 	inline void SetBoolValue(uint32 nTokenID, int bValue) 
 	{
-		((void(*)(void* self, uint32 nTokenID, int bValue))g_nativeFunctions[714])(m_pSelf, nTokenID, bValue);
+		((void(*)(void* self, uint32 nTokenID, int bValue))g_engine_nativeFunctions[714])(m_pSelf, nTokenID, bValue);
 	}
 	inline int GetBoolValue(uint32 nTokenID, int bValue) 
 	{
 		return
-		((int(*)(void* self, uint32 nTokenID, int bValue))g_nativeFunctions[715])(m_pSelf, nTokenID, bValue);
+		((int(*)(void* self, uint32 nTokenID, int bValue))g_engine_nativeFunctions[715])(m_pSelf, nTokenID, bValue);
 	}
 	inline void DeleteBoolValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[716])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[716])(m_pSelf, nTokenID);
 	}
 	inline void SetTextureValue(uint32 nTokenID, HRenderTextureStrong* txtr, int nSingleMipLevelToBind) 
 	{
-		((void(*)(void* self, uint32 nTokenID, HRenderTextureStrong* txtr, int nSingleMipLevelToBind))g_nativeFunctions[717])(m_pSelf, nTokenID, txtr, nSingleMipLevelToBind);
+		((void(*)(void* self, uint32 nTokenID, HRenderTextureStrong* txtr, int nSingleMipLevelToBind))g_engine_nativeFunctions[717])(m_pSelf, nTokenID, txtr, nSingleMipLevelToBind);
 	}
 	inline HRenderTextureStrong* GetTextureValue(uint32 nTokenID, HRenderTextureStrong* defaultTxtr) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID, HRenderTextureStrong* defaultTxtr))g_nativeFunctions[718])(m_pSelf, nTokenID, defaultTxtr);
+		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID, HRenderTextureStrong* defaultTxtr))g_engine_nativeFunctions[718])(m_pSelf, nTokenID, defaultTxtr);
 	}
 	inline void DeleteTextureValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[719])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[719])(m_pSelf, nTokenID);
 	}
 	inline void SetSamplerValue(uint32 nTokenID, CSamplerStateDesc samplerDesc) 
 	{
-		((void(*)(void* self, uint32 nTokenID, CSamplerStateDesc samplerDesc))g_nativeFunctions[720])(m_pSelf, nTokenID, samplerDesc);
+		((void(*)(void* self, uint32 nTokenID, CSamplerStateDesc samplerDesc))g_engine_nativeFunctions[720])(m_pSelf, nTokenID, samplerDesc);
 	}
 	inline void SetBufferValue(uint32 nTokenID, RenderBufferHandle_t hRenderBuffer) 
 	{
-		((void(*)(void* self, uint32 nTokenID, RenderBufferHandle_t hRenderBuffer))g_nativeFunctions[721])(m_pSelf, nTokenID, hRenderBuffer);
+		((void(*)(void* self, uint32 nTokenID, RenderBufferHandle_t hRenderBuffer))g_engine_nativeFunctions[721])(m_pSelf, nTokenID, hRenderBuffer);
 	}
 	inline void SetPtrValue(uint32 nTokenID, void* ptr) 
 	{
-		((void(*)(void* self, uint32 nTokenID, void* ptr))g_nativeFunctions[722])(m_pSelf, nTokenID, ptr);
+		((void(*)(void* self, uint32 nTokenID, void* ptr))g_engine_nativeFunctions[722])(m_pSelf, nTokenID, ptr);
 	}
 	inline void DeletePtrValue(uint32 nTokenID) 
 	{
-		((void(*)(void* self, uint32 nTokenID))g_nativeFunctions[723])(m_pSelf, nTokenID);
+		((void(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[723])(m_pSelf, nTokenID);
 	}
 	inline void SetIntVector4DValue(uint32 nTokenID, int x, int y, int z, int w) 
 	{
-		((void(*)(void* self, uint32 nTokenID, int x, int y, int z, int w))g_nativeFunctions[724])(m_pSelf, nTokenID, x, y, z, w);
+		((void(*)(void* self, uint32 nTokenID, int x, int y, int z, int w))g_engine_nativeFunctions[724])(m_pSelf, nTokenID, x, y, z, w);
 	}
 	inline void MergeToPtr(CRenderAttributes* attrList) 
 	{
-		((void(*)(void* self, CRenderAttributes* attrList))g_nativeFunctions[725])(m_pSelf, attrList);
+		((void(*)(void* self, CRenderAttributes* attrList))g_engine_nativeFunctions[725])(m_pSelf, attrList);
 	}
 	inline int IsEmpty() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[726])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[726])(m_pSelf);
 	}
 	inline void Clear(int freeMemory, int resetParent) 
 	{
-		((void(*)(void* self, int freeMemory, int resetParent))g_nativeFunctions[727])(m_pSelf, freeMemory, resetParent);
+		((void(*)(void* self, int freeMemory, int resetParent))g_engine_nativeFunctions[727])(m_pSelf, freeMemory, resetParent);
 	}
 };
 class CRenderMesh
@@ -3041,32 +3023,32 @@ class CRenderMesh
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[728])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[728])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[729])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[729])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[730])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[730])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[731])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[731])(m_pSelf);
 	}
 	inline HRenderMesh_InternalStrong* CopyStrongHandle() 
 	{
 		return
-		((HRenderMesh_InternalStrong*(*)(void* self))g_nativeFunctions[732])(m_pSelf);
+		((HRenderMesh_InternalStrong*(*)(void* self))g_engine_nativeFunctions[732])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[733])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[733])(m_pSelf);
 	}
 };
 class CSceneAnimatableObject
@@ -3081,532 +3063,532 @@ class CSceneAnimatableObject
 	//NativeEngine.CSceneAnimatableObject.__N.To_CSceneObject_From_CSceneAnimatableObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[735];
 	inline void SetWorldSpaceRenderBoneTransform(int nBoneIndex, CTransformUnaligned pRenderWorldTransform) 
 	{
-		((void(*)(void* self, int nBoneIndex, CTransformUnaligned pRenderWorldTransform))g_nativeFunctions[736])(m_pSelf, nBoneIndex, pRenderWorldTransform);
+		((void(*)(void* self, int nBoneIndex, CTransformUnaligned pRenderWorldTransform))g_engine_nativeFunctions[736])(m_pSelf, nBoneIndex, pRenderWorldTransform);
 	}
 	inline CTransformUnaligned GetWorldSpaceRenderBoneTransform(int nBoneIndex) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_nativeFunctions[737])(m_pSelf, nBoneIndex);
+		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_engine_nativeFunctions[737])(m_pSelf, nBoneIndex);
 	}
 	inline CTransformUnaligned GetWorldSpaceRenderBoneTransform(const char* boneName) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, const char* boneName))g_nativeFunctions[738])(m_pSelf, boneName);
+		((CTransformUnaligned(*)(void* self, const char* boneName))g_engine_nativeFunctions[738])(m_pSelf, boneName);
 	}
 	inline CTransformUnaligned GetWorldSpaceRenderBonePreviousTransform(int nBoneIndex) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_nativeFunctions[739])(m_pSelf, nBoneIndex);
+		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_engine_nativeFunctions[739])(m_pSelf, nBoneIndex);
 	}
 	inline CTransformUnaligned GetWorldSpaceRenderBonePreviousTransform(const char* boneName) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, const char* boneName))g_nativeFunctions[740])(m_pSelf, boneName);
+		((CTransformUnaligned(*)(void* self, const char* boneName))g_engine_nativeFunctions[740])(m_pSelf, boneName);
 	}
 	inline CTransformUnaligned GetLocalSpaceRenderBoneTransform(int nBoneIndex) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_nativeFunctions[741])(m_pSelf, nBoneIndex);
+		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_engine_nativeFunctions[741])(m_pSelf, nBoneIndex);
 	}
 	inline CTransformUnaligned GetLocalSpaceRenderBoneTransform(const char* boneName) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, const char* boneName))g_nativeFunctions[742])(m_pSelf, boneName);
+		((CTransformUnaligned(*)(void* self, const char* boneName))g_engine_nativeFunctions[742])(m_pSelf, boneName);
 	}
 	inline CTransformUnaligned GetWorldSpaceAnimationTransform(int nBoneIndex) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_nativeFunctions[743])(m_pSelf, nBoneIndex);
+		((CTransformUnaligned(*)(void* self, int nBoneIndex))g_engine_nativeFunctions[743])(m_pSelf, nBoneIndex);
 	}
 	inline void Update(float dt) 
 	{
-		((void(*)(void* self, float dt))g_nativeFunctions[744])(m_pSelf, dt);
+		((void(*)(void* self, float dt))g_engine_nativeFunctions[744])(m_pSelf, dt);
 	}
 	inline void MergeFrom(CSceneAnimatableObject* other) 
 	{
-		((void(*)(void* self, CSceneAnimatableObject* other))g_nativeFunctions[745])(m_pSelf, other);
+		((void(*)(void* self, CSceneAnimatableObject* other))g_engine_nativeFunctions[745])(m_pSelf, other);
 	}
 	inline void SetBindPose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[746])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[746])(m_pSelf);
 	}
 	inline void CalculateWorldSpaceBones() 
 	{
-		((void(*)(void* self))g_nativeFunctions[747])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[747])(m_pSelf);
 	}
 	inline void FinishUpdate() 
 	{
-		((void(*)(void* self))g_nativeFunctions[748])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[748])(m_pSelf);
 	}
 	inline void ResetGraphParameters() 
 	{
-		((void(*)(void* self))g_nativeFunctions[749])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[749])(m_pSelf);
 	}
 	inline CTransformUnaligned GetParentSpaceBone(int index) 
 	{
 		return
-		((CTransformUnaligned(*)(void* self, int index))g_nativeFunctions[750])(m_pSelf, index);
+		((CTransformUnaligned(*)(void* self, int index))g_engine_nativeFunctions[750])(m_pSelf, index);
 	}
 	inline void SetParentSpaceBone(int index, CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, int index, CTransformUnaligned tx))g_nativeFunctions[751])(m_pSelf, index, tx);
+		((void(*)(void* self, int index, CTransformUnaligned tx))g_engine_nativeFunctions[751])(m_pSelf, index, tx);
 	}
 	inline void InitAnimGraph(void* pAnimGraphChangedCallback) 
 	{
-		((void(*)(void* self, void* pAnimGraphChangedCallback))g_nativeFunctions[752])(m_pSelf, pAnimGraphChangedCallback);
+		((void(*)(void* self, void* pAnimGraphChangedCallback))g_engine_nativeFunctions[752])(m_pSelf, pAnimGraphChangedCallback);
 	}
 	inline void SetAnimGraph(const char* graphName) 
 	{
-		((void(*)(void* self, const char* graphName))g_nativeFunctions[753])(m_pSelf, graphName);
+		((void(*)(void* self, const char* graphName))g_engine_nativeFunctions[753])(m_pSelf, graphName);
 	}
 	inline void SetAnimGraph(HAnimationGraphStrong* hGraph) 
 	{
-		((void(*)(void* self, HAnimationGraphStrong* hGraph))g_nativeFunctions[754])(m_pSelf, hGraph);
+		((void(*)(void* self, HAnimationGraphStrong* hGraph))g_engine_nativeFunctions[754])(m_pSelf, hGraph);
 	}
 	inline HAnimationGraphStrong* GetAnimGraph() 
 	{
 		return
-		((HAnimationGraphStrong*(*)(void* self))g_nativeFunctions[755])(m_pSelf);
+		((HAnimationGraphStrong*(*)(void* self))g_engine_nativeFunctions[755])(m_pSelf);
 	}
 	inline void SBox_SetFlexOverride(uint32 name, float flWeight) 
 	{
-		((void(*)(void* self, uint32 name, float flWeight))g_nativeFunctions[756])(m_pSelf, name, flWeight);
+		((void(*)(void* self, uint32 name, float flWeight))g_engine_nativeFunctions[756])(m_pSelf, name, flWeight);
 	}
 	inline void SBox_SetFlexOverride(int flexId, float flWeight) 
 	{
-		((void(*)(void* self, int flexId, float flWeight))g_nativeFunctions[757])(m_pSelf, flexId, flWeight);
+		((void(*)(void* self, int flexId, float flWeight))g_engine_nativeFunctions[757])(m_pSelf, flexId, flWeight);
 	}
 	inline float SBox_GetFlexOverride(int flexId) 
 	{
 		return
-		((float(*)(void* self, int flexId))g_nativeFunctions[758])(m_pSelf, flexId);
+		((float(*)(void* self, int flexId))g_engine_nativeFunctions[758])(m_pSelf, flexId);
 	}
 	inline float SBox_GetFlexOverride(uint32 name) 
 	{
 		return
-		((float(*)(void* self, uint32 name))g_nativeFunctions[759])(m_pSelf, name);
+		((float(*)(void* self, uint32 name))g_engine_nativeFunctions[759])(m_pSelf, name);
 	}
 	inline void SBox_ClearFlexOverride() 
 	{
-		((void(*)(void* self))g_nativeFunctions[760])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[760])(m_pSelf);
 	}
 	inline void DirectPlayback_PlaySequence(const char* pSequenceName) 
 	{
-		((void(*)(void* self, const char* pSequenceName))g_nativeFunctions[761])(m_pSelf, pSequenceName);
+		((void(*)(void* self, const char* pSequenceName))g_engine_nativeFunctions[761])(m_pSelf, pSequenceName);
 	}
 	inline void DirectPlayback_PlaySequence(const char* pSequenceName, Vector vTargetPos, float flFacingHeading, float flInterpTime) 
 	{
-		((void(*)(void* self, const char* pSequenceName, Vector vTargetPos, float flFacingHeading, float flInterpTime))g_nativeFunctions[762])(m_pSelf, pSequenceName, vTargetPos, flFacingHeading, flInterpTime);
+		((void(*)(void* self, const char* pSequenceName, Vector vTargetPos, float flFacingHeading, float flInterpTime))g_engine_nativeFunctions[762])(m_pSelf, pSequenceName, vTargetPos, flFacingHeading, flInterpTime);
 	}
 	inline void DirectPlayback_CancelSequence() 
 	{
-		((void(*)(void* self))g_nativeFunctions[763])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[763])(m_pSelf);
 	}
 	inline float DirectPlayback_GetSequenceCycle() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[764])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[764])(m_pSelf);
 	}
 	inline const char* DirectPlayback_GetSequence() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[765])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[765])(m_pSelf);
 	}
 	inline void DirectPlayback_SetSequenceStartTime(float flStartTime) 
 	{
-		((void(*)(void* self, float flStartTime))g_nativeFunctions[766])(m_pSelf, flStartTime);
+		((void(*)(void* self, float flStartTime))g_engine_nativeFunctions[766])(m_pSelf, flStartTime);
 	}
 	inline float DirectPlayback_GetSequenceDuration() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[767])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[767])(m_pSelf);
 	}
 	inline int SBox_GetAttachment(uint32 name, int worldspace, CTransformUnaligned* tx) 
 	{
 		return
-		((int(*)(void* self, uint32 name, int worldspace, CTransformUnaligned* tx))g_nativeFunctions[768])(m_pSelf, name, worldspace, tx);
+		((int(*)(void* self, uint32 name, int worldspace, CTransformUnaligned* tx))g_engine_nativeFunctions[768])(m_pSelf, name, worldspace, tx);
 	}
 	inline void SetShouldUseAnimGraph(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[769])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[769])(m_pSelf, bEnabled);
 	}
 	inline int GetShouldUseAnimGraph() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[770])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[770])(m_pSelf);
 	}
 	inline const char* GetSequence() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[771])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[771])(m_pSelf);
 	}
 	inline void SetSequence(const char* pSequenceName) 
 	{
-		((void(*)(void* self, const char* pSequenceName))g_nativeFunctions[772])(m_pSelf, pSequenceName);
+		((void(*)(void* self, const char* pSequenceName))g_engine_nativeFunctions[772])(m_pSelf, pSequenceName);
 	}
 	inline float GetSequenceDuration() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[773])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[773])(m_pSelf);
 	}
 	inline float GetSequenceCycle() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[774])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[774])(m_pSelf);
 	}
 	inline void SetSequenceCycle(float flCycle) 
 	{
-		((void(*)(void* self, float flCycle))g_nativeFunctions[775])(m_pSelf, flCycle);
+		((void(*)(void* self, float flCycle))g_engine_nativeFunctions[775])(m_pSelf, flCycle);
 	}
 	inline void SetSequenceLooping(int bLooping) 
 	{
-		((void(*)(void* self, int bLooping))g_nativeFunctions[776])(m_pSelf, bLooping);
+		((void(*)(void* self, int bLooping))g_engine_nativeFunctions[776])(m_pSelf, bLooping);
 	}
 	inline int IsSequenceFinished() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[777])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[777])(m_pSelf);
 	}
 	inline void SetSequenceBlending(int bBlending) 
 	{
-		((void(*)(void* self, int bBlending))g_nativeFunctions[778])(m_pSelf, bBlending);
+		((void(*)(void* self, int bBlending))g_engine_nativeFunctions[778])(m_pSelf, bBlending);
 	}
 	inline float GetPlaybackRate() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[779])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[779])(m_pSelf);
 	}
 	inline void SetPlaybackRate(float flPlaybackRate) 
 	{
-		((void(*)(void* self, float flPlaybackRate))g_nativeFunctions[780])(m_pSelf, flPlaybackRate);
+		((void(*)(void* self, float flPlaybackRate))g_engine_nativeFunctions[780])(m_pSelf, flPlaybackRate);
 	}
 	inline int GetParameterInt(const char* name) 
 	{
 		return
-		((int(*)(void* self, const char* name))g_nativeFunctions[781])(m_pSelf, name);
+		((int(*)(void* self, const char* name))g_engine_nativeFunctions[781])(m_pSelf, name);
 	}
 	inline float GetParameterFloat(const char* name) 
 	{
 		return
-		((float(*)(void* self, const char* name))g_nativeFunctions[782])(m_pSelf, name);
+		((float(*)(void* self, const char* name))g_engine_nativeFunctions[782])(m_pSelf, name);
 	}
 	inline Vector GetParameterVector3(const char* name) 
 	{
 		return
-		((Vector(*)(void* self, const char* name))g_nativeFunctions[783])(m_pSelf, name);
+		((Vector(*)(void* self, const char* name))g_engine_nativeFunctions[783])(m_pSelf, name);
 	}
 	inline Quaternion GetParameterRotation(const char* name) 
 	{
 		return
-		((Quaternion(*)(void* self, const char* name))g_nativeFunctions[784])(m_pSelf, name);
+		((Quaternion(*)(void* self, const char* name))g_engine_nativeFunctions[784])(m_pSelf, name);
 	}
 	inline int PendingAnimationEvents() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[785])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[785])(m_pSelf);
 	}
 	inline void RunAnimationEvents(void* callback) 
 	{
-		((void(*)(void* self, void* callback))g_nativeFunctions[786])(m_pSelf, callback);
+		((void(*)(void* self, void* callback))g_engine_nativeFunctions[786])(m_pSelf, callback);
 	}
 	inline void DispatchTagEvents(void* callback) 
 	{
-		((void(*)(void* self, void* callback))g_nativeFunctions[787])(m_pSelf, callback);
+		((void(*)(void* self, void* callback))g_engine_nativeFunctions[787])(m_pSelf, callback);
 	}
 	inline void ClearPhysicsBones() 
 	{
-		((void(*)(void* self))g_nativeFunctions[788])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[788])(m_pSelf);
 	}
 	inline void SetPhysicsBone(unsigned short bone, CTransformUnaligned transform) 
 	{
-		((void(*)(void* self, unsigned short bone, CTransformUnaligned transform))g_nativeFunctions[789])(m_pSelf, bone, transform);
+		((void(*)(void* self, unsigned short bone, CTransformUnaligned transform))g_engine_nativeFunctions[789])(m_pSelf, bone, transform);
 	}
 	inline CTransformUnaligned GetRootMotion() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[790])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[790])(m_pSelf);
 	}
 	inline int HasPhysicsBones() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[791])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[791])(m_pSelf);
 	}
 	inline const IAnimParameterInstance* GetAnimParameter(const char* name) 
 	{
 		return
-		((const IAnimParameterInstance*(*)(void* self, const char* name))g_nativeFunctions[792])(m_pSelf, name);
+		((const IAnimParameterInstance*(*)(void* self, const char* name))g_engine_nativeFunctions[792])(m_pSelf, name);
 	}
 	inline const IAnimParameterInstance* GetAnimParameter(int index) 
 	{
 		return
-		((const IAnimParameterInstance*(*)(void* self, int index))g_nativeFunctions[793])(m_pSelf, index);
+		((const IAnimParameterInstance*(*)(void* self, int index))g_engine_nativeFunctions[793])(m_pSelf, index);
 	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[794])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[794])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[795])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[795])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[796])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[796])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[797])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[797])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[798])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[798])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[799])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[799])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[800])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[800])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[801])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[801])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[802])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[802])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[803])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[803])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[804])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[804])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[805])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[805])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[806])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[806])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[807])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[807])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[808])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[808])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[809])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[809])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[810])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[810])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[811])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[811])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[812])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[812])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[813])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[813])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[814])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[814])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[815])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[815])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[816])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[816])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[817])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[817])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[818])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[818])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[819])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[819])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[820])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[820])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[821])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[821])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[822])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[822])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[823])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[823])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[824])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[824])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[825])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[825])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[826])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[826])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[827])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[827])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[828])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[828])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[829])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[829])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[830])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[830])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[831])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[831])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[832])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[832])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[833])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[833])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[834])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[834])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[835])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[835])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[836])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[836])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[837])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[837])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[838])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[838])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[839])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[839])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[840])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[840])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[841])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[841])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[842])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[842])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[843])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[843])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[844])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[844])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[845])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[845])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[846])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[846])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[847])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[847])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[848])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[848])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[849])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[849])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[850])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[850])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[851])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[851])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[852])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[852])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[853])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[853])(m_pSelf, index, material);
 	}
-	RW_VAR(float,m_flDeltaTime,CSceneAnimatableObject,g_nativeFunctions[854],g_nativeFunctions[855]);
-	RW_VAR(AABB_t,m_worldBounds,CSceneAnimatableObject,g_nativeFunctions[856],g_nativeFunctions[857]);
-	RW_VAR(AABB_t,m_localBounds,CSceneAnimatableObject,g_nativeFunctions[858],g_nativeFunctions[859]);
+	RW_VAR(float,m_flDeltaTime,CSceneAnimatableObject,g_engine_nativeFunctions[854],g_engine_nativeFunctions[855]);
+	RW_VAR(AABB_t,m_worldBounds,CSceneAnimatableObject,g_engine_nativeFunctions[856],g_engine_nativeFunctions[857]);
+	RW_VAR(AABB_t,m_localBounds,CSceneAnimatableObject,g_engine_nativeFunctions[858],g_engine_nativeFunctions[859]);
 };
 class CSceneLightObject
 {
@@ -3620,499 +3602,499 @@ class CSceneLightObject
 	//NativeEngine.CSceneLightObject.__N.To_CSceneObject_From_CSceneLightObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[861];
 	inline void SetWorldPosition(Vector pos) 
 	{
-		((void(*)(void* self, Vector pos))g_nativeFunctions[862])(m_pSelf, pos);
+		((void(*)(void* self, Vector pos))g_engine_nativeFunctions[862])(m_pSelf, pos);
 	}
 	inline Vector GetWorldPosition() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[863])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[863])(m_pSelf);
 	}
 	inline void SetWorldDirection(Quaternion dir) 
 	{
-		((void(*)(void* self, Quaternion dir))g_nativeFunctions[864])(m_pSelf, dir);
+		((void(*)(void* self, Quaternion dir))g_engine_nativeFunctions[864])(m_pSelf, dir);
 	}
 	inline Vector GetWorldDirection() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[865])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[865])(m_pSelf);
 	}
 	inline void SetColor(Vector color) 
 	{
-		((void(*)(void* self, Vector color))g_nativeFunctions[866])(m_pSelf, color);
+		((void(*)(void* self, Vector color))g_engine_nativeFunctions[866])(m_pSelf, color);
 	}
 	inline void SetBounceColor(Vector color) 
 	{
-		((void(*)(void* self, Vector color))g_nativeFunctions[867])(m_pSelf, color);
+		((void(*)(void* self, Vector color))g_engine_nativeFunctions[867])(m_pSelf, color);
 	}
 	inline Vector GetColor() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[868])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[868])(m_pSelf);
 	}
 	inline void SetRadius(float radius) 
 	{
-		((void(*)(void* self, float radius))g_nativeFunctions[869])(m_pSelf, radius);
+		((void(*)(void* self, float radius))g_engine_nativeFunctions[869])(m_pSelf, radius);
 	}
 	inline float GetRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[870])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[870])(m_pSelf);
 	}
 	inline void SetTheta(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[871])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[871])(m_pSelf, f);
 	}
 	inline float GetTheta() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[872])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[872])(m_pSelf);
 	}
 	inline void SetPhi(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[873])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[873])(m_pSelf, f);
 	}
 	inline float GetPhi() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[874])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[874])(m_pSelf);
 	}
 	inline void SetFallOff(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[875])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[875])(m_pSelf, f);
 	}
 	inline float GetFallOff() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[876])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[876])(m_pSelf);
 	}
 	inline int GetShadowTextureResolution() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[877])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[877])(m_pSelf);
 	}
 	inline void SetShadowTextureResolution(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[878])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[878])(m_pSelf, v);
 	}
 	inline int GetShadows() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[879])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[879])(m_pSelf);
 	}
 	inline void SetShadows(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[880])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[880])(m_pSelf, v);
 	}
 	inline void SetConstantAttn(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[881])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[881])(m_pSelf, f);
 	}
 	inline float GetConstantAttn() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[882])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[882])(m_pSelf);
 	}
 	inline void SetLinearAttn(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[883])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[883])(m_pSelf, f);
 	}
 	inline float GetLinearAttn() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[884])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[884])(m_pSelf);
 	}
 	inline void SetQuadraticAttn(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[885])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[885])(m_pSelf, f);
 	}
 	inline float GetQuadraticAttn() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[886])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[886])(m_pSelf);
 	}
 	inline void SetLightCookie(HRenderTextureStrong* f) 
 	{
-		((void(*)(void* self, HRenderTextureStrong* f))g_nativeFunctions[887])(m_pSelf, f);
+		((void(*)(void* self, HRenderTextureStrong* f))g_engine_nativeFunctions[887])(m_pSelf, f);
 	}
 	inline HRenderTextureStrong* GetLightCookie() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self))g_nativeFunctions[888])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* self))g_engine_nativeFunctions[888])(m_pSelf);
 	}
 	inline int GetShadowCascades() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[889])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[889])(m_pSelf);
 	}
 	inline void SetShadowCascades(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[890])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[890])(m_pSelf, v);
 	}
 	inline float GetCascadeDistanceScale() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[891])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[891])(m_pSelf);
 	}
 	inline void SetCascadeDistanceScale(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[892])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[892])(m_pSelf, dist);
 	}
 	inline float GetFogContributionStength() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[893])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[893])(m_pSelf);
 	}
 	inline void SetFogContributionStength(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[894])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[894])(m_pSelf, v);
 	}
 	inline int GetFogLightingMode() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[895])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[895])(m_pSelf);
 	}
 	inline void SetFogLightingMode(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[896])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[896])(m_pSelf, v);
 	}
 	inline void SetBakeLightIndex(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[897])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[897])(m_pSelf, v);
 	}
 	inline void SetBakeLightIndexScale(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[898])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[898])(m_pSelf, v);
 	}
 	inline void SetUsesIndexedBakedLighting(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[899])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[899])(m_pSelf, v);
 	}
 	inline void SetRenderDiffuse(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[900])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[900])(m_pSelf, v);
 	}
 	inline void SetRenderSpecular(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[901])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[901])(m_pSelf, v);
 	}
 	inline void SetRenderTransmissive(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[902])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[902])(m_pSelf, v);
 	}
 	inline void SetLightSourceSize0(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[903])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[903])(m_pSelf, v);
 	}
 	inline void SetLightSourceSize1(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[904])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[904])(m_pSelf, v);
 	}
 	inline void SetShadowTextureWidth(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[905])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[905])(m_pSelf, v);
 	}
 	inline void SetShadowTextureHeight(int v) 
 	{
-		((void(*)(void* self, int v))g_nativeFunctions[906])(m_pSelf, v);
+		((void(*)(void* self, int v))g_engine_nativeFunctions[906])(m_pSelf, v);
 	}
 	inline int GetShadowTextureWidth() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[907])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[907])(m_pSelf);
 	}
 	inline int GetShadowTextureHeight() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[908])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[908])(m_pSelf);
 	}
 	inline unsigned int GetLightFlags() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[909])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[909])(m_pSelf);
 	}
 	inline void SetLightFlags(unsigned int flags) 
 	{
-		((void(*)(void* self, unsigned int flags))g_nativeFunctions[910])(m_pSelf, flags);
+		((void(*)(void* self, unsigned int flags))g_engine_nativeFunctions[910])(m_pSelf, flags);
 	}
 	inline int64 GetLightShape() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[911])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[911])(m_pSelf);
 	}
 	inline void SetLightShape(int64 shape) 
 	{
-		((void(*)(void* self, int64 shape))g_nativeFunctions[912])(m_pSelf, shape);
+		((void(*)(void* self, int64 shape))g_engine_nativeFunctions[912])(m_pSelf, shape);
 	}
 	inline void SetLightSourceDim0(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[913])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[913])(m_pSelf, v);
 	}
 	inline void SetLightSourceDim1(float v) 
 	{
-		((void(*)(void* self, float v))g_nativeFunctions[914])(m_pSelf, v);
+		((void(*)(void* self, float v))g_engine_nativeFunctions[914])(m_pSelf, v);
 	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[915])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[915])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[916])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[916])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[917])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[917])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[918])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[918])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[919])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[919])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[920])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[920])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[921])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[921])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[922])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[922])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[923])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[923])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[924])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[924])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[925])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[925])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[926])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[926])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[927])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[927])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[928])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[928])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[929])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[929])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[930])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[930])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[931])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[931])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[932])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[932])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[933])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[933])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[934])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[934])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[935])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[935])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[936])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[936])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[937])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[937])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[938])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[938])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[939])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[939])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[940])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[940])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[941])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[941])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[942])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[942])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[943])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[943])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[944])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[944])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[945])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[945])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[946])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[946])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[947])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[947])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[948])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[948])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[949])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[949])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[950])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[950])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[951])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[951])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[952])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[952])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[953])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[953])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[954])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[954])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[955])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[955])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[956])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[956])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[957])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[957])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[958])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[958])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[959])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[959])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[960])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[960])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[961])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[961])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[962])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[962])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[963])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[963])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[964])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[964])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[965])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[965])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[966])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[966])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[967])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[967])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[968])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[968])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[969])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[969])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[970])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[970])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[971])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[971])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[972])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[972])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[973])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[973])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[974])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[974])(m_pSelf, index, material);
 	}
 };
 class CSceneLightProbeVolumeObject
@@ -4127,278 +4109,278 @@ class CSceneLightProbeVolumeObject
 	//NativeEngine.CSceneLightProbeVolumeObject.__N.To_CSceneObject_From_CSceneLightProbeVolumeObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[976];
 	inline void CreateConstants() 
 	{
-		((void(*)(void* self))g_nativeFunctions[977])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[977])(m_pSelf);
 	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[978])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[978])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[979])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[979])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[980])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[980])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[981])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[981])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[982])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[982])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[983])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[983])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[984])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[984])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[985])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[985])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[986])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[986])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[987])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[987])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[988])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[988])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[989])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[989])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[990])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[990])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[991])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[991])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[992])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[992])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[993])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[993])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[994])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[994])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[995])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[995])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[996])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[996])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[997])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[997])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[998])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[998])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[999])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[999])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1000])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1000])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1001])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1001])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[1002])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[1002])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1003])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1003])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[1004])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[1004])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[1005])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[1005])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[1006])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[1006])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[1007])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[1007])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1008])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1008])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1009])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1009])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[1010])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[1010])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[1011])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[1011])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[1012])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[1012])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1013])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1013])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1014])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1014])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1015])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1015])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1016])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1016])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1017])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1017])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[1018])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[1018])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1019])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1019])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1020])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1020])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1021])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1021])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[1022])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[1022])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[1023])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[1023])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[1024])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[1024])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[1025])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[1025])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1026])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1026])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[1027])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[1027])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[1028])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1028])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1029])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1029])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1030])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1030])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[1031])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[1031])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[1032])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1032])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1033])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1033])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[1034])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[1034])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[1035])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[1035])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[1036])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[1036])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[1037])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[1037])(m_pSelf, index, material);
 	}
-	RW_VAR(Vector,m_vBoxMins,CSceneLightProbeVolumeObject,g_nativeFunctions[1038],g_nativeFunctions[1039]);
-	RW_VAR(Vector,m_vBoxMaxs,CSceneLightProbeVolumeObject,g_nativeFunctions[1040],g_nativeFunctions[1041]);
-	RW_VAR(int,m_nHandshake,CSceneLightProbeVolumeObject,g_nativeFunctions[1042],g_nativeFunctions[1043]);
-	RW_VAR(int,m_nRenderPriority,CSceneLightProbeVolumeObject,g_nativeFunctions[1044],g_nativeFunctions[1045]);
-	RW_VAR(HRenderTextureStrong*,m_hLightProbeTexture,CSceneLightProbeVolumeObject,g_nativeFunctions[1046],g_nativeFunctions[1047]);
-	RW_VAR(HRenderTextureStrong*,m_hLightProbeDirectLightIndicesTexture,CSceneLightProbeVolumeObject,g_nativeFunctions[1048],g_nativeFunctions[1049]);
-	RW_VAR(HRenderTextureStrong*,m_hLightProbeDirectLightScalarsTexture,CSceneLightProbeVolumeObject,g_nativeFunctions[1050],g_nativeFunctions[1051]);
+	RW_VAR(Vector,m_vBoxMins,CSceneLightProbeVolumeObject,g_engine_nativeFunctions[1038],g_engine_nativeFunctions[1039]);
+	RW_VAR(Vector,m_vBoxMaxs,CSceneLightProbeVolumeObject,g_engine_nativeFunctions[1040],g_engine_nativeFunctions[1041]);
+	RW_VAR(int,m_nHandshake,CSceneLightProbeVolumeObject,g_engine_nativeFunctions[1042],g_engine_nativeFunctions[1043]);
+	RW_VAR(int,m_nRenderPriority,CSceneLightProbeVolumeObject,g_engine_nativeFunctions[1044],g_engine_nativeFunctions[1045]);
+	RW_VAR(HRenderTextureStrong*,m_hLightProbeTexture,CSceneLightProbeVolumeObject,g_engine_nativeFunctions[1046],g_engine_nativeFunctions[1047]);
+	RW_VAR(HRenderTextureStrong*,m_hLightProbeDirectLightIndicesTexture,CSceneLightProbeVolumeObject,g_engine_nativeFunctions[1048],g_engine_nativeFunctions[1049]);
+	RW_VAR(HRenderTextureStrong*,m_hLightProbeDirectLightScalarsTexture,CSceneLightProbeVolumeObject,g_engine_nativeFunctions[1050],g_engine_nativeFunctions[1051]);
 };
 class CSceneObject
 {
@@ -4410,266 +4392,266 @@ class CSceneObject
 	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[1052])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[1052])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[1053])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[1053])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[1054])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[1054])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1055])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1055])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1056])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1056])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[1057])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[1057])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[1058])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[1058])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1059])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1059])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[1060])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[1060])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1061])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1061])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1062])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1062])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[1063])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[1063])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[1064])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[1064])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[1065])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[1065])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1066])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1066])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[1067])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[1067])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1068])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1068])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[1069])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[1069])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1070])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1070])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1071])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1071])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1072])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1072])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1073])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1073])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1074])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1074])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1075])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1075])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[1076])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[1076])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1077])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1077])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[1078])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[1078])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[1079])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[1079])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[1080])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[1080])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[1081])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[1081])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1082])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1082])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1083])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1083])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[1084])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[1084])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[1085])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[1085])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[1086])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[1086])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1087])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1087])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1088])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1088])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1089])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1089])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1090])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1090])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1091])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1091])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[1092])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[1092])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1093])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1093])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1094])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1094])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1095])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1095])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[1096])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[1096])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[1097])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[1097])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[1098])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[1098])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[1099])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[1099])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1100])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1100])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[1101])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[1101])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[1102])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1102])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1103])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1103])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1104])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1104])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[1105])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[1105])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[1106])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1106])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1107])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1107])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[1108])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[1108])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[1109])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[1109])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[1110])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[1110])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[1111])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[1111])(m_pSelf, index, material);
 	}
 };
 class CSceneSkyBoxObject
@@ -4684,325 +4666,325 @@ class CSceneSkyBoxObject
 	//NativeEngine.CSceneSkyBoxObject.__N.To_CSceneObject_From_CSceneSkyBoxObject = (delegate* unmanaged[SuppressGCTransition]< IntPtr, IntPtr >) nativeFunctions[1113];
 	inline void SetLighting_ConstantColorHemisphere(Vector vSkyColor) 
 	{
-		((void(*)(void* self, Vector vSkyColor))g_nativeFunctions[1114])(m_pSelf, vSkyColor);
+		((void(*)(void* self, Vector vSkyColor))g_engine_nativeFunctions[1114])(m_pSelf, vSkyColor);
 	}
 	inline void SetLighting_Samples(void* pSkyColors, void* pSkyDirections, int nSkyColors) 
 	{
-		((void(*)(void* self, void* pSkyColors, void* pSkyDirections, int nSkyColors))g_nativeFunctions[1115])(m_pSelf, pSkyColors, pSkyDirections, nSkyColors);
+		((void(*)(void* self, void* pSkyColors, void* pSkyDirections, int nSkyColors))g_engine_nativeFunctions[1115])(m_pSelf, pSkyColors, pSkyDirections, nSkyColors);
 	}
 	inline HMaterialStrong* GetMaterial() 
 	{
 		return
-		((HMaterialStrong*(*)(void* self))g_nativeFunctions[1116])(m_pSelf);
+		((HMaterialStrong*(*)(void* self))g_engine_nativeFunctions[1116])(m_pSelf);
 	}
 	inline void SetMaterial(HMaterialStrong* hMaterial) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial))g_nativeFunctions[1117])(m_pSelf, hMaterial);
+		((void(*)(void* self, HMaterialStrong* hMaterial))g_engine_nativeFunctions[1117])(m_pSelf, hMaterial);
 	}
 	inline void SetSkyTint(Vector vTint) 
 	{
-		((void(*)(void* self, Vector vTint))g_nativeFunctions[1118])(m_pSelf, vTint);
+		((void(*)(void* self, Vector vTint))g_engine_nativeFunctions[1118])(m_pSelf, vTint);
 	}
 	inline Vector GetSkyTint() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1119])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1119])(m_pSelf);
 	}
 	inline void SetFogType(int nType) 
 	{
-		((void(*)(void* self, int nType))g_nativeFunctions[1120])(m_pSelf, nType);
+		((void(*)(void* self, int nType))g_engine_nativeFunctions[1120])(m_pSelf, nType);
 	}
 	inline int GetFogType() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1121])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1121])(m_pSelf);
 	}
 	inline void SetAngularFogParams(float flFogMinStart, float flFogMinEnd, float flFogMaxStart, float flFogMaxEnd) 
 	{
-		((void(*)(void* self, float flFogMinStart, float flFogMinEnd, float flFogMaxStart, float flFogMaxEnd))g_nativeFunctions[1122])(m_pSelf, flFogMinStart, flFogMinEnd, flFogMaxStart, flFogMaxEnd);
+		((void(*)(void* self, float flFogMinStart, float flFogMinEnd, float flFogMaxStart, float flFogMaxEnd))g_engine_nativeFunctions[1122])(m_pSelf, flFogMinStart, flFogMinEnd, flFogMaxStart, flFogMaxEnd);
 	}
 	inline float GetFogMinStart() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1123])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1123])(m_pSelf);
 	}
 	inline float GetFogMinEnd() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1124])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1124])(m_pSelf);
 	}
 	inline float GetFogMaxStart() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1125])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1125])(m_pSelf);
 	}
 	inline float GetFogMaxEnd() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1126])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1126])(m_pSelf);
 	}
 	inline void ChangeFlags(int64 nNewFlags, int64 nNewFlagsMask) 
 	{
-		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_nativeFunctions[1127])(m_pSelf, nNewFlags, nNewFlagsMask);
+		((void(*)(void* self, int64 nNewFlags, int64 nNewFlagsMask))g_engine_nativeFunctions[1127])(m_pSelf, nNewFlags, nNewFlagsMask);
 	}
 	inline void SetFlags(int64 nFlagsToOR) 
 	{
-		((void(*)(void* self, int64 nFlagsToOR))g_nativeFunctions[1128])(m_pSelf, nFlagsToOR);
+		((void(*)(void* self, int64 nFlagsToOR))g_engine_nativeFunctions[1128])(m_pSelf, nFlagsToOR);
 	}
 	inline int HasFlags(int64 nFlags) 
 	{
 		return
-		((int(*)(void* self, int64 nFlags))g_nativeFunctions[1129])(m_pSelf, nFlags);
+		((int(*)(void* self, int64 nFlags))g_engine_nativeFunctions[1129])(m_pSelf, nFlags);
 	}
 	inline int64 GetFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1130])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1130])(m_pSelf);
 	}
 	inline int64 GetOriginalFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1131])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1131])(m_pSelf);
 	}
 	inline void ClearFlags(int64 nFlagsToClear) 
 	{
-		((void(*)(void* self, int64 nFlagsToClear))g_nativeFunctions[1132])(m_pSelf, nFlagsToClear);
+		((void(*)(void* self, int64 nFlagsToClear))g_engine_nativeFunctions[1132])(m_pSelf, nFlagsToClear);
 	}
 	inline void SetCullDistance(float dist) 
 	{
-		((void(*)(void* self, float dist))g_nativeFunctions[1133])(m_pSelf, dist);
+		((void(*)(void* self, float dist))g_engine_nativeFunctions[1133])(m_pSelf, dist);
 	}
 	inline void EnableLightingCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1134])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1134])(m_pSelf);
 	}
 	inline void SetLightingOrigin(Vector vPos, int worldspace) 
 	{
-		((void(*)(void* self, Vector vPos, int worldspace))g_nativeFunctions[1135])(m_pSelf, vPos, worldspace);
+		((void(*)(void* self, Vector vPos, int worldspace))g_engine_nativeFunctions[1135])(m_pSelf, vPos, worldspace);
 	}
 	inline Vector GetLightingOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1136])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1136])(m_pSelf);
 	}
 	inline int HasLightingOrigin() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1137])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1137])(m_pSelf);
 	}
 	inline void SetTintRGBA(Vector4D color) 
 	{
-		((void(*)(void* self, Vector4D color))g_nativeFunctions[1138])(m_pSelf, color);
+		((void(*)(void* self, Vector4D color))g_engine_nativeFunctions[1138])(m_pSelf, color);
 	}
 	inline Vector4D GetTintRGBA() 
 	{
 		return
-		((Vector4D(*)(void* self))g_nativeFunctions[1139])(m_pSelf);
+		((Vector4D(*)(void* self))g_engine_nativeFunctions[1139])(m_pSelf);
 	}
 	inline void SetAlphaFade(float nAlpha) 
 	{
-		((void(*)(void* self, float nAlpha))g_nativeFunctions[1140])(m_pSelf, nAlpha);
+		((void(*)(void* self, float nAlpha))g_engine_nativeFunctions[1140])(m_pSelf, nAlpha);
 	}
 	inline float GetAlphaFade() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1141])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1141])(m_pSelf);
 	}
 	inline void SetMaterialOverrideForMeshInstances(HMaterialStrong* mat) 
 	{
-		((void(*)(void* self, HMaterialStrong* mat))g_nativeFunctions[1142])(m_pSelf, mat);
+		((void(*)(void* self, HMaterialStrong* mat))g_engine_nativeFunctions[1142])(m_pSelf, mat);
 	}
 	inline void ClearMaterialOverrideList() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1143])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1143])(m_pSelf);
 	}
 	inline void SetMaterialOverride(HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch) 
 	{
-		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_nativeFunctions[1144])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
+		((void(*)(void* self, HMaterialStrong* hMaterial, uint32 nAttr, int nAttrValueMatch))g_engine_nativeFunctions[1144])(m_pSelf, hMaterial, nAttr, nAttrValueMatch);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1145])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1145])(m_pSelf);
 	}
 	inline int IsRenderingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1146])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1146])(m_pSelf);
 	}
 	inline void SetLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1147])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1147])(m_pSelf);
 	}
 	inline void ClearLoaded() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1148])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1148])(m_pSelf);
 	}
 	inline void DisableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1149])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1149])(m_pSelf);
 	}
 	inline void EnableRendering() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1150])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1150])(m_pSelf);
 	}
 	inline void SetRenderingEnabled(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[1151])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[1151])(m_pSelf, bEnabled);
 	}
 	inline float GetBoundingSphereRadius() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1152])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1152])(m_pSelf);
 	}
 	inline void SetTransform(CTransformUnaligned tx) 
 	{
-		((void(*)(void* self, CTransformUnaligned tx))g_nativeFunctions[1153])(m_pSelf, tx);
+		((void(*)(void* self, CTransformUnaligned tx))g_engine_nativeFunctions[1153])(m_pSelf, tx);
 	}
 	inline CTransformUnaligned GetCTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[1154])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[1154])(m_pSelf);
 	}
 	inline void SetBounds(AABB_t box) 
 	{
-		((void(*)(void* self, AABB_t box))g_nativeFunctions[1155])(m_pSelf, box);
+		((void(*)(void* self, AABB_t box))g_engine_nativeFunctions[1155])(m_pSelf, box);
 	}
 	inline AABB_t GetBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[1156])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[1156])(m_pSelf);
 	}
 	inline void SetBoundsInfinite() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1157])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1157])(m_pSelf);
 	}
 	inline int GetParent() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1158])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1158])(m_pSelf);
 	}
 	inline void AddChildObject(uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags) 
 	{
-		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_nativeFunctions[1159])(m_pSelf, nId, pChild, nChildUpdateFlags);
+		((void(*)(void* self, uint32 nId, CSceneObject* pChild, unsigned int nChildUpdateFlags))g_engine_nativeFunctions[1159])(m_pSelf, nId, pChild, nChildUpdateFlags);
 	}
 	inline void RemoveChild(CSceneObject* obj) 
 	{
-		((void(*)(void* self, CSceneObject* obj))g_nativeFunctions[1160])(m_pSelf, obj);
+		((void(*)(void* self, CSceneObject* obj))g_engine_nativeFunctions[1160])(m_pSelf, obj);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[1161])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[1161])(m_pSelf);
 	}
 	inline void EnableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1162])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1162])(m_pSelf, nMask);
 	}
 	inline void DisableMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1163])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1163])(m_pSelf, nMask);
 	}
 	inline void ResetMeshGroups(uint64 nMask) 
 	{
-		((void(*)(void* self, uint64 nMask))g_nativeFunctions[1164])(m_pSelf, nMask);
+		((void(*)(void* self, uint64 nMask))g_engine_nativeFunctions[1164])(m_pSelf, nMask);
 	}
 	inline uint64 GetCurrentMeshGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1165])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1165])(m_pSelf);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1166])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1166])(m_pSelf);
 	}
 	inline void SetLOD(int nLOD) 
 	{
-		((void(*)(void* self, int nLOD))g_nativeFunctions[1167])(m_pSelf, nLOD);
+		((void(*)(void* self, int nLOD))g_engine_nativeFunctions[1167])(m_pSelf, nLOD);
 	}
 	inline void DisableLOD() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1168])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1168])(m_pSelf);
 	}
 	inline uint64 GetCurrentLODGroupMask() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1169])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1169])(m_pSelf);
 	}
 	inline int GetCurrentLODLevel() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1170])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1170])(m_pSelf);
 	}
 	inline HModelStrong* GetModelHandle() 
 	{
 		return
-		((HModelStrong*(*)(void* self))g_nativeFunctions[1171])(m_pSelf);
+		((HModelStrong*(*)(void* self))g_engine_nativeFunctions[1171])(m_pSelf);
 	}
 	inline void SetMaterialGroup(uint32 token) 
 	{
-		((void(*)(void* self, uint32 token))g_nativeFunctions[1172])(m_pSelf, token);
+		((void(*)(void* self, uint32 token))g_engine_nativeFunctions[1172])(m_pSelf, token);
 	}
 	inline void SetBodyGroup(uint32 token, int value) 
 	{
-		((void(*)(void* self, uint32 token, int value))g_nativeFunctions[1173])(m_pSelf, token, value);
+		((void(*)(void* self, uint32 token, int value))g_engine_nativeFunctions[1173])(m_pSelf, token, value);
 	}
 	inline void SetBatchable(int bIsBatchable) 
 	{
-		((void(*)(void* self, int bIsBatchable))g_nativeFunctions[1174])(m_pSelf, bIsBatchable);
+		((void(*)(void* self, int bIsBatchable))g_engine_nativeFunctions[1174])(m_pSelf, bIsBatchable);
 	}
 	inline int IsNotBatchable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1175])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1175])(m_pSelf);
 	}
 	inline void SetUniqueBatchGroup(int bUnique) 
 	{
-		((void(*)(void* self, int bUnique))g_nativeFunctions[1176])(m_pSelf, bUnique);
+		((void(*)(void* self, int bUnique))g_engine_nativeFunctions[1176])(m_pSelf, bUnique);
 	}
 	inline void RemoveTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[1177])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1177])(m_pSelf, tag);
 	}
 	inline void RemoveAllTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1178])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1178])(m_pSelf);
 	}
 	inline int GetTagCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1179])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1179])(m_pSelf);
 	}
 	inline unsigned int GetTagAt(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[1180])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[1180])(m_pSelf, i);
 	}
 	inline void AddTag(unsigned int tag) 
 	{
-		((void(*)(void* self, unsigned int tag))g_nativeFunctions[1181])(m_pSelf, tag);
+		((void(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1181])(m_pSelf, tag);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[1182])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[1182])(m_pSelf, tag);
 	}
 	inline void SetForceLayerID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[1183])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[1183])(m_pSelf, nTok);
 	}
 	inline void SetLayerMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[1184])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[1184])(m_pSelf, nTok);
 	}
 	inline void UpdateFlagsBasedOnMaterial() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[1185])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[1185])(m_pSelf);
 	}
 	inline void SetMaterialOverrideByIndex(int index, HMaterialStrong* material) 
 	{
-		((void(*)(void* self, int index, HMaterialStrong* material))g_nativeFunctions[1186])(m_pSelf, index, material);
+		((void(*)(void* self, int index, HMaterialStrong* material))g_engine_nativeFunctions[1186])(m_pSelf, index, material);
 	}
 };
 class CServerList
@@ -5015,19 +4997,19 @@ class CServerList
 	}
 	CServerList(uint serverObj) 
 	{
-		m_pSelf = ((void*(*)(uint serverObj))g_nativeFunctions[1187])(serverObj);
+		m_pSelf = ((void*(*)(uint serverObj))g_engine_nativeFunctions[1187])(serverObj);
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1188])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1188])(m_pSelf);
 	}
 	inline void StartQuery() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1189])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1189])(m_pSelf);
 	}
 	inline void AddFilter(const char* key, const char* value) 
 	{
-		((void(*)(void* self, const char* key, const char* value))g_nativeFunctions[1190])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, const char* value))g_engine_nativeFunctions[1190])(m_pSelf, key, value);
 	}
 };
 class CSfxTable
@@ -5041,37 +5023,37 @@ class CSfxTable
 	inline int GetCacheStatus() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1191])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[1191])(m_pSelf);
 	}
 	inline int GetSampleCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1192])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[1192])(m_pSelf);
 	}
 	inline int GetSamples(void* samples, unsigned int numSamples) 
 	{
 		return
-		((int(*)(void* __self, void* __samples, unsigned int __numSamples))g_nativeFunctions[1193])(m_pSelf, samples, numSamples);
+		((int(*)(void* __self, void* __samples, unsigned int __numSamples))g_engine_nativeFunctions[1193])(m_pSelf, samples, numSamples);
 	}
 	inline HSoundStrong* GetSound() 
 	{
 		return
-		((HSoundStrong*(*)(void* __self))g_nativeFunctions[1194])(m_pSelf);
+		((HSoundStrong*(*)(void* __self))g_engine_nativeFunctions[1194])(m_pSelf);
 	}
 	inline int IsValidForPlayback() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1195])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1195])(m_pSelf);
 	}
 	inline int FailedResourceLoad() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1196])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1196])(m_pSelf);
 	}
 	inline const CAudioMixer* CreateMixer() 
 	{
 		return
-		((const CAudioMixer*(*)(void* __self))g_nativeFunctions[1197])(m_pSelf);
+		((const CAudioMixer*(*)(void* __self))g_engine_nativeFunctions[1197])(m_pSelf);
 	}
 };
 class CSteamInventoryResult
@@ -5084,37 +5066,37 @@ class CSteamInventoryResult
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1198])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1198])(m_pSelf);
 	}
 	inline int IsPending() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1199])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1199])(m_pSelf);
 	}
 	inline int IsOk() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1200])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1200])(m_pSelf);
 	}
 	inline int CheckSteamId(uint64 steamid) 
 	{
 		return
-		((int(*)(void* self, uint64 steamid))g_nativeFunctions[1201])(m_pSelf, steamid);
+		((int(*)(void* self, uint64 steamid))g_engine_nativeFunctions[1201])(m_pSelf, steamid);
 	}
 	inline unsigned int GetTimestamp() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1202])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[1202])(m_pSelf);
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1203])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1203])(m_pSelf);
 	}
 	inline const CSteamItemInstance* Get(int index) 
 	{
 		return
-		((const CSteamItemInstance*(*)(void* self, int index))g_nativeFunctions[1204])(m_pSelf, index);
+		((const CSteamItemInstance*(*)(void* self, int index))g_engine_nativeFunctions[1204])(m_pSelf, index);
 	}
 };
 class CSteamItemInstance
@@ -5128,12 +5110,12 @@ class CSteamItemInstance
 	inline uint64 ItemId() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1205])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1205])(m_pSelf);
 	}
 	inline unsigned int DefinitionId() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1206])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[1206])(m_pSelf);
 	}
 };
 class CTextureBase
@@ -5146,32 +5128,32 @@ class CTextureBase
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1207])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1207])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1208])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1208])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1209])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1209])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1210])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1210])(m_pSelf);
 	}
 	inline HRenderTextureStrong* CopyStrongHandle() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self))g_nativeFunctions[1211])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* self))g_engine_nativeFunctions[1211])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1212])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[1212])(m_pSelf);
 	}
 };
 class CUtlBuffer
@@ -5184,21 +5166,21 @@ class CUtlBuffer
 	}
 	CUtlBuffer() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[1213])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[1213])();
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1214])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1214])(m_pSelf);
 	}
 	inline const void* Base() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1215])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[1215])(m_pSelf);
 	}
 	inline int TellMaxPut() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1216])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1216])(m_pSelf);
 	}
 };
 class CUtlSymbolTable
@@ -5211,7 +5193,7 @@ class CUtlSymbolTable
 	}
 	inline void AddString(const char* pString) 
 	{
-		((void(*)(void* self, const char* pString))g_nativeFunctions[1217])(m_pSelf, pString);
+		((void(*)(void* self, const char* pString))g_engine_nativeFunctions[1217])(m_pSelf, pString);
 	}
 };
 template <>
@@ -5225,25 +5207,25 @@ class CUtlVector<CUtlString>
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1218])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1218])(m_pSelf);
 	}
 	CUtlVector<CUtlString>(int growsize, int initialcapacity) 
 	{
-		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_nativeFunctions[1219])(growsize, initialcapacity);
+		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_engine_nativeFunctions[1219])(growsize, initialcapacity);
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1220])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1220])(m_pSelf);
 	}
 	inline void SetCount(int count) 
 	{
-		((void(*)(void* self, int count))g_nativeFunctions[1221])(m_pSelf, count);
+		((void(*)(void* self, int count))g_engine_nativeFunctions[1221])(m_pSelf, count);
 	}
 	inline const char * Element(int i) 
 	{
 		return
-		((const char *(*)(void* self, int i))g_nativeFunctions[1222])(m_pSelf, i);
+		((const char *(*)(void* self, int i))g_engine_nativeFunctions[1222])(m_pSelf, i);
 	}
 };
 template <>
@@ -5257,25 +5239,25 @@ class CUtlVector<float>
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1223])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1223])(m_pSelf);
 	}
 	CUtlVector<float>(int growsize, int initialcapacity) 
 	{
-		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_nativeFunctions[1224])(growsize, initialcapacity);
+		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_engine_nativeFunctions[1224])(growsize, initialcapacity);
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1225])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1225])(m_pSelf);
 	}
 	inline void SetCount(int count) 
 	{
-		((void(*)(void* self, int count))g_nativeFunctions[1226])(m_pSelf, count);
+		((void(*)(void* self, int count))g_engine_nativeFunctions[1226])(m_pSelf, count);
 	}
 	inline float Element(int i) 
 	{
 		return
-		((float(*)(void* self, int i))g_nativeFunctions[1227])(m_pSelf, i);
+		((float(*)(void* self, int i))g_engine_nativeFunctions[1227])(m_pSelf, i);
 	}
 };
 template <>
@@ -5289,21 +5271,21 @@ class CUtlVector<HRenderTexture>
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1228])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1228])(m_pSelf);
 	}
 	CUtlVector<HRenderTexture>(int growsize, int initialcapacity) 
 	{
-		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_nativeFunctions[1229])(growsize, initialcapacity);
+		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_engine_nativeFunctions[1229])(growsize, initialcapacity);
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1230])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1230])(m_pSelf);
 	}
 	inline HRenderTextureStrong* Element(int i) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, int i))g_nativeFunctions[1231])(m_pSelf, i);
+		((HRenderTextureStrong*(*)(void* self, int i))g_engine_nativeFunctions[1231])(m_pSelf, i);
 	}
 };
 template <>
@@ -5317,21 +5299,21 @@ class CUtlVector<PhysicsTrace::Result>
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1232])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1232])(m_pSelf);
 	}
 	CUtlVector<PhysicsTrace::Result>(int growsize, int initialcapacity) 
 	{
-		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_nativeFunctions[1233])(growsize, initialcapacity);
+		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_engine_nativeFunctions[1233])(growsize, initialcapacity);
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1234])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1234])(m_pSelf);
 	}
 	inline PhysicsTrace::Result Element(int i) 
 	{
 		return
-		((PhysicsTrace::Result(*)(void* self, int i))g_nativeFunctions[1235])(m_pSelf, i);
+		((PhysicsTrace::Result(*)(void* self, int i))g_engine_nativeFunctions[1235])(m_pSelf, i);
 	}
 };
 template <>
@@ -5345,25 +5327,25 @@ class CUtlVector<uint32>
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1236])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1236])(m_pSelf);
 	}
 	CUtlVector<uint32>(int growsize, int initialcapacity) 
 	{
-		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_nativeFunctions[1237])(growsize, initialcapacity);
+		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_engine_nativeFunctions[1237])(growsize, initialcapacity);
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1238])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1238])(m_pSelf);
 	}
 	inline void SetCount(int count) 
 	{
-		((void(*)(void* self, int count))g_nativeFunctions[1239])(m_pSelf, count);
+		((void(*)(void* self, int count))g_engine_nativeFunctions[1239])(m_pSelf, count);
 	}
 	inline unsigned int Element(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[1240])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[1240])(m_pSelf, i);
 	}
 };
 template <>
@@ -5377,25 +5359,25 @@ class CUtlVector<Vector>
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1241])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1241])(m_pSelf);
 	}
 	CUtlVector<Vector>(int growsize, int initialcapacity) 
 	{
-		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_nativeFunctions[1242])(growsize, initialcapacity);
+		m_pSelf = ((void*(*)(int growsize, int initialcapacity))g_engine_nativeFunctions[1242])(growsize, initialcapacity);
 	}
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1243])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1243])(m_pSelf);
 	}
 	inline void SetCount(int count) 
 	{
-		((void(*)(void* self, int count))g_nativeFunctions[1244])(m_pSelf, count);
+		((void(*)(void* self, int count))g_engine_nativeFunctions[1244])(m_pSelf, count);
 	}
 	inline Vector Element(int i) 
 	{
 		return
-		((Vector(*)(void* self, int i))g_nativeFunctions[1245])(m_pSelf, i);
+		((Vector(*)(void* self, int i))g_engine_nativeFunctions[1245])(m_pSelf, i);
 	}
 };
 class CVfx
@@ -5408,98 +5390,98 @@ class CVfx
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1246])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1246])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1247])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1247])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1248])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1248])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1249])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1249])(m_pSelf);
 	}
 	inline HShaderStrong* CopyStrongHandle() 
 	{
 		return
-		((HShaderStrong*(*)(void* self))g_nativeFunctions[1250])(m_pSelf);
+		((HShaderStrong*(*)(void* self))g_engine_nativeFunctions[1250])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1251])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[1251])(m_pSelf);
 	}
 	static
 	inline HShaderStrong* Create(const char* debugName) 
 	{
 		return
-		((HShaderStrong*(*)(const char* __debugName))g_nativeFunctions[1252])(debugName);
+		((HShaderStrong*(*)(const char* __debugName))g_engine_nativeFunctions[1252])(debugName);
 	}
 	inline const char* GetFilename() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1253])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[1253])(m_pSelf);
 	}
 	inline int CreateFromResourceFile(const char* pShaderFile, int64 compileTarget, unsigned int nCreateFlags, int bFailSilently) 
 	{
 		return
-		((int(*)(void* self, const char* pShaderFile, int64 compileTarget, unsigned int nCreateFlags, int bFailSilently))g_nativeFunctions[1254])(m_pSelf, pShaderFile, compileTarget, nCreateFlags, bFailSilently);
+		((int(*)(void* self, const char* pShaderFile, int64 compileTarget, unsigned int nCreateFlags, int bFailSilently))g_engine_nativeFunctions[1254])(m_pSelf, pShaderFile, compileTarget, nCreateFlags, bFailSilently);
 	}
 	inline int CreateFromShaderFile(const char* pShaderFile, int64 compileTarget, unsigned int nCreateFlags) 
 	{
 		return
-		((int(*)(void* self, const char* pShaderFile, int64 compileTarget, unsigned int nCreateFlags))g_nativeFunctions[1255])(m_pSelf, pShaderFile, compileTarget, nCreateFlags);
+		((int(*)(void* self, const char* pShaderFile, int64 compileTarget, unsigned int nCreateFlags))g_engine_nativeFunctions[1255])(m_pSelf, pShaderFile, compileTarget, nCreateFlags);
 	}
 	inline const CVfxProgramData* GetProgramData(int64 pass) 
 	{
 		return
-		((const CVfxProgramData*(*)(void* __self, int64 __pass))g_nativeFunctions[1256])(m_pSelf, pass);
+		((const CVfxProgramData*(*)(void* __self, int64 __pass))g_engine_nativeFunctions[1256])(m_pSelf, pass);
 	}
 	inline const CVfxComboIterator* GetIterator(int64 program) 
 	{
 		return
-		((const CVfxComboIterator*(*)(void* __self, int64 __program))g_nativeFunctions[1257])(m_pSelf, program);
+		((const CVfxComboIterator*(*)(void* __self, int64 __program))g_engine_nativeFunctions[1257])(m_pSelf, program);
 	}
 	inline const CUtlBuffer* Serialize() 
 	{
 		return
-		((const CUtlBuffer*(*)(void* self))g_nativeFunctions[1258])(m_pSelf);
+		((const CUtlBuffer*(*)(void* self))g_engine_nativeFunctions[1258])(m_pSelf);
 	}
 	inline int HasShaderProgram(int64 programType) 
 	{
 		return
-		((int(*)(void* self, int64 programType))g_nativeFunctions[1259])(m_pSelf, programType);
+		((int(*)(void* self, int64 programType))g_engine_nativeFunctions[1259])(m_pSelf, programType);
 	}
 	inline int InitializeWrite() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1260])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1260])(m_pSelf);
 	}
 	inline int FinalizeCompile() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1261])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1261])(m_pSelf);
 	}
 	inline int WriteProgramToBuffer(int64 programType, CVfxByteCodeManager* byteCodeManager, CUtlBuffer* outBuffer) 
 	{
 		return
-		((int(*)(void* self, int64 programType, CVfxByteCodeManager* byteCodeManager, CUtlBuffer* outBuffer))g_nativeFunctions[1262])(m_pSelf, programType, byteCodeManager, outBuffer);
+		((int(*)(void* self, int64 programType, CVfxByteCodeManager* byteCodeManager, CUtlBuffer* outBuffer))g_engine_nativeFunctions[1262])(m_pSelf, programType, byteCodeManager, outBuffer);
 	}
 	inline int WriteCombo(int64 programType, uint64 staticId, uint64 dynamicId, VfxCompiledShaderInfo_t* shaderInfo) 
 	{
 		return
-		((int(*)(void* self, int64 programType, uint64 staticId, uint64 dynamicId, VfxCompiledShaderInfo_t* shaderInfo))g_nativeFunctions[1263])(m_pSelf, programType, staticId, dynamicId, shaderInfo);
+		((int(*)(void* self, int64 programType, uint64 staticId, uint64 dynamicId, VfxCompiledShaderInfo_t* shaderInfo))g_engine_nativeFunctions[1263])(m_pSelf, programType, staticId, dynamicId, shaderInfo);
 	}
 	inline const char* GetPropertiesJson() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1264])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[1264])(m_pSelf);
 	}
 };
 class CVfxByteCodeManager
@@ -5512,23 +5494,23 @@ class CVfxByteCodeManager
 	}
 	CVfxByteCodeManager() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[1265])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[1265])();
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1266])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1266])(m_pSelf);
 	}
 	inline void OnStaticCombo(uint64 id) 
 	{
-		((void(*)(void* self, uint64 id))g_nativeFunctions[1267])(m_pSelf, id);
+		((void(*)(void* self, uint64 id))g_engine_nativeFunctions[1267])(m_pSelf, id);
 	}
 	inline void OnDynamicCombo(VfxCompiledShaderInfo_t* data) 
 	{
-		((void(*)(void* self, VfxCompiledShaderInfo_t* data))g_nativeFunctions[1268])(m_pSelf, data);
+		((void(*)(void* self, VfxCompiledShaderInfo_t* data))g_engine_nativeFunctions[1268])(m_pSelf, data);
 	}
 	inline void Reset() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1269])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1269])(m_pSelf);
 	}
 };
 class CVfxCombo
@@ -5542,15 +5524,15 @@ class CVfxCombo
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[1270])(m_pSelf);
+		((const char*(*)(void* __self))g_engine_nativeFunctions[1270])(m_pSelf);
 	}
 	inline const char* GetGroup() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[1271])(m_pSelf);
+		((const char*(*)(void* __self))g_engine_nativeFunctions[1271])(m_pSelf);
 	}
-	RW_VAR(unsigned char,m_nMin,CVfxCombo,g_nativeFunctions[1272],g_nativeFunctions[1273]);
-	RW_VAR(unsigned char,m_nMax,CVfxCombo,g_nativeFunctions[1274],g_nativeFunctions[1275]);
+	RW_VAR(unsigned char,m_nMin,CVfxCombo,g_engine_nativeFunctions[1272],g_engine_nativeFunctions[1273]);
+	RW_VAR(unsigned char,m_nMax,CVfxCombo,g_engine_nativeFunctions[1274],g_engine_nativeFunctions[1275]);
 };
 class CVfxComboIterator
 {
@@ -5562,42 +5544,42 @@ class CVfxComboIterator
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1276])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1276])(m_pSelf);
 	}
 	inline uint64 InvalidIndex() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1277])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1277])(m_pSelf);
 	}
 	inline uint64 SetStaticCombo(uint64 c) 
 	{
 		return
-		((uint64(*)(void* self, uint64 c))g_nativeFunctions[1278])(m_pSelf, c);
+		((uint64(*)(void* self, uint64 c))g_engine_nativeFunctions[1278])(m_pSelf, c);
 	}
 	inline uint64 FirstStaticCombo() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1279])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1279])(m_pSelf);
 	}
 	inline uint64 NextStaticCombo() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1280])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1280])(m_pSelf);
 	}
 	inline uint64 SetDynamicCombo(uint64 c) 
 	{
 		return
-		((uint64(*)(void* self, uint64 c))g_nativeFunctions[1281])(m_pSelf, c);
+		((uint64(*)(void* self, uint64 c))g_engine_nativeFunctions[1281])(m_pSelf, c);
 	}
 	inline uint64 FirstDynamicCombo() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1282])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1282])(m_pSelf);
 	}
 	inline uint64 NextDynamicCombo() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1283])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1283])(m_pSelf);
 	}
 };
 class CVfxProgramData
@@ -5608,7 +5590,7 @@ class CVfxProgramData
 	{
 		return (CVfxProgramData*)m_pSelf;
 	}
-	RW_VAR(int,m_bLoadedFromVcsFile,CVfxProgramData,g_nativeFunctions[1284],g_nativeFunctions[1285]);
+	RW_VAR(int,m_bLoadedFromVcsFile,CVfxProgramData,g_engine_nativeFunctions[1284],g_engine_nativeFunctions[1285]);
 };
 class CVideoPlayer
 {
@@ -5620,112 +5602,112 @@ class CVideoPlayer
 	}
 	CVideoPlayer(uint managedObject) 
 	{
-		m_pSelf = ((void*(*)(uint managedObject))g_nativeFunctions[1286])(managedObject);
+		m_pSelf = ((void*(*)(uint managedObject))g_engine_nativeFunctions[1286])(managedObject);
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1287])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1287])(m_pSelf);
 	}
 	inline int Play(const char* pUrl, const char* pExt) 
 	{
 		return
-		((int(*)(void* self, const char* pUrl, const char* pExt))g_nativeFunctions[1288])(m_pSelf, pUrl, pExt);
+		((int(*)(void* self, const char* pUrl, const char* pExt))g_engine_nativeFunctions[1288])(m_pSelf, pUrl, pExt);
 	}
 	inline void Resume() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1289])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1289])(m_pSelf);
 	}
 	inline void Stop() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1290])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1290])(m_pSelf);
 	}
 	inline void Pause() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1291])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1291])(m_pSelf);
 	}
 	inline void Seek(double time) 
 	{
-		((void(*)(void* self, double time))g_nativeFunctions[1292])(m_pSelf, time);
+		((void(*)(void* self, double time))g_engine_nativeFunctions[1292])(m_pSelf, time);
 	}
 	inline int GetRepeat() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1293])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1293])(m_pSelf);
 	}
 	inline void SetRepeat(int bRepeat) 
 	{
-		((void(*)(void* self, int bRepeat))g_nativeFunctions[1294])(m_pSelf, bRepeat);
+		((void(*)(void* self, int bRepeat))g_engine_nativeFunctions[1294])(m_pSelf, bRepeat);
 	}
 	inline float GetDuration() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1295])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1295])(m_pSelf);
 	}
 	inline float GetPlaybackTime() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1296])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1296])(m_pSelf);
 	}
 	inline int HasAudioStream() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1297])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1297])(m_pSelf);
 	}
 	inline void Update() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1298])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1298])(m_pSelf);
 	}
 	inline int IsPaused() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1299])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1299])(m_pSelf);
 	}
 	inline int IsMuted() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1300])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1300])(m_pSelf);
 	}
 	inline void SetMuted(int bMuted) 
 	{
-		((void(*)(void* self, int bMuted))g_nativeFunctions[1301])(m_pSelf, bMuted);
+		((void(*)(void* self, int bMuted))g_engine_nativeFunctions[1301])(m_pSelf, bMuted);
 	}
 	inline int GetWidth() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1302])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1302])(m_pSelf);
 	}
 	inline int GetHeight() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1303])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1303])(m_pSelf);
 	}
 	inline void SetVideoOnly() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1304])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1304])(m_pSelf);
 	}
 	inline const char* GetMetadata(const char* key) 
 	{
 		return
-		((const char*(*)(void* self, const char* key))g_nativeFunctions[1305])(m_pSelf, key);
+		((const char*(*)(void* self, const char* key))g_engine_nativeFunctions[1305])(m_pSelf, key);
 	}
 	inline void GetSpectrum(CUtlVector<float>* outSpectrum) 
 	{
-		((void(*)(void* self, CUtlVector<float>* outSpectrum))g_nativeFunctions[1306])(m_pSelf, outSpectrum);
+		((void(*)(void* self, CUtlVector<float>* outSpectrum))g_engine_nativeFunctions[1306])(m_pSelf, outSpectrum);
 	}
 	inline float GetAmplitude() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1307])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1307])(m_pSelf);
 	}
 	inline HRenderTextureStrong* GetTexture() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self))g_nativeFunctions[1308])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* self))g_engine_nativeFunctions[1308])(m_pSelf);
 	}
 	inline int GetAudioStream() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1309])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1309])(m_pSelf);
 	}
 };
 class CVideoRecorder
@@ -5738,28 +5720,28 @@ class CVideoRecorder
 	}
 	CVideoRecorder() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[1310])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[1310])();
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1311])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1311])(m_pSelf);
 	}
 	inline void Stop() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1312])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1312])(m_pSelf);
 	}
 	inline void AddVideoFrame(void* rgbaData, int64 captureTimeMicroS) 
 	{
-		((void(*)(void* self, void* rgbaData, int64 captureTimeMicroS))g_nativeFunctions[1313])(m_pSelf, rgbaData, captureTimeMicroS);
+		((void(*)(void* self, void* rgbaData, int64 captureTimeMicroS))g_engine_nativeFunctions[1313])(m_pSelf, rgbaData, captureTimeMicroS);
 	}
 	inline void AddAudioSamples(CAudioMixDeviceBuffers* none) 
 	{
-		((void(*)(void* self, CAudioMixDeviceBuffers* none))g_nativeFunctions[1314])(m_pSelf, none);
+		((void(*)(void* self, CAudioMixDeviceBuffers* none))g_engine_nativeFunctions[1314])(m_pSelf, none);
 	}
 	inline int Initialize(const char* filename, int width, int height, int fps, int bitRateMb, int audioSampleRate, int audioChannels, const char* videoCodec) 
 	{
 		return
-		((int(*)(void* self, const char* filename, int width, int height, int fps, int bitRateMb, int audioSampleRate, int audioChannels, const char* videoCodec))g_nativeFunctions[1315])(m_pSelf, filename, width, height, fps, bitRateMb, audioSampleRate, audioChannels, videoCodec);
+		((int(*)(void* self, const char* filename, int width, int height, int fps, int bitRateMb, int audioSampleRate, int audioChannels, const char* videoCodec))g_engine_nativeFunctions[1315])(m_pSelf, filename, width, height, fps, bitRateMb, audioSampleRate, audioChannels, videoCodec);
 	}
 };
 class DspInstance
@@ -5772,11 +5754,11 @@ class DspInstance
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1316])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1316])(m_pSelf);
 	}
 	inline void ProcessChannel(CAudioMixBuffer* pOutput, CAudioMixBuffer* input, int nChannelIndex) 
 	{
-		((void(*)(void* self, CAudioMixBuffer* pOutput, CAudioMixBuffer* input, int nChannelIndex))g_nativeFunctions[1317])(m_pSelf, pOutput, input, nChannelIndex);
+		((void(*)(void* self, CAudioMixBuffer* pOutput, CAudioMixBuffer* input, int nChannelIndex))g_engine_nativeFunctions[1317])(m_pSelf, pOutput, input, nChannelIndex);
 	}
 };
 class DspPreset
@@ -5789,24 +5771,24 @@ class DspPreset
 	}
 	DspPreset(const char* name) 
 	{
-		m_pSelf = ((void*(*)(const char* name))g_nativeFunctions[1318])(name);
+		m_pSelf = ((void*(*)(const char* name))g_engine_nativeFunctions[1318])(name);
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1319])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1319])(m_pSelf);
 	}
 	inline void AddProcessor(int nType, float* prms, unsigned int prmsCount) 
 	{
-		((void(*)(void* self, int nType, float* prms, unsigned int prmsCount))g_nativeFunctions[1320])(m_pSelf, nType, prms, prmsCount);
+		((void(*)(void* self, int nType, float* prms, unsigned int prmsCount))g_engine_nativeFunctions[1320])(m_pSelf, nType, prms, prmsCount);
 	}
 	inline void FinishBuilding() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1321])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1321])(m_pSelf);
 	}
 	inline const DspInstance* Instantiate(int channels) 
 	{
 		return
-		((const DspInstance*(*)(void* self, int channels))g_nativeFunctions[1322])(m_pSelf, channels);
+		((const DspInstance*(*)(void* self, int channels))g_engine_nativeFunctions[1322])(m_pSelf, channels);
 	}
 };
 class EngineGlue
@@ -5821,93 +5803,93 @@ class EngineGlue
 	inline const KeyValues3* JsonToKeyValues3(const char* json) 
 	{
 		return
-		((const KeyValues3*(*)(const char* json))g_nativeFunctions[1323])(json);
+		((const KeyValues3*(*)(const char* json))g_engine_nativeFunctions[1323])(json);
 	}
 	static
 	inline const char* KeyValuesToJson(const char* kv) 
 	{
 		return
-		((const char*(*)(const char* kv))g_nativeFunctions[1324])(kv);
+		((const char*(*)(const char* kv))g_engine_nativeFunctions[1324])(kv);
 	}
 	static
 	inline const char* KeyValues3ToJson(KeyValues3* kv) 
 	{
 		return
-		((const char*(*)(KeyValues3* kv))g_nativeFunctions[1325])(kv);
+		((const char*(*)(KeyValues3* kv))g_engine_nativeFunctions[1325])(kv);
 	}
 	static
 	inline const KeyValues3* LoadKeyValues3(const char* kvString) 
 	{
 		return
-		((const KeyValues3*(*)(const char* kvString))g_nativeFunctions[1326])(kvString);
+		((const KeyValues3*(*)(const char* kvString))g_engine_nativeFunctions[1326])(kvString);
 	}
 	static
 	inline unsigned int GetStringToken(const char* str) 
 	{
 		return
-		((unsigned int(*)(const char* str))g_nativeFunctions[1327])(str);
+		((unsigned int(*)(const char* str))g_engine_nativeFunctions[1327])(str);
 	}
 	static
 	inline const char* GetStringTokenValue(unsigned int token) 
 	{
 		return
-		((const char*(*)(unsigned int token))g_nativeFunctions[1328])(token);
+		((const char*(*)(unsigned int token))g_engine_nativeFunctions[1328])(token);
 	}
 	static
 	inline void AddSearchPath(const char* path, const char* groupid, int head) 
 	{
-		((void(*)(const char* path, const char* groupid, int head))g_nativeFunctions[1329])(path, groupid, head);
+		((void(*)(const char* path, const char* groupid, int head))g_engine_nativeFunctions[1329])(path, groupid, head);
 	}
 	static
 	inline int RemoveSearchPath(const char* path, const char* groupid) 
 	{
 		return
-		((int(*)(const char* path, const char* groupid))g_nativeFunctions[1330])(path, groupid);
+		((int(*)(const char* path, const char* groupid))g_engine_nativeFunctions[1330])(path, groupid);
 	}
 	static
 	inline uint64 ApproximateProcessMemoryUsage() 
 	{
 		return
-		((uint64(*)())g_nativeFunctions[1331])();
+		((uint64(*)())g_engine_nativeFunctions[1331])();
 	}
 	static
 	inline const char* ReadCompiledResourceFileJson(void* data) 
 	{
 		return
-		((const char*(*)(void* data))g_nativeFunctions[1332])(data);
+		((const char*(*)(void* data))g_engine_nativeFunctions[1332])(data);
 	}
 	static
 	inline const void* ReadCompiledResourceFileBlock(const char* blockName, void* pHeader, int* nSize) 
 	{
 		return
-		((const void*(*)(const char* __blockName, void* __pHeader, int* __nSize))g_nativeFunctions[1333])(blockName, pHeader, nSize);
+		((const void*(*)(const char* __blockName, void* __pHeader, int* __nSize))g_engine_nativeFunctions[1333])(blockName, pHeader, nSize);
 	}
 	static
 	inline const char* ReadCompiledResourceFileJsonFromFilesystem(const char* filename) 
 	{
 		return
-		((const char*(*)(const char* filename))g_nativeFunctions[1334])(filename);
+		((const char*(*)(const char* filename))g_engine_nativeFunctions[1334])(filename);
 	}
 	static
 	inline void SetEngineLoggingVerbose(int verbose) 
 	{
-		((void(*)(int verbose))g_nativeFunctions[1335])(verbose);
+		((void(*)(int verbose))g_engine_nativeFunctions[1335])(verbose);
 	}
 	static
 	inline void RequestWebAuthTicket() 
 	{
-		((void(*)())g_nativeFunctions[1336])();
+		((void(*)())g_engine_nativeFunctions[1336])();
 	}
 	static
 	inline void CancelWebAuthTicket() 
 	{
-		((void(*)())g_nativeFunctions[1337])();
+		((void(*)())g_engine_nativeFunctions[1337])();
 	}
 	static
 	inline const char* GetWebAuthTicket() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[1338])();
+		((const char*(*)())g_engine_nativeFunctions[1338])();
 	}
 };
 class ErrorReports
@@ -5921,12 +5903,12 @@ class ErrorReports
 	static
 	inline void SetTag(const char* key, const char* value) 
 	{
-		((void(*)(const char* key, const char* value))g_nativeFunctions[1339])(key, value);
+		((void(*)(const char* key, const char* value))g_engine_nativeFunctions[1339])(key, value);
 	}
 	static
 	inline void Breadcrumb(int action, const char* category, const char* description) 
 	{
-		((void(*)(int action, const char* category, const char* description))g_nativeFunctions[1340])(action, category, description);
+		((void(*)(int action, const char* category, const char* description))g_engine_nativeFunctions[1340])(action, category, description);
 	}
 };
 class FloatBitMap_t
@@ -5939,165 +5921,165 @@ class FloatBitMap_t
 	}
 	FloatBitMap_t() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[1341])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[1341])();
 	}
 	FloatBitMap_t(int width, int height) 
 	{
-		m_pSelf = ((void*(*)(int width, int height))g_nativeFunctions[1342])(width, height);
+		m_pSelf = ((void*(*)(int width, int height))g_engine_nativeFunctions[1342])(width, height);
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1343])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1343])(m_pSelf);
 	}
 	inline int LoadFromFile(const char* filename, int64 gamma) 
 	{
 		return
-		((int(*)(void* self, const char* filename, int64 gamma))g_nativeFunctions[1344])(m_pSelf, filename, gamma);
+		((int(*)(void* self, const char* filename, int64 gamma))g_engine_nativeFunctions[1344])(m_pSelf, filename, gamma);
 	}
 	inline int LoadFromPFM(const char* pFilename) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename))g_nativeFunctions[1345])(m_pSelf, pFilename);
+		((int(*)(void* self, const char* pFilename))g_engine_nativeFunctions[1345])(m_pSelf, pFilename);
 	}
 	inline int LoadFromPSD(const char* pFilename, int64 ldrFileGammaType) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_nativeFunctions[1346])(m_pSelf, pFilename, ldrFileGammaType);
+		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_engine_nativeFunctions[1346])(m_pSelf, pFilename, ldrFileGammaType);
 	}
 	inline int LoadFromTIF(const char* pFilename, int64 ldrFileGammaType) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_nativeFunctions[1347])(m_pSelf, pFilename, ldrFileGammaType);
+		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_engine_nativeFunctions[1347])(m_pSelf, pFilename, ldrFileGammaType);
 	}
 	inline int LoadFromPNG(const char* pFilename, int64 ldrFileGammaType) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_nativeFunctions[1348])(m_pSelf, pFilename, ldrFileGammaType);
+		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_engine_nativeFunctions[1348])(m_pSelf, pFilename, ldrFileGammaType);
 	}
 	inline int LoadFromJPG(const char* pFilename, int64 ldrFileGammaType) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_nativeFunctions[1349])(m_pSelf, pFilename, ldrFileGammaType);
+		((int(*)(void* self, const char* pFilename, int64 ldrFileGammaType))g_engine_nativeFunctions[1349])(m_pSelf, pFilename, ldrFileGammaType);
 	}
 	inline int LoadFromEXR(const char* pFilename) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename))g_nativeFunctions[1350])(m_pSelf, pFilename);
+		((int(*)(void* self, const char* pFilename))g_engine_nativeFunctions[1350])(m_pSelf, pFilename);
 	}
 	inline void LoadFromBuffer(void* data, int size, int64 format, int64 gamma) 
 	{
-		((void(*)(void* self, void* data, int size, int64 format, int64 gamma))g_nativeFunctions[1351])(m_pSelf, data, size, format, gamma);
+		((void(*)(void* self, void* data, int size, int64 format, int64 gamma))g_engine_nativeFunctions[1351])(m_pSelf, data, size, format, gamma);
 	}
 	inline void Init(int nWidth, int nHeight, int depth) 
 	{
-		((void(*)(void* self, int nWidth, int nHeight, int depth))g_nativeFunctions[1352])(m_pSelf, nWidth, nHeight, depth);
+		((void(*)(void* self, int nWidth, int nHeight, int depth))g_engine_nativeFunctions[1352])(m_pSelf, nWidth, nHeight, depth);
 	}
 	inline void Shutdown() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1353])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1353])(m_pSelf);
 	}
 	inline void SetChannel(int nComponent, float flValue) 
 	{
-		((void(*)(void* self, int nComponent, float flValue))g_nativeFunctions[1354])(m_pSelf, nComponent, flValue);
+		((void(*)(void* self, int nComponent, float flValue))g_engine_nativeFunctions[1354])(m_pSelf, nComponent, flValue);
 	}
 	inline void Rotate90DegreesCW() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1355])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1355])(m_pSelf);
 	}
 	inline void Rotate90DegreesCCW() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1356])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1356])(m_pSelf);
 	}
 	inline void Rotate180Degrees() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1357])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1357])(m_pSelf);
 	}
 	inline void MirrorHorizontally() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1358])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1358])(m_pSelf);
 	}
 	inline void MirrorVertically() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1359])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1359])(m_pSelf);
 	}
 	inline int WriteTGAFile(const char* pFilename) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename))g_nativeFunctions[1360])(m_pSelf, pFilename);
+		((int(*)(void* self, const char* pFilename))g_engine_nativeFunctions[1360])(m_pSelf, pFilename);
 	}
 	inline int WritePFM(const char* pFilename) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename))g_nativeFunctions[1361])(m_pSelf, pFilename);
+		((int(*)(void* self, const char* pFilename))g_engine_nativeFunctions[1361])(m_pSelf, pFilename);
 	}
 	inline int WriteEXR(const char* pFilename, int nExrCompressionTypeType) 
 	{
 		return
-		((int(*)(void* self, const char* pFilename, int nExrCompressionTypeType))g_nativeFunctions[1362])(m_pSelf, pFilename, nExrCompressionTypeType);
+		((int(*)(void* self, const char* pFilename, int nExrCompressionTypeType))g_engine_nativeFunctions[1362])(m_pSelf, pFilename, nExrCompressionTypeType);
 	}
 	inline int LoadFromInMemoryTGA(void* pBuffer, int nSize) 
 	{
 		return
-		((int(*)(void* self, void* pBuffer, int nSize))g_nativeFunctions[1363])(m_pSelf, pBuffer, nSize);
+		((int(*)(void* self, void* pBuffer, int nSize))g_engine_nativeFunctions[1363])(m_pSelf, pBuffer, nSize);
 	}
 	inline int LoadFromInMemoryPSD(void* pBuffer, int nSize) 
 	{
 		return
-		((int(*)(void* self, void* pBuffer, int nSize))g_nativeFunctions[1364])(m_pSelf, pBuffer, nSize);
+		((int(*)(void* self, void* pBuffer, int nSize))g_engine_nativeFunctions[1364])(m_pSelf, pBuffer, nSize);
 	}
 	inline int LoadFromInMemoryTIF(void* pBuffer, int nSize) 
 	{
 		return
-		((int(*)(void* self, void* pBuffer, int nSize))g_nativeFunctions[1365])(m_pSelf, pBuffer, nSize);
+		((int(*)(void* self, void* pBuffer, int nSize))g_engine_nativeFunctions[1365])(m_pSelf, pBuffer, nSize);
 	}
 	inline float Pixel(int x, int y, int z, int comp) 
 	{
 		return
-		((float(*)(void* self, int x, int y, int z, int comp))g_nativeFunctions[1366])(m_pSelf, x, y, z, comp);
+		((float(*)(void* self, int x, int y, int z, int comp))g_engine_nativeFunctions[1366])(m_pSelf, x, y, z, comp);
 	}
 	inline float PixelWrapped(int x, int y, int z, int comp) 
 	{
 		return
-		((float(*)(void* self, int x, int y, int z, int comp))g_nativeFunctions[1367])(m_pSelf, x, y, z, comp);
+		((float(*)(void* self, int x, int y, int z, int comp))g_engine_nativeFunctions[1367])(m_pSelf, x, y, z, comp);
 	}
 	inline float PixelClamped(int x, int y, int z, int comp) 
 	{
 		return
-		((float(*)(void* self, int x, int y, int z, int comp))g_nativeFunctions[1368])(m_pSelf, x, y, z, comp);
+		((float(*)(void* self, int x, int y, int z, int comp))g_engine_nativeFunctions[1368])(m_pSelf, x, y, z, comp);
 	}
 	inline float Alpha(int x, int y, int z) 
 	{
 		return
-		((float(*)(void* self, int x, int y, int z))g_nativeFunctions[1369])(m_pSelf, x, y, z);
+		((float(*)(void* self, int x, int y, int z))g_engine_nativeFunctions[1369])(m_pSelf, x, y, z);
 	}
 	inline Vector RGBPixelAsVector(int nX, int nY, int nZ) 
 	{
 		return
-		((Vector(*)(void* self, int nX, int nY, int nZ))g_nativeFunctions[1370])(m_pSelf, nX, nY, nZ);
+		((Vector(*)(void* self, int nX, int nY, int nZ))g_engine_nativeFunctions[1370])(m_pSelf, nX, nY, nZ);
 	}
 	inline int Width() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1371])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1371])(m_pSelf);
 	}
 	inline int Height() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1372])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1372])(m_pSelf);
 	}
 	inline int Depth() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1373])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1373])(m_pSelf);
 	}
 	inline void Resize2D(int nNewWidth, int nNewHeight, int bClamp) 
 	{
-		((void(*)(void* self, int nNewWidth, int nNewHeight, int bClamp))g_nativeFunctions[1374])(m_pSelf, nNewWidth, nNewHeight, bClamp);
+		((void(*)(void* self, int nNewWidth, int nNewHeight, int bClamp))g_engine_nativeFunctions[1374])(m_pSelf, nNewWidth, nNewHeight, bClamp);
 	}
 	inline int WriteToBuffer(void* pBuffer, int nBufSize, int64 fmt, int bLowQualityFastCompile, int bIsSrgb, unsigned int nFlags) 
 	{
 		return
-		((int(*)(void* self, void* pBuffer, int nBufSize, int64 fmt, int bLowQualityFastCompile, int bIsSrgb, unsigned int nFlags))g_nativeFunctions[1375])(m_pSelf, pBuffer, nBufSize, fmt, bLowQualityFastCompile, bIsSrgb, nFlags);
+		((int(*)(void* self, void* pBuffer, int nBufSize, int64 fmt, int bLowQualityFastCompile, int bIsSrgb, unsigned int nFlags))g_engine_nativeFunctions[1375])(m_pSelf, pBuffer, nBufSize, fmt, bLowQualityFastCompile, bIsSrgb, nFlags);
 	}
 };
 class fpxr::ApplicationConfig
@@ -6111,12 +6093,12 @@ class fpxr::ApplicationConfig
 	static
 	inline void SetDebugCallback(void* dbgCallback) 
 	{
-		((void(*)(void* __dbgCallback))g_nativeFunctions[1376])(dbgCallback);
+		((void(*)(void* __dbgCallback))g_engine_nativeFunctions[1376])(dbgCallback);
 	}
 	static
 	inline void SetErrorCallback(void* errCallback) 
 	{
-		((void(*)(void* __errCallback))g_nativeFunctions[1377])(errCallback);
+		((void(*)(void* __errCallback))g_engine_nativeFunctions[1377])(errCallback);
 	}
 };
 class fpxr::Compositor
@@ -6130,57 +6112,57 @@ class fpxr::Compositor
 	inline const fpxr::EventManager* EventManager() 
 	{
 		return
-		((const fpxr::EventManager*(*)(void* self))g_nativeFunctions[1378])(m_pSelf);
+		((const fpxr::EventManager*(*)(void* self))g_engine_nativeFunctions[1378])(m_pSelf);
 	}
 	inline int64 Submit(fpxr::TextureSubmitInfo info) 
 	{
 		return
-		((int64(*)(void* self, fpxr::TextureSubmitInfo info))g_nativeFunctions[1379])(m_pSelf, info);
+		((int64(*)(void* self, fpxr::TextureSubmitInfo info))g_engine_nativeFunctions[1379])(m_pSelf, info);
 	}
 	inline int64 BeginFrame() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1380])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1380])(m_pSelf);
 	}
 	inline int64 EndFrame() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1381])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1381])(m_pSelf);
 	}
 	inline unsigned int GetEyeWidth() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1382])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[1382])(m_pSelf);
 	}
 	inline unsigned int GetEyeHeight() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1383])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[1383])(m_pSelf);
 	}
 	inline unsigned int GetRenderTargetWidth() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1384])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[1384])(m_pSelf);
 	}
 	inline unsigned int GetRenderTargetHeight() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[1385])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[1385])(m_pSelf);
 	}
 	inline float GetDisplayRefreshRate() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1386])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1386])(m_pSelf);
 	}
 	inline int64 GetViewInfo(unsigned int viewIndex, fpxr::ViewInfo* outViewInfo) 
 	{
 		return
-		((int64(*)(void* self, unsigned int viewIndex, fpxr::ViewInfo* outViewInfo))g_nativeFunctions[1387])(m_pSelf, viewIndex, outViewInfo);
+		((int64(*)(void* self, unsigned int viewIndex, fpxr::ViewInfo* outViewInfo))g_engine_nativeFunctions[1387])(m_pSelf, viewIndex, outViewInfo);
 	}
 	inline int64 GetProjectionMatrix(unsigned int viewIndex, float flNearZ, float flFarZ, fpxr::Matrix* outViewInfo) 
 	{
 		return
-		((int64(*)(void* self, unsigned int viewIndex, float flNearZ, float flFarZ, fpxr::Matrix* outViewInfo))g_nativeFunctions[1388])(m_pSelf, viewIndex, flNearZ, flFarZ, outViewInfo);
+		((int64(*)(void* self, unsigned int viewIndex, float flNearZ, float flFarZ, fpxr::Matrix* outViewInfo))g_engine_nativeFunctions[1388])(m_pSelf, viewIndex, flNearZ, flFarZ, outViewInfo);
 	}
 };
 class fpxr::EventManager
@@ -6194,7 +6176,7 @@ class fpxr::EventManager
 	inline int64 PumpEvent(fpxr::Event* ev) 
 	{
 		return
-		((int64(*)(void* __self, fpxr::Event* __ev))g_nativeFunctions[1389])(m_pSelf, ev);
+		((int64(*)(void* __self, fpxr::Event* __ev))g_engine_nativeFunctions[1389])(m_pSelf, ev);
 	}
 };
 class fpxr::Input
@@ -6208,37 +6190,37 @@ class fpxr::Input
 	inline int64 GetBooleanActionState(const char* path, int64 inputSource, fpxr::InputBooleanActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputBooleanActionState* outState))g_nativeFunctions[1390])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputBooleanActionState* outState))g_engine_nativeFunctions[1390])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 GetFloatActionState(const char* path, int64 inputSource, fpxr::InputFloatActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputFloatActionState* outState))g_nativeFunctions[1391])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputFloatActionState* outState))g_engine_nativeFunctions[1391])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 GetVector2ActionState(const char* path, int64 inputSource, fpxr::InputVector2ActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputVector2ActionState* outState))g_nativeFunctions[1392])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputVector2ActionState* outState))g_engine_nativeFunctions[1392])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 GetPoseActionState(const char* path, int64 inputSource, fpxr::InputPoseActionState* outState) 
 	{
 		return
-		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputPoseActionState* outState))g_nativeFunctions[1393])(m_pSelf, path, inputSource, outState);
+		((int64(*)(void* self, const char* path, int64 inputSource, fpxr::InputPoseActionState* outState))g_engine_nativeFunctions[1393])(m_pSelf, path, inputSource, outState);
 	}
 	inline int64 TriggerHapticVibration(float duration, float frequency, float amplitude, int64 inputSource) 
 	{
 		return
-		((int64(*)(void* self, float duration, float frequency, float amplitude, int64 inputSource))g_nativeFunctions[1394])(m_pSelf, duration, frequency, amplitude, inputSource);
+		((int64(*)(void* self, float duration, float frequency, float amplitude, int64 inputSource))g_engine_nativeFunctions[1394])(m_pSelf, duration, frequency, amplitude, inputSource);
 	}
 	inline int64 GetHandPoseState(int64 inputSource, int64 motionRange, fpxr::InputPoseHandState* outState) 
 	{
 		return
-		((int64(*)(void* self, int64 inputSource, int64 motionRange, fpxr::InputPoseHandState* outState))g_nativeFunctions[1395])(m_pSelf, inputSource, motionRange, outState);
+		((int64(*)(void* self, int64 inputSource, int64 motionRange, fpxr::InputPoseHandState* outState))g_engine_nativeFunctions[1395])(m_pSelf, inputSource, motionRange, outState);
 	}
 	inline float GetFingerCurl(int64 inputSource, int64 finger) 
 	{
 		return
-		((float(*)(void* self, int64 inputSource, int64 finger))g_nativeFunctions[1396])(m_pSelf, inputSource, finger);
+		((float(*)(void* self, int64 inputSource, int64 finger))g_engine_nativeFunctions[1396])(m_pSelf, inputSource, finger);
 	}
 };
 class fpxr::Instance
@@ -6251,38 +6233,38 @@ class fpxr::Instance
 	}
 	Instance(fpxr::InstanceInfo instanceInfo) 
 	{
-		m_pSelf = ((void*(*)(fpxr::InstanceInfo __instanceInfo))g_nativeFunctions[1397])(instanceInfo);
+		m_pSelf = ((void*(*)(fpxr::InstanceInfo __instanceInfo))g_engine_nativeFunctions[1397])(instanceInfo);
 	}
 	static
 	inline int HasHeadset() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1398])();
+		((int(*)())g_engine_nativeFunctions[1398])();
 	}
 	inline const fpxr::Compositor* Compositor(fpxr::VulkanInfo vulkanInfo) 
 	{
 		return
-		((const fpxr::Compositor*(*)(void* self, fpxr::VulkanInfo vulkanInfo))g_nativeFunctions[1399])(m_pSelf, vulkanInfo);
+		((const fpxr::Compositor*(*)(void* self, fpxr::VulkanInfo vulkanInfo))g_engine_nativeFunctions[1399])(m_pSelf, vulkanInfo);
 	}
 	inline const fpxr::Input* Input() 
 	{
 		return
-		((const fpxr::Input*(*)(void* self))g_nativeFunctions[1400])(m_pSelf);
+		((const fpxr::Input*(*)(void* self))g_engine_nativeFunctions[1400])(m_pSelf);
 	}
 	inline const char* GetRequiredDeviceExtensions() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[1401])(m_pSelf);
+		((const char*(*)(void* __self))g_engine_nativeFunctions[1401])(m_pSelf);
 	}
 	inline const char* GetRequiredInstanceExtensions() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[1402])(m_pSelf);
+		((const char*(*)(void* __self))g_engine_nativeFunctions[1402])(m_pSelf);
 	}
 	inline fpxr::InstanceProperties GetProperties() 
 	{
 		return
-		((fpxr::InstanceProperties(*)(void* self))g_nativeFunctions[1403])(m_pSelf);
+		((fpxr::InstanceProperties(*)(void* self))g_engine_nativeFunctions[1403])(m_pSelf);
 	}
 };
 class g_pAudioDevice
@@ -6296,66 +6278,66 @@ class g_pAudioDevice
 	inline const char* Name() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[1404])();
+		((const char*(*)())g_engine_nativeFunctions[1404])();
 	}
 	inline unsigned int ChannelCount() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1405])();
+		((unsigned int(*)())g_engine_nativeFunctions[1405])();
 	}
 	inline unsigned int MixChannelCount() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1406])();
+		((unsigned int(*)())g_engine_nativeFunctions[1406])();
 	}
 	inline unsigned int BitsPerSample() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1407])();
+		((unsigned int(*)())g_engine_nativeFunctions[1407])();
 	}
 	inline unsigned int BytesPerSample() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1408])();
+		((unsigned int(*)())g_engine_nativeFunctions[1408])();
 	}
 	inline unsigned int SampleRate() 
 	{
 		return
-		((unsigned int(*)())g_nativeFunctions[1409])();
+		((unsigned int(*)())g_engine_nativeFunctions[1409])();
 	}
 	inline int IsActive() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1410])();
+		((int(*)())g_engine_nativeFunctions[1410])();
 	}
 	inline void CancelOutput() 
 	{
-		((void(*)())g_nativeFunctions[1411])();
+		((void(*)())g_engine_nativeFunctions[1411])();
 	}
 	inline void WaitForComplete() 
 	{
-		((void(*)())g_nativeFunctions[1412])();
+		((void(*)())g_engine_nativeFunctions[1412])();
 	}
 	inline void MuteDevice(int bMuteDevice) 
 	{
-		((void(*)(int bMuteDevice))g_nativeFunctions[1413])(bMuteDevice);
+		((void(*)(int bMuteDevice))g_engine_nativeFunctions[1413])(bMuteDevice);
 	}
 	inline void ClearBuffer() 
 	{
-		((void(*)())g_nativeFunctions[1414])();
+		((void(*)())g_engine_nativeFunctions[1414])();
 	}
 	inline void OutputDebugInfo() 
 	{
-		((void(*)())g_nativeFunctions[1415])();
+		((void(*)())g_engine_nativeFunctions[1415])();
 	}
 	inline int IsValid() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1416])();
+		((int(*)())g_engine_nativeFunctions[1416])();
 	}
 	inline void SendOutput(CAudioMixDeviceBuffers* buffers) 
 	{
-		((void(*)(CAudioMixDeviceBuffers* __buffers))g_nativeFunctions[1417])(buffers);
+		((void(*)(CAudioMixDeviceBuffers* __buffers))g_engine_nativeFunctions[1417])(buffers);
 	}
 };
 class g_pEnginePVSManager
@@ -6369,11 +6351,11 @@ class g_pEnginePVSManager
 	inline const IPVS* BuildPvs(IWorldReference* world) 
 	{
 		return
-		((const IPVS*(*)(IWorldReference* world))g_nativeFunctions[1418])(world);
+		((const IPVS*(*)(IWorldReference* world))g_engine_nativeFunctions[1418])(world);
 	}
 	inline void DestroyPvs(IPVS* pvs) 
 	{
-		((void(*)(IPVS* pvs))g_nativeFunctions[1419])(pvs);
+		((void(*)(IPVS* pvs))g_engine_nativeFunctions[1419])(pvs);
 	}
 };
 class g_pEngineServiceMgr
@@ -6387,19 +6369,19 @@ class g_pEngineServiceMgr
 	inline SwapChainHandle_t GetEngineSwapChain() 
 	{
 		return
-		((SwapChainHandle_t(*)())g_nativeFunctions[1420])();
+		((SwapChainHandle_t(*)())g_engine_nativeFunctions[1420])();
 	}
 	inline void GetEngineSwapChainSize(int* w, int* h) 
 	{
-		((void(*)(int* w, int* h))g_nativeFunctions[1421])(w, h);
+		((void(*)(int* w, int* h))g_engine_nativeFunctions[1421])(w, h);
 	}
 	inline void SetEngineState(void* hWnd, SwapChainHandle_t hSwapChain) 
 	{
-		((void(*)(void* __hWnd, SwapChainHandle_t __hSwapChain))g_nativeFunctions[1422])(hWnd, hSwapChain);
+		((void(*)(void* __hWnd, SwapChainHandle_t __hSwapChain))g_engine_nativeFunctions[1422])(hWnd, hSwapChain);
 	}
 	inline void ExitMainLoop() 
 	{
-		((void(*)())g_nativeFunctions[1423])();
+		((void(*)())g_engine_nativeFunctions[1423])();
 	}
 };
 class g_pFullFileSystem
@@ -6413,27 +6395,27 @@ class g_pFullFileSystem
 	inline const char* GetSymLink(const char* pPath, const char* pathID) 
 	{
 		return
-		((const char*(*)(const char* pPath, const char* pathID))g_nativeFunctions[1424])(pPath, pathID);
+		((const char*(*)(const char* pPath, const char* pathID))g_engine_nativeFunctions[1424])(pPath, pathID);
 	}
 	inline void AddSymLink(const char* pPath, const char* pathID, const char* realPath) 
 	{
-		((void(*)(const char* pPath, const char* pathID, const char* realPath))g_nativeFunctions[1425])(pPath, pathID, realPath);
+		((void(*)(const char* pPath, const char* pathID, const char* realPath))g_engine_nativeFunctions[1425])(pPath, pathID, realPath);
 	}
 	inline void RemoveSymLink(const char* pPath, const char* pathID) 
 	{
-		((void(*)(const char* pPath, const char* pathID))g_nativeFunctions[1426])(pPath, pathID);
+		((void(*)(const char* pPath, const char* pathID))g_engine_nativeFunctions[1426])(pPath, pathID);
 	}
 	inline void ResetProjectPaths(int includeCloudAssets) 
 	{
-		((void(*)(int includeCloudAssets))g_nativeFunctions[1427])(includeCloudAssets);
+		((void(*)(int includeCloudAssets))g_engine_nativeFunctions[1427])(includeCloudAssets);
 	}
 	inline void AddProjectPath(const char* ident, const char* fullPath) 
 	{
-		((void(*)(const char* ident, const char* fullPath))g_nativeFunctions[1428])(ident, fullPath);
+		((void(*)(const char* ident, const char* fullPath))g_engine_nativeFunctions[1428])(ident, fullPath);
 	}
 	inline void AddCloudPath(const char* ident, const char* fullPath) 
 	{
-		((void(*)(const char* ident, const char* fullPath))g_nativeFunctions[1429])(ident, fullPath);
+		((void(*)(const char* ident, const char* fullPath))g_engine_nativeFunctions[1429])(ident, fullPath);
 	}
 };
 class g_pInputService
@@ -6447,30 +6429,30 @@ class g_pInputService
 	inline int IsAppActive() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1430])();
+		((int(*)())g_engine_nativeFunctions[1430])();
 	}
 	inline int HasMouseFocus() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1431])();
+		((int(*)())g_engine_nativeFunctions[1431])();
 	}
 	inline const char* Key_NameForBinding(const char* binding) 
 	{
 		return
-		((const char*(*)(const char* binding))g_nativeFunctions[1432])(binding);
+		((const char*(*)(const char* binding))g_engine_nativeFunctions[1432])(binding);
 	}
 	inline const char* GetBinding(int64 button) 
 	{
 		return
-		((const char*(*)(int64 button))g_nativeFunctions[1433])(button);
+		((const char*(*)(int64 button))g_engine_nativeFunctions[1433])(button);
 	}
 	inline void SetCursorPosition(int x, int y) 
 	{
-		((void(*)(int x, int y))g_nativeFunctions[1434])(x, y);
+		((void(*)(int x, int y))g_engine_nativeFunctions[1434])(x, y);
 	}
 	inline void Pump() 
 	{
-		((void(*)())g_nativeFunctions[1435])();
+		((void(*)())g_engine_nativeFunctions[1435])();
 	}
 };
 class g_pInputSystem
@@ -6483,96 +6465,96 @@ class g_pInputSystem
 	}
 	inline void RegisterWindowWithSDL(void* hwnd) 
 	{
-		((void(*)(void* hwnd))g_nativeFunctions[1436])(hwnd);
+		((void(*)(void* hwnd))g_engine_nativeFunctions[1436])(hwnd);
 	}
 	inline void UnregisterWindowFromSDL(void* hwnd) 
 	{
-		((void(*)(void* hwnd))g_nativeFunctions[1437])(hwnd);
+		((void(*)(void* hwnd))g_engine_nativeFunctions[1437])(hwnd);
 	}
 	inline void SetEditorMainWindow(void* hwnd) 
 	{
-		((void(*)(void* hwnd))g_nativeFunctions[1438])(hwnd);
+		((void(*)(void* hwnd))g_engine_nativeFunctions[1438])(hwnd);
 	}
 	inline void OnEditorGameFocusChange(void* hwnd, int bIsFocused) 
 	{
-		((void(*)(void* hwnd, int bIsFocused))g_nativeFunctions[1439])(hwnd, bIsFocused);
+		((void(*)(void* hwnd, int bIsFocused))g_engine_nativeFunctions[1439])(hwnd, bIsFocused);
 	}
 	inline void SetCursorPosition(int x, int y, void* window) 
 	{
-		((void(*)(int x, int y, void* window))g_nativeFunctions[1440])(x, y, window);
+		((void(*)(int x, int y, void* window))g_engine_nativeFunctions[1440])(x, y, window);
 	}
 	inline int HasMouseFocus() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1441])();
+		((int(*)())g_engine_nativeFunctions[1441])();
 	}
 	inline int IsAppActive() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1442])();
+		((int(*)())g_engine_nativeFunctions[1442])();
 	}
 	inline int IsIMEAllowed() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1443])();
+		((int(*)())g_engine_nativeFunctions[1443])();
 	}
 	inline void SetIMEAllowed(int bAllowed) 
 	{
-		((void(*)(int bAllowed))g_nativeFunctions[1444])(bAllowed);
+		((void(*)(int bAllowed))g_engine_nativeFunctions[1444])(bAllowed);
 	}
 	inline void SetIMETextLocation(int x, int y, int nWidth, int nHeight) 
 	{
-		((void(*)(int x, int y, int nWidth, int nHeight))g_nativeFunctions[1445])(x, y, nWidth, nHeight);
+		((void(*)(int x, int y, int nWidth, int nHeight))g_engine_nativeFunctions[1445])(x, y, nWidth, nHeight);
 	}
 	inline void DismissIME() 
 	{
-		((void(*)())g_nativeFunctions[1446])();
+		((void(*)())g_engine_nativeFunctions[1446])();
 	}
 	inline const char* CodeToString(int64 code) 
 	{
 		return
-		((const char*(*)(int64 code))g_nativeFunctions[1447])(code);
+		((const char*(*)(int64 code))g_engine_nativeFunctions[1447])(code);
 	}
 	inline int64 StringToButtonCode(const char* pString) 
 	{
 		return
-		((int64(*)(const char* pString))g_nativeFunctions[1448])(pString);
+		((int64(*)(const char* pString))g_engine_nativeFunctions[1448])(pString);
 	}
 	inline int64 VirtualKeyToButtonCode(int nVirtualKey) 
 	{
 		return
-		((int64(*)(int nVirtualKey))g_nativeFunctions[1449])(nVirtualKey);
+		((int64(*)(int nVirtualKey))g_engine_nativeFunctions[1449])(nVirtualKey);
 	}
 	inline int ButtonCodeToVirtualKey(int64 code) 
 	{
 		return
-		((int(*)(int64 code))g_nativeFunctions[1450])(code);
+		((int(*)(int64 code))g_engine_nativeFunctions[1450])(code);
 	}
 	inline void SetRelativeMouseMode(int bState) 
 	{
-		((void(*)(int bState))g_nativeFunctions[1451])(bState);
+		((void(*)(int bState))g_engine_nativeFunctions[1451])(bState);
 	}
 	inline int GetRelativeMouseMode() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1452])();
+		((int(*)())g_engine_nativeFunctions[1452])();
 	}
 	inline void SetCursorStandard(int64 cursor) 
 	{
-		((void(*)(int64 cursor))g_nativeFunctions[1453])(cursor);
+		((void(*)(int64 cursor))g_engine_nativeFunctions[1453])(cursor);
 	}
 	inline void SetCursorUser(const char* pName) 
 	{
-		((void(*)(const char* pName))g_nativeFunctions[1454])(pName);
+		((void(*)(const char* pName))g_engine_nativeFunctions[1454])(pName);
 	}
 	inline int LoadCursorFromFile(const char* pFileName, const char* pName, int nHotX, int nHotY) 
 	{
 		return
-		((int(*)(const char* pFileName, const char* pName, int nHotX, int nHotY))g_nativeFunctions[1455])(pFileName, pName, nHotX, nHotY);
+		((int(*)(const char* pFileName, const char* pName, int nHotX, int nHotY))g_engine_nativeFunctions[1455])(pFileName, pName, nHotX, nHotY);
 	}
 	inline void ShutdownUserCursors() 
 	{
-		((void(*)())g_nativeFunctions[1456])();
+		((void(*)())g_engine_nativeFunctions[1456])();
 	}
 };
 class g_pMaterialSystem2
@@ -6586,21 +6568,21 @@ class g_pMaterialSystem2
 	inline HMaterialStrong* CreateRawMaterial(const char* materialName, const char* shader, int anonymous) 
 	{
 		return
-		((HMaterialStrong*(*)(const char* materialName, const char* shader, int anonymous))g_nativeFunctions[1457])(materialName, shader, anonymous);
+		((HMaterialStrong*(*)(const char* materialName, const char* shader, int anonymous))g_engine_nativeFunctions[1457])(materialName, shader, anonymous);
 	}
 	inline HMaterialStrong* CreateProceduralMaterialCopy(HMaterialStrong* hSrcMaterial, int nResourceType, int bRecreateStaticBuffers) 
 	{
 		return
-		((HMaterialStrong*(*)(HMaterialStrong* hSrcMaterial, int nResourceType, int bRecreateStaticBuffers))g_nativeFunctions[1458])(hSrcMaterial, nResourceType, bRecreateStaticBuffers);
+		((HMaterialStrong*(*)(HMaterialStrong* hSrcMaterial, int nResourceType, int bRecreateStaticBuffers))g_engine_nativeFunctions[1458])(hSrcMaterial, nResourceType, bRecreateStaticBuffers);
 	}
 	inline HMaterialStrong* FindOrCreateMaterialFromResource(const char* pResourceName) 
 	{
 		return
-		((HMaterialStrong*(*)(const char* pResourceName))g_nativeFunctions[1459])(pResourceName);
+		((HMaterialStrong*(*)(const char* pResourceName))g_engine_nativeFunctions[1459])(pResourceName);
 	}
 	inline void FrameUpdate() 
 	{
-		((void(*)())g_nativeFunctions[1460])();
+		((void(*)())g_engine_nativeFunctions[1460])();
 	}
 };
 class g_pMeshSystem
@@ -6614,11 +6596,11 @@ class g_pMeshSystem
 	inline int CreateSceneObject(HModelStrong* model, CTransformUnaligned modelToWorld, const char* pDescName, int64 nFlags, int64 nObjectTypeFlags, ISceneWorld* pWorld, int creationFlags) 
 	{
 		return
-		((int(*)(HModelStrong* model, CTransformUnaligned modelToWorld, const char* pDescName, int64 nFlags, int64 nObjectTypeFlags, ISceneWorld* pWorld, int creationFlags))g_nativeFunctions[1461])(model, modelToWorld, pDescName, nFlags, nObjectTypeFlags, pWorld, creationFlags);
+		((int(*)(HModelStrong* model, CTransformUnaligned modelToWorld, const char* pDescName, int64 nFlags, int64 nObjectTypeFlags, ISceneWorld* pWorld, int creationFlags))g_engine_nativeFunctions[1461])(model, modelToWorld, pDescName, nFlags, nObjectTypeFlags, pWorld, creationFlags);
 	}
 	inline void ChangeModel(CSceneObject* obj, HModelStrong* model) 
 	{
-		((void(*)(CSceneObject* obj, HModelStrong* model))g_nativeFunctions[1462])(obj, model);
+		((void(*)(CSceneObject* obj, HModelStrong* model))g_engine_nativeFunctions[1462])(obj, model);
 	}
 };
 class g_pPhysicsSystem
@@ -6632,35 +6614,35 @@ class g_pPhysicsSystem
 	inline int NumWorlds() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1463])();
+		((int(*)())g_engine_nativeFunctions[1463])();
 	}
 	inline int CreateWorld() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1464])();
+		((int(*)())g_engine_nativeFunctions[1464])();
 	}
 	inline void DestroyWorld(IPhysicsWorld* world) 
 	{
-		((void(*)(IPhysicsWorld* world))g_nativeFunctions[1465])(world);
+		((void(*)(IPhysicsWorld* world))g_engine_nativeFunctions[1465])(world);
 	}
 	inline const IPhysSurfacePropertyController* GetSurfacePropertyController() 
 	{
 		return
-		((const IPhysSurfacePropertyController*(*)())g_nativeFunctions[1466])();
+		((const IPhysSurfacePropertyController*(*)())g_engine_nativeFunctions[1466])();
 	}
 	inline int CastHeightField(Vector* vOut, Vector vRayStart, Vector vRayDelta, void* Heights, int SizeX, int SizeY, float SizeScale, float HeightScale) 
 	{
 		return
-		((int(*)(Vector* vOut, Vector vRayStart, Vector vRayDelta, void* Heights, int SizeX, int SizeY, float SizeScale, float HeightScale))g_nativeFunctions[1467])(vOut, vRayStart, vRayDelta, Heights, SizeX, SizeY, SizeScale, HeightScale);
+		((int(*)(Vector* vOut, Vector vRayStart, Vector vRayDelta, void* Heights, int SizeX, int SizeY, float SizeScale, float HeightScale))g_engine_nativeFunctions[1467])(vOut, vRayStart, vRayDelta, Heights, SizeX, SizeY, SizeScale, HeightScale);
 	}
 	inline const CPhysAggregateData* GetAggregateData(const char* resourceName) 
 	{
 		return
-		((const CPhysAggregateData*(*)(const char* __resourceName))g_nativeFunctions[1468])(resourceName);
+		((const CPhysAggregateData*(*)(const char* __resourceName))g_engine_nativeFunctions[1468])(resourceName);
 	}
 	inline void UpdateSurfaceProperties(CPhysSurfaceProperties* pSurfaceProperties) 
 	{
-		((void(*)(CPhysSurfaceProperties* pSurfaceProperties))g_nativeFunctions[1469])(pSurfaceProperties);
+		((void(*)(CPhysSurfaceProperties* pSurfaceProperties))g_engine_nativeFunctions[1469])(pSurfaceProperties);
 	}
 };
 class g_pRenderDevice
@@ -6674,197 +6656,197 @@ class g_pRenderDevice
 	inline SamplerStateHandle_t FindOrCreateSamplerState(CSamplerStateDesc samplerDesc) 
 	{
 		return
-		((SamplerStateHandle_t(*)(CSamplerStateDesc samplerDesc))g_nativeFunctions[1470])(samplerDesc);
+		((SamplerStateHandle_t(*)(CSamplerStateDesc samplerDesc))g_engine_nativeFunctions[1470])(samplerDesc);
 	}
 	inline int GetSamplerIndex(SamplerStateHandle_t samplerState) 
 	{
 		return
-		((int(*)(SamplerStateHandle_t samplerState))g_nativeFunctions[1471])(samplerState);
+		((int(*)(SamplerStateHandle_t samplerState))g_engine_nativeFunctions[1471])(samplerState);
 	}
 	inline RenderDeviceInfo_t GetSwapChainInfo(SwapChainHandle_t swapChain) 
 	{
 		return
-		((RenderDeviceInfo_t(*)(SwapChainHandle_t swapChain))g_nativeFunctions[1472])(swapChain);
+		((RenderDeviceInfo_t(*)(SwapChainHandle_t swapChain))g_engine_nativeFunctions[1472])(swapChain);
 	}
 	inline HRenderTextureStrong* FindOrCreateFileTexture(const char* pFileName, int64 nLoadMode) 
 	{
 		return
-		((HRenderTextureStrong*(*)(const char* pFileName, int64 nLoadMode))g_nativeFunctions[1473])(pFileName, nLoadMode);
+		((HRenderTextureStrong*(*)(const char* pFileName, int64 nLoadMode))g_engine_nativeFunctions[1473])(pFileName, nLoadMode);
 	}
 	inline HRenderTextureStrong* FindOrCreateTexture2(const char* pResourceName, int bIsAnonymous, TextureCreationConfig_t pDescriptor, void* data, int dataSize) 
 	{
 		return
-		((HRenderTextureStrong*(*)(const char* pResourceName, int bIsAnonymous, TextureCreationConfig_t pDescriptor, void* data, int dataSize))g_nativeFunctions[1474])(pResourceName, bIsAnonymous, pDescriptor, data, dataSize);
+		((HRenderTextureStrong*(*)(const char* pResourceName, int bIsAnonymous, TextureCreationConfig_t pDescriptor, void* data, int dataSize))g_engine_nativeFunctions[1474])(pResourceName, bIsAnonymous, pDescriptor, data, dataSize);
 	}
 	inline void ClearTexture(HRenderTextureStrong* hTexture, Color color) 
 	{
-		((void(*)(HRenderTextureStrong* hTexture, Color color))g_nativeFunctions[1475])(hTexture, color);
+		((void(*)(HRenderTextureStrong* hTexture, Color color))g_engine_nativeFunctions[1475])(hTexture, color);
 	}
 	inline void AsyncSetTextureData2(HRenderTextureStrong* hTexture, void* pData, int nDataSize, Rect3D_t rect) 
 	{
-		((void(*)(HRenderTextureStrong* hTexture, void* pData, int nDataSize, Rect3D_t rect))g_nativeFunctions[1476])(hTexture, pData, nDataSize, rect);
+		((void(*)(HRenderTextureStrong* hTexture, void* pData, int nDataSize, Rect3D_t rect))g_engine_nativeFunctions[1476])(hTexture, pData, nDataSize, rect);
 	}
 	inline HRenderTextureStrong* GetSwapChainTexture(SwapChainHandle_t swapChain, int64 bufferType) 
 	{
 		return
-		((HRenderTextureStrong*(*)(SwapChainHandle_t swapChain, int64 bufferType))g_nativeFunctions[1477])(swapChain, bufferType);
+		((HRenderTextureStrong*(*)(SwapChainHandle_t swapChain, int64 bufferType))g_engine_nativeFunctions[1477])(swapChain, bufferType);
 	}
 	inline int GetGPUFrameTimeMS(SwapChainHandle_t swapChain, float* pGPUFrameTimeMSOut, unsigned int* pFrameNumberOut) 
 	{
 		return
-		((int(*)(SwapChainHandle_t swapChain, float* pGPUFrameTimeMSOut, unsigned int* pFrameNumberOut))g_nativeFunctions[1478])(swapChain, pGPUFrameTimeMSOut, pFrameNumberOut);
+		((int(*)(SwapChainHandle_t swapChain, float* pGPUFrameTimeMSOut, unsigned int* pFrameNumberOut))g_engine_nativeFunctions[1478])(swapChain, pGPUFrameTimeMSOut, pFrameNumberOut);
 	}
 	inline CTextureDesc* GetTextureDesc(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1479])(hTexture);
+		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_engine_nativeFunctions[1479])(hTexture);
 	}
 	inline CTextureDesc* GetOnDiskTextureDesc(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1480])(hTexture);
+		((CTextureDesc*(*)(HRenderTextureStrong* hTexture))g_engine_nativeFunctions[1480])(hTexture);
 	}
 	inline int64 GetTextureMultisampleType(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((int64(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1481])(hTexture);
+		((int64(*)(HRenderTextureStrong* hTexture))g_engine_nativeFunctions[1481])(hTexture);
 	}
 	inline const IRenderContext* CreateRenderContext(unsigned int flags) 
 	{
 		return
-		((const IRenderContext*(*)(unsigned int flags))g_nativeFunctions[1482])(flags);
+		((const IRenderContext*(*)(unsigned int flags))g_engine_nativeFunctions[1482])(flags);
 	}
 	inline void ReleaseRenderContext(IRenderContext* context) 
 	{
-		((void(*)(IRenderContext* context))g_nativeFunctions[1483])(context);
+		((void(*)(IRenderContext* context))g_engine_nativeFunctions[1483])(context);
 	}
 	inline int ReadTexturePixels(HRenderTextureStrong* hTexture, Rect_t* pSrcRect, int nSrcSlice, int nSrcMip, Rect_t* pDstRect, void* pData, int64 dstFormat, int nDstStride) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* hTexture, Rect_t* pSrcRect, int nSrcSlice, int nSrcMip, Rect_t* pDstRect, void* pData, int64 dstFormat, int nDstStride))g_nativeFunctions[1484])(hTexture, pSrcRect, nSrcSlice, nSrcMip, pDstRect, pData, dstFormat, nDstStride);
+		((int(*)(HRenderTextureStrong* hTexture, Rect_t* pSrcRect, int nSrcSlice, int nSrcMip, Rect_t* pDstRect, void* pData, int64 dstFormat, int nDstStride))g_engine_nativeFunctions[1484])(hTexture, pSrcRect, nSrcSlice, nSrcMip, pDstRect, pData, dstFormat, nDstStride);
 	}
 	inline void DestroySwapChain(SwapChainHandle_t hSwapChain) 
 	{
-		((void(*)(SwapChainHandle_t hSwapChain))g_nativeFunctions[1485])(hSwapChain);
+		((void(*)(SwapChainHandle_t hSwapChain))g_engine_nativeFunctions[1485])(hSwapChain);
 	}
 	inline int Present(SwapChainHandle_t chain) 
 	{
 		return
-		((int(*)(SwapChainHandle_t chain))g_nativeFunctions[1486])(chain);
+		((int(*)(SwapChainHandle_t chain))g_engine_nativeFunctions[1486])(chain);
 	}
 	inline void Flush() 
 	{
-		((void(*)())g_nativeFunctions[1487])();
+		((void(*)())g_engine_nativeFunctions[1487])();
 	}
 	inline int CanRenderToSwapChain(SwapChainHandle_t chain) 
 	{
 		return
-		((int(*)(SwapChainHandle_t chain))g_nativeFunctions[1488])(chain);
+		((int(*)(SwapChainHandle_t chain))g_engine_nativeFunctions[1488])(chain);
 	}
 	inline int IsUsing32BitDepthBuffer() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1489])();
+		((int(*)())g_engine_nativeFunctions[1489])();
 	}
 	inline Vector2D GetBackbufferDimensions(SwapChainHandle_t chain) 
 	{
 		return
-		((Vector2D(*)(SwapChainHandle_t __chain))g_nativeFunctions[1490])(chain);
+		((Vector2D(*)(SwapChainHandle_t __chain))g_engine_nativeFunctions[1490])(chain);
 	}
 	inline RenderShaderHandle_t CompileAndCreateShader(int64 nType, const char* pProgram, unsigned int nBufLen, const char* pShaderVersion, const char* pDebugName) 
 	{
 		return
-		((RenderShaderHandle_t(*)(int64 nType, const char* pProgram, unsigned int nBufLen, const char* pShaderVersion, const char* pDebugName))g_nativeFunctions[1491])(nType, pProgram, nBufLen, pShaderVersion, pDebugName);
+		((RenderShaderHandle_t(*)(int64 nType, const char* pProgram, unsigned int nBufLen, const char* pShaderVersion, const char* pDebugName))g_engine_nativeFunctions[1491])(nType, pProgram, nBufLen, pShaderVersion, pDebugName);
 	}
 	inline int GetTextureLastUsed(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1492])(hTexture);
+		((int(*)(HRenderTextureStrong* hTexture))g_engine_nativeFunctions[1492])(hTexture);
 	}
 	inline void UnThrottleTextureStreamingForNFrames(unsigned int nNumberOfFramesForUnthrottledTextureLoading) 
 	{
-		((void(*)(unsigned int nNumberOfFramesForUnthrottledTextureLoading))g_nativeFunctions[1493])(nNumberOfFramesForUnthrottledTextureLoading);
+		((void(*)(unsigned int nNumberOfFramesForUnthrottledTextureLoading))g_engine_nativeFunctions[1493])(nNumberOfFramesForUnthrottledTextureLoading);
 	}
 	inline int GetNumTextureLoadsInFlight() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1494])();
+		((int(*)())g_engine_nativeFunctions[1494])();
 	}
 	inline void SetForcePreloadStreamingData(int bForcePreloadStreamingData) 
 	{
-		((void(*)(int bForcePreloadStreamingData))g_nativeFunctions[1495])(bForcePreloadStreamingData);
+		((void(*)(int bForcePreloadStreamingData))g_engine_nativeFunctions[1495])(bForcePreloadStreamingData);
 	}
 	inline int64 GetRenderDeviceAPI() 
 	{
 		return
-		((int64(*)())g_nativeFunctions[1496])();
+		((int64(*)())g_engine_nativeFunctions[1496])();
 	}
 	inline void MarkTextureUsed(HRenderTextureStrong* texture, int nRequiredMipSize) 
 	{
-		((void(*)(HRenderTextureStrong* texture, int nRequiredMipSize))g_nativeFunctions[1497])(texture, nRequiredMipSize);
+		((void(*)(HRenderTextureStrong* texture, int nRequiredMipSize))g_engine_nativeFunctions[1497])(texture, nRequiredMipSize);
 	}
 	inline int IsTextureRenderTarget(HRenderTextureStrong* texture) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* texture))g_nativeFunctions[1498])(texture);
+		((int(*)(HRenderTextureStrong* texture))g_engine_nativeFunctions[1498])(texture);
 	}
 	inline int IsRayTracingSupported() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1499])();
+		((int(*)())g_engine_nativeFunctions[1499])();
 	}
 	inline RenderBufferHandle_t CreateGPUBuffer(int64 nType, BufferDesc_t desc, int64 usage, const char* pDebugName) 
 	{
 		return
-		((RenderBufferHandle_t(*)(int64 __nType, BufferDesc_t __desc, int64 __usage, const char* __pDebugName))g_nativeFunctions[1500])(nType, desc, usage, pDebugName);
+		((RenderBufferHandle_t(*)(int64 __nType, BufferDesc_t __desc, int64 __usage, const char* __pDebugName))g_engine_nativeFunctions[1500])(nType, desc, usage, pDebugName);
 	}
 	inline void DestroyGPUBuffer(RenderBufferHandle_t hGPUBuffer) 
 	{
-		((void(*)(RenderBufferHandle_t hGPUBuffer))g_nativeFunctions[1501])(hGPUBuffer);
+		((void(*)(RenderBufferHandle_t hGPUBuffer))g_engine_nativeFunctions[1501])(hGPUBuffer);
 	}
 	inline int ReadBuffer(RenderBufferHandle_t hBuffer, unsigned int nOffsetInBytes, void* pBuf, unsigned int nBytesToRead) 
 	{
 		return
-		((int(*)(RenderBufferHandle_t hBuffer, unsigned int nOffsetInBytes, void* pBuf, unsigned int nBytesToRead))g_nativeFunctions[1502])(hBuffer, nOffsetInBytes, pBuf, nBytesToRead);
+		((int(*)(RenderBufferHandle_t hBuffer, unsigned int nOffsetInBytes, void* pBuf, unsigned int nBytesToRead))g_engine_nativeFunctions[1502])(hBuffer, nOffsetInBytes, pBuf, nBytesToRead);
 	}
 	inline const void* GetDeviceSpecificInfo(int64 info) 
 	{
 		return
-		((const void*(*)(int64 info))g_nativeFunctions[1503])(info);
+		((const void*(*)(int64 info))g_engine_nativeFunctions[1503])(info);
 	}
 	inline const void* GetGraphicsAPISpecificTextureHandle(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((const void*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1504])(hTexture);
+		((const void*(*)(HRenderTextureStrong* hTexture))g_engine_nativeFunctions[1504])(hTexture);
 	}
 	inline const void* GetDeviceSpecificTexture(HRenderTextureStrong* hTexture) 
 	{
 		return
-		((const void*(*)(HRenderTextureStrong* hTexture))g_nativeFunctions[1505])(hTexture);
+		((const void*(*)(HRenderTextureStrong* hTexture))g_engine_nativeFunctions[1505])(hTexture);
 	}
 	inline int GetTextureViewIndex(HRenderTextureStrong* hTexture, unsigned char colorSpace, int64 dim) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* hTexture, unsigned char colorSpace, int64 dim))g_nativeFunctions[1506])(hTexture, colorSpace, dim);
+		((int(*)(HRenderTextureStrong* hTexture, unsigned char colorSpace, int64 dim))g_engine_nativeFunctions[1506])(hTexture, colorSpace, dim);
 	}
 	inline void GetTextureResidencyInfo(CUtlVector<HRenderTexture>* pTextures, CUtlVector<CUtlString>* pNames) 
 	{
-		((void(*)(CUtlVector<HRenderTexture>* __pTextures, CUtlVector<CUtlString>* __pNames))g_nativeFunctions[1507])(pTextures, pNames);
+		((void(*)(CUtlVector<HRenderTexture>* __pTextures, CUtlVector<CUtlString>* __pNames))g_engine_nativeFunctions[1507])(pTextures, pNames);
 	}
 	inline Vector4D GetSheetInfo(HRenderTextureStrong* texture) 
 	{
 		return
-		((Vector4D(*)(HRenderTextureStrong* __texture))g_nativeFunctions[1508])(texture);
+		((Vector4D(*)(HRenderTextureStrong* __texture))g_engine_nativeFunctions[1508])(texture);
 	}
 	inline int GetSequenceCount(HRenderTextureStrong* texture) 
 	{
 		return
-		((int(*)(HRenderTextureStrong* __texture))g_nativeFunctions[1509])(texture);
+		((int(*)(HRenderTextureStrong* __texture))g_engine_nativeFunctions[1509])(texture);
 	}
 	inline const SheetSequence_t* GetSequence(HRenderTextureStrong* texture, int index) 
 	{
 		return
-		((const SheetSequence_t*(*)(HRenderTextureStrong* __texture, int __index))g_nativeFunctions[1510])(texture, index);
+		((const SheetSequence_t*(*)(HRenderTextureStrong* __texture, int __index))g_engine_nativeFunctions[1510])(texture, index);
 	}
 };
 class g_pRenderService
@@ -6878,7 +6860,7 @@ class g_pRenderService
 	inline int64 GetMultisampleType() 
 	{
 		return
-		((int64(*)())g_nativeFunctions[1511])();
+		((int64(*)())g_engine_nativeFunctions[1511])();
 	}
 };
 class g_pResourceCompilerSystem
@@ -6892,17 +6874,17 @@ class g_pResourceCompilerSystem
 	inline int GenerateResourceFile(const char* path, void* pData, int size) 
 	{
 		return
-		((int(*)(const char* __path, void* __pData, int __size))g_nativeFunctions[1512])(path, pData, size);
+		((int(*)(const char* __path, void* __pData, int __size))g_engine_nativeFunctions[1512])(path, pData, size);
 	}
 	inline int GenerateResourceFile(const char* path, const char* text) 
 	{
 		return
-		((int(*)(const char* __path, const char* __text))g_nativeFunctions[1513])(path, text);
+		((int(*)(const char* __path, const char* __text))g_engine_nativeFunctions[1513])(path, text);
 	}
 	inline const CUtlBuffer* GenerateResourceBytes(const char* path, void* pData, int size) 
 	{
 		return
-		((const CUtlBuffer*(*)(const char* __path, void* __pData, int __size))g_nativeFunctions[1514])(path, pData, size);
+		((const CUtlBuffer*(*)(const char* __path, void* __pData, int __size))g_engine_nativeFunctions[1514])(path, pData, size);
 	}
 };
 class g_pResourceSystem
@@ -6915,34 +6897,34 @@ class g_pResourceSystem
 	}
 	inline void ReloadSymlinkedResidentResources() 
 	{
-		((void(*)())g_nativeFunctions[1515])();
+		((void(*)())g_engine_nativeFunctions[1515])();
 	}
 	inline void UpdateSimple() 
 	{
-		((void(*)())g_nativeFunctions[1516])();
+		((void(*)())g_engine_nativeFunctions[1516])();
 	}
 	inline int HasPendingWork() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1517])();
+		((int(*)())g_engine_nativeFunctions[1517])();
 	}
 	inline const HResourceManifest__* LoadResourceInManifest(const char* name) 
 	{
 		return
-		((const HResourceManifest__*(*)(const char* __name))g_nativeFunctions[1518])(name);
+		((const HResourceManifest__*(*)(const char* __name))g_engine_nativeFunctions[1518])(name);
 	}
 	inline void DestroyResourceManifest(HResourceManifest__* manifest) 
 	{
-		((void(*)(HResourceManifest__* manifest))g_nativeFunctions[1519])(manifest);
+		((void(*)(HResourceManifest__* manifest))g_engine_nativeFunctions[1519])(manifest);
 	}
 	inline int IsManifestLoaded(HResourceManifest__* manifest) 
 	{
 		return
-		((int(*)(HResourceManifest__* manifest))g_nativeFunctions[1520])(manifest);
+		((int(*)(HResourceManifest__* manifest))g_engine_nativeFunctions[1520])(manifest);
 	}
 	inline void GetAllCodeManifests(CUtlVector<CUtlString>* values) 
 	{
-		((void(*)(CUtlVector<CUtlString>* __values))g_nativeFunctions[1521])(values);
+		((void(*)(CUtlVector<CUtlString>* __values))g_engine_nativeFunctions[1521])(values);
 	}
 };
 class g_pSceneSystem
@@ -6955,130 +6937,130 @@ class g_pSceneSystem
 	}
 	inline void DeleteSceneObject(CSceneObject* pObj) 
 	{
-		((void(*)(CSceneObject* pObj))g_nativeFunctions[1522])(pObj);
+		((void(*)(CSceneObject* pObj))g_engine_nativeFunctions[1522])(pObj);
 	}
 	inline void DeleteSceneObjectAtFrameEnd(CSceneObject* pObj) 
 	{
-		((void(*)(CSceneObject* pObj))g_nativeFunctions[1523])(pObj);
+		((void(*)(CSceneObject* pObj))g_engine_nativeFunctions[1523])(pObj);
 	}
 	inline int CreateSkyBox(HMaterialStrong* skyMaterial, ISceneWorld* world) 
 	{
 		return
-		((int(*)(HMaterialStrong* skyMaterial, ISceneWorld* world))g_nativeFunctions[1524])(skyMaterial, world);
+		((int(*)(HMaterialStrong* skyMaterial, ISceneWorld* world))g_engine_nativeFunctions[1524])(skyMaterial, world);
 	}
 	inline int CreateDecal(ISceneWorld* world) 
 	{
 		return
-		((int(*)(ISceneWorld* world))g_nativeFunctions[1525])(world);
+		((int(*)(ISceneWorld* world))g_engine_nativeFunctions[1525])(world);
 	}
 	inline void BeginRenderingDynamicView(ISceneView* pView) 
 	{
-		((void(*)(ISceneView* pView))g_nativeFunctions[1526])(pView);
+		((void(*)(ISceneView* pView))g_engine_nativeFunctions[1526])(pView);
 	}
 	inline HRenderTextureStrong* GetWellKnownTexture(int64 a) 
 	{
 		return
-		((HRenderTextureStrong*(*)(int64 a))g_nativeFunctions[1527])(a);
+		((HRenderTextureStrong*(*)(int64 a))g_engine_nativeFunctions[1527])(a);
 	}
 	inline HMaterialStrong* GetWellKnownMaterialHandle(int64 a) 
 	{
 		return
-		((HMaterialStrong*(*)(int64 a))g_nativeFunctions[1528])(a);
+		((HMaterialStrong*(*)(int64 a))g_engine_nativeFunctions[1528])(a);
 	}
 	inline const SceneSystemPerFrameStats_t* GetPerFrameStats() 
 	{
 		return
-		((const SceneSystemPerFrameStats_t*(*)())g_nativeFunctions[1529])();
+		((const SceneSystemPerFrameStats_t*(*)())g_engine_nativeFunctions[1529])();
 	}
 	inline int CreateWorld(const char* debugName) 
 	{
 		return
-		((int(*)(const char* debugName))g_nativeFunctions[1530])(debugName);
+		((int(*)(const char* debugName))g_engine_nativeFunctions[1530])(debugName);
 	}
 	inline void DestroyWorld(ISceneWorld* world) 
 	{
-		((void(*)(ISceneWorld* world))g_nativeFunctions[1531])(world);
+		((void(*)(ISceneWorld* world))g_engine_nativeFunctions[1531])(world);
 	}
 	inline void SetupPerObjectLighting(CRenderAttributes* renderAttributes, CSceneObject* pSceneObject, ISceneLayer* pSceneLayerInterface) 
 	{
-		((void(*)(CRenderAttributes* __renderAttributes, CSceneObject* __pSceneObject, ISceneLayer* __pSceneLayerInterface))g_nativeFunctions[1532])(renderAttributes, pSceneObject, pSceneLayerInterface);
+		((void(*)(CRenderAttributes* __renderAttributes, CSceneObject* __pSceneObject, ISceneLayer* __pSceneLayerInterface))g_engine_nativeFunctions[1532])(renderAttributes, pSceneObject, pSceneLayerInterface);
 	}
 	inline int CreatePointLight(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1533])(pWorld);
+		((int(*)(ISceneWorld* __pWorld))g_engine_nativeFunctions[1533])(pWorld);
 	}
 	inline int CreateSpotLight(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1534])(pWorld);
+		((int(*)(ISceneWorld* __pWorld))g_engine_nativeFunctions[1534])(pWorld);
 	}
 	inline int CreateOrthoLight(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld))g_nativeFunctions[1535])(pWorld);
+		((int(*)(ISceneWorld* __pWorld))g_engine_nativeFunctions[1535])(pWorld);
 	}
 	inline int CreateDirectionalLight(ISceneWorld* pWorld, Vector direction) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld, Vector __direction))g_nativeFunctions[1536])(pWorld, direction);
+		((int(*)(ISceneWorld* __pWorld, Vector __direction))g_engine_nativeFunctions[1536])(pWorld, direction);
 	}
 	inline int CreateEnvMap(ISceneWorld* pWorld, int nProjectionMode) 
 	{
 		return
-		((int(*)(ISceneWorld* __pWorld, int __nProjectionMode))g_nativeFunctions[1537])(pWorld, nProjectionMode);
+		((int(*)(ISceneWorld* __pWorld, int __nProjectionMode))g_engine_nativeFunctions[1537])(pWorld, nProjectionMode);
 	}
 	inline int CreateLightProbeVolume(ISceneWorld* pWorld) 
 	{
 		return
-		((int(*)(ISceneWorld* pWorld))g_nativeFunctions[1538])(pWorld);
+		((int(*)(ISceneWorld* pWorld))g_engine_nativeFunctions[1538])(pWorld);
 	}
 	inline void MarkEnvironmentMapObjectUpdated(CEnvMapSceneObject* pEnvMap) 
 	{
-		((void(*)(CEnvMapSceneObject* pEnvMap))g_nativeFunctions[1539])(pEnvMap);
+		((void(*)(CEnvMapSceneObject* pEnvMap))g_engine_nativeFunctions[1539])(pEnvMap);
 	}
 	inline void MarkLightProbeVolumeObjectUpdated(CSceneLightProbeVolumeObject* pLightProbe) 
 	{
-		((void(*)(CSceneLightProbeVolumeObject* pLightProbe))g_nativeFunctions[1540])(pLightProbe);
+		((void(*)(CSceneLightProbeVolumeObject* pLightProbe))g_engine_nativeFunctions[1540])(pLightProbe);
 	}
 	inline unsigned int AddCullingBox(ISceneWorld* pWorld, int nCullMode, Vector vOrigin, QAngle vAngles, Vector vExtents) 
 	{
 		return
-		((unsigned int(*)(ISceneWorld* __pWorld, int __nCullMode, Vector __vOrigin, QAngle __vAngles, Vector __vExtents))g_nativeFunctions[1541])(pWorld, nCullMode, vOrigin, vAngles, vExtents);
+		((unsigned int(*)(ISceneWorld* __pWorld, int __nCullMode, Vector __vOrigin, QAngle __vAngles, Vector __vExtents))g_engine_nativeFunctions[1541])(pWorld, nCullMode, vOrigin, vAngles, vExtents);
 	}
 	inline void RemoveCullingBox(ISceneWorld* pWorld, unsigned int nBoxId) 
 	{
-		((void(*)(ISceneWorld* pWorld, unsigned int nBoxId))g_nativeFunctions[1542])(pWorld, nBoxId);
+		((void(*)(ISceneWorld* pWorld, unsigned int nBoxId))g_engine_nativeFunctions[1542])(pWorld, nBoxId);
 	}
 	inline unsigned int AddVolumetricFogVolume(ISceneWorld* pWorld, SceneVolumetricFogVolume_t volume) 
 	{
 		return
-		((unsigned int(*)(ISceneWorld* pWorld, SceneVolumetricFogVolume_t volume))g_nativeFunctions[1543])(pWorld, volume);
+		((unsigned int(*)(ISceneWorld* pWorld, SceneVolumetricFogVolume_t volume))g_engine_nativeFunctions[1543])(pWorld, volume);
 	}
 	inline void RemoveVolumetricFogVolume(ISceneWorld* pWorld, unsigned int nId) 
 	{
-		((void(*)(ISceneWorld* pWorld, unsigned int nId))g_nativeFunctions[1544])(pWorld, nId);
+		((void(*)(ISceneWorld* pWorld, unsigned int nId))g_engine_nativeFunctions[1544])(pWorld, nId);
 	}
 	inline void DownsampleTexture(IRenderContext* ctx, HRenderTextureStrong* src, unsigned char nDownsampleType) 
 	{
-		((void(*)(IRenderContext* __ctx, HRenderTextureStrong* __src, unsigned char __nDownsampleType))g_nativeFunctions[1545])(ctx, src, nDownsampleType);
+		((void(*)(IRenderContext* __ctx, HRenderTextureStrong* __src, unsigned char __nDownsampleType))g_engine_nativeFunctions[1545])(ctx, src, nDownsampleType);
 	}
 	inline void RenderTiledLightCulling(IRenderContext* pCtx, ISceneView* pView, RenderViewport_t viewport) 
 	{
-		((void(*)(IRenderContext* pCtx, ISceneView* pView, RenderViewport_t viewport))g_nativeFunctions[1546])(pCtx, pView, viewport);
+		((void(*)(IRenderContext* pCtx, ISceneView* pView, RenderViewport_t viewport))g_engine_nativeFunctions[1546])(pCtx, pView, viewport);
 	}
 	inline void BindTransformSlot(IRenderContext* pCtx, int nVBSlot, int nTransformSlotIndex) 
 	{
-		((void(*)(IRenderContext* pCtx, int nVBSlot, int nTransformSlotIndex))g_nativeFunctions[1547])(pCtx, nVBSlot, nTransformSlotIndex);
+		((void(*)(IRenderContext* pCtx, int nVBSlot, int nTransformSlotIndex))g_engine_nativeFunctions[1547])(pCtx, nVBSlot, nTransformSlotIndex);
 	}
 	inline const IRayTraceSceneWorld* CreateRayTraceWorld(const char* pWorldDebugName, int nMaxRayTypes) 
 	{
 		return
-		((const IRayTraceSceneWorld*(*)(const char* pWorldDebugName, int nMaxRayTypes))g_nativeFunctions[1548])(pWorldDebugName, nMaxRayTypes);
+		((const IRayTraceSceneWorld*(*)(const char* pWorldDebugName, int nMaxRayTypes))g_engine_nativeFunctions[1548])(pWorldDebugName, nMaxRayTypes);
 	}
 	inline void DestroyRayTraceWorld(IRayTraceSceneWorld* pRayTraceSceneWorld) 
 	{
-		((void(*)(IRayTraceSceneWorld* pRayTraceSceneWorld))g_nativeFunctions[1549])(pRayTraceSceneWorld);
+		((void(*)(IRayTraceSceneWorld* pRayTraceSceneWorld))g_engine_nativeFunctions[1549])(pRayTraceSceneWorld);
 	}
 };
 class g_pSceneUtils
@@ -7092,20 +7074,20 @@ class g_pSceneUtils
 	inline const ITonemapSystem* CreateTonemapSystem() 
 	{
 		return
-		((const ITonemapSystem*(*)())g_nativeFunctions[1550])();
+		((const ITonemapSystem*(*)())g_engine_nativeFunctions[1550])();
 	}
 	inline void DestroyTonemapSystem(ITonemapSystem* pTonemapSystem) 
 	{
-		((void(*)(ITonemapSystem* pTonemapSystem))g_nativeFunctions[1551])(pTonemapSystem);
+		((void(*)(ITonemapSystem* pTonemapSystem))g_engine_nativeFunctions[1551])(pTonemapSystem);
 	}
 	inline const IVolumetricFog* CreateVolumetricFog() 
 	{
 		return
-		((const IVolumetricFog*(*)())g_nativeFunctions[1552])();
+		((const IVolumetricFog*(*)())g_engine_nativeFunctions[1552])();
 	}
 	inline void DestroyVolumetricFog(IVolumetricFog* pVolumetricFog) 
 	{
-		((void(*)(IVolumetricFog* pVolumetricFog))g_nativeFunctions[1553])(pVolumetricFog);
+		((void(*)(IVolumetricFog* pVolumetricFog))g_engine_nativeFunctions[1553])(pVolumetricFog);
 	}
 };
 class g_pSoundSystemInternal
@@ -7119,49 +7101,49 @@ class g_pSoundSystemInternal
 	inline int GetNumAudioDevices() 
 	{
 		return
-		((int(*)())g_nativeFunctions[1554])();
+		((int(*)())g_engine_nativeFunctions[1554])();
 	}
 	inline AudioDeviceDesc GetAudioDeviceDesc(int index) 
 	{
 		return
-		((AudioDeviceDesc(*)(int index))g_nativeFunctions[1555])(index);
+		((AudioDeviceDesc(*)(int index))g_engine_nativeFunctions[1555])(index);
 	}
 	inline const char* GetAudioDeviceId(int index) 
 	{
 		return
-		((const char*(*)(int index))g_nativeFunctions[1556])(index);
+		((const char*(*)(int index))g_engine_nativeFunctions[1556])(index);
 	}
 	inline const char* GetAudioDeviceName(int index) 
 	{
 		return
-		((const char*(*)(int index))g_nativeFunctions[1557])(index);
+		((const char*(*)(int index))g_engine_nativeFunctions[1557])(index);
 	}
 	inline const char* GetActiveAudioDevice() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[1558])();
+		((const char*(*)())g_engine_nativeFunctions[1558])();
 	}
 	inline void SetActiveAudioDevice(const char* id) 
 	{
-		((void(*)(const char* id))g_nativeFunctions[1559])(id);
+		((void(*)(const char* id))g_engine_nativeFunctions[1559])(id);
 	}
 	inline void PlaySoundAtOSLevel(const char* filename) 
 	{
-		((void(*)(const char* filename))g_nativeFunctions[1560])(filename);
+		((void(*)(const char* filename))g_engine_nativeFunctions[1560])(filename);
 	}
 	inline const CSfxTable* PrecacheSound(const char* pSoundName) 
 	{
 		return
-		((const CSfxTable*(*)(const char* pSoundName))g_nativeFunctions[1561])(pSoundName);
+		((const CSfxTable*(*)(const char* pSoundName))g_engine_nativeFunctions[1561])(pSoundName);
 	}
 	inline const CSfxTable* CreateSound(const char* pSoundName, int nChannels, int nRate, int nFormat, int nSampleCount, float flDuration, int bLoop, void* pData, int nDataSize) 
 	{
 		return
-		((const CSfxTable*(*)(const char* pSoundName, int nChannels, int nRate, int nFormat, int nSampleCount, float flDuration, int bLoop, void* pData, int nDataSize))g_nativeFunctions[1562])(pSoundName, nChannels, nRate, nFormat, nSampleCount, flDuration, bLoop, pData, nDataSize);
+		((const CSfxTable*(*)(const char* pSoundName, int nChannels, int nRate, int nFormat, int nSampleCount, float flDuration, int bLoop, void* pData, int nDataSize))g_engine_nativeFunctions[1562])(pSoundName, nChannels, nRate, nFormat, nSampleCount, flDuration, bLoop, pData, nDataSize);
 	}
 	inline void PreloadSound(CSfxTable* pSfx) 
 	{
-		((void(*)(CSfxTable* pSfx))g_nativeFunctions[1563])(pSfx);
+		((void(*)(CSfxTable* pSfx))g_engine_nativeFunctions[1563])(pSfx);
 	}
 };
 class g_pWorldRendererMgr
@@ -7174,196 +7156,196 @@ class g_pWorldRendererMgr
 	}
 	inline void ServiceWorldRequests() 
 	{
-		((void(*)())g_nativeFunctions[1564])();
+		((void(*)())g_engine_nativeFunctions[1564])();
 	}
 	inline unsigned int UpdateObjectsForRendering(uint32 worldGroupId, Vector eyePos, float flLODScale, float flMaxVisibleDistance) 
 	{
 		return
-		((unsigned int(*)(uint32 __worldGroupId, Vector __eyePos, float __flLODScale, float __flMaxVisibleDistance))g_nativeFunctions[1565])(worldGroupId, eyePos, flLODScale, flMaxVisibleDistance);
+		((unsigned int(*)(uint32 __worldGroupId, Vector __eyePos, float __flLODScale, float __flMaxVisibleDistance))g_engine_nativeFunctions[1565])(worldGroupId, eyePos, flLODScale, flMaxVisibleDistance);
 	}
 	inline const IWorldReference* CreateWorld(const char* pMapName, ISceneWorld* pSceneWorld, int bAsyncLoad, int bIgnoreExistingWorlds, int bLoadVis, int bPrecacheOnly, uint32 worldGroupId, CTransformUnaligned transform) 
 	{
 		return
-		((const IWorldReference*(*)(const char* __pMapName, ISceneWorld* __pSceneWorld, int __bAsyncLoad, int __bIgnoreExistingWorlds, int __bLoadVis, int __bPrecacheOnly, uint32 __worldGroupId, CTransformUnaligned __transform))g_nativeFunctions[1566])(pMapName, pSceneWorld, bAsyncLoad, bIgnoreExistingWorlds, bLoadVis, bPrecacheOnly, worldGroupId, transform);
+		((const IWorldReference*(*)(const char* __pMapName, ISceneWorld* __pSceneWorld, int __bAsyncLoad, int __bIgnoreExistingWorlds, int __bLoadVis, int __bPrecacheOnly, uint32 __worldGroupId, CTransformUnaligned __transform))g_engine_nativeFunctions[1566])(pMapName, pSceneWorld, bAsyncLoad, bIgnoreExistingWorlds, bLoadVis, bPrecacheOnly, worldGroupId, transform);
 	}
 	inline int MountWorldVPK(const char* pWorldName, const char* pVpkPath) 
 	{
 		return
-		((int(*)(const char* pWorldName, const char* pVpkPath))g_nativeFunctions[1567])(pWorldName, pVpkPath);
+		((int(*)(const char* pWorldName, const char* pVpkPath))g_engine_nativeFunctions[1567])(pWorldName, pVpkPath);
 	}
 	inline int UnmountWorldVPK(const char* pWorldName) 
 	{
 		return
-		((int(*)(const char* pWorldName))g_nativeFunctions[1568])(pWorldName);
+		((int(*)(const char* pWorldName))g_engine_nativeFunctions[1568])(pWorldName);
 	}
 };
 static
 inline void Plat_ScreenToWindowCoords(void* hwnd, int* x, int* y) 
 {
-	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1569])(hwnd, x, y);
+	((void(*)(void* hwnd, int* x, int* y))g_engine_nativeFunctions[1569])(hwnd, x, y);
 }
 static
 inline void Plat_WindowToScreenCoords(void* hwnd, int* x, int* y) 
 {
-	((void(*)(void* hwnd, int* x, int* y))g_nativeFunctions[1570])(hwnd, x, y);
+	((void(*)(void* hwnd, int* x, int* y))g_engine_nativeFunctions[1570])(hwnd, x, y);
 }
 static
 inline void Plat_MessageBox(const char* title, const char* message) 
 {
-	((void(*)(const char* title, const char* message))g_nativeFunctions[1571])(title, message);
+	((void(*)(const char* title, const char* message))g_engine_nativeFunctions[1571])(title, message);
 }
 static
 inline int Plat_GetDesktopResolution(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate) 
 {
 	return
-	((int(*)(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate))g_nativeFunctions[1572])(nMonitorIndex, pWidth, pHeight, pRefreshRate);
+	((int(*)(int nMonitorIndex, int* pWidth, int* pHeight, unsigned int* pRefreshRate))g_engine_nativeFunctions[1572])(nMonitorIndex, pWidth, pHeight, pRefreshRate);
 }
 static
 inline int Plat_GetDefaultMonitorIndex() 
 {
 	return
-	((int(*)())g_nativeFunctions[1573])();
+	((int(*)())g_engine_nativeFunctions[1573])();
 }
 static
 inline int Plat_SafeRemoveFile(const char* file) 
 {
 	return
-	((int(*)(const char* file))g_nativeFunctions[1574])(file);
+	((int(*)(const char* file))g_engine_nativeFunctions[1574])(file);
 }
 static
 inline void Plat_SetModuleFilename(const char* filename) 
 {
-	((void(*)(const char* filename))g_nativeFunctions[1575])(filename);
+	((void(*)(const char* filename))g_engine_nativeFunctions[1575])(filename);
 }
 static
 inline void Plat_SetCurrentDirectory(const char* filename) 
 {
-	((void(*)(const char* filename))g_nativeFunctions[1576])(filename);
+	((void(*)(const char* filename))g_engine_nativeFunctions[1576])(filename);
 }
 static
 inline uint64 Plat_GetCurrentFrame() 
 {
 	return
-	((uint64(*)())g_nativeFunctions[1577])();
+	((uint64(*)())g_engine_nativeFunctions[1577])();
 }
 static
 inline void Plat_SetCurrentFrame(uint64 nFrame) 
 {
-	((void(*)(uint64 nFrame))g_nativeFunctions[1578])(nFrame);
+	((void(*)(uint64 nFrame))g_engine_nativeFunctions[1578])(nFrame);
 }
 static
 inline void Plat_ChangeCurrentFrame(int64 nDelta) 
 {
-	((void(*)(int64 nDelta))g_nativeFunctions[1579])(nDelta);
+	((void(*)(int64 nDelta))g_engine_nativeFunctions[1579])(nDelta);
 }
 static
 inline int Plat_IsRunningOnCustomerMachine() 
 {
 	return
-	((int(*)())g_nativeFunctions[1580])();
+	((int(*)())g_engine_nativeFunctions[1580])();
 }
 static
 inline int Plat_HasClipboardText() 
 {
 	return
-	((int(*)())g_nativeFunctions[1581])();
+	((int(*)())g_engine_nativeFunctions[1581])();
 }
 static
 inline void Plat_SetClipboardText(const char* text) 
 {
-	((void(*)(const char* text))g_nativeFunctions[1582])(text);
+	((void(*)(const char* text))g_engine_nativeFunctions[1582])(text);
 }
 static
 inline const char* Plat_GetClipboardText() 
 {
 	return
-	((const char*(*)())g_nativeFunctions[1583])();
+	((const char*(*)())g_engine_nativeFunctions[1583])();
 }
 static
 inline void Plat_ClearClipboardText() 
 {
-	((void(*)())g_nativeFunctions[1584])();
+	((void(*)())g_engine_nativeFunctions[1584])();
 }
 static
 inline int IsWindowFocused() 
 {
 	return
-	((int(*)())g_nativeFunctions[1585])();
+	((int(*)())g_engine_nativeFunctions[1585])();
 }
 static
 inline int IsRetail() 
 {
 	return
-	((int(*)())g_nativeFunctions[1586])();
+	((int(*)())g_engine_nativeFunctions[1586])();
 }
 static
 inline int HasLaunchParameter(const char* name) 
 {
 	return
-	((int(*)(const char* __name))g_nativeFunctions[1587])(name);
+	((int(*)(const char* __name))g_engine_nativeFunctions[1587])(name);
 }
 static
 inline void Plat_SetNoAssert() 
 {
-	((void(*)())g_nativeFunctions[1588])();
+	((void(*)())g_engine_nativeFunctions[1588])();
 }
 static
 inline const char* GetGameRootFolder() 
 {
 	return
-	((const char*(*)())g_nativeFunctions[1589])();
+	((const char*(*)())g_engine_nativeFunctions[1589])();
 }
 static
 inline const char* GetGameSearchPath() 
 {
 	return
-	((const char*(*)())g_nativeFunctions[1590])();
+	((const char*(*)())g_engine_nativeFunctions[1590])();
 }
 static
 inline int SourceEngineUnitTestInit() 
 {
 	return
-	((int(*)())g_nativeFunctions[1591])();
+	((int(*)())g_engine_nativeFunctions[1591])();
 }
 static
 inline int SourceEnginePreInit(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict) 
 {
 	return
-	((int(*)(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1592])(lpCmdLine, appDict);
+	((int(*)(const char* lpCmdLine, CMaterialSystem2AppSystemDict* appDict))g_engine_nativeFunctions[1592])(lpCmdLine, appDict);
 }
 static
 inline int SourceEngineInit(CMaterialSystem2AppSystemDict* appDict) 
 {
 	return
-	((int(*)(CMaterialSystem2AppSystemDict* appDict))g_nativeFunctions[1593])(appDict);
+	((int(*)(CMaterialSystem2AppSystemDict* appDict))g_engine_nativeFunctions[1593])(appDict);
 }
 static
 inline int SourceEngineFrame(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime) 
 {
 	return
-	((int(*)(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime))g_nativeFunctions[1594])(appDict, currentTime, previousTime);
+	((int(*)(CMaterialSystem2AppSystemDict* appDict, double currentTime, double previousTime))g_engine_nativeFunctions[1594])(appDict, currentTime, previousTime);
 }
 static
 inline void SourceEngineShutdown(CMaterialSystem2AppSystemDict* appDict, int forced) 
 {
-	((void(*)(CMaterialSystem2AppSystemDict* appDict, int forced))g_nativeFunctions[1595])(appDict, forced);
+	((void(*)(CMaterialSystem2AppSystemDict* appDict, int forced))g_engine_nativeFunctions[1595])(appDict, forced);
 }
 static
 inline float GetDiagonalDpi() 
 {
 	return
-	((float(*)())g_nativeFunctions[1596])();
+	((float(*)())g_engine_nativeFunctions[1596])();
 }
 static
 inline int AppIsDedicatedServer() 
 {
 	return
-	((int(*)())g_nativeFunctions[1597])();
+	((int(*)())g_engine_nativeFunctions[1597])();
 }
 static
 inline void ToolsStallMonitor_IndicateActivity() 
 {
-	((void(*)())g_nativeFunctions[1598])();
+	((void(*)())g_engine_nativeFunctions[1598])();
 }
 class globalOVRLipSync
 {
@@ -7377,147 +7359,147 @@ class globalOVRLipSync
 	inline int64 ovrLipSync_Initialize(int sampleRate, int bufferSize) 
 	{
 		return
-		((int64(*)(int sampleRate, int bufferSize))g_nativeFunctions[1599])(sampleRate, bufferSize);
+		((int64(*)(int sampleRate, int bufferSize))g_engine_nativeFunctions[1599])(sampleRate, bufferSize);
 	}
 	static
 	inline int64 ovrLipSync_Shutdown() 
 	{
 		return
-		((int64(*)())g_nativeFunctions[1600])();
+		((int64(*)())g_engine_nativeFunctions[1600])();
 	}
 	static
 	inline int64 ovrLipSync_DestroyContext(unsigned int context) 
 	{
 		return
-		((int64(*)(unsigned int context))g_nativeFunctions[1601])(context);
+		((int64(*)(unsigned int context))g_engine_nativeFunctions[1601])(context);
 	}
 	static
 	inline int64 ovrLipSync_ResetContext(unsigned int context) 
 	{
 		return
-		((int64(*)(unsigned int context))g_nativeFunctions[1602])(context);
+		((int64(*)(unsigned int context))g_engine_nativeFunctions[1602])(context);
 	}
 	static
 	inline int64 ovrLipSync_CreateContext(unsigned int* pContext, int64 provider) 
 	{
 		return
-		((int64(*)(unsigned int* pContext, int64 provider))g_nativeFunctions[1603])(pContext, provider);
+		((int64(*)(unsigned int* pContext, int64 provider))g_engine_nativeFunctions[1603])(pContext, provider);
 	}
 	static
 	inline int64 ovrLipSync_CreateContextEx(unsigned int* pContext, int64 provider, int sampleRate, int enableAcceleration) 
 	{
 		return
-		((int64(*)(unsigned int* pContext, int64 provider, int sampleRate, int enableAcceleration))g_nativeFunctions[1604])(pContext, provider, sampleRate, enableAcceleration);
+		((int64(*)(unsigned int* pContext, int64 provider, int sampleRate, int enableAcceleration))g_engine_nativeFunctions[1604])(pContext, provider, sampleRate, enableAcceleration);
 	}
 	static
 	inline int64 ovrLipSync_SendSignal(unsigned int context, int64 signal, int arg1, int arg2) 
 	{
 		return
-		((int64(*)(unsigned int context, int64 signal, int arg1, int arg2))g_nativeFunctions[1605])(context, signal, arg1, arg2);
+		((int64(*)(unsigned int context, int64 signal, int arg1, int arg2))g_engine_nativeFunctions[1605])(context, signal, arg1, arg2);
 	}
 	static
 	inline int64 ovrLipSync_ProcessFrameEx(unsigned int context, void* audioBuffer, int sampleCount, int64 dataType, ovrLipSyncFrame* frame) 
 	{
 		return
-		((int64(*)(unsigned int context, void* audioBuffer, int sampleCount, int64 dataType, ovrLipSyncFrame* frame))g_nativeFunctions[1606])(context, audioBuffer, sampleCount, dataType, frame);
+		((int64(*)(unsigned int context, void* audioBuffer, int sampleCount, int64 dataType, ovrLipSyncFrame* frame))g_engine_nativeFunctions[1606])(context, audioBuffer, sampleCount, dataType, frame);
 	}
 };
 static
 inline const ISteamHTMLSurface* SteamHTMLSurface() 
 {
 	return
-	((const ISteamHTMLSurface*(*)())g_nativeFunctions[1607])();
+	((const ISteamHTMLSurface*(*)())g_engine_nativeFunctions[1607])();
 }
 static
 inline void SteamAPI_RunCallbacks() 
 {
-	((void(*)())g_nativeFunctions[1608])();
+	((void(*)())g_engine_nativeFunctions[1608])();
 }
 static
 inline void SteamGameServer_RunCallbacks() 
 {
-	((void(*)())g_nativeFunctions[1609])();
+	((void(*)())g_engine_nativeFunctions[1609])();
 }
 static
 inline const ISteamUser* SteamUser() 
 {
 	return
-	((const ISteamUser*(*)())g_nativeFunctions[1610])();
+	((const ISteamUser*(*)())g_engine_nativeFunctions[1610])();
 }
 static
 inline const ISteamFriends* SteamFriends() 
 {
 	return
-	((const ISteamFriends*(*)())g_nativeFunctions[1611])();
+	((const ISteamFriends*(*)())g_engine_nativeFunctions[1611])();
 }
 static
 inline const ISteamNetworkingMessages* SteamNetworkingMessages() 
 {
 	return
-	((const ISteamNetworkingMessages*(*)())g_nativeFunctions[1612])();
+	((const ISteamNetworkingMessages*(*)())g_engine_nativeFunctions[1612])();
 }
 static
 inline const ISteamNetworkingUtils* SteamNetworkingUtils() 
 {
 	return
-	((const ISteamNetworkingUtils*(*)())g_nativeFunctions[1613])();
+	((const ISteamNetworkingUtils*(*)())g_engine_nativeFunctions[1613])();
 }
 static
 inline const ISteamMatchmaking* SteamMatchmaking() 
 {
 	return
-	((const ISteamMatchmaking*(*)())g_nativeFunctions[1614])();
+	((const ISteamMatchmaking*(*)())g_engine_nativeFunctions[1614])();
 }
 static
 inline const ISteamGameServer* SteamGameServer() 
 {
 	return
-	((const ISteamGameServer*(*)())g_nativeFunctions[1615])();
+	((const ISteamGameServer*(*)())g_engine_nativeFunctions[1615])();
 }
 static
 inline const ISteamApps* SteamApps() 
 {
 	return
-	((const ISteamApps*(*)())g_nativeFunctions[1616])();
+	((const ISteamApps*(*)())g_engine_nativeFunctions[1616])();
 }
 static
 inline const ISteamUtils* SteamUtils() 
 {
 	return
-	((const ISteamUtils*(*)())g_nativeFunctions[1617])();
+	((const ISteamUtils*(*)())g_engine_nativeFunctions[1617])();
 }
 static
 inline int SteamGameServer_BSecure() 
 {
 	return
-	((int(*)())g_nativeFunctions[1618])();
+	((int(*)())g_engine_nativeFunctions[1618])();
 }
 static
 inline uint64 SteamGameServer_GetSteamID() 
 {
 	return
-	((uint64(*)())g_nativeFunctions[1619])();
+	((uint64(*)())g_engine_nativeFunctions[1619])();
 }
 static
 inline void SteamGameServer_Shutdown() 
 {
-	((void(*)())g_nativeFunctions[1620])();
+	((void(*)())g_engine_nativeFunctions[1620])();
 }
 static
 inline void SteamGameServer_ReleaseCurrentThreadMemory() 
 {
-	((void(*)())g_nativeFunctions[1621])();
+	((void(*)())g_engine_nativeFunctions[1621])();
 }
 static
 inline const ISteamNetworkingSockets* SteamNetworkingSockets() 
 {
 	return
-	((const ISteamNetworkingSockets*(*)())g_nativeFunctions[1622])();
+	((const ISteamNetworkingSockets*(*)())g_engine_nativeFunctions[1622])();
 }
 static
 inline void SteamGameServer_Init(int gamePort, int queryPort, const char* serverVersion) 
 {
-	((void(*)(int __gamePort, int __queryPort, const char* __serverVersion))g_nativeFunctions[1623])(gamePort, queryPort, serverVersion);
+	((void(*)(int __gamePort, int __queryPort, const char* __serverVersion))g_engine_nativeFunctions[1623])(gamePort, queryPort, serverVersion);
 }
 class globalYoga
 {
@@ -7531,540 +7513,540 @@ class globalYoga
 	inline YGNodeRef YGNodeNew() 
 	{
 		return
-		((YGNodeRef(*)())g_nativeFunctions[1624])();
+		((YGNodeRef(*)())g_engine_nativeFunctions[1624])();
 	}
 	static
 	inline YGNodeRef YGNodeNewWithConfig(YGConfigRef config) 
 	{
 		return
-		((YGNodeRef(*)(YGConfigRef config))g_nativeFunctions[1625])(config);
+		((YGNodeRef(*)(YGConfigRef config))g_engine_nativeFunctions[1625])(config);
 	}
 	static
 	inline void YGNodeFree(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1626])(r);
+		((void(*)(YGNodeRef r))g_engine_nativeFunctions[1626])(r);
 	}
 	static
 	inline void YGNodeReset(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1627])(r);
+		((void(*)(YGNodeRef r))g_engine_nativeFunctions[1627])(r);
 	}
 	static
 	inline void YGNodeCalculateLayout(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction) 
 	{
-		((void(*)(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction))g_nativeFunctions[1628])(r, ownerWidth, ownerHeight, direction);
+		((void(*)(YGNodeRef r, float ownerWidth, float ownerHeight, int64 direction))g_engine_nativeFunctions[1628])(r, ownerWidth, ownerHeight, direction);
 	}
 	static
 	inline int YGNodeGetHasNewLayout(YGNodeRef r) 
 	{
 		return
-		((int(*)(YGNodeRef r))g_nativeFunctions[1629])(r);
+		((int(*)(YGNodeRef r))g_engine_nativeFunctions[1629])(r);
 	}
 	static
 	inline void YGNodeSetHasNewLayout(YGNodeRef r, int b) 
 	{
-		((void(*)(YGNodeRef r, int b))g_nativeFunctions[1630])(r, b);
+		((void(*)(YGNodeRef r, int b))g_engine_nativeFunctions[1630])(r, b);
 	}
 	static
 	inline void YGNodeIsDirty(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1631])(r);
+		((void(*)(YGNodeRef r))g_engine_nativeFunctions[1631])(r);
 	}
 	static
 	inline void YGNodeMarkDirty(YGNodeRef r) 
 	{
-		((void(*)(YGNodeRef r))g_nativeFunctions[1632])(r);
+		((void(*)(YGNodeRef r))g_engine_nativeFunctions[1632])(r);
 	}
 	static
 	inline void YGNodeInsertChild(YGNodeRef owner, YGNodeRef child, int index) 
 	{
-		((void(*)(YGNodeRef owner, YGNodeRef child, int index))g_nativeFunctions[1633])(owner, child, index);
+		((void(*)(YGNodeRef owner, YGNodeRef child, int index))g_engine_nativeFunctions[1633])(owner, child, index);
 	}
 	static
 	inline void YGNodeRemoveChild(YGNodeRef owner, YGNodeRef child) 
 	{
-		((void(*)(YGNodeRef owner, YGNodeRef child))g_nativeFunctions[1634])(owner, child);
+		((void(*)(YGNodeRef owner, YGNodeRef child))g_engine_nativeFunctions[1634])(owner, child);
 	}
 	static
 	inline void YGNodeRemoveAllChildren(YGNodeRef owner) 
 	{
-		((void(*)(YGNodeRef owner))g_nativeFunctions[1635])(owner);
+		((void(*)(YGNodeRef owner))g_engine_nativeFunctions[1635])(owner);
 	}
 	static
 	inline uint64 YGNodeGetChildCount(YGNodeRef owner) 
 	{
 		return
-		((uint64(*)(YGNodeRef owner))g_nativeFunctions[1636])(owner);
+		((uint64(*)(YGNodeRef owner))g_engine_nativeFunctions[1636])(owner);
 	}
 	static
 	inline YGNodeRef YGNodeGetParent(YGNodeRef owner) 
 	{
 		return
-		((YGNodeRef(*)(YGNodeRef owner))g_nativeFunctions[1637])(owner);
+		((YGNodeRef(*)(YGNodeRef owner))g_engine_nativeFunctions[1637])(owner);
 	}
 	static
 	inline void YGNodeSetConfig(YGNodeRef r, YGConfigRef congig) 
 	{
-		((void(*)(YGNodeRef r, YGConfigRef congig))g_nativeFunctions[1638])(r, congig);
+		((void(*)(YGNodeRef r, YGConfigRef congig))g_engine_nativeFunctions[1638])(r, congig);
 	}
 	static
 	inline float YGNodeLayoutGetLeft(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1639])(r);
+		((float(*)(YGNodeRef r))g_engine_nativeFunctions[1639])(r);
 	}
 	static
 	inline float YGNodeLayoutGetTop(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1640])(r);
+		((float(*)(YGNodeRef r))g_engine_nativeFunctions[1640])(r);
 	}
 	static
 	inline float YGNodeLayoutGetRight(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1641])(r);
+		((float(*)(YGNodeRef r))g_engine_nativeFunctions[1641])(r);
 	}
 	static
 	inline float YGNodeLayoutGetBottom(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1642])(r);
+		((float(*)(YGNodeRef r))g_engine_nativeFunctions[1642])(r);
 	}
 	static
 	inline float YGNodeLayoutGetWidth(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1643])(r);
+		((float(*)(YGNodeRef r))g_engine_nativeFunctions[1643])(r);
 	}
 	static
 	inline float YGNodeLayoutGetHeight(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1644])(r);
+		((float(*)(YGNodeRef r))g_engine_nativeFunctions[1644])(r);
 	}
 	static
 	inline int64 YGNodeLayoutGetDirection(YGNodeRef r) 
 	{
 		return
-		((int64(*)(YGNodeRef r))g_nativeFunctions[1645])(r);
+		((int64(*)(YGNodeRef r))g_engine_nativeFunctions[1645])(r);
 	}
 	static
 	inline float YGNodeLayoutGetHadOverflow(YGNodeRef r) 
 	{
 		return
-		((float(*)(YGNodeRef r))g_nativeFunctions[1646])(r);
+		((float(*)(YGNodeRef r))g_engine_nativeFunctions[1646])(r);
 	}
 	static
 	inline float YGNodeLayoutGetMargin(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1647])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1647])(node, edge);
 	}
 	static
 	inline float YGNodeLayoutGetBorder(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1648])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1648])(node, edge);
 	}
 	static
 	inline float YGNodeLayoutGetPadding(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1649])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1649])(node, edge);
 	}
 	static
 	inline YGConfigRef YGConfigNew() 
 	{
 		return
-		((YGConfigRef(*)())g_nativeFunctions[1650])();
+		((YGConfigRef(*)())g_engine_nativeFunctions[1650])();
 	}
 	static
 	inline void YGConfigFree(YGConfigRef c) 
 	{
-		((void(*)(YGConfigRef c))g_nativeFunctions[1651])(c);
+		((void(*)(YGConfigRef c))g_engine_nativeFunctions[1651])(c);
 	}
 	static
 	inline void YGConfigSetUseWebDefaults(YGConfigRef config, int enabled) 
 	{
-		((void(*)(YGConfigRef config, int enabled))g_nativeFunctions[1652])(config, enabled);
+		((void(*)(YGConfigRef config, int enabled))g_engine_nativeFunctions[1652])(config, enabled);
 	}
 	static
 	inline void YGConfigSetPointScaleFactor(YGConfigRef config, float pixelsInPoint) 
 	{
-		((void(*)(YGConfigRef config, float pixelsInPoint))g_nativeFunctions[1653])(config, pixelsInPoint);
+		((void(*)(YGConfigRef config, float pixelsInPoint))g_engine_nativeFunctions[1653])(config, pixelsInPoint);
 	}
 	static
 	inline void YGNodeCopyStyle(YGNodeRef dstNode, YGNodeRef srcNode) 
 	{
-		((void(*)(YGNodeRef dstNode, YGNodeRef srcNode))g_nativeFunctions[1654])(dstNode, srcNode);
+		((void(*)(YGNodeRef dstNode, YGNodeRef srcNode))g_engine_nativeFunctions[1654])(dstNode, srcNode);
 	}
 	static
 	inline void YGNodeStyleSetDirection(YGNodeRef node, int64 direction) 
 	{
-		((void(*)(YGNodeRef node, int64 direction))g_nativeFunctions[1655])(node, direction);
+		((void(*)(YGNodeRef node, int64 direction))g_engine_nativeFunctions[1655])(node, direction);
 	}
 	static
 	inline int64 YGNodeStyleGetDirection(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1656])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1656])(node);
 	}
 	static
 	inline void YGNodeStyleSetFlexDirection(YGNodeRef node, int64 flexDirection) 
 	{
-		((void(*)(YGNodeRef node, int64 flexDirection))g_nativeFunctions[1657])(node, flexDirection);
+		((void(*)(YGNodeRef node, int64 flexDirection))g_engine_nativeFunctions[1657])(node, flexDirection);
 	}
 	static
 	inline int64 YGNodeStyleGetFlexDirection(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1658])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1658])(node);
 	}
 	static
 	inline void YGNodeStyleSetJustifyContent(YGNodeRef node, int64 justifyContent) 
 	{
-		((void(*)(YGNodeRef node, int64 justifyContent))g_nativeFunctions[1659])(node, justifyContent);
+		((void(*)(YGNodeRef node, int64 justifyContent))g_engine_nativeFunctions[1659])(node, justifyContent);
 	}
 	static
 	inline int64 YGNodeStyleGetJustifyContent(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1660])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1660])(node);
 	}
 	static
 	inline void YGNodeStyleSetAlignContent(YGNodeRef node, int64 alignContent) 
 	{
-		((void(*)(YGNodeRef node, int64 alignContent))g_nativeFunctions[1661])(node, alignContent);
+		((void(*)(YGNodeRef node, int64 alignContent))g_engine_nativeFunctions[1661])(node, alignContent);
 	}
 	static
 	inline int64 YGNodeStyleGetAlignContent(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1662])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1662])(node);
 	}
 	static
 	inline void YGNodeStyleSetAlignItems(YGNodeRef node, int64 alignItems) 
 	{
-		((void(*)(YGNodeRef node, int64 alignItems))g_nativeFunctions[1663])(node, alignItems);
+		((void(*)(YGNodeRef node, int64 alignItems))g_engine_nativeFunctions[1663])(node, alignItems);
 	}
 	static
 	inline int64 YGNodeStyleGetAlignItems(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1664])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1664])(node);
 	}
 	static
 	inline void YGNodeStyleSetAlignSelf(YGNodeRef node, int64 alignSelf) 
 	{
-		((void(*)(YGNodeRef node, int64 alignSelf))g_nativeFunctions[1665])(node, alignSelf);
+		((void(*)(YGNodeRef node, int64 alignSelf))g_engine_nativeFunctions[1665])(node, alignSelf);
 	}
 	static
 	inline int64 YGNodeStyleGetAlignSelf(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1666])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1666])(node);
 	}
 	static
 	inline void YGNodeStyleSetPositionType(YGNodeRef node, int64 positionType) 
 	{
-		((void(*)(YGNodeRef node, int64 positionType))g_nativeFunctions[1667])(node, positionType);
+		((void(*)(YGNodeRef node, int64 positionType))g_engine_nativeFunctions[1667])(node, positionType);
 	}
 	static
 	inline int64 YGNodeStyleGetPositionType(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1668])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1668])(node);
 	}
 	static
 	inline void YGNodeStyleSetFlexWrap(YGNodeRef node, int64 flexWrap) 
 	{
-		((void(*)(YGNodeRef node, int64 flexWrap))g_nativeFunctions[1669])(node, flexWrap);
+		((void(*)(YGNodeRef node, int64 flexWrap))g_engine_nativeFunctions[1669])(node, flexWrap);
 	}
 	static
 	inline int64 YGNodeStyleGetFlexWrap(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1670])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1670])(node);
 	}
 	static
 	inline void YGNodeStyleSetOverflow(YGNodeRef node, int64 overflow) 
 	{
-		((void(*)(YGNodeRef node, int64 overflow))g_nativeFunctions[1671])(node, overflow);
+		((void(*)(YGNodeRef node, int64 overflow))g_engine_nativeFunctions[1671])(node, overflow);
 	}
 	static
 	inline int64 YGNodeStyleGetOverflow(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1672])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1672])(node);
 	}
 	static
 	inline void YGNodeStyleSetDisplay(YGNodeRef node, int64 display) 
 	{
-		((void(*)(YGNodeRef node, int64 display))g_nativeFunctions[1673])(node, display);
+		((void(*)(YGNodeRef node, int64 display))g_engine_nativeFunctions[1673])(node, display);
 	}
 	static
 	inline int64 YGNodeStyleGetDisplay(YGNodeRef node) 
 	{
 		return
-		((int64(*)(YGNodeRef node))g_nativeFunctions[1674])(node);
+		((int64(*)(YGNodeRef node))g_engine_nativeFunctions[1674])(node);
 	}
 	static
 	inline void YGNodeStyleSetFlex(YGNodeRef node, float flex) 
 	{
-		((void(*)(YGNodeRef node, float flex))g_nativeFunctions[1675])(node, flex);
+		((void(*)(YGNodeRef node, float flex))g_engine_nativeFunctions[1675])(node, flex);
 	}
 	static
 	inline float YGNodeStyleGetFlex(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1676])(node);
+		((float(*)(YGNodeRef node))g_engine_nativeFunctions[1676])(node);
 	}
 	static
 	inline void YGNodeStyleSetFlexGrow(YGNodeRef node, float flexGrow) 
 	{
-		((void(*)(YGNodeRef node, float flexGrow))g_nativeFunctions[1677])(node, flexGrow);
+		((void(*)(YGNodeRef node, float flexGrow))g_engine_nativeFunctions[1677])(node, flexGrow);
 	}
 	static
 	inline float YGNodeStyleGetFlexGrow(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1678])(node);
+		((float(*)(YGNodeRef node))g_engine_nativeFunctions[1678])(node);
 	}
 	static
 	inline void YGNodeStyleSetFlexShrink(YGNodeRef node, float flexShrink) 
 	{
-		((void(*)(YGNodeRef node, float flexShrink))g_nativeFunctions[1679])(node, flexShrink);
+		((void(*)(YGNodeRef node, float flexShrink))g_engine_nativeFunctions[1679])(node, flexShrink);
 	}
 	static
 	inline float YGNodeStyleGetFlexShrink(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1680])(node);
+		((float(*)(YGNodeRef node))g_engine_nativeFunctions[1680])(node);
 	}
 	static
 	inline void YGNodeStyleSetFlexBasis(YGNodeRef node, float flexBasis) 
 	{
-		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1681])(node, flexBasis);
+		((void(*)(YGNodeRef node, float flexBasis))g_engine_nativeFunctions[1681])(node, flexBasis);
 	}
 	static
 	inline void YGNodeStyleSetFlexBasisPercent(YGNodeRef node, float flexBasis) 
 	{
-		((void(*)(YGNodeRef node, float flexBasis))g_nativeFunctions[1682])(node, flexBasis);
+		((void(*)(YGNodeRef node, float flexBasis))g_engine_nativeFunctions[1682])(node, flexBasis);
 	}
 	static
 	inline void YGNodeStyleSetFlexBasisAuto(YGNodeRef node) 
 	{
-		((void(*)(YGNodeRef node))g_nativeFunctions[1683])(node);
+		((void(*)(YGNodeRef node))g_engine_nativeFunctions[1683])(node);
 	}
 	static
 	inline YGValue YGNodeStyleGetFlexBasis(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1684])(node);
+		((YGValue(*)(YGNodeRef node))g_engine_nativeFunctions[1684])(node);
 	}
 	static
 	inline void YGNodeStyleSetPosition(YGNodeRef node, int64 edge, float position) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1685])(node, edge, position);
+		((void(*)(YGNodeRef node, int64 edge, float position))g_engine_nativeFunctions[1685])(node, edge, position);
 	}
 	static
 	inline void YGNodeStyleSetPositionPercent(YGNodeRef node, int64 edge, float position) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float position))g_nativeFunctions[1686])(node, edge, position);
+		((void(*)(YGNodeRef node, int64 edge, float position))g_engine_nativeFunctions[1686])(node, edge, position);
 	}
 	static
 	inline YGValue YGNodeStyleGetPosition(YGNodeRef node, int64 edge) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1687])(node, edge);
+		((YGValue(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1687])(node, edge);
 	}
 	static
 	inline void YGNodeStyleSetMargin(YGNodeRef node, int64 edge, float margin) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1688])(node, edge, margin);
+		((void(*)(YGNodeRef node, int64 edge, float margin))g_engine_nativeFunctions[1688])(node, edge, margin);
 	}
 	static
 	inline void YGNodeStyleSetMarginPercent(YGNodeRef node, int64 edge, float margin) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float margin))g_nativeFunctions[1689])(node, edge, margin);
+		((void(*)(YGNodeRef node, int64 edge, float margin))g_engine_nativeFunctions[1689])(node, edge, margin);
 	}
 	static
 	inline void YGNodeStyleSetMarginAuto(YGNodeRef node, int64 edge) 
 	{
-		((void(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1690])(node, edge);
+		((void(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1690])(node, edge);
 	}
 	static
 	inline YGValue YGNodeStyleGetMargin(YGNodeRef node, int64 edge) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1691])(node, edge);
+		((YGValue(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1691])(node, edge);
 	}
 	static
 	inline void YGNodeStyleSetPadding(YGNodeRef node, int64 edge, float padding) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1692])(node, edge, padding);
+		((void(*)(YGNodeRef node, int64 edge, float padding))g_engine_nativeFunctions[1692])(node, edge, padding);
 	}
 	static
 	inline void YGNodeStyleSetPaddingPercent(YGNodeRef node, int64 edge, float padding) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float padding))g_nativeFunctions[1693])(node, edge, padding);
+		((void(*)(YGNodeRef node, int64 edge, float padding))g_engine_nativeFunctions[1693])(node, edge, padding);
 	}
 	static
 	inline YGValue YGNodeStyleGetPadding(YGNodeRef node, int64 edge) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1694])(node, edge);
+		((YGValue(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1694])(node, edge);
 	}
 	static
 	inline void YGNodeStyleSetBorder(YGNodeRef node, int64 edge, float border) 
 	{
-		((void(*)(YGNodeRef node, int64 edge, float border))g_nativeFunctions[1695])(node, edge, border);
+		((void(*)(YGNodeRef node, int64 edge, float border))g_engine_nativeFunctions[1695])(node, edge, border);
 	}
 	static
 	inline float YGNodeStyleGetBorder(YGNodeRef node, int64 edge) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 edge))g_nativeFunctions[1696])(node, edge);
+		((float(*)(YGNodeRef node, int64 edge))g_engine_nativeFunctions[1696])(node, edge);
 	}
 	static
 	inline void YGNodeStyleSetGap(YGNodeRef node, int64 gutter, float gapLength) 
 	{
-		((void(*)(YGNodeRef node, int64 gutter, float gapLength))g_nativeFunctions[1697])(node, gutter, gapLength);
+		((void(*)(YGNodeRef node, int64 gutter, float gapLength))g_engine_nativeFunctions[1697])(node, gutter, gapLength);
 	}
 	static
 	inline float YGNodeStyleGetGap(YGNodeRef node, int64 gutter) 
 	{
 		return
-		((float(*)(YGNodeRef node, int64 gutter))g_nativeFunctions[1698])(node, gutter);
+		((float(*)(YGNodeRef node, int64 gutter))g_engine_nativeFunctions[1698])(node, gutter);
 	}
 	static
 	inline void YGNodeStyleSetWidth(YGNodeRef node, float width) 
 	{
-		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1699])(node, width);
+		((void(*)(YGNodeRef node, float width))g_engine_nativeFunctions[1699])(node, width);
 	}
 	static
 	inline void YGNodeStyleSetWidthPercent(YGNodeRef node, float width) 
 	{
-		((void(*)(YGNodeRef node, float width))g_nativeFunctions[1700])(node, width);
+		((void(*)(YGNodeRef node, float width))g_engine_nativeFunctions[1700])(node, width);
 	}
 	static
 	inline void YGNodeStyleSetWidthAuto(YGNodeRef node) 
 	{
-		((void(*)(YGNodeRef node))g_nativeFunctions[1701])(node);
+		((void(*)(YGNodeRef node))g_engine_nativeFunctions[1701])(node);
 	}
 	static
 	inline YGValue YGNodeStyleGetWidth(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1702])(node);
+		((YGValue(*)(YGNodeRef node))g_engine_nativeFunctions[1702])(node);
 	}
 	static
 	inline void YGNodeStyleSetHeight(YGNodeRef node, float height) 
 	{
-		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1703])(node, height);
+		((void(*)(YGNodeRef node, float height))g_engine_nativeFunctions[1703])(node, height);
 	}
 	static
 	inline void YGNodeStyleSetHeightPercent(YGNodeRef node, float height) 
 	{
-		((void(*)(YGNodeRef node, float height))g_nativeFunctions[1704])(node, height);
+		((void(*)(YGNodeRef node, float height))g_engine_nativeFunctions[1704])(node, height);
 	}
 	static
 	inline void YGNodeStyleSetHeightAuto(YGNodeRef node) 
 	{
-		((void(*)(YGNodeRef node))g_nativeFunctions[1705])(node);
+		((void(*)(YGNodeRef node))g_engine_nativeFunctions[1705])(node);
 	}
 	static
 	inline YGValue YGNodeStyleGetHeight(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1706])(node);
+		((YGValue(*)(YGNodeRef node))g_engine_nativeFunctions[1706])(node);
 	}
 	static
 	inline void YGNodeStyleSetMinWidth(YGNodeRef node, float minWidth) 
 	{
-		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1707])(node, minWidth);
+		((void(*)(YGNodeRef node, float minWidth))g_engine_nativeFunctions[1707])(node, minWidth);
 	}
 	static
 	inline void YGNodeStyleSetMinWidthPercent(YGNodeRef node, float minWidth) 
 	{
-		((void(*)(YGNodeRef node, float minWidth))g_nativeFunctions[1708])(node, minWidth);
+		((void(*)(YGNodeRef node, float minWidth))g_engine_nativeFunctions[1708])(node, minWidth);
 	}
 	static
 	inline YGValue YGNodeStyleGetMinWidth(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1709])(node);
+		((YGValue(*)(YGNodeRef node))g_engine_nativeFunctions[1709])(node);
 	}
 	static
 	inline void YGNodeStyleSetMinHeight(YGNodeRef node, float minHeight) 
 	{
-		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1710])(node, minHeight);
+		((void(*)(YGNodeRef node, float minHeight))g_engine_nativeFunctions[1710])(node, minHeight);
 	}
 	static
 	inline void YGNodeStyleSetMinHeightPercent(YGNodeRef node, float minHeight) 
 	{
-		((void(*)(YGNodeRef node, float minHeight))g_nativeFunctions[1711])(node, minHeight);
+		((void(*)(YGNodeRef node, float minHeight))g_engine_nativeFunctions[1711])(node, minHeight);
 	}
 	static
 	inline YGValue YGNodeStyleGetMinHeight(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1712])(node);
+		((YGValue(*)(YGNodeRef node))g_engine_nativeFunctions[1712])(node);
 	}
 	static
 	inline void YGNodeStyleSetMaxWidth(YGNodeRef node, float maxWidth) 
 	{
-		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1713])(node, maxWidth);
+		((void(*)(YGNodeRef node, float maxWidth))g_engine_nativeFunctions[1713])(node, maxWidth);
 	}
 	static
 	inline void YGNodeStyleSetMaxWidthPercent(YGNodeRef node, float maxWidth) 
 	{
-		((void(*)(YGNodeRef node, float maxWidth))g_nativeFunctions[1714])(node, maxWidth);
+		((void(*)(YGNodeRef node, float maxWidth))g_engine_nativeFunctions[1714])(node, maxWidth);
 	}
 	static
 	inline YGValue YGNodeStyleGetMaxWidth(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1715])(node);
+		((YGValue(*)(YGNodeRef node))g_engine_nativeFunctions[1715])(node);
 	}
 	static
 	inline void YGNodeStyleSetMaxHeight(YGNodeRef node, float maxHeight) 
 	{
-		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1716])(node, maxHeight);
+		((void(*)(YGNodeRef node, float maxHeight))g_engine_nativeFunctions[1716])(node, maxHeight);
 	}
 	static
 	inline void YGNodeStyleSetMaxHeightPercent(YGNodeRef node, float maxHeight) 
 	{
-		((void(*)(YGNodeRef node, float maxHeight))g_nativeFunctions[1717])(node, maxHeight);
+		((void(*)(YGNodeRef node, float maxHeight))g_engine_nativeFunctions[1717])(node, maxHeight);
 	}
 	static
 	inline YGValue YGNodeStyleGetMaxHeight(YGNodeRef node) 
 	{
 		return
-		((YGValue(*)(YGNodeRef node))g_nativeFunctions[1718])(node);
+		((YGValue(*)(YGNodeRef node))g_engine_nativeFunctions[1718])(node);
 	}
 	static
 	inline void YGNodeStyleSetAspectRatio(YGNodeRef node, float aspectRatio) 
 	{
-		((void(*)(YGNodeRef node, float aspectRatio))g_nativeFunctions[1719])(node, aspectRatio);
+		((void(*)(YGNodeRef node, float aspectRatio))g_engine_nativeFunctions[1719])(node, aspectRatio);
 	}
 	static
 	inline float YGNodeStyleGetAspectRatio(YGNodeRef node) 
 	{
 		return
-		((float(*)(YGNodeRef node))g_nativeFunctions[1720])(node);
+		((float(*)(YGNodeRef node))g_engine_nativeFunctions[1720])(node);
 	}
 	static
 	inline void YGNodeSetMeasureFunc(YGNodeRef node, YGMeasureFunc measureFunc) 
 	{
-		((void(*)(YGNodeRef node, YGMeasureFunc measureFunc))g_nativeFunctions[1721])(node, measureFunc);
+		((void(*)(YGNodeRef node, YGMeasureFunc measureFunc))g_engine_nativeFunctions[1721])(node, measureFunc);
 	}
 	static
 	inline int YGNodeHasMeasureFunc(YGNodeRef node) 
 	{
 		return
-		((int(*)(YGNodeRef node))g_nativeFunctions[1722])(node);
+		((int(*)(YGNodeRef node))g_engine_nativeFunctions[1722])(node);
 	}
 };
 class Glue::Networking
@@ -8078,137 +8060,137 @@ class Glue::Networking
 	static
 	inline void RunCallbacks() 
 	{
-		((void(*)())g_nativeFunctions[1723])();
+		((void(*)())g_engine_nativeFunctions[1723])();
 	}
 	static
 	inline void SetDebugFunction(int level, void* func) 
 	{
-		((void(*)(int level, void* func))g_nativeFunctions[1724])(level, func);
+		((void(*)(int level, void* func))g_engine_nativeFunctions[1724])(level, func);
 	}
 	static
 	inline int64 GetAuthenticationStatus(void* debugMsg) 
 	{
 		return
-		((int64(*)(void* debugMsg))g_nativeFunctions[1725])(debugMsg);
+		((int64(*)(void* debugMsg))g_engine_nativeFunctions[1725])(debugMsg);
 	}
 	static
 	inline int64 GetRelayNetworkStatus(void* debugMsg) 
 	{
 		return
-		((int64(*)(void* debugMsg))g_nativeFunctions[1726])(debugMsg);
+		((int64(*)(void* debugMsg))g_engine_nativeFunctions[1726])(debugMsg);
 	}
 	static
 	inline HSteamListenSocket CreateSocket(int virtualPort) 
 	{
 		return
-		((HSteamListenSocket(*)(int virtualPort))g_nativeFunctions[1727])(virtualPort);
+		((HSteamListenSocket(*)(int virtualPort))g_engine_nativeFunctions[1727])(virtualPort);
 	}
 	static
 	inline HSteamListenSocket CreateIpBasedSocket(int useFakeIP) 
 	{
 		return
-		((HSteamListenSocket(*)(int useFakeIP))g_nativeFunctions[1728])(useFakeIP);
+		((HSteamListenSocket(*)(int useFakeIP))g_engine_nativeFunctions[1728])(useFakeIP);
 	}
 	static
 	inline void CloseSocket(HSteamListenSocket socket) 
 	{
-		((void(*)(HSteamListenSocket socket))g_nativeFunctions[1729])(socket);
+		((void(*)(HSteamListenSocket socket))g_engine_nativeFunctions[1729])(socket);
 	}
 	static
 	inline const char* GetSocketAddress(HSteamListenSocket socket) 
 	{
 		return
-		((const char*(*)(HSteamListenSocket socket))g_nativeFunctions[1730])(socket);
+		((const char*(*)(HSteamListenSocket socket))g_engine_nativeFunctions[1730])(socket);
 	}
 	static
 	inline void BeginAsyncRequestFakeIP() 
 	{
-		((void(*)())g_nativeFunctions[1731])();
+		((void(*)())g_engine_nativeFunctions[1731])();
 	}
 	static
 	inline const char* GetIdentity() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[1732])();
+		((const char*(*)())g_engine_nativeFunctions[1732])();
 	}
 	static
 	inline HSteamNetPollGroup CreatePollGroup() 
 	{
 		return
-		((HSteamNetPollGroup(*)())g_nativeFunctions[1733])();
+		((HSteamNetPollGroup(*)())g_engine_nativeFunctions[1733])();
 	}
 	static
 	inline void DestroyPollGroup(HSteamNetPollGroup group) 
 	{
-		((void(*)(HSteamNetPollGroup group))g_nativeFunctions[1734])(group);
+		((void(*)(HSteamNetPollGroup group))g_engine_nativeFunctions[1734])(group);
 	}
 	static
 	inline void SetPollGroup(HSteamNetConnection connection, HSteamNetPollGroup group) 
 	{
-		((void(*)(HSteamNetConnection connection, HSteamNetPollGroup group))g_nativeFunctions[1735])(connection, group);
+		((void(*)(HSteamNetConnection connection, HSteamNetPollGroup group))g_engine_nativeFunctions[1735])(connection, group);
 	}
 	static
 	inline int GetPollGroupMessages(HSteamNetPollGroup group, void* array_of_pointers, int maxmessages) 
 	{
 		return
-		((int(*)(HSteamNetPollGroup group, void* array_of_pointers, int maxmessages))g_nativeFunctions[1736])(group, array_of_pointers, maxmessages);
+		((int(*)(HSteamNetPollGroup group, void* array_of_pointers, int maxmessages))g_engine_nativeFunctions[1736])(group, array_of_pointers, maxmessages);
 	}
 	static
 	inline HSteamNetConnection ConnectToSteamId(uint64 steamid, int virtualPort) 
 	{
 		return
-		((HSteamNetConnection(*)(uint64 steamid, int virtualPort))g_nativeFunctions[1737])(steamid, virtualPort);
+		((HSteamNetConnection(*)(uint64 steamid, int virtualPort))g_engine_nativeFunctions[1737])(steamid, virtualPort);
 	}
 	static
 	inline HSteamNetConnection ConnectToIpAddress(const char* address) 
 	{
 		return
-		((HSteamNetConnection(*)(const char* address))g_nativeFunctions[1738])(address);
+		((HSteamNetConnection(*)(const char* address))g_engine_nativeFunctions[1738])(address);
 	}
 	static
 	inline void CloseConnection(HSteamNetConnection c, int reason, const char* debugReason) 
 	{
-		((void(*)(HSteamNetConnection c, int reason, const char* debugReason))g_nativeFunctions[1739])(c, reason, debugReason);
+		((void(*)(HSteamNetConnection c, int reason, const char* debugReason))g_engine_nativeFunctions[1739])(c, reason, debugReason);
 	}
 	static
 	inline void AcceptConnection(HSteamNetConnection c) 
 	{
-		((void(*)(HSteamNetConnection c))g_nativeFunctions[1740])(c);
+		((void(*)(HSteamNetConnection c))g_engine_nativeFunctions[1740])(c);
 	}
 	static
 	inline void FlushMessagesOnConnection(HSteamNetConnection c) 
 	{
-		((void(*)(HSteamNetConnection c))g_nativeFunctions[1741])(c);
+		((void(*)(HSteamNetConnection c))g_engine_nativeFunctions[1741])(c);
 	}
 	static
 	inline int64 SendMessage(HSteamNetConnection c, void* data, int length, int flags) 
 	{
 		return
-		((int64(*)(HSteamNetConnection c, void* data, int length, int flags))g_nativeFunctions[1742])(c, data, length, flags);
+		((int64(*)(HSteamNetConnection c, void* data, int length, int flags))g_engine_nativeFunctions[1742])(c, data, length, flags);
 	}
 	static
 	inline int GetConnectionMessages(HSteamNetConnection c, void* array_of_pointers, int maxmessages) 
 	{
 		return
-		((int(*)(HSteamNetConnection c, void* array_of_pointers, int maxmessages))g_nativeFunctions[1743])(c, array_of_pointers, maxmessages);
+		((int(*)(HSteamNetConnection c, void* array_of_pointers, int maxmessages))g_engine_nativeFunctions[1743])(c, array_of_pointers, maxmessages);
 	}
 	static
 	inline int GetConnectionState(HSteamNetConnection c) 
 	{
 		return
-		((int(*)(HSteamNetConnection c))g_nativeFunctions[1744])(c);
+		((int(*)(HSteamNetConnection c))g_engine_nativeFunctions[1744])(c);
 	}
 	static
 	inline const char* GetConnectionDescription(HSteamNetConnection c) 
 	{
 		return
-		((const char*(*)(HSteamNetConnection c))g_nativeFunctions[1745])(c);
+		((const char*(*)(HSteamNetConnection c))g_engine_nativeFunctions[1745])(c);
 	}
 	static
 	inline uint64 GetConnectionSteamId(HSteamNetConnection c) 
 	{
 		return
-		((uint64(*)(HSteamNetConnection c))g_nativeFunctions[1746])(c);
+		((uint64(*)(HSteamNetConnection c))g_engine_nativeFunctions[1746])(c);
 	}
 };
 class Glue::RenderDeviceManager
@@ -8222,23 +8204,23 @@ class Glue::RenderDeviceManager
 	static
 	inline void WriteVideoConfig() 
 	{
-		((void(*)())g_nativeFunctions[1747])();
+		((void(*)())g_engine_nativeFunctions[1747])();
 	}
 	static
 	inline void ResetVideoConfig() 
 	{
-		((void(*)())g_nativeFunctions[1748])();
+		((void(*)())g_engine_nativeFunctions[1748])();
 	}
 	static
 	inline void ChangeVideoMode(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample) 
 	{
-		((void(*)(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample))g_nativeFunctions[1749])(fullscreen, noborder, vsync, width, height, multisample);
+		((void(*)(int fullscreen, int noborder, int vsync, int width, int height, int64 multisample))g_engine_nativeFunctions[1749])(fullscreen, noborder, vsync, width, height, multisample);
 	}
 	static
 	inline int GetDisplayModes(DisplayMode_t* modes, int max, int windowed) 
 	{
 		return
-		((int(*)(DisplayMode_t* modes, int max, int windowed))g_nativeFunctions[1750])(modes, max, windowed);
+		((int(*)(DisplayMode_t* modes, int max, int windowed))g_engine_nativeFunctions[1750])(modes, max, windowed);
 	}
 };
 class Glue::Resources
@@ -8253,31 +8235,31 @@ class Glue::Resources
 	inline HMaterialStrong* GetMaterial(const char* name) 
 	{
 		return
-		((HMaterialStrong*(*)(const char* name))g_nativeFunctions[1751])(name);
+		((HMaterialStrong*(*)(const char* name))g_engine_nativeFunctions[1751])(name);
 	}
 	static
 	inline HRenderTextureStrong* GetTexture(const char* name) 
 	{
 		return
-		((HRenderTextureStrong*(*)(const char* name))g_nativeFunctions[1752])(name);
+		((HRenderTextureStrong*(*)(const char* name))g_engine_nativeFunctions[1752])(name);
 	}
 	static
 	inline HModelStrong* GetModel(const char* name) 
 	{
 		return
-		((HModelStrong*(*)(const char* name))g_nativeFunctions[1753])(name);
+		((HModelStrong*(*)(const char* name))g_engine_nativeFunctions[1753])(name);
 	}
 	static
 	inline HAnimationGraphStrong* GetAnimationGraph(const char* name) 
 	{
 		return
-		((HAnimationGraphStrong*(*)(const char* name))g_nativeFunctions[1754])(name);
+		((HAnimationGraphStrong*(*)(const char* name))g_engine_nativeFunctions[1754])(name);
 	}
 	static
 	inline HShaderStrong* GetShader(const char* name) 
 	{
 		return
-		((HShaderStrong*(*)(const char* name))g_nativeFunctions[1755])(name);
+		((HShaderStrong*(*)(const char* name))g_engine_nativeFunctions[1755])(name);
 	}
 };
 class HResourceManifest__
@@ -8299,42 +8281,42 @@ class IAnimationGraph
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1756])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1756])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1757])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1757])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1758])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1758])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1759])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1759])(m_pSelf);
 	}
 	inline HAnimationGraphStrong* CopyStrongHandle() 
 	{
 		return
-		((HAnimationGraphStrong*(*)(void* self))g_nativeFunctions[1760])(m_pSelf);
+		((HAnimationGraphStrong*(*)(void* self))g_engine_nativeFunctions[1760])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1761])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[1761])(m_pSelf);
 	}
 	inline const char* GetResourceName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1762])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[1762])(m_pSelf);
 	}
 	inline const IAnimParameterList* GetParameterList() 
 	{
 		return
-		((const IAnimParameterList*(*)(void* self))g_nativeFunctions[1763])(m_pSelf);
+		((const IAnimParameterList*(*)(void* self))g_engine_nativeFunctions[1763])(m_pSelf);
 	}
 };
 class IAnimParameter
@@ -8348,37 +8330,37 @@ class IAnimParameter
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1764])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[1764])(m_pSelf);
 	}
 	inline int64 GetParameterType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1765])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1765])(m_pSelf);
 	}
 	inline CAnimVariant GetDefaultValue() 
 	{
 		return
-		((CAnimVariant(*)(void* self))g_nativeFunctions[1766])(m_pSelf);
+		((CAnimVariant(*)(void* self))g_engine_nativeFunctions[1766])(m_pSelf);
 	}
 	inline CAnimVariant GetMinValue() 
 	{
 		return
-		((CAnimVariant(*)(void* self))g_nativeFunctions[1767])(m_pSelf);
+		((CAnimVariant(*)(void* self))g_engine_nativeFunctions[1767])(m_pSelf);
 	}
 	inline CAnimVariant GetMaxValue() 
 	{
 		return
-		((CAnimVariant(*)(void* self))g_nativeFunctions[1768])(m_pSelf);
+		((CAnimVariant(*)(void* self))g_engine_nativeFunctions[1768])(m_pSelf);
 	}
 	inline int GetNumOptionNames() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1769])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[1769])(m_pSelf);
 	}
 	inline const char* GetOptionName(int nIndex) 
 	{
 		return
-		((const char*(*)(void* __self, int __nIndex))g_nativeFunctions[1770])(m_pSelf, nIndex);
+		((const char*(*)(void* __self, int __nIndex))g_engine_nativeFunctions[1770])(m_pSelf, nIndex);
 	}
 };
 class IAnimParameterInstance
@@ -8391,38 +8373,38 @@ class IAnimParameterInstance
 	}
 	inline void SetValue(int val) 
 	{
-		((void(*)(void* self, int val))g_nativeFunctions[1771])(m_pSelf, val);
+		((void(*)(void* self, int val))g_engine_nativeFunctions[1771])(m_pSelf, val);
 	}
 	inline void SetValue(float val) 
 	{
-		((void(*)(void* self, float val))g_nativeFunctions[1773])(m_pSelf, val);
+		((void(*)(void* self, float val))g_engine_nativeFunctions[1773])(m_pSelf, val);
 	}
 	inline void SetValue(Vector val) 
 	{
-		((void(*)(void* self, Vector val))g_nativeFunctions[1774])(m_pSelf, val);
+		((void(*)(void* self, Vector val))g_engine_nativeFunctions[1774])(m_pSelf, val);
 	}
 	inline void SetValue(Quaternion val) 
 	{
-		((void(*)(void* self, Quaternion val))g_nativeFunctions[1775])(m_pSelf, val);
+		((void(*)(void* self, Quaternion val))g_engine_nativeFunctions[1775])(m_pSelf, val);
 	}
 	inline void SetEnumValue(int val) 
 	{
-		((void(*)(void* __self, int __val))g_nativeFunctions[1776])(m_pSelf, val);
+		((void(*)(void* __self, int __val))g_engine_nativeFunctions[1776])(m_pSelf, val);
 	}
 	inline const char * GetName() 
 	{
 		return
-		((const char *(*)(void* self))g_nativeFunctions[1777])(m_pSelf);
+		((const char *(*)(void* self))g_engine_nativeFunctions[1777])(m_pSelf);
 	}
 	inline int IsAutoReset() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1778])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1778])(m_pSelf);
 	}
 	inline int64 GetParameterType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1779])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1779])(m_pSelf);
 	}
 };
 class IAnimParameterList
@@ -8436,17 +8418,17 @@ class IAnimParameterList
 	inline int Count() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1780])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1780])(m_pSelf);
 	}
 	inline const IAnimParameter* GetParameter(int index) 
 	{
 		return
-		((const IAnimParameter*(*)(void* self, int index))g_nativeFunctions[1781])(m_pSelf, index);
+		((const IAnimParameter*(*)(void* self, int index))g_engine_nativeFunctions[1781])(m_pSelf, index);
 	}
 	inline const IAnimParameter* GetParameter(const char* name) 
 	{
 		return
-		((const IAnimParameter*(*)(void* self, const char* name))g_nativeFunctions[1782])(m_pSelf, name);
+		((const IAnimParameter*(*)(void* self, const char* name))g_engine_nativeFunctions[1782])(m_pSelf, name);
 	}
 };
 class IAsyncResourceDataRequest
@@ -8460,17 +8442,17 @@ class IAsyncResourceDataRequest
 	inline const char* GetFileName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1783])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[1783])(m_pSelf);
 	}
 	inline const void* GetResultBuffer() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1784])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[1784])(m_pSelf);
 	}
 	inline int64 GetResultBufferSize() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1785])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1785])(m_pSelf);
 	}
 };
 class ImageLoader
@@ -8485,19 +8467,19 @@ class ImageLoader
 	inline int GetMemRequired(int width, int height, int depth, int64 imageFormat, int mipmap) 
 	{
 		return
-		((int(*)(int width, int height, int depth, int64 imageFormat, int mipmap))g_nativeFunctions[1786])(width, height, depth, imageFormat, mipmap);
+		((int(*)(int width, int height, int depth, int64 imageFormat, int mipmap))g_engine_nativeFunctions[1786])(width, height, depth, imageFormat, mipmap);
 	}
 	static
 	inline int GetMemRequired(int width, int height, int depth, int mipmaps, int64 imageFormat) 
 	{
 		return
-		((int(*)(int width, int height, int depth, int mipmaps, int64 imageFormat))g_nativeFunctions[1787])(width, height, depth, mipmaps, imageFormat);
+		((int(*)(int width, int height, int depth, int mipmaps, int64 imageFormat))g_engine_nativeFunctions[1787])(width, height, depth, mipmaps, imageFormat);
 	}
 	static
 	inline int ConvertImageFormat(void* src, int64 srcImageFormat, void* dst, int64 dstImageFormat, int width, int height, int srcStride, int dstStride) 
 	{
 		return
-		((int(*)(void* src, int64 srcImageFormat, void* dst, int64 dstImageFormat, int width, int height, int srcStride, int dstStride))g_nativeFunctions[1788])(src, srcImageFormat, dst, dstImageFormat, width, height, srcStride, dstStride);
+		((int(*)(void* src, int64 srcImageFormat, void* dst, int64 dstImageFormat, int width, int height, int srcStride, int dstStride))g_engine_nativeFunctions[1788])(src, srcImageFormat, dst, dstImageFormat, width, height, srcStride, dstStride);
 	}
 };
 class IMaterial2
@@ -8510,146 +8492,146 @@ class IMaterial2
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1789])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1789])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1790])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1790])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1791])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1791])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1792])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1792])(m_pSelf);
 	}
 	inline HMaterialStrong* CopyStrongHandle() 
 	{
 		return
-		((HMaterialStrong*(*)(void* self))g_nativeFunctions[1793])(m_pSelf);
+		((HMaterialStrong*(*)(void* self))g_engine_nativeFunctions[1793])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[1794])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[1794])(m_pSelf);
 	}
 	inline const char* GetName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1795])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[1795])(m_pSelf);
 	}
 	inline const char* GetNameWithMod() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[1796])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[1796])(m_pSelf);
 	}
 	inline uint64 GetSimilarityKey() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[1797])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[1797])(m_pSelf);
 	}
 	inline int IsLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1798])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1798])(m_pSelf);
 	}
 	inline const IMaterialMode* GetMode(uint32 token) 
 	{
 		return
-		((const IMaterialMode*(*)(void* self, uint32 token))g_nativeFunctions[1799])(m_pSelf, token);
+		((const IMaterialMode*(*)(void* self, uint32 token))g_engine_nativeFunctions[1799])(m_pSelf, token);
 	}
 	inline const IMaterialMode* GetMode() 
 	{
 		return
-		((const IMaterialMode*(*)(void* self))g_nativeFunctions[1800])(m_pSelf);
+		((const IMaterialMode*(*)(void* self))g_engine_nativeFunctions[1800])(m_pSelf);
 	}
 	inline const IMaterialMode* GetMode(ISceneLayer* layer) 
 	{
 		return
-		((const IMaterialMode*(*)(void* __self, ISceneLayer* __layer))g_nativeFunctions[1801])(m_pSelf, layer);
+		((const IMaterialMode*(*)(void* __self, ISceneLayer* __layer))g_engine_nativeFunctions[1801])(m_pSelf, layer);
 	}
 	inline const CRenderAttributes* GetRenderAttributes() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[1802])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[1802])(m_pSelf);
 	}
 	inline void RecreateAllStaticConstantAndCommandBuffers() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1803])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1803])(m_pSelf);
 	}
 	inline HRenderTextureStrong* GetFirstTextureAttribute() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self))g_nativeFunctions[1804])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* self))g_engine_nativeFunctions[1804])(m_pSelf);
 	}
 	inline int GetBoolAttributeOrDefault(uint32 name, int i) 
 	{
 		return
-		((int(*)(void* self, uint32 name, int i))g_nativeFunctions[1805])(m_pSelf, name, i);
+		((int(*)(void* self, uint32 name, int i))g_engine_nativeFunctions[1805])(m_pSelf, name, i);
 	}
 	inline int GetIntAttributeOrDefault(uint32 name, int i) 
 	{
 		return
-		((int(*)(void* self, uint32 name, int i))g_nativeFunctions[1806])(m_pSelf, name, i);
+		((int(*)(void* self, uint32 name, int i))g_engine_nativeFunctions[1806])(m_pSelf, name, i);
 	}
 	inline float GetFloatAttributeOrDefault(uint32 name, float f) 
 	{
 		return
-		((float(*)(void* self, uint32 name, float f))g_nativeFunctions[1807])(m_pSelf, name, f);
+		((float(*)(void* self, uint32 name, float f))g_engine_nativeFunctions[1807])(m_pSelf, name, f);
 	}
 	inline HRenderTextureStrong* GetTextureAttributeOrDefault(uint32 name) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, uint32 name))g_nativeFunctions[1808])(m_pSelf, name);
+		((HRenderTextureStrong*(*)(void* self, uint32 name))g_engine_nativeFunctions[1808])(m_pSelf, name);
 	}
 	inline int HasParam(const char* name) 
 	{
 		return
-		((int(*)(void* self, const char* name))g_nativeFunctions[1809])(m_pSelf, name);
+		((int(*)(void* self, const char* name))g_engine_nativeFunctions[1809])(m_pSelf, name);
 	}
 	inline void Set(const char* name, const char* val) 
 	{
-		((void(*)(void* self, const char* name, const char* val))g_nativeFunctions[1810])(m_pSelf, name, val);
+		((void(*)(void* self, const char* name, const char* val))g_engine_nativeFunctions[1810])(m_pSelf, name, val);
 	}
 	inline const char* GetString(const char* name, const char* defaultValue) 
 	{
 		return
-		((const char*(*)(void* self, const char* name, const char* defaultValue))g_nativeFunctions[1811])(m_pSelf, name, defaultValue);
+		((const char*(*)(void* self, const char* name, const char* defaultValue))g_engine_nativeFunctions[1811])(m_pSelf, name, defaultValue);
 	}
 	inline void Set(const char* name, Vector4D value) 
 	{
-		((void(*)(void* self, const char* name, Vector4D value))g_nativeFunctions[1812])(m_pSelf, name, value);
+		((void(*)(void* self, const char* name, Vector4D value))g_engine_nativeFunctions[1812])(m_pSelf, name, value);
 	}
 	inline Vector4D GetVector4(const char* name) 
 	{
 		return
-		((Vector4D(*)(void* self, const char* name))g_nativeFunctions[1813])(m_pSelf, name);
+		((Vector4D(*)(void* self, const char* name))g_engine_nativeFunctions[1813])(m_pSelf, name);
 	}
 	inline void Set(const char* name, HRenderTextureStrong* value) 
 	{
-		((void(*)(void* self, const char* name, HRenderTextureStrong* value))g_nativeFunctions[1814])(m_pSelf, name, value);
+		((void(*)(void* self, const char* name, HRenderTextureStrong* value))g_engine_nativeFunctions[1814])(m_pSelf, name, value);
 	}
 	inline HRenderTextureStrong* GetTexture(const char* name) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, const char* name))g_nativeFunctions[1815])(m_pSelf, name);
+		((HRenderTextureStrong*(*)(void* self, const char* name))g_engine_nativeFunctions[1815])(m_pSelf, name);
 	}
 	inline void SetEdited(int b) 
 	{
-		((void(*)(void* self, int b))g_nativeFunctions[1816])(m_pSelf, b);
+		((void(*)(void* self, int b))g_engine_nativeFunctions[1816])(m_pSelf, b);
 	}
 	inline int IsEdited() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1817])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1817])(m_pSelf);
 	}
 	inline void ReloadStaticCombos() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[1818])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[1818])(m_pSelf);
 	}
 };
 class IMaterialMode
@@ -8671,117 +8653,117 @@ class IPhysAggregateInstance
 	}
 	inline void WakeUp() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1819])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1819])(m_pSelf);
 	}
 	inline void PutToSleep() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1820])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1820])(m_pSelf);
 	}
 	inline int IsAsleep() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1821])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1821])(m_pSelf);
 	}
 	inline void SetVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1822])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1822])(m_pSelf, v);
 	}
 	inline void AddVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1823])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1823])(m_pSelf, v);
 	}
 	inline void SetAngularVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1824])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1824])(m_pSelf, v);
 	}
 	inline void AddAngularVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1825])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1825])(m_pSelf, v);
 	}
 	inline int GetBodyCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1826])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1826])(m_pSelf);
 	}
 	inline int GetBodyHandle(int i) 
 	{
 		return
-		((int(*)(void* self, int i))g_nativeFunctions[1827])(m_pSelf, i);
+		((int(*)(void* self, int i))g_engine_nativeFunctions[1827])(m_pSelf, i);
 	}
 	inline const char* GetBodyName(int i) 
 	{
 		return
-		((const char*(*)(void* self, int i))g_nativeFunctions[1828])(m_pSelf, i);
+		((const char*(*)(void* self, int i))g_engine_nativeFunctions[1828])(m_pSelf, i);
 	}
 	inline unsigned int GetBodyNameHash(int i) 
 	{
 		return
-		((unsigned int(*)(void* self, int i))g_nativeFunctions[1829])(m_pSelf, i);
+		((unsigned int(*)(void* self, int i))g_engine_nativeFunctions[1829])(m_pSelf, i);
 	}
 	inline int GetBodyByNameHash(int i) 
 	{
 		return
-		((int(*)(void* self, int i))g_nativeFunctions[1830])(m_pSelf, i);
+		((int(*)(void* self, int i))g_engine_nativeFunctions[1830])(m_pSelf, i);
 	}
 	inline int GetBodyIndex(IPhysicsBody* body) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* body))g_nativeFunctions[1831])(m_pSelf, body);
+		((int(*)(void* self, IPhysicsBody* body))g_engine_nativeFunctions[1831])(m_pSelf, body);
 	}
 	inline int FindBodyByName(const char* name) 
 	{
 		return
-		((int(*)(void* self, const char* name))g_nativeFunctions[1832])(m_pSelf, name);
+		((int(*)(void* self, const char* name))g_engine_nativeFunctions[1832])(m_pSelf, name);
 	}
 	inline int GetJointCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1833])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1833])(m_pSelf);
 	}
 	inline int GetJointHandle(int nIndex) 
 	{
 		return
-		((int(*)(void* self, int nIndex))g_nativeFunctions[1834])(m_pSelf, nIndex);
+		((int(*)(void* self, int nIndex))g_engine_nativeFunctions[1834])(m_pSelf, nIndex);
 	}
 	inline void RemoveJoint(IPhysicsJoint* pJoint) 
 	{
-		((void(*)(void* self, IPhysicsJoint* pJoint))g_nativeFunctions[1835])(m_pSelf, pJoint);
+		((void(*)(void* self, IPhysicsJoint* pJoint))g_engine_nativeFunctions[1835])(m_pSelf, pJoint);
 	}
 	inline Vector GetOrigin() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1836])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1836])(m_pSelf);
 	}
 	inline Vector GetMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1837])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1837])(m_pSelf);
 	}
 	inline void SetSurfaceProperties(uint32 name) 
 	{
-		((void(*)(void* self, uint32 name))g_nativeFunctions[1838])(m_pSelf, name);
+		((void(*)(void* self, uint32 name))g_engine_nativeFunctions[1838])(m_pSelf, name);
 	}
 	inline float GetTotalMass() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1839])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1839])(m_pSelf);
 	}
 	inline void SetTotalMass(float flMass) 
 	{
-		((void(*)(void* self, float flMass))g_nativeFunctions[1840])(m_pSelf, flMass);
+		((void(*)(void* self, float flMass))g_engine_nativeFunctions[1840])(m_pSelf, flMass);
 	}
 	inline void SetLinearDamping(float flLinearDamping) 
 	{
-		((void(*)(void* self, float flLinearDamping))g_nativeFunctions[1841])(m_pSelf, flLinearDamping);
+		((void(*)(void* self, float flLinearDamping))g_engine_nativeFunctions[1841])(m_pSelf, flLinearDamping);
 	}
 	inline void SetAngularDamping(float flAngularDamping) 
 	{
-		((void(*)(void* self, float flAngularDamping))g_nativeFunctions[1842])(m_pSelf, flAngularDamping);
+		((void(*)(void* self, float flAngularDamping))g_engine_nativeFunctions[1842])(m_pSelf, flAngularDamping);
 	}
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1843])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1843])(m_pSelf);
 	}
 };
 class IPhysicsBody
@@ -8795,358 +8777,358 @@ class IPhysicsBody
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1844])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1844])(m_pSelf);
 	}
 	inline void SetGravityScale(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1845])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[1845])(m_pSelf, f);
 	}
 	inline float GetGravityScale() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1846])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1846])(m_pSelf);
 	}
 	inline int IsGravityEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1847])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1847])(m_pSelf);
 	}
 	inline void EnableGravity(int value) 
 	{
-		((void(*)(void* self, int value))g_nativeFunctions[1848])(m_pSelf, value);
+		((void(*)(void* self, int value))g_engine_nativeFunctions[1848])(m_pSelf, value);
 	}
 	inline void SetMass(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1849])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[1849])(m_pSelf, f);
 	}
 	inline float GetMass() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1850])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1850])(m_pSelf);
 	}
 	inline Vector GetMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1851])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1851])(m_pSelf);
 	}
 	inline Vector GetLocalMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1852])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1852])(m_pSelf);
 	}
 	inline void SetLocalMassCenter(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1853])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1853])(m_pSelf, v);
 	}
 	inline void SetOverrideMassCenter(int bOverride) 
 	{
-		((void(*)(void* self, int bOverride))g_nativeFunctions[1854])(m_pSelf, bOverride);
+		((void(*)(void* self, int bOverride))g_engine_nativeFunctions[1854])(m_pSelf, bOverride);
 	}
 	inline int GetOverrideMassCenter() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1855])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1855])(m_pSelf);
 	}
 	inline void SetPosition(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1856])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1856])(m_pSelf, v);
 	}
 	inline Vector GetPosition() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1857])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1857])(m_pSelf);
 	}
 	inline void SetOrientation(Quaternion q) 
 	{
-		((void(*)(void* self, Quaternion q))g_nativeFunctions[1858])(m_pSelf, q);
+		((void(*)(void* self, Quaternion q))g_engine_nativeFunctions[1858])(m_pSelf, q);
 	}
 	inline Quaternion GetOrientation() 
 	{
 		return
-		((Quaternion(*)(void* self))g_nativeFunctions[1859])(m_pSelf);
+		((Quaternion(*)(void* self))g_engine_nativeFunctions[1859])(m_pSelf);
 	}
 	inline void SetTransform(Vector v, Quaternion q) 
 	{
-		((void(*)(void* self, Vector v, Quaternion q))g_nativeFunctions[1860])(m_pSelf, v, q);
+		((void(*)(void* self, Vector v, Quaternion q))g_engine_nativeFunctions[1860])(m_pSelf, v, q);
 	}
 	inline CTransformUnaligned GetTransform() 
 	{
 		return
-		((CTransformUnaligned(*)(void* self))g_nativeFunctions[1861])(m_pSelf);
+		((CTransformUnaligned(*)(void* self))g_engine_nativeFunctions[1861])(m_pSelf);
 	}
 	inline void SetLinearVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1862])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1862])(m_pSelf, v);
 	}
 	inline Vector GetLinearVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1863])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1863])(m_pSelf);
 	}
 	inline Vector GetVelocityAtPoint(Vector v) 
 	{
 		return
-		((Vector(*)(void* self, Vector v))g_nativeFunctions[1864])(m_pSelf, v);
+		((Vector(*)(void* self, Vector v))g_engine_nativeFunctions[1864])(m_pSelf, v);
 	}
 	inline void AddLinearVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1865])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1865])(m_pSelf, v);
 	}
 	inline void SetAngularVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[1866])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[1866])(m_pSelf, v);
 	}
 	inline Vector GetAngularVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1867])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1867])(m_pSelf);
 	}
 	inline void Wake() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1868])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1868])(m_pSelf);
 	}
 	inline void Sleep() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1869])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1869])(m_pSelf);
 	}
 	inline int IsSleeping() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1870])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1870])(m_pSelf);
 	}
 	inline void EnableAutoSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1871])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1871])(m_pSelf);
 	}
 	inline void DisableAutoSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1872])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1872])(m_pSelf);
 	}
 	inline void EnableTouchEvents() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1873])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1873])(m_pSelf);
 	}
 	inline void DisableTouchEvents() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1874])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1874])(m_pSelf);
 	}
 	inline int IsTouchEventEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1875])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1875])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1876])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1876])(m_pSelf);
 	}
 	inline void SetType(int64 type) 
 	{
-		((void(*)(void* self, int64 type))g_nativeFunctions[1877])(m_pSelf, type);
+		((void(*)(void* self, int64 type))g_engine_nativeFunctions[1877])(m_pSelf, type);
 	}
 	inline int GetShapeCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1878])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1878])(m_pSelf);
 	}
 	inline int GetShape(int nShape) 
 	{
 		return
-		((int(*)(void* self, int nShape))g_nativeFunctions[1879])(m_pSelf, nShape);
+		((int(*)(void* self, int nShape))g_engine_nativeFunctions[1879])(m_pSelf, nShape);
 	}
 	inline int AddSphereShape(Vector vCenter, float flRadius) 
 	{
 		return
-		((int(*)(void* self, Vector vCenter, float flRadius))g_nativeFunctions[1880])(m_pSelf, vCenter, flRadius);
+		((int(*)(void* self, Vector vCenter, float flRadius))g_engine_nativeFunctions[1880])(m_pSelf, vCenter, flRadius);
 	}
 	inline int AddCapsuleShape(Vector vCenter1, Vector vCenter2, float flRadius) 
 	{
 		return
-		((int(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_nativeFunctions[1881])(m_pSelf, vCenter1, vCenter2, flRadius);
+		((int(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_engine_nativeFunctions[1881])(m_pSelf, vCenter1, vCenter2, flRadius);
 	}
 	inline int AddBoxShape(Vector position, Quaternion rotation, Vector extent) 
 	{
 		return
-		((int(*)(void* self, Vector position, Quaternion rotation, Vector extent))g_nativeFunctions[1882])(m_pSelf, position, rotation, extent);
+		((int(*)(void* self, Vector position, Quaternion rotation, Vector extent))g_engine_nativeFunctions[1882])(m_pSelf, position, rotation, extent);
 	}
 	inline int AddHullShape(Vector position, Quaternion rotation, int numVertices, void* vertices) 
 	{
 		return
-		((int(*)(void* self, Vector position, Quaternion rotation, int numVertices, void* vertices))g_nativeFunctions[1883])(m_pSelf, position, rotation, numVertices, vertices);
+		((int(*)(void* self, Vector position, Quaternion rotation, int numVertices, void* vertices))g_engine_nativeFunctions[1883])(m_pSelf, position, rotation, numVertices, vertices);
 	}
 	inline int AddHullShape(RnHull_t* hull, CTransformUnaligned xform) 
 	{
 		return
-		((int(*)(void* self, RnHull_t* hull, CTransformUnaligned xform))g_nativeFunctions[1884])(m_pSelf, hull, xform);
+		((int(*)(void* self, RnHull_t* hull, CTransformUnaligned xform))g_engine_nativeFunctions[1884])(m_pSelf, hull, xform);
 	}
 	inline int AddHullShape(RnMesh_t* mesh, CTransformUnaligned xform) 
 	{
 		return
-		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform))g_nativeFunctions[1885])(m_pSelf, mesh, xform);
+		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform))g_engine_nativeFunctions[1885])(m_pSelf, mesh, xform);
 	}
 	inline int AddMeshShape(int numVertices, void* vertices, int numIndices, void* indices, int nMaterialCount) 
 	{
 		return
-		((int(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices, int nMaterialCount))g_nativeFunctions[1886])(m_pSelf, numVertices, vertices, numIndices, indices, nMaterialCount);
+		((int(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices, int nMaterialCount))g_engine_nativeFunctions[1886])(m_pSelf, numVertices, vertices, numIndices, indices, nMaterialCount);
 	}
 	inline int AddMeshShape(RnMesh_t* mesh, CTransformUnaligned xform, int nMaterialCount) 
 	{
 		return
-		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform, int nMaterialCount))g_nativeFunctions[1887])(m_pSelf, mesh, xform, nMaterialCount);
+		((int(*)(void* self, RnMesh_t* mesh, CTransformUnaligned xform, int nMaterialCount))g_engine_nativeFunctions[1887])(m_pSelf, mesh, xform, nMaterialCount);
 	}
 	inline int AddHeightFieldShape(void* pHeights, void* pMaterials, int sizeX, int sizeY, float sizeScale, float heightScale, int nMaterialCount) 
 	{
 		return
-		((int(*)(void* self, void* pHeights, void* pMaterials, int sizeX, int sizeY, float sizeScale, float heightScale, int nMaterialCount))g_nativeFunctions[1888])(m_pSelf, pHeights, pMaterials, sizeX, sizeY, sizeScale, heightScale, nMaterialCount);
+		((int(*)(void* self, void* pHeights, void* pMaterials, int sizeX, int sizeY, float sizeScale, float heightScale, int nMaterialCount))g_engine_nativeFunctions[1888])(m_pSelf, pHeights, pMaterials, sizeX, sizeY, sizeScale, heightScale, nMaterialCount);
 	}
 	inline void RemoveShape(IPhysicsShape* pShape) 
 	{
-		((void(*)(void* self, IPhysicsShape* pShape))g_nativeFunctions[1889])(m_pSelf, pShape);
+		((void(*)(void* self, IPhysicsShape* pShape))g_engine_nativeFunctions[1889])(m_pSelf, pShape);
 	}
 	inline void PurgeShapes() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1890])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1890])(m_pSelf);
 	}
 	inline void ApplyLinearImpulse(Vector impulse) 
 	{
-		((void(*)(void* self, Vector impulse))g_nativeFunctions[1891])(m_pSelf, impulse);
+		((void(*)(void* self, Vector impulse))g_engine_nativeFunctions[1891])(m_pSelf, impulse);
 	}
 	inline void ApplyLinearImpulseAtWorldSpace(Vector impulse, Vector pos) 
 	{
-		((void(*)(void* self, Vector impulse, Vector pos))g_nativeFunctions[1892])(m_pSelf, impulse, pos);
+		((void(*)(void* self, Vector impulse, Vector pos))g_engine_nativeFunctions[1892])(m_pSelf, impulse, pos);
 	}
 	inline void ApplyAngularImpulse(Vector impulse) 
 	{
-		((void(*)(void* self, Vector impulse))g_nativeFunctions[1893])(m_pSelf, impulse);
+		((void(*)(void* self, Vector impulse))g_engine_nativeFunctions[1893])(m_pSelf, impulse);
 	}
 	inline void ApplyForce(Vector F) 
 	{
-		((void(*)(void* self, Vector F))g_nativeFunctions[1894])(m_pSelf, F);
+		((void(*)(void* self, Vector F))g_engine_nativeFunctions[1894])(m_pSelf, F);
 	}
 	inline void ApplyForceAt(Vector F, Vector r) 
 	{
-		((void(*)(void* self, Vector F, Vector r))g_nativeFunctions[1895])(m_pSelf, F, r);
+		((void(*)(void* self, Vector F, Vector r))g_engine_nativeFunctions[1895])(m_pSelf, F, r);
 	}
 	inline void ApplyTorque(Vector M) 
 	{
-		((void(*)(void* self, Vector M))g_nativeFunctions[1896])(m_pSelf, M);
+		((void(*)(void* self, Vector M))g_engine_nativeFunctions[1896])(m_pSelf, M);
 	}
 	inline void ClearForces() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1897])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1897])(m_pSelf);
 	}
 	inline void ClearTorque() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1898])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1898])(m_pSelf);
 	}
 	inline void Enable() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1899])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1899])(m_pSelf);
 	}
 	inline void Disable() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1900])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1900])(m_pSelf);
 	}
 	inline int IsEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1901])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1901])(m_pSelf);
 	}
 	inline void BuildMass() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1902])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1902])(m_pSelf);
 	}
 	inline void SetLinearDamping(float d) 
 	{
-		((void(*)(void* self, float d))g_nativeFunctions[1903])(m_pSelf, d);
+		((void(*)(void* self, float d))g_engine_nativeFunctions[1903])(m_pSelf, d);
 	}
 	inline float GetLinearDamping() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1904])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1904])(m_pSelf);
 	}
 	inline void SetAngularDamping(float d) 
 	{
-		((void(*)(void* self, float d))g_nativeFunctions[1905])(m_pSelf, d);
+		((void(*)(void* self, float d))g_engine_nativeFunctions[1905])(m_pSelf, d);
 	}
 	inline float GetAngularDamping() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1906])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1906])(m_pSelf);
 	}
 	inline AABB_t BuildBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[1907])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[1907])(m_pSelf);
 	}
 	inline float GetDensity() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1908])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1908])(m_pSelf);
 	}
 	inline Vector GetClosestPoint(Vector vPoint) 
 	{
 		return
-		((Vector(*)(void* self, Vector vPoint))g_nativeFunctions[1909])(m_pSelf, vPoint);
+		((Vector(*)(void* self, Vector vPoint))g_engine_nativeFunctions[1909])(m_pSelf, vPoint);
 	}
 	inline void SetMaterialIndex(uint32 name) 
 	{
-		((void(*)(void* self, uint32 name))g_nativeFunctions[1910])(m_pSelf, name);
+		((void(*)(void* self, uint32 name))g_engine_nativeFunctions[1910])(m_pSelf, name);
 	}
 	inline int GetAggregate() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1911])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[1911])(m_pSelf);
 	}
 	inline void SetTargetTransform(Vector vTargetPosition, Quaternion vTargetAngles, float flTimeOffset) 
 	{
-		((void(*)(void* self, Vector vTargetPosition, Quaternion vTargetAngles, float flTimeOffset))g_nativeFunctions[1912])(m_pSelf, vTargetPosition, vTargetAngles, flTimeOffset);
+		((void(*)(void* self, Vector vTargetPosition, Quaternion vTargetAngles, float flTimeOffset))g_engine_nativeFunctions[1912])(m_pSelf, vTargetPosition, vTargetAngles, flTimeOffset);
 	}
 	inline int CheckOverlap(IPhysicsBody* body, CTransformUnaligned transform) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* body, CTransformUnaligned transform))g_nativeFunctions[1913])(m_pSelf, body, transform);
+		((int(*)(void* self, IPhysicsBody* body, CTransformUnaligned transform))g_engine_nativeFunctions[1913])(m_pSelf, body, transform);
 	}
 	inline Vector GetLocalInertiaVector() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1914])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1914])(m_pSelf);
 	}
 	inline Quaternion GetLocalInertiaOrientation() 
 	{
 		return
-		((Quaternion(*)(void* self))g_nativeFunctions[1915])(m_pSelf);
+		((Quaternion(*)(void* self))g_engine_nativeFunctions[1915])(m_pSelf);
 	}
 	inline void SetLocalInertia(Vector vInertia, Quaternion qRotation) 
 	{
-		((void(*)(void* self, Vector vInertia, Quaternion qRotation))g_nativeFunctions[1916])(m_pSelf, vInertia, qRotation);
+		((void(*)(void* self, Vector vInertia, Quaternion qRotation))g_engine_nativeFunctions[1916])(m_pSelf, vInertia, qRotation);
 	}
 	inline void ResetLocalInertia() 
 	{
-		((void(*)(void* self))g_nativeFunctions[1917])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[1917])(m_pSelf);
 	}
 	inline int ManagedObject() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[1918])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[1918])(m_pSelf);
 	}
 	inline void SetMotionLocks(int x, int y, int z, int pitch, int yaw, int roll) 
 	{
-		((void(*)(void* self, int x, int y, int z, int pitch, int yaw, int roll))g_nativeFunctions[1919])(m_pSelf, x, y, z, pitch, yaw, roll);
+		((void(*)(void* self, int x, int y, int z, int pitch, int yaw, int roll))g_engine_nativeFunctions[1919])(m_pSelf, x, y, z, pitch, yaw, roll);
 	}
 	inline int IsTouching(IPhysicsBody* pBody, int bTriggers) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody, int bTriggers))g_nativeFunctions[1920])(m_pSelf, pBody, bTriggers);
+		((int(*)(void* self, IPhysicsBody* pBody, int bTriggers))g_engine_nativeFunctions[1920])(m_pSelf, pBody, bTriggers);
 	}
 	inline int IsTouching(IPhysicsShape* pShape, int bTriggers) 
 	{
 		return
-		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_nativeFunctions[1921])(m_pSelf, pShape, bTriggers);
+		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_engine_nativeFunctions[1921])(m_pSelf, pShape, bTriggers);
 	}
 	inline void SetTrigger(int trigger) 
 	{
-		((void(*)(void* self, int trigger))g_nativeFunctions[1922])(m_pSelf, trigger);
+		((void(*)(void* self, int trigger))g_engine_nativeFunctions[1922])(m_pSelf, trigger);
 	}
 };
 class IPhysicsJoint
@@ -9160,413 +9142,413 @@ class IPhysicsJoint
 	inline int GetWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1923])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1923])(m_pSelf);
 	}
 	inline int GetBody1() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1924])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1924])(m_pSelf);
 	}
 	inline int GetBody2() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1925])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1925])(m_pSelf);
 	}
 	inline void GetLocalFrameA(Vector* position, Quaternion* rotation) 
 	{
-		((void(*)(void* self, Vector* position, Quaternion* rotation))g_nativeFunctions[1926])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector* position, Quaternion* rotation))g_engine_nativeFunctions[1926])(m_pSelf, position, rotation);
 	}
 	inline void GetLocalFrameB(Vector* position, Quaternion* rotation) 
 	{
-		((void(*)(void* self, Vector* position, Quaternion* rotation))g_nativeFunctions[1927])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector* position, Quaternion* rotation))g_engine_nativeFunctions[1927])(m_pSelf, position, rotation);
 	}
 	inline void SetLocalFrameA(Vector position, Quaternion rotation) 
 	{
-		((void(*)(void* self, Vector position, Quaternion rotation))g_nativeFunctions[1928])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector position, Quaternion rotation))g_engine_nativeFunctions[1928])(m_pSelf, position, rotation);
 	}
 	inline void SetLocalFrameB(Vector position, Quaternion rotation) 
 	{
-		((void(*)(void* self, Vector position, Quaternion rotation))g_nativeFunctions[1929])(m_pSelf, position, rotation);
+		((void(*)(void* self, Vector position, Quaternion rotation))g_engine_nativeFunctions[1929])(m_pSelf, position, rotation);
 	}
 	inline void SetEnableCollision(int bEnabled) 
 	{
-		((void(*)(void* self, int bEnabled))g_nativeFunctions[1930])(m_pSelf, bEnabled);
+		((void(*)(void* self, int bEnabled))g_engine_nativeFunctions[1930])(m_pSelf, bEnabled);
 	}
 	inline int IsCollisionEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1931])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1931])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[1932])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[1932])(m_pSelf);
 	}
 	inline void SetLinearSpring(Vector vec) 
 	{
-		((void(*)(void* self, Vector vec))g_nativeFunctions[1933])(m_pSelf, vec);
+		((void(*)(void* self, Vector vec))g_engine_nativeFunctions[1933])(m_pSelf, vec);
 	}
 	inline Vector GetLinearSpring() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1934])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1934])(m_pSelf);
 	}
 	inline void SetAngularSpring(Vector vec) 
 	{
-		((void(*)(void* self, Vector vec))g_nativeFunctions[1935])(m_pSelf, vec);
+		((void(*)(void* self, Vector vec))g_engine_nativeFunctions[1935])(m_pSelf, vec);
 	}
 	inline Vector GetAngularSpring() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1936])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1936])(m_pSelf);
 	}
 	inline void SetAngularMotor(float targetVelocity, float maxTorque) 
 	{
-		((void(*)(void* self, float targetVelocity, float maxTorque))g_nativeFunctions[1937])(m_pSelf, targetVelocity, maxTorque);
+		((void(*)(void* self, float targetVelocity, float maxTorque))g_engine_nativeFunctions[1937])(m_pSelf, targetVelocity, maxTorque);
 	}
 	inline void SetMinLength(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1938])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[1938])(m_pSelf, f);
 	}
 	inline float GetMinLength() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1939])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1939])(m_pSelf);
 	}
 	inline void SetMaxLength(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1940])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[1940])(m_pSelf, f);
 	}
 	inline float GetMaxLength() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1941])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1941])(m_pSelf);
 	}
 	inline void SetMinForce(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1942])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[1942])(m_pSelf, f);
 	}
 	inline float GetMinForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1943])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1943])(m_pSelf);
 	}
 	inline void SetMaxForce(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1944])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[1944])(m_pSelf, f);
 	}
 	inline float GetMaxForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1945])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1945])(m_pSelf);
 	}
 	inline void SetFriction(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[1946])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[1946])(m_pSelf, f);
 	}
 	inline void SetLimit(const char* name, Vector limit) 
 	{
-		((void(*)(void* self, const char* name, Vector limit))g_nativeFunctions[1947])(m_pSelf, name, limit);
+		((void(*)(void* self, const char* name, Vector limit))g_engine_nativeFunctions[1947])(m_pSelf, name, limit);
 	}
 	inline void SetLimitEnabled(const char* name, int state) 
 	{
-		((void(*)(void* self, const char* name, int state))g_nativeFunctions[1948])(m_pSelf, name, state);
+		((void(*)(void* self, const char* name, int state))g_engine_nativeFunctions[1948])(m_pSelf, name, state);
 	}
 	inline float GetAngle() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1949])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1949])(m_pSelf);
 	}
 	inline float GetLinearImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1950])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1950])(m_pSelf);
 	}
 	inline float GetAngularImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1951])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1951])(m_pSelf);
 	}
 	inline float GetMaxLinearImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1952])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1952])(m_pSelf);
 	}
 	inline float GetMaxAngularImpulse() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1953])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1953])(m_pSelf);
 	}
 	inline void SetMaxLinearImpulse(float flMaxLinearImpulse) 
 	{
-		((void(*)(void* self, float flMaxLinearImpulse))g_nativeFunctions[1954])(m_pSelf, flMaxLinearImpulse);
+		((void(*)(void* self, float flMaxLinearImpulse))g_engine_nativeFunctions[1954])(m_pSelf, flMaxLinearImpulse);
 	}
 	inline void SetMaxAngularImpulse(float flMaxAngularImpulse) 
 	{
-		((void(*)(void* self, float flMaxAngularImpulse))g_nativeFunctions[1955])(m_pSelf, flMaxAngularImpulse);
+		((void(*)(void* self, float flMaxAngularImpulse))g_engine_nativeFunctions[1955])(m_pSelf, flMaxAngularImpulse);
 	}
 	inline void SetMotorVelocity(Vector velocity, float maxTorque) 
 	{
-		((void(*)(void* self, Vector velocity, float maxTorque))g_nativeFunctions[1956])(m_pSelf, velocity, maxTorque);
+		((void(*)(void* self, Vector velocity, float maxTorque))g_engine_nativeFunctions[1956])(m_pSelf, velocity, maxTorque);
 	}
 	inline void SetTargetRotation(Quaternion rotation, float hertz, float damping) 
 	{
-		((void(*)(void* self, Quaternion rotation, float hertz, float damping))g_nativeFunctions[1957])(m_pSelf, rotation, hertz, damping);
+		((void(*)(void* self, Quaternion rotation, float hertz, float damping))g_engine_nativeFunctions[1957])(m_pSelf, rotation, hertz, damping);
 	}
 	inline void Motor_SetLinearVelocity(Vector velocity) 
 	{
-		((void(*)(void* self, Vector velocity))g_nativeFunctions[1958])(m_pSelf, velocity);
+		((void(*)(void* self, Vector velocity))g_engine_nativeFunctions[1958])(m_pSelf, velocity);
 	}
 	inline void Motor_SetAngularVelocity(Vector velocity) 
 	{
-		((void(*)(void* self, Vector velocity))g_nativeFunctions[1959])(m_pSelf, velocity);
+		((void(*)(void* self, Vector velocity))g_engine_nativeFunctions[1959])(m_pSelf, velocity);
 	}
 	inline void Motor_SetMaxVelocityForce(float maxForce) 
 	{
-		((void(*)(void* self, float maxForce))g_nativeFunctions[1960])(m_pSelf, maxForce);
+		((void(*)(void* self, float maxForce))g_engine_nativeFunctions[1960])(m_pSelf, maxForce);
 	}
 	inline void Motor_SetMaxVelocityTorque(float maxTorque) 
 	{
-		((void(*)(void* self, float maxTorque))g_nativeFunctions[1961])(m_pSelf, maxTorque);
+		((void(*)(void* self, float maxTorque))g_engine_nativeFunctions[1961])(m_pSelf, maxTorque);
 	}
 	inline void Motor_SetLinearHertz(float hertz) 
 	{
-		((void(*)(void* self, float hertz))g_nativeFunctions[1962])(m_pSelf, hertz);
+		((void(*)(void* self, float hertz))g_engine_nativeFunctions[1962])(m_pSelf, hertz);
 	}
 	inline void Motor_SetLinearDampingRatio(float damping) 
 	{
-		((void(*)(void* self, float damping))g_nativeFunctions[1963])(m_pSelf, damping);
+		((void(*)(void* self, float damping))g_engine_nativeFunctions[1963])(m_pSelf, damping);
 	}
 	inline void Motor_SetAngularHertz(float hertz) 
 	{
-		((void(*)(void* self, float hertz))g_nativeFunctions[1964])(m_pSelf, hertz);
+		((void(*)(void* self, float hertz))g_engine_nativeFunctions[1964])(m_pSelf, hertz);
 	}
 	inline void Motor_SetAngularDampingRatio(float damping) 
 	{
-		((void(*)(void* self, float damping))g_nativeFunctions[1965])(m_pSelf, damping);
+		((void(*)(void* self, float damping))g_engine_nativeFunctions[1965])(m_pSelf, damping);
 	}
 	inline void Motor_SetMaxSpringForce(float maxForce) 
 	{
-		((void(*)(void* self, float maxForce))g_nativeFunctions[1966])(m_pSelf, maxForce);
+		((void(*)(void* self, float maxForce))g_engine_nativeFunctions[1966])(m_pSelf, maxForce);
 	}
 	inline void Motor_SetMaxSpringTorque(float maxTorque) 
 	{
-		((void(*)(void* self, float maxTorque))g_nativeFunctions[1967])(m_pSelf, maxTorque);
+		((void(*)(void* self, float maxTorque))g_engine_nativeFunctions[1967])(m_pSelf, maxTorque);
 	}
 	inline Vector Motor_GetLinearVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1968])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1968])(m_pSelf);
 	}
 	inline Vector Motor_GetAngularVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[1969])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[1969])(m_pSelf);
 	}
 	inline float Motor_GetMaxVelocityForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1970])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1970])(m_pSelf);
 	}
 	inline float Motor_GetMaxVelocityTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1971])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1971])(m_pSelf);
 	}
 	inline float Motor_GetLinearHertz() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1972])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1972])(m_pSelf);
 	}
 	inline float Motor_GetLinearDampingRatio() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1973])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1973])(m_pSelf);
 	}
 	inline float Motor_GetAngularHertz() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1974])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1974])(m_pSelf);
 	}
 	inline float Motor_GetAngularDampingRatio() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1975])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1975])(m_pSelf);
 	}
 	inline float Motor_GetMaxSpringForce() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1976])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1976])(m_pSelf);
 	}
 	inline float Motor_GetMaxSpringTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1977])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1977])(m_pSelf);
 	}
 	inline void Wheel_EnableSuspension(int flag) 
 	{
-		((void(*)(void* self, int flag))g_nativeFunctions[1978])(m_pSelf, flag);
+		((void(*)(void* self, int flag))g_engine_nativeFunctions[1978])(m_pSelf, flag);
 	}
 	inline int Wheel_IsSuspensionEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1979])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1979])(m_pSelf);
 	}
 	inline void Wheel_SetSuspensionHertz(float hertz) 
 	{
-		((void(*)(void* self, float hertz))g_nativeFunctions[1980])(m_pSelf, hertz);
+		((void(*)(void* self, float hertz))g_engine_nativeFunctions[1980])(m_pSelf, hertz);
 	}
 	inline float Wheel_GetSuspensionHertz() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1981])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1981])(m_pSelf);
 	}
 	inline void Wheel_SetSuspensionDampingRatio(float dampingRatio) 
 	{
-		((void(*)(void* self, float dampingRatio))g_nativeFunctions[1982])(m_pSelf, dampingRatio);
+		((void(*)(void* self, float dampingRatio))g_engine_nativeFunctions[1982])(m_pSelf, dampingRatio);
 	}
 	inline float Wheel_GetSuspensionDampingRatio() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1983])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1983])(m_pSelf);
 	}
 	inline void Wheel_EnableSuspensionLimit(int flag) 
 	{
-		((void(*)(void* self, int flag))g_nativeFunctions[1984])(m_pSelf, flag);
+		((void(*)(void* self, int flag))g_engine_nativeFunctions[1984])(m_pSelf, flag);
 	}
 	inline int Wheel_IsSuspensionLimitEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1985])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1985])(m_pSelf);
 	}
 	inline float Wheel_GetLowerSuspensionLimit() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1986])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1986])(m_pSelf);
 	}
 	inline float Wheel_GetUpperSuspensionLimit() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1987])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1987])(m_pSelf);
 	}
 	inline void Wheel_SetSuspensionLimits(float lower, float upper) 
 	{
-		((void(*)(void* self, float lower, float upper))g_nativeFunctions[1988])(m_pSelf, lower, upper);
+		((void(*)(void* self, float lower, float upper))g_engine_nativeFunctions[1988])(m_pSelf, lower, upper);
 	}
 	inline void Wheel_EnableSpinMotor(int flag) 
 	{
-		((void(*)(void* self, int flag))g_nativeFunctions[1989])(m_pSelf, flag);
+		((void(*)(void* self, int flag))g_engine_nativeFunctions[1989])(m_pSelf, flag);
 	}
 	inline int Wheel_IsSpinMotorEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1990])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1990])(m_pSelf);
 	}
 	inline void Wheel_SetSpinMotorSpeed(float speed) 
 	{
-		((void(*)(void* self, float speed))g_nativeFunctions[1991])(m_pSelf, speed);
+		((void(*)(void* self, float speed))g_engine_nativeFunctions[1991])(m_pSelf, speed);
 	}
 	inline float Wheel_GetSpinMotorSpeed() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1992])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1992])(m_pSelf);
 	}
 	inline void Wheel_SetMaxSpinTorque(float torque) 
 	{
-		((void(*)(void* self, float torque))g_nativeFunctions[1993])(m_pSelf, torque);
+		((void(*)(void* self, float torque))g_engine_nativeFunctions[1993])(m_pSelf, torque);
 	}
 	inline float Wheel_GetMaxSpinTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1994])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1994])(m_pSelf);
 	}
 	inline void Wheel_EnableSteering(int flag) 
 	{
-		((void(*)(void* self, int flag))g_nativeFunctions[1995])(m_pSelf, flag);
+		((void(*)(void* self, int flag))g_engine_nativeFunctions[1995])(m_pSelf, flag);
 	}
 	inline int Wheel_IsSteeringEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[1996])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[1996])(m_pSelf);
 	}
 	inline void Wheel_SetSteeringHertz(float hertz) 
 	{
-		((void(*)(void* self, float hertz))g_nativeFunctions[1997])(m_pSelf, hertz);
+		((void(*)(void* self, float hertz))g_engine_nativeFunctions[1997])(m_pSelf, hertz);
 	}
 	inline float Wheel_GetSteeringHertz() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[1998])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[1998])(m_pSelf);
 	}
 	inline void Wheel_SetSteeringDampingRatio(float dampingRatio) 
 	{
-		((void(*)(void* self, float dampingRatio))g_nativeFunctions[1999])(m_pSelf, dampingRatio);
+		((void(*)(void* self, float dampingRatio))g_engine_nativeFunctions[1999])(m_pSelf, dampingRatio);
 	}
 	inline float Wheel_GetSteeringDampingRatio() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2000])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2000])(m_pSelf);
 	}
 	inline void Wheel_SetMaxSteeringTorque(float torque) 
 	{
-		((void(*)(void* self, float torque))g_nativeFunctions[2001])(m_pSelf, torque);
+		((void(*)(void* self, float torque))g_engine_nativeFunctions[2001])(m_pSelf, torque);
 	}
 	inline float Wheel_GetMaxSteeringTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2002])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2002])(m_pSelf);
 	}
 	inline void Wheel_EnableSteeringLimit(int flag) 
 	{
-		((void(*)(void* self, int flag))g_nativeFunctions[2003])(m_pSelf, flag);
+		((void(*)(void* self, int flag))g_engine_nativeFunctions[2003])(m_pSelf, flag);
 	}
 	inline int Wheel_IsSteeringLimitEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2004])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2004])(m_pSelf);
 	}
 	inline float Wheel_GetLowerSteeringLimit() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2005])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2005])(m_pSelf);
 	}
 	inline float Wheel_GetUpperSteeringLimit() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2006])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2006])(m_pSelf);
 	}
 	inline void Wheel_SetSteeringLimits(float lowerRadians, float upperRadians) 
 	{
-		((void(*)(void* self, float lowerRadians, float upperRadians))g_nativeFunctions[2007])(m_pSelf, lowerRadians, upperRadians);
+		((void(*)(void* self, float lowerRadians, float upperRadians))g_engine_nativeFunctions[2007])(m_pSelf, lowerRadians, upperRadians);
 	}
 	inline void Wheel_SetTargetSteeringAngle(float radians) 
 	{
-		((void(*)(void* self, float radians))g_nativeFunctions[2008])(m_pSelf, radians);
+		((void(*)(void* self, float radians))g_engine_nativeFunctions[2008])(m_pSelf, radians);
 	}
 	inline float Wheel_GetTargetSteeringAngle() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2009])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2009])(m_pSelf);
 	}
 	inline float Wheel_GetSpinSpeed() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2010])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2010])(m_pSelf);
 	}
 	inline float Wheel_GetSpinTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2011])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2011])(m_pSelf);
 	}
 	inline float Wheel_GetSteeringAngle() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2012])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2012])(m_pSelf);
 	}
 	inline float Wheel_GetSteeringTorque() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2013])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2013])(m_pSelf);
 	}
 };
 class IPhysicsShape
@@ -9579,168 +9561,168 @@ class IPhysicsShape
 	}
 	inline void AddCollisionFunctionMask(unsigned char nMask) 
 	{
-		((void(*)(void* self, unsigned char nMask))g_nativeFunctions[2014])(m_pSelf, nMask);
+		((void(*)(void* self, unsigned char nMask))g_engine_nativeFunctions[2014])(m_pSelf, nMask);
 	}
 	inline void RemoveCollisionFunctionMask(unsigned char nMask) 
 	{
-		((void(*)(void* self, unsigned char nMask))g_nativeFunctions[2015])(m_pSelf, nMask);
+		((void(*)(void* self, unsigned char nMask))g_engine_nativeFunctions[2015])(m_pSelf, nMask);
 	}
 	inline unsigned char GetCollisionFunctionMask() 
 	{
 		return
-		((unsigned char(*)(void* __self))g_nativeFunctions[2016])(m_pSelf);
+		((unsigned char(*)(void* __self))g_engine_nativeFunctions[2016])(m_pSelf);
 	}
 	inline int HasTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[2017])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[2017])(m_pSelf, tag);
 	}
 	inline int AddTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[2018])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[2018])(m_pSelf, tag);
 	}
 	inline int RemoveTag(unsigned int tag) 
 	{
 		return
-		((int(*)(void* self, unsigned int tag))g_nativeFunctions[2019])(m_pSelf, tag);
+		((int(*)(void* self, unsigned int tag))g_engine_nativeFunctions[2019])(m_pSelf, tag);
 	}
 	inline int ClearTags() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2020])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2020])(m_pSelf);
 	}
 	inline int GetBody() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2021])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2021])(m_pSelf);
 	}
 	inline void SetMaterialIndex(uint32 name) 
 	{
-		((void(*)(void* self, uint32 name))g_nativeFunctions[2022])(m_pSelf, name);
+		((void(*)(void* self, uint32 name))g_engine_nativeFunctions[2022])(m_pSelf, name);
 	}
 	inline void SetSurfaceIndex(int nSurfaceIndex, int index) 
 	{
-		((void(*)(void* self, int nSurfaceIndex, int index))g_nativeFunctions[2023])(m_pSelf, nSurfaceIndex, index);
+		((void(*)(void* self, int nSurfaceIndex, int index))g_engine_nativeFunctions[2023])(m_pSelf, nSurfaceIndex, index);
 	}
 	inline const char* GetMaterialName() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[2024])(m_pSelf);
+		((const char*(*)(void* __self))g_engine_nativeFunctions[2024])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2025])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2025])(m_pSelf);
 	}
 	inline void UpdateMeshShape(int numVertices, void* vertices, int numIndices, void* indices) 
 	{
-		((void(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices))g_nativeFunctions[2026])(m_pSelf, numVertices, vertices, numIndices, indices);
+		((void(*)(void* self, int numVertices, void* vertices, int numIndices, void* indices))g_engine_nativeFunctions[2026])(m_pSelf, numVertices, vertices, numIndices, indices);
 	}
 	inline void UpdateHeightShape(void* pHeights, void* pMaterials, int x, int y, int w, int h, float SizeScale, float HeightScale) 
 	{
-		((void(*)(void* self, void* pHeights, void* pMaterials, int x, int y, int w, int h, float SizeScale, float HeightScale))g_nativeFunctions[2027])(m_pSelf, pHeights, pMaterials, x, y, w, h, SizeScale, HeightScale);
+		((void(*)(void* self, void* pHeights, void* pMaterials, int x, int y, int w, int h, float SizeScale, float HeightScale))g_engine_nativeFunctions[2027])(m_pSelf, pHeights, pMaterials, x, y, w, h, SizeScale, HeightScale);
 	}
 	inline void UpdateSphereShape(Vector vCenter, float flRadius) 
 	{
-		((void(*)(void* self, Vector vCenter, float flRadius))g_nativeFunctions[2028])(m_pSelf, vCenter, flRadius);
+		((void(*)(void* self, Vector vCenter, float flRadius))g_engine_nativeFunctions[2028])(m_pSelf, vCenter, flRadius);
 	}
 	inline void UpdateCapsuleShape(Vector vCenter1, Vector vCenter2, float flRadius) 
 	{
-		((void(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_nativeFunctions[2029])(m_pSelf, vCenter1, vCenter2, flRadius);
+		((void(*)(void* self, Vector vCenter1, Vector vCenter2, float flRadius))g_engine_nativeFunctions[2029])(m_pSelf, vCenter1, vCenter2, flRadius);
 	}
 	inline void UpdateHullShape(Vector position, Quaternion rotation, int nVertexCount, void* pvVertexBase) 
 	{
-		((void(*)(void* self, Vector position, Quaternion rotation, int nVertexCount, void* pvVertexBase))g_nativeFunctions[2030])(m_pSelf, position, rotation, nVertexCount, pvVertexBase);
+		((void(*)(void* self, Vector position, Quaternion rotation, int nVertexCount, void* pvVertexBase))g_engine_nativeFunctions[2030])(m_pSelf, position, rotation, nVertexCount, pvVertexBase);
 	}
 	inline int ManagedObject() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2031])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2031])(m_pSelf);
 	}
 	inline void SetTrigger(int trigger) 
 	{
-		((void(*)(void* self, int trigger))g_nativeFunctions[2032])(m_pSelf, trigger);
+		((void(*)(void* self, int trigger))g_engine_nativeFunctions[2032])(m_pSelf, trigger);
 	}
 	inline int IsTrigger() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2033])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2033])(m_pSelf);
 	}
 	inline void GetTriangulation(CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices) 
 	{
-		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices))g_nativeFunctions[2034])(m_pSelf, arrVectors, arrIndices);
+		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices))g_engine_nativeFunctions[2034])(m_pSelf, arrVectors, arrIndices);
 	}
 	inline void GetTriangulationForNavmesh(CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices, AABB_t bounds) 
 	{
-		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices, AABB_t bounds))g_nativeFunctions[2035])(m_pSelf, arrVectors, arrIndices, bounds);
+		((void(*)(void* self, CUtlVector<Vector>* arrVectors, CUtlVector<uint32>* arrIndices, AABB_t bounds))g_engine_nativeFunctions[2035])(m_pSelf, arrVectors, arrIndices, bounds);
 	}
 	inline void GetOutline(CUtlVector<Vector>* arrVectors) 
 	{
-		((void(*)(void* self, CUtlVector<Vector>* arrVectors))g_nativeFunctions[2036])(m_pSelf, arrVectors);
+		((void(*)(void* self, CUtlVector<Vector>* arrVectors))g_engine_nativeFunctions[2036])(m_pSelf, arrVectors);
 	}
 	inline RnSphere_t AsSphere() 
 	{
 		return
-		((RnSphere_t(*)(void* self))g_nativeFunctions[2037])(m_pSelf);
+		((RnSphere_t(*)(void* self))g_engine_nativeFunctions[2037])(m_pSelf);
 	}
 	inline RnCapsule_t AsCapsule() 
 	{
 		return
-		((RnCapsule_t(*)(void* self))g_nativeFunctions[2038])(m_pSelf);
+		((RnCapsule_t(*)(void* self))g_engine_nativeFunctions[2038])(m_pSelf);
 	}
 	inline void UpdateBoxShape(Vector vCenter, Quaternion qRotation, Vector vExtents) 
 	{
-		((void(*)(void* self, Vector vCenter, Quaternion qRotation, Vector vExtents))g_nativeFunctions[2039])(m_pSelf, vCenter, qRotation, vExtents);
+		((void(*)(void* self, Vector vCenter, Quaternion qRotation, Vector vExtents))g_engine_nativeFunctions[2039])(m_pSelf, vCenter, qRotation, vExtents);
 	}
 	inline void SetFriction(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[2040])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[2040])(m_pSelf, f);
 	}
 	inline float GetFriction() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2041])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2041])(m_pSelf);
 	}
 	inline void SetLocalVelocity(Vector v) 
 	{
-		((void(*)(void* self, Vector v))g_nativeFunctions[2042])(m_pSelf, v);
+		((void(*)(void* self, Vector v))g_engine_nativeFunctions[2042])(m_pSelf, v);
 	}
 	inline Vector GetLocalVelocity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2043])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[2043])(m_pSelf);
 	}
 	inline void SetElasticity(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[2044])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[2044])(m_pSelf, f);
 	}
 	inline void SetRollingResistance(float f) 
 	{
-		((void(*)(void* self, float f))g_nativeFunctions[2045])(m_pSelf, f);
+		((void(*)(void* self, float f))g_engine_nativeFunctions[2045])(m_pSelf, f);
 	}
 	inline void SetIgnoreTraces(int b) 
 	{
-		((void(*)(void* self, int b))g_nativeFunctions[2046])(m_pSelf, b);
+		((void(*)(void* self, int b))g_engine_nativeFunctions[2046])(m_pSelf, b);
 	}
 	inline void SetHasNoMass(int b) 
 	{
-		((void(*)(void* self, int b))g_nativeFunctions[2047])(m_pSelf, b);
+		((void(*)(void* self, int b))g_engine_nativeFunctions[2047])(m_pSelf, b);
 	}
 	inline AABB_t BuildBounds() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[2048])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[2048])(m_pSelf);
 	}
 	inline AABB_t LocalBounds() 
 	{
 		return
-		((AABB_t(*)(void* __self))g_nativeFunctions[2049])(m_pSelf);
+		((AABB_t(*)(void* __self))g_engine_nativeFunctions[2049])(m_pSelf);
 	}
 	inline int IsTouching(IPhysicsShape* pShape, int bTriggers) 
 	{
 		return
-		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_nativeFunctions[2050])(m_pSelf, pShape, bTriggers);
+		((int(*)(void* self, IPhysicsShape* pShape, int bTriggers))g_engine_nativeFunctions[2050])(m_pSelf, pShape, bTriggers);
 	}
 };
 class IPhysicsWorld
@@ -9754,150 +9736,150 @@ class IPhysicsWorld
 	inline int AddBody() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2051])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2051])(m_pSelf);
 	}
 	inline void RemoveBody(IPhysicsBody* pBody) 
 	{
-		((void(*)(void* self, IPhysicsBody* pBody))g_nativeFunctions[2052])(m_pSelf, pBody);
+		((void(*)(void* self, IPhysicsBody* pBody))g_engine_nativeFunctions[2052])(m_pSelf, pBody);
 	}
 	inline int GetWorldReferenceBody() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2053])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2053])(m_pSelf);
 	}
 	inline void SetWorldReferenceBody(IPhysicsBody* pBody) 
 	{
-		((void(*)(void* self, IPhysicsBody* pBody))g_nativeFunctions[2054])(m_pSelf, pBody);
+		((void(*)(void* self, IPhysicsBody* pBody))g_engine_nativeFunctions[2054])(m_pSelf, pBody);
 	}
 	inline void RemoveJoint(IPhysicsJoint* pJoint) 
 	{
-		((void(*)(void* self, IPhysicsJoint* pJoint))g_nativeFunctions[2055])(m_pSelf, pJoint);
+		((void(*)(void* self, IPhysicsJoint* pJoint))g_engine_nativeFunctions[2055])(m_pSelf, pJoint);
 	}
 	inline void SetGravity(Vector gravity) 
 	{
-		((void(*)(void* self, Vector gravity))g_nativeFunctions[2056])(m_pSelf, gravity);
+		((void(*)(void* self, Vector gravity))g_engine_nativeFunctions[2056])(m_pSelf, gravity);
 	}
 	inline Vector GetGravity() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2057])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[2057])(m_pSelf);
 	}
 	inline void SetSimulation(int64 simulation) 
 	{
-		((void(*)(void* self, int64 simulation))g_nativeFunctions[2058])(m_pSelf, simulation);
+		((void(*)(void* self, int64 simulation))g_engine_nativeFunctions[2058])(m_pSelf, simulation);
 	}
 	inline int64 GetSimulation() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2059])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2059])(m_pSelf);
 	}
 	inline void EnableSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2060])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2060])(m_pSelf);
 	}
 	inline void DisableSleeping() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2061])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2061])(m_pSelf);
 	}
 	inline int IsSleepingEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2062])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2062])(m_pSelf);
 	}
 	inline void SetMaximumLinearSpeed(float flSpeed) 
 	{
-		((void(*)(void* self, float flSpeed))g_nativeFunctions[2063])(m_pSelf, flSpeed);
+		((void(*)(void* self, float flSpeed))g_engine_nativeFunctions[2063])(m_pSelf, flSpeed);
 	}
 	inline int AddWeldJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2064])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_engine_nativeFunctions[2064])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddSpringJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2065])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_engine_nativeFunctions[2065])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddRevoluteJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2066])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_engine_nativeFunctions[2066])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddPrismaticJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2067])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_engine_nativeFunctions[2067])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddSphericalJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2068])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_engine_nativeFunctions[2068])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddMotorJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2069])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_engine_nativeFunctions[2069])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline int AddWheelJoint(IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2) 
 	{
 		return
-		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_nativeFunctions[2070])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
+		((int(*)(void* self, IPhysicsBody* pBody1, IPhysicsBody* pBody2, CTransformUnaligned localFrame1, CTransformUnaligned localFrame2))g_engine_nativeFunctions[2070])(m_pSelf, pBody1, pBody2, localFrame1, localFrame2);
 	}
 	inline void SetCollisionRulesFromJson(const char* rules) 
 	{
-		((void(*)(void* self, const char* rules))g_nativeFunctions[2071])(m_pSelf, rules);
+		((void(*)(void* self, const char* rules))g_engine_nativeFunctions[2071])(m_pSelf, rules);
 	}
 	inline void StepSimulation(float flTimestep, int nNumSteps) 
 	{
-		((void(*)(void* __self, float __flTimestep, int __nNumSteps))g_nativeFunctions[2072])(m_pSelf, flTimestep, nNumSteps);
+		((void(*)(void* __self, float __flTimestep, int __nNumSteps))g_engine_nativeFunctions[2072])(m_pSelf, flTimestep, nNumSteps);
 	}
 	inline void ProcessIntersections(void* f) 
 	{
-		((void(*)(void* self, void* f))g_nativeFunctions[2073])(m_pSelf, f);
+		((void(*)(void* self, void* f))g_engine_nativeFunctions[2073])(m_pSelf, f);
 	}
 	inline void DestroyAggregateInstance(IPhysAggregateInstance* pAggregate) 
 	{
-		((void(*)(void* self, IPhysAggregateInstance* pAggregate))g_nativeFunctions[2074])(m_pSelf, pAggregate);
+		((void(*)(void* self, IPhysAggregateInstance* pAggregate))g_engine_nativeFunctions[2074])(m_pSelf, pAggregate);
 	}
 	inline int CreateAggregateInstance(const char* resourceName, CTransformUnaligned tmStart, uint64 nGSNHandle, int64 nMotionType) 
 	{
 		return
-		((int(*)(void* __self, const char* __resourceName, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_nativeFunctions[2075])(m_pSelf, resourceName, tmStart, nGSNHandle, nMotionType);
+		((int(*)(void* __self, const char* __resourceName, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_engine_nativeFunctions[2075])(m_pSelf, resourceName, tmStart, nGSNHandle, nMotionType);
 	}
 	inline int CreateAggregateInstance(HModelStrong* model, CTransformUnaligned tmStart, uint64 nGSNHandle, int64 nMotionType) 
 	{
 		return
-		((int(*)(void* __self, HModelStrong* __model, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_nativeFunctions[2076])(m_pSelf, model, tmStart, nGSNHandle, nMotionType);
+		((int(*)(void* __self, HModelStrong* __model, CTransformUnaligned __tmStart, uint64 __nGSNHandle, int64 __nMotionType))g_engine_nativeFunctions[2076])(m_pSelf, model, tmStart, nGSNHandle, nMotionType);
 	}
 	inline void SetDebugScene(ISceneWorld* world) 
 	{
-		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2077])(m_pSelf, world);
+		((void(*)(void* self, ISceneWorld* world))g_engine_nativeFunctions[2077])(m_pSelf, world);
 	}
 	inline int GetDebugScene() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2078])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2078])(m_pSelf);
 	}
 	inline void Draw(void* debugDrawFcn) 
 	{
-		((void(*)(void* self, void* debugDrawFcn))g_nativeFunctions[2079])(m_pSelf, debugDrawFcn);
+		((void(*)(void* self, void* debugDrawFcn))g_engine_nativeFunctions[2079])(m_pSelf, debugDrawFcn);
 	}
 	inline int ManagedObject() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2080])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2080])(m_pSelf);
 	}
 	inline void Query(CQueryResult* result, Vector vCenter, float flRadius, unsigned short nObjectSetMask) 
 	{
-		((void(*)(void* self, CQueryResult* result, Vector vCenter, float flRadius, unsigned short nObjectSetMask))g_nativeFunctions[2081])(m_pSelf, result, vCenter, flRadius, nObjectSetMask);
+		((void(*)(void* self, CQueryResult* result, Vector vCenter, float flRadius, unsigned short nObjectSetMask))g_engine_nativeFunctions[2081])(m_pSelf, result, vCenter, flRadius, nObjectSetMask);
 	}
 	inline void Query(CQueryResult* result, AABB_t bounds, unsigned short nObjectSetMask) 
 	{
-		((void(*)(void* self, CQueryResult* result, AABB_t bounds, unsigned short nObjectSetMask))g_nativeFunctions[2082])(m_pSelf, result, bounds, nObjectSetMask);
+		((void(*)(void* self, CQueryResult* result, AABB_t bounds, unsigned short nObjectSetMask))g_engine_nativeFunctions[2082])(m_pSelf, result, bounds, nObjectSetMask);
 	}
 	inline void Query(CQueryResult* result, void* pPoints, int nPoints, unsigned short nObjectSetMask) 
 	{
-		((void(*)(void* self, CQueryResult* result, void* pPoints, int nPoints, unsigned short nObjectSetMask))g_nativeFunctions[2083])(m_pSelf, result, pPoints, nPoints, nObjectSetMask);
+		((void(*)(void* self, CQueryResult* result, void* pPoints, int nPoints, unsigned short nObjectSetMask))g_engine_nativeFunctions[2083])(m_pSelf, result, pPoints, nPoints, nObjectSetMask);
 	}
 };
 class IPhysSurfacePropertyController
@@ -9911,17 +9893,17 @@ class IPhysSurfacePropertyController
 	inline int GetSurfacePropCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2084])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2084])(m_pSelf);
 	}
 	inline const CPhysSurfaceProperties* GetSurfaceProperty(int nIndex) 
 	{
 		return
-		((const CPhysSurfaceProperties*(*)(void* self, int nIndex))g_nativeFunctions[2085])(m_pSelf, nIndex);
+		((const CPhysSurfaceProperties*(*)(void* self, int nIndex))g_engine_nativeFunctions[2085])(m_pSelf, nIndex);
 	}
 	inline const CPhysSurfaceProperties* AddProperty(const char* name, const char* basename, const char* description) 
 	{
 		return
-		((const CPhysSurfaceProperties*(*)(void* self, const char* name, const char* basename, const char* description))g_nativeFunctions[2086])(m_pSelf, name, basename, description);
+		((const CPhysSurfaceProperties*(*)(void* self, const char* name, const char* basename, const char* description))g_engine_nativeFunctions[2086])(m_pSelf, name, basename, description);
 	}
 };
 class IPVS
@@ -9935,27 +9917,27 @@ class IPVS
 	inline int IsEmptyPVS() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2087])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2087])(m_pSelf);
 	}
 	inline int IsInPVS(int numSources, void* sources, Vector position) 
 	{
 		return
-		((int(*)(void* self, int numSources, void* sources, Vector position))g_nativeFunctions[2088])(m_pSelf, numSources, sources, position);
+		((int(*)(void* self, int numSources, void* sources, Vector position))g_engine_nativeFunctions[2088])(m_pSelf, numSources, sources, position);
 	}
 	inline int IsAbsBoxInPVS(int numSources, void* sources, Vector mins, Vector maxs) 
 	{
 		return
-		((int(*)(void* self, int numSources, void* sources, Vector mins, Vector maxs))g_nativeFunctions[2089])(m_pSelf, numSources, sources, mins, maxs);
+		((int(*)(void* self, int numSources, void* sources, Vector mins, Vector maxs))g_engine_nativeFunctions[2089])(m_pSelf, numSources, sources, mins, maxs);
 	}
 	inline int IsSkyVisibleFromPosition(Vector position) 
 	{
 		return
-		((int(*)(void* self, Vector position))g_nativeFunctions[2090])(m_pSelf, position);
+		((int(*)(void* self, Vector position))g_engine_nativeFunctions[2090])(m_pSelf, position);
 	}
 	inline int IsSunVisibleFromPosition(Vector position) 
 	{
 		return
-		((int(*)(void* self, Vector position))g_nativeFunctions[2091])(m_pSelf, position);
+		((int(*)(void* self, Vector position))g_engine_nativeFunctions[2091])(m_pSelf, position);
 	}
 };
 class IRayTraceSceneWorld
@@ -9968,21 +9950,21 @@ class IRayTraceSceneWorld
 	}
 	inline void BeginBuild() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2092])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2092])(m_pSelf);
 	}
 	inline void AddSceneWorldToBuild(ISceneWorld* pWorld, IRenderContext* pRenderContext) 
 	{
-		((void(*)(void* self, ISceneWorld* pWorld, IRenderContext* pRenderContext))g_nativeFunctions[2093])(m_pSelf, pWorld, pRenderContext);
+		((void(*)(void* self, ISceneWorld* pWorld, IRenderContext* pRenderContext))g_engine_nativeFunctions[2093])(m_pSelf, pWorld, pRenderContext);
 	}
 	inline int EndBuild(IRenderContext* pRenderContext, CRenderAttributes* attrs) 
 	{
 		return
-		((int(*)(void* self, IRenderContext* pRenderContext, CRenderAttributes* attrs))g_nativeFunctions[2094])(m_pSelf, pRenderContext, attrs);
+		((int(*)(void* self, IRenderContext* pRenderContext, CRenderAttributes* attrs))g_engine_nativeFunctions[2094])(m_pSelf, pRenderContext, attrs);
 	}
 	inline int BuildTLASForWorld(ISceneWorld* pWorld, CRenderAttributes* attrs) 
 	{
 		return
-		((int(*)(void* __self, ISceneWorld* __pWorld, CRenderAttributes* __attrs))g_nativeFunctions[2095])(m_pSelf, pWorld, attrs);
+		((int(*)(void* __self, ISceneWorld* __pWorld, CRenderAttributes* __attrs))g_engine_nativeFunctions[2095])(m_pSelf, pWorld, attrs);
 	}
 };
 class IRD_RegisterResourceDataUtils
@@ -9995,31 +9977,31 @@ class IRD_RegisterResourceDataUtils
 	}
 	inline void SetDataRegistrationFailed() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2096])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2096])(m_pSelf);
 	}
 	inline int IsReloading() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2097])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2097])(m_pSelf);
 	}
 	inline void SetFinalResourceData(void* pPtr) 
 	{
-		((void(*)(void* self, void* pPtr))g_nativeFunctions[2098])(m_pSelf, pPtr);
+		((void(*)(void* self, void* pPtr))g_engine_nativeFunctions[2098])(m_pSelf, pPtr);
 	}
 	inline int GetDataRegistrationFailed() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2099])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2099])(m_pSelf);
 	}
 	inline const void* GetFinalResourceData() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[2100])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[2100])(m_pSelf);
 	}
 	inline int64 GetResultBufferSize() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2101])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2101])(m_pSelf);
 	}
 };
 class IReadBufferCallback
@@ -10050,155 +10032,155 @@ class IRenderContext
 	}
 	inline void Draw(int64 type, int nFirstVertex, int nVertexCount) 
 	{
-		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCount))g_nativeFunctions[2102])(m_pSelf, type, nFirstVertex, nVertexCount);
+		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCount))g_engine_nativeFunctions[2102])(m_pSelf, type, nFirstVertex, nVertexCount);
 	}
 	inline void DrawInstanced(int64 type, int nFirstVertex, int nVertexCountPerInstance, int nInstanceCount) 
 	{
-		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCountPerInstance, int nInstanceCount))g_nativeFunctions[2103])(m_pSelf, type, nFirstVertex, nVertexCountPerInstance, nInstanceCount);
+		((void(*)(void* self, int64 type, int nFirstVertex, int nVertexCountPerInstance, int nInstanceCount))g_engine_nativeFunctions[2103])(m_pSelf, type, nFirstVertex, nVertexCountPerInstance, nInstanceCount);
 	}
 	inline void DrawIndexed(int64 type, int nFirstIndex, int nIndexCount, int nMaxVertexCount, int nBaseVertex) 
 	{
-		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCount, int nMaxVertexCount, int nBaseVertex))g_nativeFunctions[2104])(m_pSelf, type, nFirstIndex, nIndexCount, nMaxVertexCount, nBaseVertex);
+		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCount, int nMaxVertexCount, int nBaseVertex))g_engine_nativeFunctions[2104])(m_pSelf, type, nFirstIndex, nIndexCount, nMaxVertexCount, nBaseVertex);
 	}
 	inline void DrawIndexedInstanced(int64 type, int nFirstIndex, int nIndexCountPerInstance, int nInstanceCount, int nMaxVertexCount, int nBaseVertex) 
 	{
-		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCountPerInstance, int nInstanceCount, int nMaxVertexCount, int nBaseVertex))g_nativeFunctions[2105])(m_pSelf, type, nFirstIndex, nIndexCountPerInstance, nInstanceCount, nMaxVertexCount, nBaseVertex);
+		((void(*)(void* self, int64 type, int nFirstIndex, int nIndexCountPerInstance, int nInstanceCount, int nMaxVertexCount, int nBaseVertex))g_engine_nativeFunctions[2105])(m_pSelf, type, nFirstIndex, nIndexCountPerInstance, nInstanceCount, nMaxVertexCount, nBaseVertex);
 	}
 	inline void DrawInstancedIndirect(int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset) 
 	{
-		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_nativeFunctions[2106])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
+		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_engine_nativeFunctions[2106])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
 	}
 	inline void DrawIndexedInstancedIndirect(int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset) 
 	{
-		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_nativeFunctions[2107])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
+		((void(*)(void* self, int64 type, RenderBufferHandle_t hDrawArgBuffer, unsigned int nBufferOffset))g_engine_nativeFunctions[2107])(m_pSelf, type, hDrawArgBuffer, nBufferOffset);
 	}
 	inline void TextureBarrierTransition(HRenderTextureStrong* hSrc, int mips, int64 srcStage, int64 dstStage, int64 layout, int64 srcFlags, int64 dstFlags) 
 	{
-		((void(*)(void* __self, HRenderTextureStrong* __hSrc, int __mips, int64 __srcStage, int64 __dstStage, int64 __layout, int64 __srcFlags, int64 __dstFlags))g_nativeFunctions[2108])(m_pSelf, hSrc, mips, srcStage, dstStage, layout, srcFlags, dstFlags);
+		((void(*)(void* __self, HRenderTextureStrong* __hSrc, int __mips, int64 __srcStage, int64 __dstStage, int64 __layout, int64 __srcFlags, int64 __dstFlags))g_engine_nativeFunctions[2108])(m_pSelf, hSrc, mips, srcStage, dstStage, layout, srcFlags, dstFlags);
 	}
 	inline void BufferBarrierTransition(RenderBufferHandle_t hSrc, int64 srcStage, int64 dstStage, int64 srcFlags, int64 dstFlags) 
 	{
-		((void(*)(void* __self, RenderBufferHandle_t __hSrc, int64 __srcStage, int64 __dstStage, int64 __srcFlags, int64 __dstFlags))g_nativeFunctions[2109])(m_pSelf, hSrc, srcStage, dstStage, srcFlags, dstFlags);
+		((void(*)(void* __self, RenderBufferHandle_t __hSrc, int64 __srcStage, int64 __dstStage, int64 __srcFlags, int64 __dstFlags))g_engine_nativeFunctions[2109])(m_pSelf, hSrc, srcStage, dstStage, srcFlags, dstFlags);
 	}
 	inline void SetScissorRect(Rect_t rect) 
 	{
-		((void(*)(void* self, Rect_t rect))g_nativeFunctions[2110])(m_pSelf, rect);
+		((void(*)(void* self, Rect_t rect))g_engine_nativeFunctions[2110])(m_pSelf, rect);
 	}
 	inline const CRenderAttributes* GetAttributesPtrForModify() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[2111])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[2111])(m_pSelf);
 	}
 	inline void GenerateMipMaps(HRenderTextureStrong* material) 
 	{
-		((void(*)(void* self, HRenderTextureStrong* material))g_nativeFunctions[2112])(m_pSelf, material);
+		((void(*)(void* self, HRenderTextureStrong* material))g_engine_nativeFunctions[2112])(m_pSelf, material);
 	}
 	inline void Clear(Vector4D col, int clearColor, int clearDepth, int clearStencil) 
 	{
-		((void(*)(void* __self, Vector4D __col, int __clearColor, int __clearDepth, int __clearStencil))g_nativeFunctions[2113])(m_pSelf, col, clearColor, clearDepth, clearStencil);
+		((void(*)(void* __self, Vector4D __col, int __clearColor, int __clearDepth, int __clearStencil))g_engine_nativeFunctions[2113])(m_pSelf, col, clearColor, clearDepth, clearStencil);
 	}
 	inline void BindRenderTargets(HRenderTextureStrong* colorTexture, HRenderTextureStrong* depthTexture, ISceneLayer* layer) 
 	{
-		((void(*)(void* __self, HRenderTextureStrong* __colorTexture, HRenderTextureStrong* __depthTexture, ISceneLayer* __layer))g_nativeFunctions[2114])(m_pSelf, colorTexture, depthTexture, layer);
+		((void(*)(void* __self, HRenderTextureStrong* __colorTexture, HRenderTextureStrong* __depthTexture, ISceneLayer* __layer))g_engine_nativeFunctions[2114])(m_pSelf, colorTexture, depthTexture, layer);
 	}
 	inline void RestoreRenderTargets(ISceneLayer* layer) 
 	{
-		((void(*)(void* __self, ISceneLayer* __layer))g_nativeFunctions[2115])(m_pSelf, layer);
+		((void(*)(void* __self, ISceneLayer* __layer))g_engine_nativeFunctions[2115])(m_pSelf, layer);
 	}
 	inline void SetViewport(Rect_t rect) 
 	{
-		((void(*)(void* __self, Rect_t __rect))g_nativeFunctions[2116])(m_pSelf, rect);
+		((void(*)(void* __self, Rect_t __rect))g_engine_nativeFunctions[2116])(m_pSelf, rect);
 	}
 	inline void SetViewport(RenderViewport_t viewport) 
 	{
-		((void(*)(void* __self, RenderViewport_t __viewport))g_nativeFunctions[2117])(m_pSelf, viewport);
+		((void(*)(void* __self, RenderViewport_t __viewport))g_engine_nativeFunctions[2117])(m_pSelf, viewport);
 	}
 	inline void SetViewport(int x, int y, int w, int h) 
 	{
-		((void(*)(void* __self, int __x, int __y, int __w, int __h))g_nativeFunctions[2118])(m_pSelf, x, y, w, h);
+		((void(*)(void* __self, int __x, int __y, int __w, int __h))g_engine_nativeFunctions[2118])(m_pSelf, x, y, w, h);
 	}
 	inline RenderViewport_t GetViewport() 
 	{
 		return
-		((RenderViewport_t(*)(void* __self))g_nativeFunctions[2119])(m_pSelf);
+		((RenderViewport_t(*)(void* __self))g_engine_nativeFunctions[2119])(m_pSelf);
 	}
 	inline void Submit() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2120])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2120])(m_pSelf);
 	}
 	inline void SetAssociatedThreadIndex() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2121])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2121])(m_pSelf);
 	}
 	inline void BindRenderTargets(SwapChainHandle_t swapChain, int color, int depth) 
 	{
-		((void(*)(void* __self, SwapChainHandle_t __swapChain, int __color, int __depth))g_nativeFunctions[2122])(m_pSelf, swapChain, color, depth);
+		((void(*)(void* __self, SwapChainHandle_t __swapChain, int __color, int __depth))g_engine_nativeFunctions[2122])(m_pSelf, swapChain, color, depth);
 	}
 	inline int BindIndexBuffer(IndexBufferHandle_t hIndexBuffer, int nOffset) 
 	{
 		return
-		((int(*)(void* self, IndexBufferHandle_t hIndexBuffer, int nOffset))g_nativeFunctions[2123])(m_pSelf, hIndexBuffer, nOffset);
+		((int(*)(void* self, IndexBufferHandle_t hIndexBuffer, int nOffset))g_engine_nativeFunctions[2123])(m_pSelf, hIndexBuffer, nOffset);
 	}
 	inline int BindIndexBuffer(RenderBufferHandle_t hIndexBuffer, int nIndexSize, int nOffset) 
 	{
 		return
-		((int(*)(void* self, RenderBufferHandle_t hIndexBuffer, int nIndexSize, int nOffset))g_nativeFunctions[2124])(m_pSelf, hIndexBuffer, nIndexSize, nOffset);
+		((int(*)(void* self, RenderBufferHandle_t hIndexBuffer, int nIndexSize, int nOffset))g_engine_nativeFunctions[2124])(m_pSelf, hIndexBuffer, nIndexSize, nOffset);
 	}
 	inline int BindVertexBuffer(int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset) 
 	{
 		return
-		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset))g_nativeFunctions[2125])(m_pSelf, nSlot, hVertexBuffer, nOffset);
+		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset))g_engine_nativeFunctions[2125])(m_pSelf, nSlot, hVertexBuffer, nOffset);
 	}
 	inline int BindVertexBuffer(int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset, int nStride) 
 	{
 		return
-		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_nativeFunctions[2126])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
+		((int(*)(void* self, int nSlot, VertexBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_engine_nativeFunctions[2126])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
 	}
 	inline int BindVertexBuffer(int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset) 
 	{
 		return
-		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset))g_nativeFunctions[2127])(m_pSelf, nSlot, hVertexBuffer, nOffset);
+		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset))g_engine_nativeFunctions[2127])(m_pSelf, nSlot, hVertexBuffer, nOffset);
 	}
 	inline int BindVertexBuffer(int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset, int nStride) 
 	{
 		return
-		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_nativeFunctions[2128])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
+		((int(*)(void* self, int nSlot, RenderBufferHandle_t hVertexBuffer, int nOffset, int nStride))g_engine_nativeFunctions[2128])(m_pSelf, nSlot, hVertexBuffer, nOffset, nStride);
 	}
 	inline void BindVertexShader(RenderShaderHandle_t hVertexShader, VertexBufferHandle_t hInputLayout) 
 	{
-		((void(*)(void* __self, RenderShaderHandle_t __hVertexShader, VertexBufferHandle_t __hInputLayout))g_nativeFunctions[2129])(m_pSelf, hVertexShader, hInputLayout);
+		((void(*)(void* __self, RenderShaderHandle_t __hVertexShader, VertexBufferHandle_t __hInputLayout))g_engine_nativeFunctions[2129])(m_pSelf, hVertexShader, hInputLayout);
 	}
 	inline void BindPixelShader(RenderShaderHandle_t hShader) 
 	{
-		((void(*)(void* __self, RenderShaderHandle_t __hShader))g_nativeFunctions[2130])(m_pSelf, hShader);
+		((void(*)(void* __self, RenderShaderHandle_t __hShader))g_engine_nativeFunctions[2130])(m_pSelf, hShader);
 	}
 	inline void SetDynamicConstantBufferData(int64 shaderType, void* pData, int nSize, int slot) 
 	{
-		((void(*)(void* __self, int64 __shaderType, void* __pData, int __nSize, int __slot))g_nativeFunctions[2131])(m_pSelf, shaderType, pData, nSize, slot);
+		((void(*)(void* __self, int64 __shaderType, void* __pData, int __nSize, int __slot))g_engine_nativeFunctions[2131])(m_pSelf, shaderType, pData, nSize, slot);
 	}
 	inline void BindTexture(int nTextureIndex, HRenderTextureStrong* hTexture) 
 	{
-		((void(*)(void* __self, int __nTextureIndex, HRenderTextureStrong* __hTexture))g_nativeFunctions[2132])(m_pSelf, nTextureIndex, hTexture);
+		((void(*)(void* __self, int __nTextureIndex, HRenderTextureStrong* __hTexture))g_engine_nativeFunctions[2132])(m_pSelf, nTextureIndex, hTexture);
 	}
 	inline void ReadTexturePixels(HRenderTextureStrong* hTexture, IReadTexturePixelsCallback* pCallback, Rect_t srcRect, int nSrcSlice, int nSrcMip, int bDeleteCallbackWhenFinished) 
 	{
-		((void(*)(void* __self, HRenderTextureStrong* __hTexture, IReadTexturePixelsCallback* __pCallback, Rect_t __srcRect, int __nSrcSlice, int __nSrcMip, int __bDeleteCallbackWhenFinished))g_nativeFunctions[2133])(m_pSelf, hTexture, pCallback, srcRect, nSrcSlice, nSrcMip, bDeleteCallbackWhenFinished);
+		((void(*)(void* __self, HRenderTextureStrong* __hTexture, IReadTexturePixelsCallback* __pCallback, Rect_t __srcRect, int __nSrcSlice, int __nSrcMip, int __bDeleteCallbackWhenFinished))g_engine_nativeFunctions[2133])(m_pSelf, hTexture, pCallback, srcRect, nSrcSlice, nSrcMip, bDeleteCallbackWhenFinished);
 	}
 	inline void ReadBuffer(RenderBufferHandle_t hBuffer, IReadBufferCallback* pCallback, int nOffset, int nBytesToRead, int bDeleteCallbackWhenFinished) 
 	{
-		((void(*)(void* self, RenderBufferHandle_t hBuffer, IReadBufferCallback* pCallback, int nOffset, int nBytesToRead, int bDeleteCallbackWhenFinished))g_nativeFunctions[2134])(m_pSelf, hBuffer, pCallback, nOffset, nBytesToRead, bDeleteCallbackWhenFinished);
+		((void(*)(void* self, RenderBufferHandle_t hBuffer, IReadBufferCallback* pCallback, int nOffset, int nBytesToRead, int bDeleteCallbackWhenFinished))g_engine_nativeFunctions[2134])(m_pSelf, hBuffer, pCallback, nOffset, nBytesToRead, bDeleteCallbackWhenFinished);
 	}
 	inline void BeginPixEvent(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2135])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_engine_nativeFunctions[2135])(m_pSelf, name);
 	}
 	inline void EndPixEvent() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2136])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2136])(m_pSelf);
 	}
 	inline void PixSetMarker(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2137])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_engine_nativeFunctions[2137])(m_pSelf, name);
 	}
 };
 class ISceneLayer
@@ -10211,84 +10193,84 @@ class ISceneLayer
 	}
 	inline void SetObjectMatchID(uint32 nTok) 
 	{
-		((void(*)(void* self, uint32 nTok))g_nativeFunctions[2138])(m_pSelf, nTok);
+		((void(*)(void* self, uint32 nTok))g_engine_nativeFunctions[2138])(m_pSelf, nTok);
 	}
 	inline void AddObjectFlagsRequiredMask(int64 nRequiredFlags) 
 	{
-		((void(*)(void* self, int64 nRequiredFlags))g_nativeFunctions[2139])(m_pSelf, nRequiredFlags);
+		((void(*)(void* self, int64 nRequiredFlags))g_engine_nativeFunctions[2139])(m_pSelf, nRequiredFlags);
 	}
 	inline void AddObjectFlagsExcludedMask(int64 nExcludedFlags) 
 	{
-		((void(*)(void* self, int64 nExcludedFlags))g_nativeFunctions[2140])(m_pSelf, nExcludedFlags);
+		((void(*)(void* self, int64 nExcludedFlags))g_engine_nativeFunctions[2140])(m_pSelf, nExcludedFlags);
 	}
 	inline void RemoveObjectFlagsRequiredMask(int64 nRequiredFlags) 
 	{
-		((void(*)(void* self, int64 nRequiredFlags))g_nativeFunctions[2141])(m_pSelf, nRequiredFlags);
+		((void(*)(void* self, int64 nRequiredFlags))g_engine_nativeFunctions[2141])(m_pSelf, nRequiredFlags);
 	}
 	inline void RemoveObjectFlagsExcludedMask(int64 nExcludedFlags) 
 	{
-		((void(*)(void* self, int64 nExcludedFlags))g_nativeFunctions[2142])(m_pSelf, nExcludedFlags);
+		((void(*)(void* self, int64 nExcludedFlags))g_engine_nativeFunctions[2142])(m_pSelf, nExcludedFlags);
 	}
 	inline int64 GetObjectFlagsRequiredMask() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2143])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2143])(m_pSelf);
 	}
 	inline int64 GetObjectFlagsExcludedMask() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2144])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2144])(m_pSelf);
 	}
 	inline const char* GetDebugName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2145])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2145])(m_pSelf);
 	}
 	inline const CRenderAttributes* GetRenderAttributesPtr() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* __self))g_nativeFunctions[2146])(m_pSelf);
+		((const CRenderAttributes*(*)(void* __self))g_engine_nativeFunctions[2146])(m_pSelf);
 	}
 	inline void SetAttr(uint32 nTokenID, HSceneViewRenderTarget hRenderTarget, int64 msaa, unsigned int flags) 
 	{
-		((void(*)(void* self, uint32 nTokenID, HSceneViewRenderTarget hRenderTarget, int64 msaa, unsigned int flags))g_nativeFunctions[2147])(m_pSelf, nTokenID, hRenderTarget, msaa, flags);
+		((void(*)(void* self, uint32 nTokenID, HSceneViewRenderTarget hRenderTarget, int64 msaa, unsigned int flags))g_engine_nativeFunctions[2147])(m_pSelf, nTokenID, hRenderTarget, msaa, flags);
 	}
 	inline void SetBoundingVolumeSizeCullThresholdInPercent(float flSizeCullThreshold) 
 	{
-		((void(*)(void* self, float flSizeCullThreshold))g_nativeFunctions[2148])(m_pSelf, flSizeCullThreshold);
+		((void(*)(void* self, float flSizeCullThreshold))g_engine_nativeFunctions[2148])(m_pSelf, flSizeCullThreshold);
 	}
 	inline void SetClearColor(Vector4D vecColor, int nRenderTargetIndex) 
 	{
-		((void(*)(void* self, Vector4D vecColor, int nRenderTargetIndex))g_nativeFunctions[2149])(m_pSelf, vecColor, nRenderTargetIndex);
+		((void(*)(void* self, Vector4D vecColor, int nRenderTargetIndex))g_engine_nativeFunctions[2149])(m_pSelf, vecColor, nRenderTargetIndex);
 	}
 	inline HRenderTextureStrong* GetTextureValue(uint32 nTokenID, HRenderTextureStrong* nDefaultValue) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID, HRenderTextureStrong* nDefaultValue))g_nativeFunctions[2150])(m_pSelf, nTokenID, nDefaultValue);
+		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID, HRenderTextureStrong* nDefaultValue))g_engine_nativeFunctions[2150])(m_pSelf, nTokenID, nDefaultValue);
 	}
 	inline HRenderTextureStrong* GetTextureValue(uint32 nTokenID) 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID))g_nativeFunctions[2151])(m_pSelf, nTokenID);
+		((HRenderTextureStrong*(*)(void* self, uint32 nTokenID))g_engine_nativeFunctions[2151])(m_pSelf, nTokenID);
 	}
 	inline HRenderTextureStrong* GetColorTarget() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* __self))g_nativeFunctions[2152])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* __self))g_engine_nativeFunctions[2152])(m_pSelf);
 	}
 	inline HRenderTextureStrong* GetDepthTarget() 
 	{
 		return
-		((HRenderTextureStrong*(*)(void* __self))g_nativeFunctions[2153])(m_pSelf);
+		((HRenderTextureStrong*(*)(void* __self))g_engine_nativeFunctions[2153])(m_pSelf);
 	}
 	inline void SetOutput(HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth) 
 	{
-		((void(*)(void* __self, HSceneViewRenderTarget __hColor, HSceneViewRenderTarget __hDepth))g_nativeFunctions[2154])(m_pSelf, hColor, hDepth);
+		((void(*)(void* __self, HSceneViewRenderTarget __hColor, HSceneViewRenderTarget __hDepth))g_engine_nativeFunctions[2154])(m_pSelf, hColor, hDepth);
 	}
-	RW_VAR(int64,m_nLayerFlags,ISceneLayer,g_nativeFunctions[2155],g_nativeFunctions[2156]);
-	RW_VAR(int64,LayerEnum,ISceneLayer,g_nativeFunctions[2157],g_nativeFunctions[2158]);
-	RW_VAR(RenderViewport_t,m_viewport,ISceneLayer,g_nativeFunctions[2159],g_nativeFunctions[2160]);
-	RW_VAR(int,m_nClearFlags,ISceneLayer,g_nativeFunctions[2161],g_nativeFunctions[2162]);
+	RW_VAR(int64,m_nLayerFlags,ISceneLayer,g_engine_nativeFunctions[2155],g_engine_nativeFunctions[2156]);
+	RW_VAR(int64,LayerEnum,ISceneLayer,g_engine_nativeFunctions[2157],g_engine_nativeFunctions[2158]);
+	RW_VAR(RenderViewport_t,m_viewport,ISceneLayer,g_engine_nativeFunctions[2159],g_engine_nativeFunctions[2160]);
+	RW_VAR(int,m_nClearFlags,ISceneLayer,g_engine_nativeFunctions[2161],g_engine_nativeFunctions[2162]);
 };
 class ISceneView
 {
@@ -10301,94 +10283,94 @@ class ISceneView
 	inline RenderViewport_t GetMainViewport() 
 	{
 		return
-		((RenderViewport_t(*)(void* self))g_nativeFunctions[2163])(m_pSelf);
+		((RenderViewport_t(*)(void* self))g_engine_nativeFunctions[2163])(m_pSelf);
 	}
 	inline const void* GetSwapChain() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[2164])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[2164])(m_pSelf);
 	}
 	inline void AddDependentView(ISceneView* pView, int nSlot) 
 	{
-		((void(*)(void* self, ISceneView* pView, int nSlot))g_nativeFunctions[2165])(m_pSelf, pView, nSlot);
+		((void(*)(void* self, ISceneView* pView, int nSlot))g_engine_nativeFunctions[2165])(m_pSelf, pView, nSlot);
 	}
 	inline const CRenderAttributes* GetRenderAttributesPtr() 
 	{
 		return
-		((const CRenderAttributes*(*)(void* self))g_nativeFunctions[2166])(m_pSelf);
+		((const CRenderAttributes*(*)(void* self))g_engine_nativeFunctions[2166])(m_pSelf);
 	}
 	inline const ISceneLayer* AddRenderLayer(const char* pszDebugName, RenderViewport_t viewport, uint32 eShaderMode, ISceneLayer* pAddBefore) 
 	{
 		return
-		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, uint32 eShaderMode, ISceneLayer* pAddBefore))g_nativeFunctions[2167])(m_pSelf, pszDebugName, viewport, eShaderMode, pAddBefore);
+		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, uint32 eShaderMode, ISceneLayer* pAddBefore))g_engine_nativeFunctions[2167])(m_pSelf, pszDebugName, viewport, eShaderMode, pAddBefore);
 	}
 	inline const ISceneLayer* AddManagedProceduralLayer(const char* pszDebugName, RenderViewport_t viewport, void* renderCallback, ISceneLayer* pAddBefore, int bDeleteWhenDone) 
 	{
 		return
-		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, void* renderCallback, ISceneLayer* pAddBefore, int bDeleteWhenDone))g_nativeFunctions[2168])(m_pSelf, pszDebugName, viewport, renderCallback, pAddBefore, bDeleteWhenDone);
+		((const ISceneLayer*(*)(void* self, const char* pszDebugName, RenderViewport_t viewport, void* renderCallback, ISceneLayer* pAddBefore, int bDeleteWhenDone))g_engine_nativeFunctions[2168])(m_pSelf, pszDebugName, viewport, renderCallback, pAddBefore, bDeleteWhenDone);
 	}
 	inline void SetDefaultLayerObjectRequiredFlags(int64 nFlags) 
 	{
-		((void(*)(void* self, int64 nFlags))g_nativeFunctions[2169])(m_pSelf, nFlags);
+		((void(*)(void* self, int64 nFlags))g_engine_nativeFunctions[2169])(m_pSelf, nFlags);
 	}
 	inline void SetDefaultLayerObjectExcludedFlags(int64 nFlags) 
 	{
-		((void(*)(void* self, int64 nFlags))g_nativeFunctions[2170])(m_pSelf, nFlags);
+		((void(*)(void* self, int64 nFlags))g_engine_nativeFunctions[2170])(m_pSelf, nFlags);
 	}
 	inline int64 GetDefaultLayerObjectRequiredFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2171])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2171])(m_pSelf);
 	}
 	inline int64 GetDefaultLayerObjectExcludedFlags() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2172])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2172])(m_pSelf);
 	}
 	inline void AddWorldToRenderList(ISceneWorld* pWorld) 
 	{
-		((void(*)(void* self, ISceneWorld* pWorld))g_nativeFunctions[2173])(m_pSelf, pWorld);
+		((void(*)(void* self, ISceneWorld* pWorld))g_engine_nativeFunctions[2173])(m_pSelf, pWorld);
 	}
 	inline HSceneViewRenderTarget FindOrCreateRenderTarget(const char* pName, HRenderTextureStrong* hTexture, int nFlags) 
 	{
 		return
-		((HSceneViewRenderTarget(*)(void* self, const char* pName, HRenderTextureStrong* hTexture, int nFlags))g_nativeFunctions[2174])(m_pSelf, pName, hTexture, nFlags);
+		((HSceneViewRenderTarget(*)(void* self, const char* pName, HRenderTextureStrong* hTexture, int nFlags))g_engine_nativeFunctions[2174])(m_pSelf, pName, hTexture, nFlags);
 	}
 	inline void SetParent(ISceneView* pParent) 
 	{
-		((void(*)(void* self, ISceneView* pParent))g_nativeFunctions[2175])(m_pSelf, pParent);
+		((void(*)(void* self, ISceneView* pParent))g_engine_nativeFunctions[2175])(m_pSelf, pParent);
 	}
 	inline const ISceneView* GetParent() 
 	{
 		return
-		((const ISceneView*(*)(void* self))g_nativeFunctions[2176])(m_pSelf);
+		((const ISceneView*(*)(void* self))g_engine_nativeFunctions[2176])(m_pSelf);
 	}
 	inline int GetPriority() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2177])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2177])(m_pSelf);
 	}
 	inline void SetPriority(int nPriority) 
 	{
-		((void(*)(void* self, int nPriority))g_nativeFunctions[2178])(m_pSelf, nPriority);
+		((void(*)(void* self, int nPriority))g_engine_nativeFunctions[2178])(m_pSelf, nPriority);
 	}
 	inline const CFrustum* GetFrustum() 
 	{
 		return
-		((const CFrustum*(*)(void* __self))g_nativeFunctions[2179])(m_pSelf);
+		((const CFrustum*(*)(void* __self))g_engine_nativeFunctions[2179])(m_pSelf);
 	}
 	inline int GetPostProcessEnabled() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2180])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2180])(m_pSelf);
 	}
 	inline int GetToolsVisMode() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2181])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2181])(m_pSelf);
 	}
-	RW_VAR(int,m_ViewUniqueId,ISceneView,g_nativeFunctions[2182],g_nativeFunctions[2183]);
-	RW_VAR(int,m_ManagedCameraId,ISceneView,g_nativeFunctions[2184],g_nativeFunctions[2185]);
+	RW_VAR(int,m_ViewUniqueId,ISceneView,g_engine_nativeFunctions[2182],g_engine_nativeFunctions[2183]);
+	RW_VAR(int,m_ManagedCameraId,ISceneView,g_engine_nativeFunctions[2184],g_engine_nativeFunctions[2185]);
 };
 class ISceneWorld
 {
@@ -10400,65 +10382,65 @@ class ISceneWorld
 	}
 	inline void DeleteAllObjects() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2186])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2186])(m_pSelf);
 	}
 	inline void Release() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2187])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2187])(m_pSelf);
 	}
 	inline int GetSceneObjectCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2188])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2188])(m_pSelf);
 	}
 	inline int IsEmpty() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2189])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2189])(m_pSelf);
 	}
 	inline const char* GetWorldDebugName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2190])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2190])(m_pSelf);
 	}
 	inline void SetDeleteAtEndOfFrame(int bDelete) 
 	{
-		((void(*)(void* self, int bDelete))g_nativeFunctions[2191])(m_pSelf, bDelete);
+		((void(*)(void* self, int bDelete))g_engine_nativeFunctions[2191])(m_pSelf, bDelete);
 	}
 	inline int GetDeleteAtEndOfFrame() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2192])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2192])(m_pSelf);
 	}
 	inline void DeleteEndOfFrameObjects() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2193])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2193])(m_pSelf);
 	}
 	inline int MeshTrace(MeshTraceInput input, MeshTraceOutput* output) 
 	{
 		return
-		((int(*)(void* __self, MeshTraceInput __input, MeshTraceOutput* __output))g_nativeFunctions[2194])(m_pSelf, input, output);
+		((int(*)(void* __self, MeshTraceInput __input, MeshTraceOutput* __output))g_engine_nativeFunctions[2194])(m_pSelf, input, output);
 	}
 	inline const IPVS* GetPVS() 
 	{
 		return
-		((const IPVS*(*)(void* self))g_nativeFunctions[2195])(m_pSelf);
+		((const IPVS*(*)(void* self))g_engine_nativeFunctions[2195])(m_pSelf);
 	}
 	inline void SetPVS(IPVS* pPVS) 
 	{
-		((void(*)(void* self, IPVS* pPVS))g_nativeFunctions[2196])(m_pSelf, pPVS);
+		((void(*)(void* self, IPVS* pPVS))g_engine_nativeFunctions[2196])(m_pSelf, pPVS);
 	}
 	inline void Add3DSkyboxWorld(ISceneWorld* world) 
 	{
-		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2197])(m_pSelf, world);
+		((void(*)(void* self, ISceneWorld* world))g_engine_nativeFunctions[2197])(m_pSelf, world);
 	}
 	inline void Remove3DSkyboxWorld(ISceneWorld* world) 
 	{
-		((void(*)(void* self, ISceneWorld* world))g_nativeFunctions[2198])(m_pSelf, world);
+		((void(*)(void* self, ISceneWorld* world))g_engine_nativeFunctions[2198])(m_pSelf, world);
 	}
 	inline void Set3DSkyboxParameters(Vector origin, QAngle angle, float scale) 
 	{
-		((void(*)(void* self, Vector origin, QAngle angle, float scale))g_nativeFunctions[2199])(m_pSelf, origin, angle, scale);
+		((void(*)(void* self, Vector origin, QAngle angle, float scale))g_engine_nativeFunctions[2199])(m_pSelf, origin, angle, scale);
 	}
 };
 class IShaderCompileContext
@@ -10471,11 +10453,11 @@ class IShaderCompileContext
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2200])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2200])(m_pSelf);
 	}
 	inline void SetMaskedCode(const char* code) 
 	{
-		((void(*)(void* self, const char* code))g_nativeFunctions[2201])(m_pSelf, code);
+		((void(*)(void* self, const char* code))g_engine_nativeFunctions[2201])(m_pSelf, code);
 	}
 };
 class ISteamApps
@@ -10489,62 +10471,62 @@ class ISteamApps
 	inline int BIsAppInstalled(int appid) 
 	{
 		return
-		((int(*)(void* self, int appid))g_nativeFunctions[2202])(m_pSelf, appid);
+		((int(*)(void* self, int appid))g_engine_nativeFunctions[2202])(m_pSelf, appid);
 	}
 	inline int BIsCybercafe() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2203])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2203])(m_pSelf);
 	}
 	inline int BIsDlcInstalled(int appID) 
 	{
 		return
-		((int(*)(void* self, int appID))g_nativeFunctions[2204])(m_pSelf, appID);
+		((int(*)(void* self, int appID))g_engine_nativeFunctions[2204])(m_pSelf, appID);
 	}
 	inline int BIsLowViolence() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2205])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2205])(m_pSelf);
 	}
 	inline int BIsSubscribed() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2206])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2206])(m_pSelf);
 	}
 	inline int BIsSubscribedApp(int appID) 
 	{
 		return
-		((int(*)(void* self, int appID))g_nativeFunctions[2207])(m_pSelf, appID);
+		((int(*)(void* self, int appID))g_engine_nativeFunctions[2207])(m_pSelf, appID);
 	}
 	inline const char* GetAvailableGameLanguages() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2208])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2208])(m_pSelf);
 	}
 	inline const char* GetCurrentGameLanguage() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2209])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2209])(m_pSelf);
 	}
 	inline int GetAppBuildId() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2210])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2210])(m_pSelf);
 	}
 	inline int BIsVACBanned() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2211])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2211])(m_pSelf);
 	}
 	inline const char* GetCommandLine() 
 	{
 		return
-		((const char*(*)(void* __self))g_nativeFunctions[2212])(m_pSelf);
+		((const char*(*)(void* __self))g_engine_nativeFunctions[2212])(m_pSelf);
 	}
 	inline const char* GetAppInstallDir(int appid) 
 	{
 		return
-		((const char*(*)(void* __self, int __appid))g_nativeFunctions[2213])(m_pSelf, appid);
+		((const char*(*)(void* __self, int __appid))g_engine_nativeFunctions[2213])(m_pSelf, appid);
 	}
 };
 class ISteamFriends
@@ -10558,26 +10540,26 @@ class ISteamFriends
 	inline const char* GetProfileItemPropertyString(uint64 steamID, int itemType, int prop) 
 	{
 		return
-		((const char*(*)(void* __self, uint64 __steamID, int __itemType, int __prop))g_nativeFunctions[2214])(m_pSelf, steamID, itemType, prop);
+		((const char*(*)(void* __self, uint64 __steamID, int __itemType, int __prop))g_engine_nativeFunctions[2214])(m_pSelf, steamID, itemType, prop);
 	}
 	inline uint64 RequestEquippedProfileItems(uint64 steamID) 
 	{
 		return
-		((uint64(*)(void* self, uint64 steamID))g_nativeFunctions[2215])(m_pSelf, steamID);
+		((uint64(*)(void* self, uint64 steamID))g_engine_nativeFunctions[2215])(m_pSelf, steamID);
 	}
 	inline const char* GetPersonaName() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2216])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2216])(m_pSelf);
 	}
 	inline int SetRichPresence(const char* pchKey, const char* pchValue) 
 	{
 		return
-		((int(*)(void* self, const char* pchKey, const char* pchValue))g_nativeFunctions[2217])(m_pSelf, pchKey, pchValue);
+		((int(*)(void* self, const char* pchKey, const char* pchValue))g_engine_nativeFunctions[2217])(m_pSelf, pchKey, pchValue);
 	}
 	inline void ClearRichPresence() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2218])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2218])(m_pSelf);
 	}
 };
 class ISteamGameServer
@@ -10590,74 +10572,74 @@ class ISteamGameServer
 	}
 	inline void SetServerName(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2219])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_engine_nativeFunctions[2219])(m_pSelf, name);
 	}
 	inline void SetMapName(const char* name) 
 	{
-		((void(*)(void* self, const char* name))g_nativeFunctions[2220])(m_pSelf, name);
+		((void(*)(void* self, const char* name))g_engine_nativeFunctions[2220])(m_pSelf, name);
 	}
 	inline void SetGameTags(const char* tags) 
 	{
-		((void(*)(void* self, const char* tags))g_nativeFunctions[2221])(m_pSelf, tags);
+		((void(*)(void* self, const char* tags))g_engine_nativeFunctions[2221])(m_pSelf, tags);
 	}
 	inline void SetDedicatedServer(int isDedicatedServer) 
 	{
-		((void(*)(void* self, int isDedicatedServer))g_nativeFunctions[2222])(m_pSelf, isDedicatedServer);
+		((void(*)(void* self, int isDedicatedServer))g_engine_nativeFunctions[2222])(m_pSelf, isDedicatedServer);
 	}
 	inline void SetAdvertiseServerActive(int heartbeats) 
 	{
-		((void(*)(void* self, int heartbeats))g_nativeFunctions[2223])(m_pSelf, heartbeats);
+		((void(*)(void* self, int heartbeats))g_engine_nativeFunctions[2223])(m_pSelf, heartbeats);
 	}
 	inline void SetMaxPlayerCount(int maxPlayers) 
 	{
-		((void(*)(void* self, int maxPlayers))g_nativeFunctions[2224])(m_pSelf, maxPlayers);
+		((void(*)(void* self, int maxPlayers))g_engine_nativeFunctions[2224])(m_pSelf, maxPlayers);
 	}
 	inline void LogOnAnonymous() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2225])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2225])(m_pSelf);
 	}
 	inline void LogOn(const char* token) 
 	{
-		((void(*)(void* self, const char* token))g_nativeFunctions[2226])(m_pSelf, token);
+		((void(*)(void* self, const char* token))g_engine_nativeFunctions[2226])(m_pSelf, token);
 	}
 	inline void LogOff() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2227])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2227])(m_pSelf);
 	}
 	inline void SetGameDescription(const char* description) 
 	{
-		((void(*)(void* self, const char* description))g_nativeFunctions[2228])(m_pSelf, description);
+		((void(*)(void* self, const char* description))g_engine_nativeFunctions[2228])(m_pSelf, description);
 	}
 	inline void SetProduct(const char* productName) 
 	{
-		((void(*)(void* self, const char* productName))g_nativeFunctions[2229])(m_pSelf, productName);
+		((void(*)(void* self, const char* productName))g_engine_nativeFunctions[2229])(m_pSelf, productName);
 	}
 	inline void SetModDir(const char* modDir) 
 	{
-		((void(*)(void* self, const char* modDir))g_nativeFunctions[2230])(m_pSelf, modDir);
+		((void(*)(void* self, const char* modDir))g_engine_nativeFunctions[2230])(m_pSelf, modDir);
 	}
 	inline int BLoggedOn() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2231])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2231])(m_pSelf);
 	}
 	inline HAuthTicket GetAuthSessionTicket(uint64 targetSteamId, void* buffer, unsigned int* ticketLength) 
 	{
 		return
-		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_nativeFunctions[2232])(m_pSelf, targetSteamId, buffer, ticketLength);
+		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_engine_nativeFunctions[2232])(m_pSelf, targetSteamId, buffer, ticketLength);
 	}
 	inline int64 BeginAuthSession(uint64 senderSteamId, void* buffer, int length) 
 	{
 		return
-		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_nativeFunctions[2233])(m_pSelf, senderSteamId, buffer, length);
+		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_engine_nativeFunctions[2233])(m_pSelf, senderSteamId, buffer, length);
 	}
 	inline void CancelAuthTicket(HAuthTicket ticket) 
 	{
-		((void(*)(void* self, HAuthTicket ticket))g_nativeFunctions[2234])(m_pSelf, ticket);
+		((void(*)(void* self, HAuthTicket ticket))g_engine_nativeFunctions[2234])(m_pSelf, ticket);
 	}
 	inline void EndAuthSession(uint64 steamId) 
 	{
-		((void(*)(void* self, uint64 steamId))g_nativeFunctions[2235])(m_pSelf, steamId);
+		((void(*)(void* self, uint64 steamId))g_engine_nativeFunctions[2235])(m_pSelf, steamId);
 	}
 };
 class ISteamHTMLSurface
@@ -10671,101 +10653,101 @@ class ISteamHTMLSurface
 	inline int Init() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2236])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2236])(m_pSelf);
 	}
 	inline int Shutdown() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2237])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2237])(m_pSelf);
 	}
 	inline uint64 CreateBrowser(const char* pchUserAgent, const char* pchUserCSS) 
 	{
 		return
-		((uint64(*)(void* self, const char* pchUserAgent, const char* pchUserCSS))g_nativeFunctions[2238])(m_pSelf, pchUserAgent, pchUserCSS);
+		((uint64(*)(void* self, const char* pchUserAgent, const char* pchUserCSS))g_engine_nativeFunctions[2238])(m_pSelf, pchUserAgent, pchUserCSS);
 	}
 	inline void RemoveBrowser(unsigned int bx) 
 	{
-		((void(*)(void* self, unsigned int bx))g_nativeFunctions[2239])(m_pSelf, bx);
+		((void(*)(void* self, unsigned int bx))g_engine_nativeFunctions[2239])(m_pSelf, bx);
 	}
 	inline void LoadURL(unsigned int bx, const char* pchURL, const char* pchPostData) 
 	{
-		((void(*)(void* self, unsigned int bx, const char* pchURL, const char* pchPostData))g_nativeFunctions[2240])(m_pSelf, bx, pchURL, pchPostData);
+		((void(*)(void* self, unsigned int bx, const char* pchURL, const char* pchPostData))g_engine_nativeFunctions[2240])(m_pSelf, bx, pchURL, pchPostData);
 	}
 	inline void AddHeader(unsigned int bx, const char* key, const char* value) 
 	{
-		((void(*)(void* self, unsigned int bx, const char* key, const char* value))g_nativeFunctions[2241])(m_pSelf, bx, key, value);
+		((void(*)(void* self, unsigned int bx, const char* key, const char* value))g_engine_nativeFunctions[2241])(m_pSelf, bx, key, value);
 	}
 	inline void SetSize(unsigned int bx, unsigned int w, unsigned int h) 
 	{
-		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_nativeFunctions[2242])(m_pSelf, bx, w, h);
+		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_engine_nativeFunctions[2242])(m_pSelf, bx, w, h);
 	}
 	inline void GetLinkAtPosition(unsigned int bx, unsigned int w, unsigned int h) 
 	{
-		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_nativeFunctions[2243])(m_pSelf, bx, w, h);
+		((void(*)(void* self, unsigned int bx, unsigned int w, unsigned int h))g_engine_nativeFunctions[2243])(m_pSelf, bx, w, h);
 	}
 	inline void SetHorizontalScroll(unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_nativeFunctions[2244])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_engine_nativeFunctions[2244])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
 	}
 	inline void SetVerticalScroll(unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_nativeFunctions[2245])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int nAbsolutePixelScroll))g_engine_nativeFunctions[2245])(m_pSelf, unBrowserHandle, nAbsolutePixelScroll);
 	}
 	inline void SetKeyFocus(unsigned int unBrowserHandle, int b) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int b))g_nativeFunctions[2246])(m_pSelf, unBrowserHandle, b);
+		((void(*)(void* self, unsigned int unBrowserHandle, int b))g_engine_nativeFunctions[2246])(m_pSelf, unBrowserHandle, b);
 	}
 	inline void AllowStartRequest(unsigned int bx, int b) 
 	{
-		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2247])(m_pSelf, bx, b);
+		((void(*)(void* self, unsigned int bx, int b))g_engine_nativeFunctions[2247])(m_pSelf, bx, b);
 	}
 	inline void JSDialogResponse(unsigned int bx, int b) 
 	{
-		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2248])(m_pSelf, bx, b);
+		((void(*)(void* self, unsigned int bx, int b))g_engine_nativeFunctions[2248])(m_pSelf, bx, b);
 	}
 	inline void SetBackgroundMode(unsigned int bx, int b) 
 	{
-		((void(*)(void* self, unsigned int bx, int b))g_nativeFunctions[2249])(m_pSelf, bx, b);
+		((void(*)(void* self, unsigned int bx, int b))g_engine_nativeFunctions[2249])(m_pSelf, bx, b);
 	}
 	inline void SetDPIScalingFactor(unsigned int bx, float scale) 
 	{
-		((void(*)(void* self, unsigned int bx, float scale))g_nativeFunctions[2250])(m_pSelf, bx, scale);
+		((void(*)(void* self, unsigned int bx, float scale))g_engine_nativeFunctions[2250])(m_pSelf, bx, scale);
 	}
 	inline void KeyDown(unsigned int unBrowserHandle, unsigned int key, int modifiers, int isSystemKey) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers, int isSystemKey))g_nativeFunctions[2251])(m_pSelf, unBrowserHandle, key, modifiers, isSystemKey);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers, int isSystemKey))g_engine_nativeFunctions[2251])(m_pSelf, unBrowserHandle, key, modifiers, isSystemKey);
 	}
 	inline void KeyUp(unsigned int unBrowserHandle, unsigned int key, int modifiers) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers))g_nativeFunctions[2252])(m_pSelf, unBrowserHandle, key, modifiers);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int key, int modifiers))g_engine_nativeFunctions[2252])(m_pSelf, unBrowserHandle, key, modifiers);
 	}
 	inline void KeyChar(unsigned int unBrowserHandle, unsigned int unicodeChar, int modifiers) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int unicodeChar, int modifiers))g_nativeFunctions[2253])(m_pSelf, unBrowserHandle, unicodeChar, modifiers);
+		((void(*)(void* self, unsigned int unBrowserHandle, unsigned int unicodeChar, int modifiers))g_engine_nativeFunctions[2253])(m_pSelf, unBrowserHandle, unicodeChar, modifiers);
 	}
 	inline void MouseUp(unsigned int unBrowserHandle, int eMouseButton) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2254])(m_pSelf, unBrowserHandle, eMouseButton);
+		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_engine_nativeFunctions[2254])(m_pSelf, unBrowserHandle, eMouseButton);
 	}
 	inline void MouseDown(unsigned int unBrowserHandle, int eMouseButton) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2255])(m_pSelf, unBrowserHandle, eMouseButton);
+		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_engine_nativeFunctions[2255])(m_pSelf, unBrowserHandle, eMouseButton);
 	}
 	inline void MouseDoubleClick(unsigned int unBrowserHandle, int eMouseButton) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_nativeFunctions[2256])(m_pSelf, unBrowserHandle, eMouseButton);
+		((void(*)(void* self, unsigned int unBrowserHandle, int eMouseButton))g_engine_nativeFunctions[2256])(m_pSelf, unBrowserHandle, eMouseButton);
 	}
 	inline void MouseMove(unsigned int unBrowserHandle, int x, int y) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int x, int y))g_nativeFunctions[2257])(m_pSelf, unBrowserHandle, x, y);
+		((void(*)(void* self, unsigned int unBrowserHandle, int x, int y))g_engine_nativeFunctions[2257])(m_pSelf, unBrowserHandle, x, y);
 	}
 	inline void MouseWheel(unsigned int unBrowserHandle, int nDelta) 
 	{
-		((void(*)(void* self, unsigned int unBrowserHandle, int nDelta))g_nativeFunctions[2258])(m_pSelf, unBrowserHandle, nDelta);
+		((void(*)(void* self, unsigned int unBrowserHandle, int nDelta))g_engine_nativeFunctions[2258])(m_pSelf, unBrowserHandle, nDelta);
 	}
 	inline void SetCookie(const char* pchHostname, const char* pchKey, const char* pchValue, const char* pchPath, unsigned int nExpires, int bSecure, int bHTTPOnly) 
 	{
-		((void(*)(void* self, const char* pchHostname, const char* pchKey, const char* pchValue, const char* pchPath, unsigned int nExpires, int bSecure, int bHTTPOnly))g_nativeFunctions[2259])(m_pSelf, pchHostname, pchKey, pchValue, pchPath, nExpires, bSecure, bHTTPOnly);
+		((void(*)(void* self, const char* pchHostname, const char* pchKey, const char* pchValue, const char* pchPath, unsigned int nExpires, int bSecure, int bHTTPOnly))g_engine_nativeFunctions[2259])(m_pSelf, pchHostname, pchKey, pchValue, pchPath, nExpires, bSecure, bHTTPOnly);
 	}
 };
 class ISteamMatchmaking
@@ -10778,41 +10760,41 @@ class ISteamMatchmaking
 	}
 	inline void LeaveLobby(uint64 steamid) 
 	{
-		((void(*)(void* self, uint64 steamid))g_nativeFunctions[2260])(m_pSelf, steamid);
+		((void(*)(void* self, uint64 steamid))g_engine_nativeFunctions[2260])(m_pSelf, steamid);
 	}
 	inline int GetNumLobbyMembers(uint64 steamid) 
 	{
 		return
-		((int(*)(void* self, uint64 steamid))g_nativeFunctions[2261])(m_pSelf, steamid);
+		((int(*)(void* self, uint64 steamid))g_engine_nativeFunctions[2261])(m_pSelf, steamid);
 	}
 	inline uint64 GetLobbyMemberByIndex(uint64 steamid, int index) 
 	{
 		return
-		((uint64(*)(void* __self, uint64 __steamid, int __index))g_nativeFunctions[2262])(m_pSelf, steamid, index);
+		((uint64(*)(void* __self, uint64 __steamid, int __index))g_engine_nativeFunctions[2262])(m_pSelf, steamid, index);
 	}
 	inline const void* GetLobbyData(uint64 steamid, const char* key) 
 	{
 		return
-		((const void*(*)(void* self, uint64 steamid, const char* key))g_nativeFunctions[2263])(m_pSelf, steamid, key);
+		((const void*(*)(void* self, uint64 steamid, const char* key))g_engine_nativeFunctions[2263])(m_pSelf, steamid, key);
 	}
 	inline int SetLobbyData(uint64 steamid, const char* key, const char* data) 
 	{
 		return
-		((int(*)(void* self, uint64 steamid, const char* key, const char* data))g_nativeFunctions[2264])(m_pSelf, steamid, key, data);
+		((int(*)(void* self, uint64 steamid, const char* key, const char* data))g_engine_nativeFunctions[2264])(m_pSelf, steamid, key, data);
 	}
 	inline int GetLobbyDataCount(uint64 steamid) 
 	{
 		return
-		((int(*)(void* self, uint64 steamid))g_nativeFunctions[2265])(m_pSelf, steamid);
+		((int(*)(void* self, uint64 steamid))g_engine_nativeFunctions[2265])(m_pSelf, steamid);
 	}
 	inline void DeleteLobbyData(uint64 steamid, const char* key) 
 	{
-		((void(*)(void* self, uint64 steamid, const char* key))g_nativeFunctions[2266])(m_pSelf, steamid, key);
+		((void(*)(void* self, uint64 steamid, const char* key))g_engine_nativeFunctions[2266])(m_pSelf, steamid, key);
 	}
 	inline int GetLobbyDataByIndex(uint64 steamid, int index, void* data, int datasize, void* value, int valueSize) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid, int __index, void* __data, int __datasize, void* __value, int __valueSize))g_nativeFunctions[2267])(m_pSelf, steamid, index, data, datasize, value, valueSize);
+		((int(*)(void* __self, uint64 __steamid, int __index, void* __data, int __datasize, void* __value, int __valueSize))g_engine_nativeFunctions[2267])(m_pSelf, steamid, index, data, datasize, value, valueSize);
 	}
 };
 class ISteamNetworkingMessages
@@ -10826,31 +10808,31 @@ class ISteamNetworkingMessages
 	inline int SendMessageToUser(uint64 steamid, void* data, int dataSize, int flags, int channel) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid, void* __data, int __dataSize, int __flags, int __channel))g_nativeFunctions[2268])(m_pSelf, steamid, data, dataSize, flags, channel);
+		((int(*)(void* __self, uint64 __steamid, void* __data, int __dataSize, int __flags, int __channel))g_engine_nativeFunctions[2268])(m_pSelf, steamid, data, dataSize, flags, channel);
 	}
 	inline int ReceiveMessagesOnChannel(int channel, void* array_of_pointers, int maxmessages) 
 	{
 		return
-		((int(*)(void* __self, int __channel, void* __array_of_pointers, int __maxmessages))g_nativeFunctions[2269])(m_pSelf, channel, array_of_pointers, maxmessages);
+		((int(*)(void* __self, int __channel, void* __array_of_pointers, int __maxmessages))g_engine_nativeFunctions[2269])(m_pSelf, channel, array_of_pointers, maxmessages);
 	}
 	inline int AcceptSessionWithUser(uint64 steamid) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid))g_nativeFunctions[2270])(m_pSelf, steamid);
+		((int(*)(void* __self, uint64 __steamid))g_engine_nativeFunctions[2270])(m_pSelf, steamid);
 	}
 	inline int CloseChannelWithUser(uint64 steamid, int nLocalChannel) 
 	{
 		return
-		((int(*)(void* __self, uint64 __steamid, int __nLocalChannel))g_nativeFunctions[2271])(m_pSelf, steamid, nLocalChannel);
+		((int(*)(void* __self, uint64 __steamid, int __nLocalChannel))g_engine_nativeFunctions[2271])(m_pSelf, steamid, nLocalChannel);
 	}
 	inline void ReleaseMessage(void* message) 
 	{
-		((void(*)(void* __self, void* __message))g_nativeFunctions[2272])(m_pSelf, message);
+		((void(*)(void* __self, void* __message))g_engine_nativeFunctions[2272])(m_pSelf, message);
 	}
 	inline SteamNetConnectionRealTimeStatus_t GetConnectionInfo(uint64 steamid) 
 	{
 		return
-		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, uint64 __steamid))g_nativeFunctions[2273])(m_pSelf, steamid);
+		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, uint64 __steamid))g_engine_nativeFunctions[2273])(m_pSelf, steamid);
 	}
 };
 class ISteamNetworkingSockets
@@ -10864,19 +10846,19 @@ class ISteamNetworkingSockets
 	inline SteamNetConnectionRealTimeStatus_t GetConnectionInfo(HSteamNetConnection handle) 
 	{
 		return
-		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, HSteamNetConnection __handle))g_nativeFunctions[2274])(m_pSelf, handle);
+		((SteamNetConnectionRealTimeStatus_t(*)(void* __self, HSteamNetConnection __handle))g_engine_nativeFunctions[2274])(m_pSelf, handle);
 	}
 	inline void StartAuthentication() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2275])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[2275])(m_pSelf);
 	}
 	inline void BeginRequestFakeIP() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2276])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[2276])(m_pSelf);
 	}
 	inline void ReleaseMessage(void* message) 
 	{
-		((void(*)(void* __self, void* __message))g_nativeFunctions[2277])(m_pSelf, message);
+		((void(*)(void* __self, void* __message))g_engine_nativeFunctions[2277])(m_pSelf, message);
 	}
 };
 class ISteamNetworkingUtils
@@ -10889,15 +10871,15 @@ class ISteamNetworkingUtils
 	}
 	inline void SetConfig(int64 key, int value) 
 	{
-		((void(*)(void* __self, int64 __key, int __value))g_nativeFunctions[2278])(m_pSelf, key, value);
+		((void(*)(void* __self, int64 __key, int __value))g_engine_nativeFunctions[2278])(m_pSelf, key, value);
 	}
 	inline void SetConfig(int64 key, const char* value) 
 	{
-		((void(*)(void* __self, int64 __key, const char* __value))g_nativeFunctions[2279])(m_pSelf, key, value);
+		((void(*)(void* __self, int64 __key, const char* __value))g_engine_nativeFunctions[2279])(m_pSelf, key, value);
 	}
 	inline void InitializeRelayNetwork() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2280])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[2280])(m_pSelf);
 	}
 };
 class ISteamUser
@@ -10911,58 +10893,58 @@ class ISteamUser
 	inline int BLoggedOn() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2281])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2281])(m_pSelf);
 	}
 	inline uint64 GetSteamID() 
 	{
 		return
-		((uint64(*)(void* __self))g_nativeFunctions[2282])(m_pSelf);
+		((uint64(*)(void* __self))g_engine_nativeFunctions[2282])(m_pSelf);
 	}
 	inline int GetVoice(int bWantCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten) 
 	{
 		return
-		((int(*)(void* self, int bWantCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten))g_nativeFunctions[2283])(m_pSelf, bWantCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten);
+		((int(*)(void* self, int bWantCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten))g_engine_nativeFunctions[2283])(m_pSelf, bWantCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten);
 	}
 	inline int GetAvailableVoice(unsigned int* availableData) 
 	{
 		return
-		((int(*)(void* self, unsigned int* availableData))g_nativeFunctions[2284])(m_pSelf, availableData);
+		((int(*)(void* self, unsigned int* availableData))g_engine_nativeFunctions[2284])(m_pSelf, availableData);
 	}
 	inline unsigned int GetVoiceOptimalSampleRate() 
 	{
 		return
-		((unsigned int(*)(void* self))g_nativeFunctions[2285])(m_pSelf);
+		((unsigned int(*)(void* self))g_engine_nativeFunctions[2285])(m_pSelf);
 	}
 	inline int DecompressVoice(void* pCompressed, unsigned int cbCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten, unsigned int nDesiredSampleRate) 
 	{
 		return
-		((int(*)(void* self, void* pCompressed, unsigned int cbCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten, unsigned int nDesiredSampleRate))g_nativeFunctions[2286])(m_pSelf, pCompressed, cbCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten, nDesiredSampleRate);
+		((int(*)(void* self, void* pCompressed, unsigned int cbCompressed, void* pDestBuffer, unsigned int cbDestBufferSize, unsigned int* nBytesWritten, unsigned int nDesiredSampleRate))g_engine_nativeFunctions[2286])(m_pSelf, pCompressed, cbCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten, nDesiredSampleRate);
 	}
 	inline void StartVoiceRecording() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2287])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2287])(m_pSelf);
 	}
 	inline void StopVoiceRecording() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2288])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2288])(m_pSelf);
 	}
 	inline HAuthTicket GetAuthSessionTicket(uint64 targetSteamId, void* buffer, unsigned int* ticketLength) 
 	{
 		return
-		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_nativeFunctions[2289])(m_pSelf, targetSteamId, buffer, ticketLength);
+		((HAuthTicket(*)(void* __self, uint64 __targetSteamId, void* __buffer, unsigned int* __ticketLength))g_engine_nativeFunctions[2289])(m_pSelf, targetSteamId, buffer, ticketLength);
 	}
 	inline int64 BeginAuthSession(uint64 senderSteamId, void* buffer, int length) 
 	{
 		return
-		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_nativeFunctions[2290])(m_pSelf, senderSteamId, buffer, length);
+		((int64(*)(void* __self, uint64 __senderSteamId, void* __buffer, int __length))g_engine_nativeFunctions[2290])(m_pSelf, senderSteamId, buffer, length);
 	}
 	inline void CancelAuthTicket(HAuthTicket ticket) 
 	{
-		((void(*)(void* self, HAuthTicket ticket))g_nativeFunctions[2291])(m_pSelf, ticket);
+		((void(*)(void* self, HAuthTicket ticket))g_engine_nativeFunctions[2291])(m_pSelf, ticket);
 	}
 	inline void EndAuthSession(uint64 steamId) 
 	{
-		((void(*)(void* self, uint64 steamId))g_nativeFunctions[2292])(m_pSelf, steamId);
+		((void(*)(void* self, uint64 steamId))g_engine_nativeFunctions[2292])(m_pSelf, steamId);
 	}
 };
 class ISteamUtils
@@ -10976,12 +10958,12 @@ class ISteamUtils
 	inline int InitFilterText(unsigned int unFilterOptions) 
 	{
 		return
-		((int(*)(void* self, unsigned int unFilterOptions))g_nativeFunctions[2293])(m_pSelf, unFilterOptions);
+		((int(*)(void* self, unsigned int unFilterOptions))g_engine_nativeFunctions[2293])(m_pSelf, unFilterOptions);
 	}
 	inline int FilterText(int64 eContext, uint64 sourceSteamID, const char* pchInputMessage, void* pchOutFilteredText, unsigned int nByteSizeOutFilteredText) 
 	{
 		return
-		((int(*)(void* self, int64 eContext, uint64 sourceSteamID, const char* pchInputMessage, void* pchOutFilteredText, unsigned int nByteSizeOutFilteredText))g_nativeFunctions[2294])(m_pSelf, eContext, sourceSteamID, pchInputMessage, pchOutFilteredText, nByteSizeOutFilteredText);
+		((int(*)(void* self, int64 eContext, uint64 sourceSteamID, const char* pchInputMessage, void* pchOutFilteredText, unsigned int nByteSizeOutFilteredText))g_engine_nativeFunctions[2294])(m_pSelf, eContext, sourceSteamID, pchInputMessage, pchOutFilteredText, nByteSizeOutFilteredText);
 	}
 };
 class ITonemapSystem
@@ -10994,11 +10976,11 @@ class ITonemapSystem
 	}
 	inline void SetTonemapParameters(SceneTonemapParameters_t* pParams) 
 	{
-		((void(*)(void* self, SceneTonemapParameters_t* pParams))g_nativeFunctions[2295])(m_pSelf, pParams);
+		((void(*)(void* self, SceneTonemapParameters_t* pParams))g_engine_nativeFunctions[2295])(m_pSelf, pParams);
 	}
 	inline void ResetTonemapParameters() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2296])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[2296])(m_pSelf);
 	}
 };
 class IVfx
@@ -11011,21 +10993,21 @@ class IVfx
 	}
 	inline void Init(void* factory) 
 	{
-		((void(*)(void* __self, void* __factory))g_nativeFunctions[2297])(m_pSelf, factory);
+		((void(*)(void* __self, void* __factory))g_engine_nativeFunctions[2297])(m_pSelf, factory);
 	}
 	inline const VfxCompiledShaderInfo_t* CompileShader(IShaderCompileContext* ctx, uint64 staticcombo, uint64 dynamiccombo, HShaderStrong* pVfx, int64 compileTarget, int64 programType, int useShaderCache, unsigned int flags) 
 	{
 		return
-		((const VfxCompiledShaderInfo_t*(*)(void* __self, IShaderCompileContext* __ctx, uint64 __staticcombo, uint64 __dynamiccombo, HShaderStrong* __pVfx, int64 __compileTarget, int64 __programType, int __useShaderCache, unsigned int __flags))g_nativeFunctions[2298])(m_pSelf, ctx, staticcombo, dynamiccombo, pVfx, compileTarget, programType, useShaderCache, flags);
+		((const VfxCompiledShaderInfo_t*(*)(void* __self, IShaderCompileContext* __ctx, uint64 __staticcombo, uint64 __dynamiccombo, HShaderStrong* __pVfx, int64 __compileTarget, int64 __programType, int __useShaderCache, unsigned int __flags))g_engine_nativeFunctions[2298])(m_pSelf, ctx, staticcombo, dynamiccombo, pVfx, compileTarget, programType, useShaderCache, flags);
 	}
 	inline void ClearShaderCache() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2299])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2299])(m_pSelf);
 	}
 	inline const IShaderCompileContext* CreateSharedContext() 
 	{
 		return
-		((const IShaderCompileContext*(*)(void* self))g_nativeFunctions[2300])(m_pSelf);
+		((const IShaderCompileContext*(*)(void* self))g_engine_nativeFunctions[2300])(m_pSelf);
 	}
 };
 class IVolumetricFog
@@ -11038,11 +11020,11 @@ class IVolumetricFog
 	}
 	inline void IsFoggingEnabled() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2301])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2301])(m_pSelf);
 	}
 	inline void SetParams(SceneVolumetricFogParameters2_t parameters, HRenderTextureStrong* bakedTexture) 
 	{
-		((void(*)(void* self, SceneVolumetricFogParameters2_t parameters, HRenderTextureStrong* bakedTexture))g_nativeFunctions[2302])(m_pSelf, parameters, bakedTexture);
+		((void(*)(void* self, SceneVolumetricFogParameters2_t parameters, HRenderTextureStrong* bakedTexture))g_engine_nativeFunctions[2302])(m_pSelf, parameters, bakedTexture);
 	}
 };
 class IWorldReference
@@ -11055,55 +11037,55 @@ class IWorldReference
 	}
 	inline void Release() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2303])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2303])(m_pSelf);
 	}
 	inline int IsWorldLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2304])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2304])(m_pSelf);
 	}
 	inline int IsErrorWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2305])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2305])(m_pSelf);
 	}
 	inline int IsMarkedForDeletion() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2306])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2306])(m_pSelf);
 	}
 	inline int GetWorldBounds(Vector* vMin, Vector* vMax) 
 	{
 		return
-		((int(*)(void* self, Vector* vMin, Vector* vMax))g_nativeFunctions[2307])(m_pSelf, vMin, vMax);
+		((int(*)(void* self, Vector* vMin, Vector* vMax))g_engine_nativeFunctions[2307])(m_pSelf, vMin, vMax);
 	}
 	inline int GetSceneWorld() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2308])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2308])(m_pSelf);
 	}
 	inline void PrecacheAllWorldNodes(unsigned int flags) 
 	{
-		((void(*)(void* self, unsigned int flags))g_nativeFunctions[2309])(m_pSelf, flags);
+		((void(*)(void* self, unsigned int flags))g_engine_nativeFunctions[2309])(m_pSelf, flags);
 	}
 	inline const char* GetFolder() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2310])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2310])(m_pSelf);
 	}
 	inline int GetEntityCount(const char* pEntityLumpName) 
 	{
 		return
-		((int(*)(void* __self, const char* __pEntityLumpName))g_nativeFunctions[2311])(m_pSelf, pEntityLumpName);
+		((int(*)(void* __self, const char* __pEntityLumpName))g_engine_nativeFunctions[2311])(m_pSelf, pEntityLumpName);
 	}
 	inline const CEntityKeyValues* GetEntityKeyValues(const char* pEntityLumpName, int index) 
 	{
 		return
-		((const CEntityKeyValues*(*)(void* __self, const char* __pEntityLumpName, int __index))g_nativeFunctions[2312])(m_pSelf, pEntityLumpName, index);
+		((const CEntityKeyValues*(*)(void* __self, const char* __pEntityLumpName, int __index))g_engine_nativeFunctions[2312])(m_pSelf, pEntityLumpName, index);
 	}
 	inline void SetWorldTransform(CTransformUnaligned transform) 
 	{
-		((void(*)(void* __self, CTransformUnaligned __transform))g_nativeFunctions[2313])(m_pSelf, transform);
+		((void(*)(void* __self, CTransformUnaligned __transform))g_engine_nativeFunctions[2313])(m_pSelf, transform);
 	}
 };
 class KeyValues3
@@ -11116,166 +11098,166 @@ class KeyValues3
 	}
 	inline void DeleteThis() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2314])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2314])(m_pSelf);
 	}
 	KeyValues3() 
 	{
-		m_pSelf = ((void*(*)())g_nativeFunctions[2315])();
+		m_pSelf = ((void*(*)())g_engine_nativeFunctions[2315])();
 	}
 	inline int IsArray() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2316])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2316])(m_pSelf);
 	}
 	inline int IsTable() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2317])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2317])(m_pSelf);
 	}
 	inline int64 GetType() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2318])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2318])(m_pSelf);
 	}
 	inline int GetValueBool() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2319])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2319])(m_pSelf);
 	}
 	inline int GetValueInt() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2320])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2320])(m_pSelf);
 	}
 	inline int64 GetValueInt64() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2321])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2321])(m_pSelf);
 	}
 	inline uint64 GetValueUint64() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2322])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[2322])(m_pSelf);
 	}
 	inline float GetValueFloat() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2323])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2323])(m_pSelf);
 	}
 	inline double GetValueDouble() 
 	{
 		return
-		((double(*)(void* self))g_nativeFunctions[2324])(m_pSelf);
+		((double(*)(void* self))g_engine_nativeFunctions[2324])(m_pSelf);
 	}
 	inline const char* GetValueString() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2325])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2325])(m_pSelf);
 	}
 	inline Vector GetValueVector() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2326])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[2326])(m_pSelf);
 	}
 	inline Color GetValueColor() 
 	{
 		return
-		((Color(*)(void* self))g_nativeFunctions[2327])(m_pSelf);
+		((Color(*)(void* self))g_engine_nativeFunctions[2327])(m_pSelf);
 	}
 	inline void SetValueBool(int o) 
 	{
-		((void(*)(void* self, int o))g_nativeFunctions[2328])(m_pSelf, o);
+		((void(*)(void* self, int o))g_engine_nativeFunctions[2328])(m_pSelf, o);
 	}
 	inline void SetValueString(const char* o) 
 	{
-		((void(*)(void* self, const char* o))g_nativeFunctions[2329])(m_pSelf, o);
+		((void(*)(void* self, const char* o))g_engine_nativeFunctions[2329])(m_pSelf, o);
 	}
 	inline void SetValueResourceString(const char* o) 
 	{
-		((void(*)(void* self, const char* o))g_nativeFunctions[2330])(m_pSelf, o);
+		((void(*)(void* self, const char* o))g_engine_nativeFunctions[2330])(m_pSelf, o);
 	}
 	inline void SetValueInt(int o) 
 	{
-		((void(*)(void* self, int o))g_nativeFunctions[2331])(m_pSelf, o);
+		((void(*)(void* self, int o))g_engine_nativeFunctions[2331])(m_pSelf, o);
 	}
 	inline void SetValueFloat(float o) 
 	{
-		((void(*)(void* self, float o))g_nativeFunctions[2332])(m_pSelf, o);
+		((void(*)(void* self, float o))g_engine_nativeFunctions[2332])(m_pSelf, o);
 	}
 	inline void SetMemberString(const char* key, const char* value) 
 	{
-		((void(*)(void* self, const char* key, const char* value))g_nativeFunctions[2333])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, const char* value))g_engine_nativeFunctions[2333])(m_pSelf, key, value);
 	}
 	inline void SetMemberInt(const char* key, int value) 
 	{
-		((void(*)(void* self, const char* key, int value))g_nativeFunctions[2334])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, int value))g_engine_nativeFunctions[2334])(m_pSelf, key, value);
 	}
 	inline void SetMemberFloat(const char* key, float value) 
 	{
-		((void(*)(void* self, const char* key, float value))g_nativeFunctions[2335])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, float value))g_engine_nativeFunctions[2335])(m_pSelf, key, value);
 	}
 	inline const char* GetMemberString(const char* key) 
 	{
 		return
-		((const char*(*)(void* self, const char* key))g_nativeFunctions[2336])(m_pSelf, key);
+		((const char*(*)(void* self, const char* key))g_engine_nativeFunctions[2336])(m_pSelf, key);
 	}
 	inline int GetMemberInt(const char* key, int defaultValue) 
 	{
 		return
-		((int(*)(void* self, const char* key, int defaultValue))g_nativeFunctions[2337])(m_pSelf, key, defaultValue);
+		((int(*)(void* self, const char* key, int defaultValue))g_engine_nativeFunctions[2337])(m_pSelf, key, defaultValue);
 	}
 	inline float GetMemberFloat(const char* key, float defaultValue) 
 	{
 		return
-		((float(*)(void* self, const char* key, float defaultValue))g_nativeFunctions[2338])(m_pSelf, key, defaultValue);
+		((float(*)(void* self, const char* key, float defaultValue))g_engine_nativeFunctions[2338])(m_pSelf, key, defaultValue);
 	}
 	inline Vector GetMemberVector(const char* key, Vector defaultValue) 
 	{
 		return
-		((Vector(*)(void* self, const char* key, Vector defaultValue))g_nativeFunctions[2339])(m_pSelf, key, defaultValue);
+		((Vector(*)(void* self, const char* key, Vector defaultValue))g_engine_nativeFunctions[2339])(m_pSelf, key, defaultValue);
 	}
 	inline void SetToEmptyArray() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2340])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2340])(m_pSelf);
 	}
 	inline int GetArrayLength() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2341])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2341])(m_pSelf);
 	}
 	inline const KeyValues3* ArrayAddToTail() 
 	{
 		return
-		((const KeyValues3*(*)(void* self))g_nativeFunctions[2342])(m_pSelf);
+		((const KeyValues3*(*)(void* self))g_engine_nativeFunctions[2342])(m_pSelf);
 	}
 	inline const KeyValues3* GetArrayElement(int i) 
 	{
 		return
-		((const KeyValues3*(*)(void* self, int i))g_nativeFunctions[2343])(m_pSelf, i);
+		((const KeyValues3*(*)(void* self, int i))g_engine_nativeFunctions[2343])(m_pSelf, i);
 	}
 	inline const KeyValues3* FindOrCreateMember(const char* name) 
 	{
 		return
-		((const KeyValues3*(*)(void* self, const char* name))g_nativeFunctions[2344])(m_pSelf, name);
+		((const KeyValues3*(*)(void* self, const char* name))g_engine_nativeFunctions[2344])(m_pSelf, name);
 	}
 	inline void SetToEmptyTable() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2345])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2345])(m_pSelf);
 	}
 	inline int GetMemberCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2346])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2346])(m_pSelf);
 	}
 	inline const KeyValues3* GetMember(int idx) 
 	{
 		return
-		((const KeyValues3*(*)(void* self, int idx))g_nativeFunctions[2347])(m_pSelf, idx);
+		((const KeyValues3*(*)(void* self, int idx))g_engine_nativeFunctions[2347])(m_pSelf, idx);
 	}
 	inline const char* GetMemberName(int idx) 
 	{
 		return
-		((const char*(*)(void* self, int idx))g_nativeFunctions[2348])(m_pSelf, idx);
+		((const char*(*)(void* self, int idx))g_engine_nativeFunctions[2348])(m_pSelf, idx);
 	}
 };
 class MeshGlue
@@ -11290,160 +11272,160 @@ class MeshGlue
 	inline HRenderMesh_InternalStrong* CreateRenderMesh(HMaterialStrong* material, int nPrimType, const char* pName) 
 	{
 		return
-		((HRenderMesh_InternalStrong*(*)(HMaterialStrong* material, int nPrimType, const char* pName))g_nativeFunctions[2349])(material, nPrimType, pName);
+		((HRenderMesh_InternalStrong*(*)(HMaterialStrong* material, int nPrimType, const char* pName))g_engine_nativeFunctions[2349])(material, nPrimType, pName);
 	}
 	static
 	inline HModelStrong* CreateModel(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask) 
 	{
 		return
-		((HModelStrong*(*)(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask))g_nativeFunctions[2350])(anim, pBodies, pMaterialGroups, mass, surfaceProp, lodSwitchDistance, meshes, numMeshes, lodMasks, meshGroupMasks, meshGroups, numMeshGroups, vertices, numVertices, indices, numIndices, spheres, numSpheres, capsules, numCapsules, boxes, numBoxes, hulls, numHulls, meshShapes, numMeshShapes, bones, numBones, boneNames, startTraceVertex, startTraceIndex, numTraceVertices, numTraceIndices, _defaultMeshGroupMask);
+		((HModelStrong*(*)(CAnimationGroupBuilder* anim, CPhysBodyDescArray* pBodies, CBuilderMaterialGroupArray* pMaterialGroups, float mass, uint32 surfaceProp, void* lodSwitchDistance, void* meshes, int numMeshes, void* lodMasks, void* meshGroupMasks, void* meshGroups, int numMeshGroups, void* vertices, int numVertices, void* indices, int numIndices, void* spheres, int numSpheres, void* capsules, int numCapsules, void* boxes, int numBoxes, void* hulls, int numHulls, void* meshShapes, int numMeshShapes, void* bones, int numBones, const char* boneNames, int startTraceVertex, int startTraceIndex, int numTraceVertices, int numTraceIndices, uint64 _defaultMeshGroupMask))g_engine_nativeFunctions[2350])(anim, pBodies, pMaterialGroups, mass, surfaceProp, lodSwitchDistance, meshes, numMeshes, lodMasks, meshGroupMasks, meshGroups, numMeshGroups, vertices, numVertices, indices, numIndices, spheres, numSpheres, capsules, numCapsules, boxes, numBoxes, hulls, numHulls, meshShapes, numMeshShapes, bones, numBones, boneNames, startTraceVertex, startTraceIndex, numTraceVertices, numTraceIndices, _defaultMeshGroupMask);
 	}
 	static
 	inline int GetModelNumVertices(HModelStrong* model) 
 	{
 		return
-		((int(*)(HModelStrong* model))g_nativeFunctions[2351])(model);
+		((int(*)(HModelStrong* model))g_engine_nativeFunctions[2351])(model);
 	}
 	static
 	inline void GetModelVertices(HModelStrong* model, void* vertices, unsigned int numVertices) 
 	{
-		((void(*)(HModelStrong* model, void* vertices, unsigned int numVertices))g_nativeFunctions[2352])(model, vertices, numVertices);
+		((void(*)(HModelStrong* model, void* vertices, unsigned int numVertices))g_engine_nativeFunctions[2352])(model, vertices, numVertices);
 	}
 	static
 	inline int GetModelNumIndices(HModelStrong* model) 
 	{
 		return
-		((int(*)(HModelStrong* model))g_nativeFunctions[2353])(model);
+		((int(*)(HModelStrong* model))g_engine_nativeFunctions[2353])(model);
 	}
 	static
 	inline void GetModelIndices(HModelStrong* model, void* indices, unsigned int numIndices) 
 	{
-		((void(*)(HModelStrong* model, void* indices, unsigned int numIndices))g_nativeFunctions[2354])(model, indices, numIndices);
+		((void(*)(HModelStrong* model, void* indices, unsigned int numIndices))g_engine_nativeFunctions[2354])(model, indices, numIndices);
 	}
 	static
 	inline int GetModelIndexCount(HModelStrong* model, int drawCall) 
 	{
 		return
-		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2355])(model, drawCall);
+		((int(*)(HModelStrong* model, int drawCall))g_engine_nativeFunctions[2355])(model, drawCall);
 	}
 	static
 	inline int GetModelIndexStart(HModelStrong* model, int drawCall) 
 	{
 		return
-		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2356])(model, drawCall);
+		((int(*)(HModelStrong* model, int drawCall))g_engine_nativeFunctions[2356])(model, drawCall);
 	}
 	static
 	inline int GetModelBaseVertex(HModelStrong* model, int drawCall) 
 	{
 		return
-		((int(*)(HModelStrong* model, int drawCall))g_nativeFunctions[2357])(model, drawCall);
+		((int(*)(HModelStrong* model, int drawCall))g_engine_nativeFunctions[2357])(model, drawCall);
 	}
 	static
 	inline void SetMeshMaterial(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material))g_nativeFunctions[2358])(renderMesh, material);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, HMaterialStrong* material))g_engine_nativeFunctions[2358])(renderMesh, material);
 	}
 	static
 	inline void SetMeshPrimType(HRenderMesh_InternalStrong* renderMesh, int nPrimType) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, int nPrimType))g_nativeFunctions[2359])(renderMesh, nPrimType);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, int nPrimType))g_engine_nativeFunctions[2359])(renderMesh, nPrimType);
 	}
 	static
 	inline void SetMeshBounds(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs))g_nativeFunctions[2360])(renderMesh, mins, maxs);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, Vector mins, Vector maxs))g_engine_nativeFunctions[2360])(renderMesh, mins, maxs);
 	}
 	static
 	inline void SetMeshUvDensity(HRenderMesh_InternalStrong* renderMesh, float flDensity) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, float flDensity))g_nativeFunctions[2361])(renderMesh, flDensity);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, float flDensity))g_engine_nativeFunctions[2361])(renderMesh, flDensity);
 	}
 	static
 	inline void SetMeshVertexRange(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount))g_nativeFunctions[2362])(renderMesh, startVertex, vertexCount);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startVertex, int vertexCount))g_engine_nativeFunctions[2362])(renderMesh, startVertex, vertexCount);
 	}
 	static
 	inline void SetMeshIndexRange(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount))g_nativeFunctions[2363])(renderMesh, startIndex, indexCount);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, int startIndex, int indexCount))g_engine_nativeFunctions[2363])(renderMesh, startIndex, indexCount);
 	}
 	static
 	inline void SetMeshVertexBuffer(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize))g_nativeFunctions[2364])(renderMesh, hVB, pData, nDataSize);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, VertexBufferHandle_t hVB, void* pData, int nDataSize))g_engine_nativeFunctions[2364])(renderMesh, hVB, pData, nDataSize);
 	}
 	static
 	inline void SetMeshIndexBuffer(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize) 
 	{
-		((void(*)(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize))g_nativeFunctions[2365])(renderMesh, hIB, pData, nDataSize);
+		((void(*)(HRenderMesh_InternalStrong* renderMesh, IndexBufferHandle_t hIB, void* pData, int nDataSize))g_engine_nativeFunctions[2365])(renderMesh, hIB, pData, nDataSize);
 	}
 	static
 	inline VertexBufferHandle_t CreateVertexBuffer(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize) 
 	{
 		return
-		((VertexBufferHandle_t(*)(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize))g_nativeFunctions[2366])(nElementSizeInBytes, nElementCount, fieldNames, pFields, nFields, pData, nDataSize);
+		((VertexBufferHandle_t(*)(int nElementSizeInBytes, int nElementCount, const char* fieldNames, void* pFields, int nFields, void* pData, int nDataSize))g_engine_nativeFunctions[2366])(nElementSizeInBytes, nElementCount, fieldNames, pFields, nFields, pData, nDataSize);
 	}
 	static
 	inline IndexBufferHandle_t CreateIndexBuffer(int nElementCount, int b32Bit, void* pData, int nDataSize) 
 	{
 		return
-		((IndexBufferHandle_t(*)(int nElementCount, int b32Bit, void* pData, int nDataSize))g_nativeFunctions[2367])(nElementCount, b32Bit, pData, nDataSize);
+		((IndexBufferHandle_t(*)(int nElementCount, int b32Bit, void* pData, int nDataSize))g_engine_nativeFunctions[2367])(nElementCount, b32Bit, pData, nDataSize);
 	}
 	static
 	inline const void* LockVertexBuffer(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset) 
 	{
 		return
-		((const void*(*)(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset))g_nativeFunctions[2368])(hVB, nDataSize, nDataOffset);
+		((const void*(*)(VertexBufferHandle_t hVB, int nDataSize, int nDataOffset))g_engine_nativeFunctions[2368])(hVB, nDataSize, nDataOffset);
 	}
 	static
 	inline void UnlockVertexBuffer(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2369])(hVB, pData, nDataSize, nDataOffset);
+		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_engine_nativeFunctions[2369])(hVB, pData, nDataSize, nDataOffset);
 	}
 	static
 	inline const void* LockIndexBuffer(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset) 
 	{
 		return
-		((const void*(*)(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset))g_nativeFunctions[2370])(hIB, nDataSize, nDataOffset);
+		((const void*(*)(IndexBufferHandle_t hIB, int nDataSize, int nDataOffset))g_engine_nativeFunctions[2370])(hIB, nDataSize, nDataOffset);
 	}
 	static
 	inline void UnlockIndexBuffer(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2371])(hIB, pData, nDataSize, nDataOffset);
+		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_engine_nativeFunctions[2371])(hIB, pData, nDataSize, nDataOffset);
 	}
 	static
 	inline void SetVertexBufferData(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2372])(hVB, pData, nDataSize, nDataOffset);
+		((void(*)(VertexBufferHandle_t hVB, void* pData, int nDataSize, int nDataOffset))g_engine_nativeFunctions[2372])(hVB, pData, nDataSize, nDataOffset);
 	}
 	static
 	inline void SetIndexBufferData(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset) 
 	{
-		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_nativeFunctions[2373])(hIB, pData, nDataSize, nDataOffset);
+		((void(*)(IndexBufferHandle_t hIB, void* pData, int nDataSize, int nDataOffset))g_engine_nativeFunctions[2373])(hIB, pData, nDataSize, nDataOffset);
 	}
 	static
 	inline VertexBufferHandle_t SetVertexBufferSize(VertexBufferHandle_t hVB, int nDataSize) 
 	{
 		return
-		((VertexBufferHandle_t(*)(VertexBufferHandle_t hVB, int nDataSize))g_nativeFunctions[2374])(hVB, nDataSize);
+		((VertexBufferHandle_t(*)(VertexBufferHandle_t hVB, int nDataSize))g_engine_nativeFunctions[2374])(hVB, nDataSize);
 	}
 	static
 	inline IndexBufferHandle_t SetIndexBufferSize(IndexBufferHandle_t hIB, int nDataSize) 
 	{
 		return
-		((IndexBufferHandle_t(*)(IndexBufferHandle_t hIB, int nDataSize))g_nativeFunctions[2375])(hIB, nDataSize);
+		((IndexBufferHandle_t(*)(IndexBufferHandle_t hIB, int nDataSize))g_engine_nativeFunctions[2375])(hIB, nDataSize);
 	}
 	static
 	inline int TriangulatePolygon(void* pPolygonVerts, int nNumVerts, void* pOutIndexList, int nMaxIndices) 
 	{
 		return
-		((int(*)(void* __pPolygonVerts, int __nNumVerts, void* __pOutIndexList, int __nMaxIndices))g_nativeFunctions[2376])(pPolygonVerts, nNumVerts, pOutIndexList, nMaxIndices);
+		((int(*)(void* __pPolygonVerts, int __nNumVerts, void* __pOutIndexList, int __nMaxIndices))g_engine_nativeFunctions[2376])(pPolygonVerts, nNumVerts, pOutIndexList, nMaxIndices);
 	}
 	static
 	inline void ClipPolygonLineSegment(void* pPolygonVerts, int nNumVerts, Vector vA, Vector vB, CUtlVector<Vector>* pOutSegmentPointsInside) 
 	{
-		((void(*)(void* __pPolygonVerts, int __nNumVerts, Vector __vA, Vector __vB, CUtlVector<Vector>* __pOutSegmentPointsInside))g_nativeFunctions[2377])(pPolygonVerts, nNumVerts, vA, vB, pOutSegmentPointsInside);
+		((void(*)(void* __pPolygonVerts, int __nNumVerts, Vector __vA, Vector __vB, CUtlVector<Vector>* __pOutSegmentPointsInside))g_engine_nativeFunctions[2377])(pPolygonVerts, nNumVerts, vA, vB, pOutSegmentPointsInside);
 	}
 };
 class NativeEngine::SDLGameController
@@ -11458,49 +11440,49 @@ class NativeEngine::SDLGameController
 	inline int GetAxis(int joystickId, int64 axis) 
 	{
 		return
-		((int(*)(int joystickId, int64 axis))g_nativeFunctions[2378])(joystickId, axis);
+		((int(*)(int joystickId, int64 axis))g_engine_nativeFunctions[2378])(joystickId, axis);
 	}
 	static
 	inline int64 GetControllerType(int joystickId) 
 	{
 		return
-		((int64(*)(int joystickId))g_nativeFunctions[2379])(joystickId);
+		((int64(*)(int joystickId))g_engine_nativeFunctions[2379])(joystickId);
 	}
 	static
 	inline int Close(int joystickId) 
 	{
 		return
-		((int(*)(int joystickId))g_nativeFunctions[2380])(joystickId);
+		((int(*)(int joystickId))g_engine_nativeFunctions[2380])(joystickId);
 	}
 	static
 	inline int SetLEDColor(int joystickId, int red, int green, int blue) 
 	{
 		return
-		((int(*)(int joystickId, int red, int green, int blue))g_nativeFunctions[2381])(joystickId, red, green, blue);
+		((int(*)(int joystickId, int red, int green, int blue))g_engine_nativeFunctions[2381])(joystickId, red, green, blue);
 	}
 	static
 	inline int Rumble(int joystickId, int lowFreq, int highFreq, int duration) 
 	{
 		return
-		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2382])(joystickId, lowFreq, highFreq, duration);
+		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_engine_nativeFunctions[2382])(joystickId, lowFreq, highFreq, duration);
 	}
 	static
 	inline int RumbleTriggers(int joystickId, int lowFreq, int highFreq, int duration) 
 	{
 		return
-		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_nativeFunctions[2383])(joystickId, lowFreq, highFreq, duration);
+		((int(*)(int joystickId, int lowFreq, int highFreq, int duration))g_engine_nativeFunctions[2383])(joystickId, lowFreq, highFreq, duration);
 	}
 	static
 	inline Vector GetGyroscope(int joystickId) 
 	{
 		return
-		((Vector(*)(int joystickId))g_nativeFunctions[2384])(joystickId);
+		((Vector(*)(int joystickId))g_engine_nativeFunctions[2384])(joystickId);
 	}
 	static
 	inline Vector GetAccelerometer(int joystickId) 
 	{
 		return
-		((Vector(*)(int joystickId))g_nativeFunctions[2385])(joystickId);
+		((Vector(*)(int joystickId))g_engine_nativeFunctions[2385])(joystickId);
 	}
 };
 class NativeLowLevel
@@ -11514,7 +11496,7 @@ class NativeLowLevel
 	static
 	inline void Copy(void* dest, void* src, int64 count) 
 	{
-		((void(*)(void* __dest, void* __src, int64 __count))g_nativeFunctions[2386])(dest, src, count);
+		((void(*)(void* __dest, void* __src, int64 __count))g_engine_nativeFunctions[2386])(dest, src, count);
 	}
 };
 class PerformanceTrace
@@ -11528,12 +11510,12 @@ class PerformanceTrace
 	static
 	inline void BeginEvent(void* name, const char* data, unsigned int color) 
 	{
-		((void(*)(void* __name, const char* __data, unsigned int __color))g_nativeFunctions[2387])(name, data, color);
+		((void(*)(void* __name, const char* __data, unsigned int __color))g_engine_nativeFunctions[2387])(name, data, color);
 	}
 	static
 	inline void EndEvent() 
 	{
-		((void(*)())g_nativeFunctions[2388])();
+		((void(*)())g_engine_nativeFunctions[2388])();
 	}
 };
 class PhysicsTrace_
@@ -11548,30 +11530,30 @@ class PhysicsTrace_
 	inline PhysicsTrace::Result Trace(PhysicsTrace::Request request) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request))g_nativeFunctions[2389])(request);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request))g_engine_nativeFunctions[2389])(request);
 	}
 	static
 	inline void TraceAll(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results) 
 	{
-		((void(*)(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results))g_nativeFunctions[2390])(request, results);
+		((void(*)(PhysicsTrace::Request request, CUtlVector<PhysicsTrace::Result>* results))g_engine_nativeFunctions[2390])(request, results);
 	}
 	static
 	inline PhysicsTrace::Result TraceAgainstCapsule(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx))g_nativeFunctions[2391])(request, capsule, tx);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnCapsule_t capsule, CTransformUnaligned tx))g_engine_nativeFunctions[2391])(request, capsule, tx);
 	}
 	static
 	inline PhysicsTrace::Result TraceAgainstBBox(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx))g_nativeFunctions[2392])(request, box, tx);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, AABB_t box, CTransformUnaligned tx))g_engine_nativeFunctions[2392])(request, box, tx);
 	}
 	static
 	inline PhysicsTrace::Result TraceAgainstSphere(PhysicsTrace::Request request, RnSphere_t sphere, CTransformUnaligned tx) 
 	{
 		return
-		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnSphere_t sphere, CTransformUnaligned tx))g_nativeFunctions[2393])(request, sphere, tx);
+		((PhysicsTrace::Result(*)(PhysicsTrace::Request request, RnSphere_t sphere, CTransformUnaligned tx))g_engine_nativeFunctions[2393])(request, sphere, tx);
 	}
 };
 class RenderTools
@@ -11586,82 +11568,82 @@ class RenderTools
 	inline int SetRenderState(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats) 
 	{
 		return
-		((int(*)(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2394])(context, attributes, materialMode, layout, stats);
+		((int(*)(IRenderContext* context, CRenderAttributes* attributes, IMaterialMode* materialMode, VertexLayout* layout, SceneSystemPerFrameStats_t* stats))g_engine_nativeFunctions[2394])(context, attributes, materialMode, layout, stats);
 	}
 	static
 	inline void Draw(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats) 
 	{
-		((void(*)(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats))g_nativeFunctions[2395])(context, type, layout, vertices, numVertices, indices, numIndices, stats);
+		((void(*)(IRenderContext* context, int64 type, VertexLayout* layout, void* vertices, int numVertices, void* indices, int numIndices, SceneSystemPerFrameStats_t* stats))g_engine_nativeFunctions[2395])(context, type, layout, vertices, numVertices, indices, numIndices, stats);
 	}
 	static
 	inline void ResolveFrameBuffer(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport) 
 	{
-		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2396])(renderContext, texture, viewport);
+		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_engine_nativeFunctions[2396])(renderContext, texture, viewport);
 	}
 	static
 	inline void ResolveDepthBuffer(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport) 
 	{
-		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_nativeFunctions[2397])(renderContext, texture, viewport);
+		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* texture, Rect_t viewport))g_engine_nativeFunctions[2397])(renderContext, texture, viewport);
 	}
 	static
 	inline void DrawSceneObject(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes) 
 	{
-		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes))g_nativeFunctions[2398])(renderContext, sceneLayer, sceneObject, transform, color, material, attributes);
+		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, CSceneObject* sceneObject, CTransformUnaligned transform, Vector4D color, HMaterialStrong* material, CRenderAttributes* attributes))g_engine_nativeFunctions[2398])(renderContext, sceneLayer, sceneObject, transform, color, material, attributes);
 	}
 	static
 	inline void DrawModel(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes) 
 	{
-		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes))g_nativeFunctions[2399])(renderContext, sceneLayer, hModel, transforms, numTransforms, attributes);
+		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, void* transforms, int numTransforms, CRenderAttributes* attributes))g_engine_nativeFunctions[2399])(renderContext, sceneLayer, hModel, transforms, numTransforms, attributes);
 	}
 	static
 	inline void DrawModel(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes) 
 	{
-		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes))g_nativeFunctions[2400])(renderContext, sceneLayer, hModel, hDrawArgBuffer, nBufferOffset, attributes);
+		((void(*)(IRenderContext* renderContext, ISceneLayer* sceneLayer, HModelStrong* hModel, RenderBufferHandle_t hDrawArgBuffer, int nBufferOffset, CRenderAttributes* attributes))g_engine_nativeFunctions[2400])(renderContext, sceneLayer, hModel, hDrawArgBuffer, nBufferOffset, attributes);
 	}
 	static
 	inline void Compute(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz) 
 	{
-		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz))g_nativeFunctions[2401])(renderContext, attributes, pMode, tx, ty, tz);
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, int tx, int ty, int tz))g_engine_nativeFunctions[2401])(renderContext, attributes, pMode, tx, ty, tz);
 	}
 	static
 	inline void ComputeIndirect(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset) 
 	{
-		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_nativeFunctions[2402])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_engine_nativeFunctions[2402])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
 	}
 	static
 	inline void TraceRays(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, unsigned int tx, unsigned int ty, unsigned int tz) 
 	{
-		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, unsigned int tx, unsigned int ty, unsigned int tz))g_nativeFunctions[2403])(renderContext, attributes, pMode, tx, ty, tz);
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, unsigned int tx, unsigned int ty, unsigned int tz))g_engine_nativeFunctions[2403])(renderContext, attributes, pMode, tx, ty, tz);
 	}
 	static
 	inline void TraceRaysIndirect(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset) 
 	{
-		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_nativeFunctions[2404])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
+		((void(*)(IRenderContext* renderContext, CRenderAttributes* attributes, IMaterialMode* pMode, RenderBufferHandle_t hIndirectBuffer, unsigned int nIndirectBufferOffset))g_engine_nativeFunctions[2404])(renderContext, attributes, pMode, hIndirectBuffer, nIndirectBufferOffset);
 	}
 	static
 	inline void SetDynamicConstantBufferData(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize) 
 	{
-		((void(*)(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize))g_nativeFunctions[2405])(attributes, nTokenID, renderContext, data, dataSize);
+		((void(*)(CRenderAttributes* attributes, uint32 nTokenID, IRenderContext* renderContext, void* data, int dataSize))g_engine_nativeFunctions[2405])(attributes, nTokenID, renderContext, data, dataSize);
 	}
 	static
 	inline void CopyTexture(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice) 
 	{
-		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice))g_nativeFunctions[2406])(renderContext, sourceTexture, destTexture, pSrcRect, nDestX, nDestY, nSrcMipSlice, nSrcArraySlice, nDstMipSlice, nDstArraySlice);
+		((void(*)(IRenderContext* renderContext, HRenderTextureStrong* sourceTexture, HRenderTextureStrong* destTexture, Rect_t pSrcRect, int nDestX, int nDestY, unsigned int nSrcMipSlice, unsigned int nSrcArraySlice, unsigned int nDstMipSlice, unsigned int nDstArraySlice))g_engine_nativeFunctions[2406])(renderContext, sourceTexture, destTexture, pSrcRect, nDestX, nDestY, nSrcMipSlice, nSrcArraySlice, nDstMipSlice, nDstArraySlice);
 	}
 	static
 	inline void SetGPUBufferData(IRenderContext* renderContext, RenderBufferHandle_t hGpuBuffer, void* pData, unsigned int nDataSize, unsigned int nOffset) 
 	{
-		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hGpuBuffer, void* __pData, unsigned int __nDataSize, unsigned int __nOffset))g_nativeFunctions[2407])(renderContext, hGpuBuffer, pData, nDataSize, nOffset);
+		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hGpuBuffer, void* __pData, unsigned int __nDataSize, unsigned int __nOffset))g_engine_nativeFunctions[2407])(renderContext, hGpuBuffer, pData, nDataSize, nOffset);
 	}
 	static
 	inline void CopyGPUBufferHiddenStructureCount(IRenderContext* renderContext, RenderBufferHandle_t hSrcBuffer, RenderBufferHandle_t hDestBuffer, unsigned int nDestBufferOffset) 
 	{
-		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hSrcBuffer, RenderBufferHandle_t __hDestBuffer, unsigned int __nDestBufferOffset))g_nativeFunctions[2408])(renderContext, hSrcBuffer, hDestBuffer, nDestBufferOffset);
+		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hSrcBuffer, RenderBufferHandle_t __hDestBuffer, unsigned int __nDestBufferOffset))g_engine_nativeFunctions[2408])(renderContext, hSrcBuffer, hDestBuffer, nDestBufferOffset);
 	}
 	static
 	inline void SetGPUBufferHiddenStructureCount(IRenderContext* renderContext, RenderBufferHandle_t hBuffer, unsigned int nCounter) 
 	{
-		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hBuffer, unsigned int __nCounter))g_nativeFunctions[2409])(renderContext, hBuffer, nCounter);
+		((void(*)(IRenderContext* __renderContext, RenderBufferHandle_t __hBuffer, unsigned int __nCounter))g_engine_nativeFunctions[2409])(renderContext, hBuffer, nCounter);
 	}
 };
 class RnCapsuleDesc_t
@@ -11672,9 +11654,9 @@ class RnCapsuleDesc_t
 	{
 		return (RnCapsuleDesc_t*)m_pSelf;
 	}
-	RW_VAR(RnCapsule_t,m_Capsule,RnCapsuleDesc_t,g_nativeFunctions[2410],g_nativeFunctions[2411]);
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnCapsuleDesc_t,g_nativeFunctions[2412],g_nativeFunctions[2413]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnCapsuleDesc_t,g_nativeFunctions[2414],g_nativeFunctions[2415]);
+	RW_VAR(RnCapsule_t,m_Capsule,RnCapsuleDesc_t,g_engine_nativeFunctions[2410],g_engine_nativeFunctions[2411]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnCapsuleDesc_t,g_engine_nativeFunctions[2412],g_engine_nativeFunctions[2413]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnCapsuleDesc_t,g_engine_nativeFunctions[2414],g_engine_nativeFunctions[2415]);
 };
 class RnHull_t
 {
@@ -11687,51 +11669,51 @@ class RnHull_t
 	inline int GetVertexCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2416])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2416])(m_pSelf);
 	}
 	inline int GetEdgeCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2417])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2417])(m_pSelf);
 	}
 	inline float GetVolume() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2418])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2418])(m_pSelf);
 	}
 	inline Vector GetMassCenter() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2419])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[2419])(m_pSelf);
 	}
 	inline Vector GetCentroid() 
 	{
 		return
-		((Vector(*)(void* self))g_nativeFunctions[2420])(m_pSelf);
+		((Vector(*)(void* self))g_engine_nativeFunctions[2420])(m_pSelf);
 	}
 	inline float GetSurfaceArea() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2421])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2421])(m_pSelf);
 	}
 	inline int GetMemory() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2422])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2422])(m_pSelf);
 	}
 	inline AABB_t GetBbox() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[2423])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[2423])(m_pSelf);
 	}
 	inline Vector GetVertex(int nVertex) 
 	{
 		return
-		((Vector(*)(void* self, int nVertex))g_nativeFunctions[2424])(m_pSelf, nVertex);
+		((Vector(*)(void* self, int nVertex))g_engine_nativeFunctions[2424])(m_pSelf, nVertex);
 	}
 	inline void GetEdgeVertex(int edge, Vector* a, Vector* b) 
 	{
-		((void(*)(void* __self, int __edge, Vector* __a, Vector* __b))g_nativeFunctions[2425])(m_pSelf, edge, a, b);
+		((void(*)(void* __self, int __edge, Vector* __a, Vector* __b))g_engine_nativeFunctions[2425])(m_pSelf, edge, a, b);
 	}
 };
 class RnHullDesc_t
@@ -11745,10 +11727,10 @@ class RnHullDesc_t
 	inline const RnHull_t* GetHull() 
 	{
 		return
-		((const RnHull_t*(*)(void* __self))g_nativeFunctions[2426])(m_pSelf);
+		((const RnHull_t*(*)(void* __self))g_engine_nativeFunctions[2426])(m_pSelf);
 	}
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnHullDesc_t,g_nativeFunctions[2427],g_nativeFunctions[2428]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnHullDesc_t,g_nativeFunctions[2429],g_nativeFunctions[2430]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnHullDesc_t,g_engine_nativeFunctions[2427],g_engine_nativeFunctions[2428]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnHullDesc_t,g_engine_nativeFunctions[2429],g_engine_nativeFunctions[2430]);
 };
 class RnMesh_t
 {
@@ -11761,31 +11743,31 @@ class RnMesh_t
 	inline int GetTriangleCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2431])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2431])(m_pSelf);
 	}
 	inline int GetHeight() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2432])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2432])(m_pSelf);
 	}
 	inline int GetMemory() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2433])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2433])(m_pSelf);
 	}
 	inline AABB_t GetBbox() 
 	{
 		return
-		((AABB_t(*)(void* self))g_nativeFunctions[2434])(m_pSelf);
+		((AABB_t(*)(void* self))g_engine_nativeFunctions[2434])(m_pSelf);
 	}
 	inline int GetMaterialCount() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2435])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2435])(m_pSelf);
 	}
 	inline void GetTriangle(int triangle, Vector* a, Vector* b, Vector* c) 
 	{
-		((void(*)(void* __self, int __triangle, Vector* __a, Vector* __b, Vector* __c))g_nativeFunctions[2436])(m_pSelf, triangle, a, b, c);
+		((void(*)(void* __self, int __triangle, Vector* __a, Vector* __b, Vector* __c))g_engine_nativeFunctions[2436])(m_pSelf, triangle, a, b, c);
 	}
 };
 class RnMeshDesc_t
@@ -11799,10 +11781,10 @@ class RnMeshDesc_t
 	inline const RnMesh_t* GetMesh() 
 	{
 		return
-		((const RnMesh_t*(*)(void* __self))g_nativeFunctions[2437])(m_pSelf);
+		((const RnMesh_t*(*)(void* __self))g_engine_nativeFunctions[2437])(m_pSelf);
 	}
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnMeshDesc_t,g_nativeFunctions[2438],g_nativeFunctions[2439]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnMeshDesc_t,g_nativeFunctions[2440],g_nativeFunctions[2441]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnMeshDesc_t,g_engine_nativeFunctions[2438],g_engine_nativeFunctions[2439]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnMeshDesc_t,g_engine_nativeFunctions[2440],g_engine_nativeFunctions[2441]);
 };
 class RnSphereDesc_t
 {
@@ -11812,9 +11794,9 @@ class RnSphereDesc_t
 	{
 		return (RnSphereDesc_t*)m_pSelf;
 	}
-	RW_VAR(RnSphere_t,m_Sphere,RnSphereDesc_t,g_nativeFunctions[2442],g_nativeFunctions[2443]);
-	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnSphereDesc_t,g_nativeFunctions[2444],g_nativeFunctions[2445]);
-	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnSphereDesc_t,g_nativeFunctions[2446],g_nativeFunctions[2447]);
+	RW_VAR(RnSphere_t,m_Sphere,RnSphereDesc_t,g_engine_nativeFunctions[2442],g_engine_nativeFunctions[2443]);
+	RW_VAR(unsigned int,m_nCollisionAttributeIndex,RnSphereDesc_t,g_engine_nativeFunctions[2444],g_engine_nativeFunctions[2445]);
+	RW_VAR(unsigned int,m_nSurfacePropertyIndex,RnSphereDesc_t,g_engine_nativeFunctions[2446],g_engine_nativeFunctions[2447]);
 };
 class SceneSystemPerFrameStats_t
 {
@@ -11824,57 +11806,57 @@ class SceneSystemPerFrameStats_t
 	{
 		return (SceneSystemPerFrameStats_t*)m_pSelf;
 	}
-	RW_VAR(unsigned int,m_nTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2448],g_nativeFunctions[2449]);
-	RW_VAR(unsigned int,m_nArtistTrianglesRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2450],g_nativeFunctions[2451]);
-	RW_VAR(unsigned int,m_nRenderBatchDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2452],g_nativeFunctions[2453]);
-	RW_VAR(unsigned int,m_nDrawCalls,SceneSystemPerFrameStats_t,g_nativeFunctions[2454],g_nativeFunctions[2455]);
-	RW_VAR(unsigned int,m_nDrawPrimitives,SceneSystemPerFrameStats_t,g_nativeFunctions[2456],g_nativeFunctions[2457]);
-	RW_VAR(unsigned int,m_nBaseSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2458],g_nativeFunctions[2459]);
-	RW_VAR(unsigned int,m_nAnimatableObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2460],g_nativeFunctions[2461]);
-	RW_VAR(unsigned int,m_nAggregateSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_nativeFunctions[2462],g_nativeFunctions[2463]);
-	RW_VAR(unsigned int,m_nAggregateSceneObjectsFullyCulled,SceneSystemPerFrameStats_t,g_nativeFunctions[2464],g_nativeFunctions[2465]);
-	RW_VAR(unsigned int,m_nAggregateSceneObjectDrawCalls,SceneSystemPerFrameStats_t,g_nativeFunctions[2466],g_nativeFunctions[2467]);
-	RW_VAR(unsigned int,m_nNumMaterialCompute,SceneSystemPerFrameStats_t,g_nativeFunctions[2468],g_nativeFunctions[2469]);
-	RW_VAR(unsigned int,m_nNumMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2470],g_nativeFunctions[2471]);
-	RW_VAR(unsigned int,m_nNumSimilarMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2472],g_nativeFunctions[2473]);
-	RW_VAR(unsigned int,m_nNumTextureOnlyMaterialSet,SceneSystemPerFrameStats_t,g_nativeFunctions[2474],g_nativeFunctions[2475]);
-	RW_VAR(unsigned int,m_nNumVfxEval,SceneSystemPerFrameStats_t,g_nativeFunctions[2476],g_nativeFunctions[2477]);
-	RW_VAR(unsigned int,m_nNumVfxRule,SceneSystemPerFrameStats_t,g_nativeFunctions[2478],g_nativeFunctions[2479]);
-	RW_VAR(unsigned int,m_nNumConstantBufferUpdates,SceneSystemPerFrameStats_t,g_nativeFunctions[2480],g_nativeFunctions[2481]);
-	RW_VAR(unsigned int,m_nNumConstantBufferBytes,SceneSystemPerFrameStats_t,g_nativeFunctions[2482],g_nativeFunctions[2483]);
-	RW_VAR(unsigned int,m_nMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2484],g_nativeFunctions[2485]);
-	RW_VAR(unsigned int,m_nMaterialChangesNonShadowInitial,SceneSystemPerFrameStats_t,g_nativeFunctions[2486],g_nativeFunctions[2487]);
-	RW_VAR(unsigned int,m_nMaterialChangesShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2488],g_nativeFunctions[2489]);
-	RW_VAR(unsigned int,m_nMaterialChangesShadowInitial,SceneSystemPerFrameStats_t,g_nativeFunctions[2490],g_nativeFunctions[2491]);
-	RW_VAR(unsigned int,m_nMaterialChangesShadowAlphaTested,SceneSystemPerFrameStats_t,g_nativeFunctions[2492],g_nativeFunctions[2493]);
-	RW_VAR(unsigned int,m_nCopyMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_nativeFunctions[2494],g_nativeFunctions[2495]);
-	RW_VAR(unsigned int,m_nMaxTransformRow,SceneSystemPerFrameStats_t,g_nativeFunctions[2496],g_nativeFunctions[2497]);
-	RW_VAR(unsigned int,m_nNumRowsUsed,SceneSystemPerFrameStats_t,g_nativeFunctions[2498],g_nativeFunctions[2499]);
-	RW_VAR(unsigned int,m_nNumObjectsTested,SceneSystemPerFrameStats_t,g_nativeFunctions[2500],g_nativeFunctions[2501]);
-	RW_VAR(unsigned int,m_nNumObjectsPreCullCheck,SceneSystemPerFrameStats_t,g_nativeFunctions[2502],g_nativeFunctions[2503]);
-	RW_VAR(unsigned int,m_nNumObjectsPassingCullCheck,SceneSystemPerFrameStats_t,g_nativeFunctions[2504],g_nativeFunctions[2505]);
-	RW_VAR(unsigned int,m_nNumVerticesReferenced,SceneSystemPerFrameStats_t,g_nativeFunctions[2506],g_nativeFunctions[2507]);
-	RW_VAR(unsigned int,m_nNumPrimaryContexts,SceneSystemPerFrameStats_t,g_nativeFunctions[2508],g_nativeFunctions[2509]);
-	RW_VAR(unsigned int,m_nNumSecondaryContexts,SceneSystemPerFrameStats_t,g_nativeFunctions[2510],g_nativeFunctions[2511]);
-	RW_VAR(unsigned int,m_nNumDisplayListsSubmitted,SceneSystemPerFrameStats_t,g_nativeFunctions[2512],g_nativeFunctions[2513]);
-	RW_VAR(int,m_nNumViewsRendered,SceneSystemPerFrameStats_t,g_nativeFunctions[2514],g_nativeFunctions[2515]);
-	RW_VAR(unsigned int,m_nNumResolves,SceneSystemPerFrameStats_t,g_nativeFunctions[2516],g_nativeFunctions[2517]);
-	RW_VAR(unsigned int,m_nNumCullBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2518],g_nativeFunctions[2519]);
-	RW_VAR(uint64,m_nCullingBoxCycleCount,SceneSystemPerFrameStats_t,g_nativeFunctions[2520],g_nativeFunctions[2521]);
-	RW_VAR(unsigned int,m_nNumObjectsTestedAgainstCullingBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2522],g_nativeFunctions[2523]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByBoundsIndex,SceneSystemPerFrameStats_t,g_nativeFunctions[2524],g_nativeFunctions[2525]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByCullBoxes,SceneSystemPerFrameStats_t,g_nativeFunctions[2526],g_nativeFunctions[2527]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByVis,SceneSystemPerFrameStats_t,g_nativeFunctions[2528],g_nativeFunctions[2529]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByBackfaceCulling,SceneSystemPerFrameStats_t,g_nativeFunctions[2530],g_nativeFunctions[2531]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByScreenSizeCulling,SceneSystemPerFrameStats_t,g_nativeFunctions[2532],g_nativeFunctions[2533]);
-	RW_VAR(unsigned int,m_nNumObjectsRejectedByFading,SceneSystemPerFrameStats_t,g_nativeFunctions[2534],g_nativeFunctions[2535]);
-	RW_VAR(unsigned int,m_nNumFadingObjects,SceneSystemPerFrameStats_t,g_nativeFunctions[2536],g_nativeFunctions[2537]);
-	RW_VAR(unsigned int,m_nNumUniqueMaterialsSeen,SceneSystemPerFrameStats_t,g_nativeFunctions[2538],g_nativeFunctions[2539]);
-	RW_VAR(unsigned int,m_nNumUnshadowedLightsInView,SceneSystemPerFrameStats_t,g_nativeFunctions[2540],g_nativeFunctions[2541]);
-	RW_VAR(unsigned int,m_nNumShadowedLightsInView,SceneSystemPerFrameStats_t,g_nativeFunctions[2542],g_nativeFunctions[2543]);
-	RW_VAR(unsigned int,m_nNumShadowMaps,SceneSystemPerFrameStats_t,g_nativeFunctions[2544],g_nativeFunctions[2545]);
-	RW_VAR(unsigned int,m_nNumRenderTargetBinds,SceneSystemPerFrameStats_t,g_nativeFunctions[2546],g_nativeFunctions[2547]);
-	RW_VAR(unsigned int,m_nPushConstantSets,SceneSystemPerFrameStats_t,g_nativeFunctions[2548],g_nativeFunctions[2549]);
+	RW_VAR(unsigned int,m_nTrianglesRendered,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2448],g_engine_nativeFunctions[2449]);
+	RW_VAR(unsigned int,m_nArtistTrianglesRendered,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2450],g_engine_nativeFunctions[2451]);
+	RW_VAR(unsigned int,m_nRenderBatchDraws,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2452],g_engine_nativeFunctions[2453]);
+	RW_VAR(unsigned int,m_nDrawCalls,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2454],g_engine_nativeFunctions[2455]);
+	RW_VAR(unsigned int,m_nDrawPrimitives,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2456],g_engine_nativeFunctions[2457]);
+	RW_VAR(unsigned int,m_nBaseSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2458],g_engine_nativeFunctions[2459]);
+	RW_VAR(unsigned int,m_nAnimatableObjectPrimDraws,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2460],g_engine_nativeFunctions[2461]);
+	RW_VAR(unsigned int,m_nAggregateSceneObjectPrimDraws,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2462],g_engine_nativeFunctions[2463]);
+	RW_VAR(unsigned int,m_nAggregateSceneObjectsFullyCulled,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2464],g_engine_nativeFunctions[2465]);
+	RW_VAR(unsigned int,m_nAggregateSceneObjectDrawCalls,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2466],g_engine_nativeFunctions[2467]);
+	RW_VAR(unsigned int,m_nNumMaterialCompute,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2468],g_engine_nativeFunctions[2469]);
+	RW_VAR(unsigned int,m_nNumMaterialSet,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2470],g_engine_nativeFunctions[2471]);
+	RW_VAR(unsigned int,m_nNumSimilarMaterialSet,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2472],g_engine_nativeFunctions[2473]);
+	RW_VAR(unsigned int,m_nNumTextureOnlyMaterialSet,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2474],g_engine_nativeFunctions[2475]);
+	RW_VAR(unsigned int,m_nNumVfxEval,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2476],g_engine_nativeFunctions[2477]);
+	RW_VAR(unsigned int,m_nNumVfxRule,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2478],g_engine_nativeFunctions[2479]);
+	RW_VAR(unsigned int,m_nNumConstantBufferUpdates,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2480],g_engine_nativeFunctions[2481]);
+	RW_VAR(unsigned int,m_nNumConstantBufferBytes,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2482],g_engine_nativeFunctions[2483]);
+	RW_VAR(unsigned int,m_nMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2484],g_engine_nativeFunctions[2485]);
+	RW_VAR(unsigned int,m_nMaterialChangesNonShadowInitial,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2486],g_engine_nativeFunctions[2487]);
+	RW_VAR(unsigned int,m_nMaterialChangesShadow,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2488],g_engine_nativeFunctions[2489]);
+	RW_VAR(unsigned int,m_nMaterialChangesShadowInitial,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2490],g_engine_nativeFunctions[2491]);
+	RW_VAR(unsigned int,m_nMaterialChangesShadowAlphaTested,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2492],g_engine_nativeFunctions[2493]);
+	RW_VAR(unsigned int,m_nCopyMaterialChangesNonShadow,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2494],g_engine_nativeFunctions[2495]);
+	RW_VAR(unsigned int,m_nMaxTransformRow,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2496],g_engine_nativeFunctions[2497]);
+	RW_VAR(unsigned int,m_nNumRowsUsed,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2498],g_engine_nativeFunctions[2499]);
+	RW_VAR(unsigned int,m_nNumObjectsTested,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2500],g_engine_nativeFunctions[2501]);
+	RW_VAR(unsigned int,m_nNumObjectsPreCullCheck,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2502],g_engine_nativeFunctions[2503]);
+	RW_VAR(unsigned int,m_nNumObjectsPassingCullCheck,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2504],g_engine_nativeFunctions[2505]);
+	RW_VAR(unsigned int,m_nNumVerticesReferenced,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2506],g_engine_nativeFunctions[2507]);
+	RW_VAR(unsigned int,m_nNumPrimaryContexts,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2508],g_engine_nativeFunctions[2509]);
+	RW_VAR(unsigned int,m_nNumSecondaryContexts,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2510],g_engine_nativeFunctions[2511]);
+	RW_VAR(unsigned int,m_nNumDisplayListsSubmitted,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2512],g_engine_nativeFunctions[2513]);
+	RW_VAR(int,m_nNumViewsRendered,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2514],g_engine_nativeFunctions[2515]);
+	RW_VAR(unsigned int,m_nNumResolves,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2516],g_engine_nativeFunctions[2517]);
+	RW_VAR(unsigned int,m_nNumCullBoxes,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2518],g_engine_nativeFunctions[2519]);
+	RW_VAR(uint64,m_nCullingBoxCycleCount,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2520],g_engine_nativeFunctions[2521]);
+	RW_VAR(unsigned int,m_nNumObjectsTestedAgainstCullingBoxes,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2522],g_engine_nativeFunctions[2523]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByBoundsIndex,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2524],g_engine_nativeFunctions[2525]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByCullBoxes,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2526],g_engine_nativeFunctions[2527]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByVis,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2528],g_engine_nativeFunctions[2529]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByBackfaceCulling,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2530],g_engine_nativeFunctions[2531]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByScreenSizeCulling,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2532],g_engine_nativeFunctions[2533]);
+	RW_VAR(unsigned int,m_nNumObjectsRejectedByFading,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2534],g_engine_nativeFunctions[2535]);
+	RW_VAR(unsigned int,m_nNumFadingObjects,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2536],g_engine_nativeFunctions[2537]);
+	RW_VAR(unsigned int,m_nNumUniqueMaterialsSeen,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2538],g_engine_nativeFunctions[2539]);
+	RW_VAR(unsigned int,m_nNumUnshadowedLightsInView,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2540],g_engine_nativeFunctions[2541]);
+	RW_VAR(unsigned int,m_nNumShadowedLightsInView,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2542],g_engine_nativeFunctions[2543]);
+	RW_VAR(unsigned int,m_nNumShadowMaps,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2544],g_engine_nativeFunctions[2545]);
+	RW_VAR(unsigned int,m_nNumRenderTargetBinds,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2546],g_engine_nativeFunctions[2547]);
+	RW_VAR(unsigned int,m_nPushConstantSets,SceneSystemPerFrameStats_t,g_engine_nativeFunctions[2548],g_engine_nativeFunctions[2549]);
 };
 class ShaderTools
 {
@@ -11888,13 +11870,13 @@ class ShaderTools
 	inline const char* GetShaderSource(const char* pShaderFile) 
 	{
 		return
-		((const char*(*)(const char* __pShaderFile))g_nativeFunctions[2550])(pShaderFile);
+		((const char*(*)(const char* __pShaderFile))g_engine_nativeFunctions[2550])(pShaderFile);
 	}
 	static
 	inline const char* MaskShaderSource(const char* sourcecode, int64 program, int bIsForCrc) 
 	{
 		return
-		((const char*(*)(const char* __sourcecode, int64 __program, int __bIsForCrc))g_nativeFunctions[2551])(sourcecode, program, bIsForCrc);
+		((const char*(*)(const char* __sourcecode, int64 __program, int __bIsForCrc))g_engine_nativeFunctions[2551])(sourcecode, program, bIsForCrc);
 	}
 };
 class SheetSequence_t
@@ -11908,14 +11890,14 @@ class SheetSequence_t
 	inline int FrameCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2552])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2552])(m_pSelf);
 	}
-	RW_VAR(unsigned int,m_nId,SheetSequence_t,g_nativeFunctions[2553],g_nativeFunctions[2554]);
-	RW_VAR(int,m_bClamp,SheetSequence_t,g_nativeFunctions[2555],g_nativeFunctions[2556]);
-	RW_VAR(int,m_bAlphaCrop,SheetSequence_t,g_nativeFunctions[2557],g_nativeFunctions[2558]);
-	RW_VAR(int,m_bNoColor,SheetSequence_t,g_nativeFunctions[2559],g_nativeFunctions[2560]);
-	RW_VAR(int,m_bNoAlpha,SheetSequence_t,g_nativeFunctions[2561],g_nativeFunctions[2562]);
-	RW_VAR(float,m_flTotalTime,SheetSequence_t,g_nativeFunctions[2563],g_nativeFunctions[2564]);
+	RW_VAR(unsigned int,m_nId,SheetSequence_t,g_engine_nativeFunctions[2553],g_engine_nativeFunctions[2554]);
+	RW_VAR(int,m_bClamp,SheetSequence_t,g_engine_nativeFunctions[2555],g_engine_nativeFunctions[2556]);
+	RW_VAR(int,m_bAlphaCrop,SheetSequence_t,g_engine_nativeFunctions[2557],g_engine_nativeFunctions[2558]);
+	RW_VAR(int,m_bNoColor,SheetSequence_t,g_engine_nativeFunctions[2559],g_engine_nativeFunctions[2560]);
+	RW_VAR(int,m_bNoAlpha,SheetSequence_t,g_engine_nativeFunctions[2561],g_engine_nativeFunctions[2562]);
+	RW_VAR(float,m_flTotalTime,SheetSequence_t,g_engine_nativeFunctions[2563],g_engine_nativeFunctions[2564]);
 };
 class SheetSequenceFrame_t
 {
@@ -11928,14 +11910,14 @@ class SheetSequenceFrame_t
 	inline int ImageCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2565])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2565])(m_pSelf);
 	}
 	inline SheetFrameImage_t GetImage(int i) 
 	{
 		return
-		((SheetFrameImage_t(*)(void* __self, int __i))g_nativeFunctions[2566])(m_pSelf, i);
+		((SheetFrameImage_t(*)(void* __self, int __i))g_engine_nativeFunctions[2566])(m_pSelf, i);
 	}
-	RW_VAR(float,m_flDisplayTime,SheetSequenceFrame_t,g_nativeFunctions[2567],g_nativeFunctions[2568]);
+	RW_VAR(float,m_flDisplayTime,SheetSequenceFrame_t,g_engine_nativeFunctions[2567],g_engine_nativeFunctions[2568]);
 };
 class Steam::Inventory
 {
@@ -11949,60 +11931,60 @@ class Steam::Inventory
 	inline const CSteamInventoryResult* GetAllItems() 
 	{
 		return
-		((const CSteamInventoryResult*(*)())g_nativeFunctions[2569])();
+		((const CSteamInventoryResult*(*)())g_engine_nativeFunctions[2569])();
 	}
 	static
 	inline int DefinitionCount() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2570])();
+		((int(*)())g_engine_nativeFunctions[2570])();
 	}
 	static
 	inline int GetDefinitionId(int index) 
 	{
 		return
-		((int(*)(int index))g_nativeFunctions[2571])(index);
+		((int(*)(int index))g_engine_nativeFunctions[2571])(index);
 	}
 	static
 	inline const char* GetDefinitionProperty(int definitionId, const char* propertyName) 
 	{
 		return
-		((const char*(*)(int definitionId, const char* propertyName))g_nativeFunctions[2572])(definitionId, propertyName);
+		((const char*(*)(int definitionId, const char* propertyName))g_engine_nativeFunctions[2572])(definitionId, propertyName);
 	}
 	static
 	inline int GetDefinitionPrice(int index, uint64* price, uint64* baseprice) 
 	{
 		return
-		((int(*)(int index, uint64* price, uint64* baseprice))g_nativeFunctions[2573])(index, price, baseprice);
+		((int(*)(int index, uint64* price, uint64* baseprice))g_engine_nativeFunctions[2573])(index, price, baseprice);
 	}
 	static
 	inline int HasPrices() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2574])();
+		((int(*)())g_engine_nativeFunctions[2574])();
 	}
 	static
 	inline const char* GetCurrency() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[2575])();
+		((const char*(*)())g_engine_nativeFunctions[2575])();
 	}
 	static
 	inline void CheckOut(int* defs, int count) 
 	{
-		((void(*)(int* defs, int count))g_nativeFunctions[2576])(defs, count);
+		((void(*)(int* defs, int count))g_engine_nativeFunctions[2576])(defs, count);
 	}
 	static
 	inline int IsCheckingOut() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2577])();
+		((int(*)())g_engine_nativeFunctions[2577])();
 	}
 	static
 	inline int WasCheckoutSuccessful() 
 	{
 		return
-		((int(*)())g_nativeFunctions[2578])();
+		((int(*)())g_engine_nativeFunctions[2578])();
 	}
 };
 class Steam::Screenshots
@@ -12017,7 +11999,7 @@ class Steam::Screenshots
 	inline int WriteScreenshot(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight) 
 	{
 		return
-		((int(*)(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight))g_nativeFunctions[2579])(pubRGB, cubRGB, nWidth, nHeight);
+		((int(*)(void* pubRGB, unsigned int cubRGB, int nWidth, int nHeight))g_engine_nativeFunctions[2579])(pubRGB, cubRGB, nWidth, nHeight);
 	}
 };
 class Steam::Ugc::CUgcInstall
@@ -12032,20 +12014,20 @@ class Steam::Ugc::CUgcInstall
 	inline const Steam::Ugc::CUgcInstall* Create(uint64 fileid) 
 	{
 		return
-		((const Steam::Ugc::CUgcInstall*(*)(uint64 __fileid))g_nativeFunctions[2580])(fileid);
+		((const Steam::Ugc::CUgcInstall*(*)(uint64 __fileid))g_engine_nativeFunctions[2580])(fileid);
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2581])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2581])(m_pSelf);
 	}
 	inline const char* GetResultJson() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2582])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2582])(m_pSelf);
 	}
-	RW_VAR(int,m_complete,Steam::Ugc::CUgcInstall,g_nativeFunctions[2583],g_nativeFunctions[2584]);
-	RW_VAR(int,m_success,Steam::Ugc::CUgcInstall,g_nativeFunctions[2585],g_nativeFunctions[2586]);
-	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcInstall,g_nativeFunctions[2587],g_nativeFunctions[2588]);
+	RW_VAR(int,m_complete,Steam::Ugc::CUgcInstall,g_engine_nativeFunctions[2583],g_engine_nativeFunctions[2584]);
+	RW_VAR(int,m_success,Steam::Ugc::CUgcInstall,g_engine_nativeFunctions[2585],g_engine_nativeFunctions[2586]);
+	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcInstall,g_engine_nativeFunctions[2587],g_engine_nativeFunctions[2588]);
 };
 class Steam::Ugc::CUgcQuery
 {
@@ -12059,20 +12041,20 @@ class Steam::Ugc::CUgcQuery
 	inline const Steam::Ugc::CUgcQuery* CreateQuery(const char* json, const char* cursor) 
 	{
 		return
-		((const Steam::Ugc::CUgcQuery*(*)(const char* json, const char* cursor))g_nativeFunctions[2589])(json, cursor);
+		((const Steam::Ugc::CUgcQuery*(*)(const char* json, const char* cursor))g_engine_nativeFunctions[2589])(json, cursor);
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2590])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2590])(m_pSelf);
 	}
 	inline const char* GetResultJson() 
 	{
 		return
-		((const char*(*)(void* self))g_nativeFunctions[2591])(m_pSelf);
+		((const char*(*)(void* self))g_engine_nativeFunctions[2591])(m_pSelf);
 	}
-	RW_VAR(int,m_complete,Steam::Ugc::CUgcQuery,g_nativeFunctions[2592],g_nativeFunctions[2593]);
-	RW_VAR(int,m_success,Steam::Ugc::CUgcQuery,g_nativeFunctions[2594],g_nativeFunctions[2595]);
-	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcQuery,g_nativeFunctions[2596],g_nativeFunctions[2597]);
+	RW_VAR(int,m_complete,Steam::Ugc::CUgcQuery,g_engine_nativeFunctions[2592],g_engine_nativeFunctions[2593]);
+	RW_VAR(int,m_success,Steam::Ugc::CUgcQuery,g_engine_nativeFunctions[2594],g_engine_nativeFunctions[2595]);
+	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcQuery,g_engine_nativeFunctions[2596],g_engine_nativeFunctions[2597]);
 };
 class Steam::Ugc::CUgcUpdate
 {
@@ -12086,128 +12068,128 @@ class Steam::Ugc::CUgcUpdate
 	inline const Steam::Ugc::CUgcUpdate* CreateCommunityItem() 
 	{
 		return
-		((const Steam::Ugc::CUgcUpdate*(*)())g_nativeFunctions[2598])();
+		((const Steam::Ugc::CUgcUpdate*(*)())g_engine_nativeFunctions[2598])();
 	}
 	static
 	inline const Steam::Ugc::CUgcUpdate* CreateMtxItem() 
 	{
 		return
-		((const Steam::Ugc::CUgcUpdate*(*)())g_nativeFunctions[2599])();
+		((const Steam::Ugc::CUgcUpdate*(*)())g_engine_nativeFunctions[2599])();
 	}
 	static
 	inline const Steam::Ugc::CUgcUpdate* OpenCommunityItem(uint64 itemid) 
 	{
 		return
-		((const Steam::Ugc::CUgcUpdate*(*)(uint64 __itemid))g_nativeFunctions[2600])(itemid);
+		((const Steam::Ugc::CUgcUpdate*(*)(uint64 __itemid))g_engine_nativeFunctions[2600])(itemid);
 	}
 	inline void Dispose() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2601])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2601])(m_pSelf);
 	}
 	inline uint64 GetPublishedFileId() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2602])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[2602])(m_pSelf);
 	}
 	inline void SetTitle(const char* title) 
 	{
-		((void(*)(void* self, const char* title))g_nativeFunctions[2603])(m_pSelf, title);
+		((void(*)(void* self, const char* title))g_engine_nativeFunctions[2603])(m_pSelf, title);
 	}
 	inline void SetDescription(const char* description) 
 	{
-		((void(*)(void* self, const char* description))g_nativeFunctions[2604])(m_pSelf, description);
+		((void(*)(void* self, const char* description))g_engine_nativeFunctions[2604])(m_pSelf, description);
 	}
 	inline void SetLanguage(const char* language) 
 	{
-		((void(*)(void* self, const char* language))g_nativeFunctions[2605])(m_pSelf, language);
+		((void(*)(void* self, const char* language))g_engine_nativeFunctions[2605])(m_pSelf, language);
 	}
 	inline void SetMetadata(const char* metadata) 
 	{
-		((void(*)(void* self, const char* metadata))g_nativeFunctions[2606])(m_pSelf, metadata);
+		((void(*)(void* self, const char* metadata))g_engine_nativeFunctions[2606])(m_pSelf, metadata);
 	}
 	inline void SetVisibility(int visibility) 
 	{
-		((void(*)(void* self, int visibility))g_nativeFunctions[2607])(m_pSelf, visibility);
+		((void(*)(void* self, int visibility))g_engine_nativeFunctions[2607])(m_pSelf, visibility);
 	}
 	inline void SetTag(const char* tag) 
 	{
-		((void(*)(void* self, const char* tag))g_nativeFunctions[2608])(m_pSelf, tag);
+		((void(*)(void* self, const char* tag))g_engine_nativeFunctions[2608])(m_pSelf, tag);
 	}
 	inline void SetContentFolder(const char* contentFolder) 
 	{
-		((void(*)(void* self, const char* contentFolder))g_nativeFunctions[2609])(m_pSelf, contentFolder);
+		((void(*)(void* self, const char* contentFolder))g_engine_nativeFunctions[2609])(m_pSelf, contentFolder);
 	}
 	inline void SetPreviewImage(const char* previewFile) 
 	{
-		((void(*)(void* self, const char* previewFile))g_nativeFunctions[2610])(m_pSelf, previewFile);
+		((void(*)(void* self, const char* previewFile))g_engine_nativeFunctions[2610])(m_pSelf, previewFile);
 	}
 	inline void SetAllowLegacyUpload(int allow) 
 	{
-		((void(*)(void* self, int allow))g_nativeFunctions[2611])(m_pSelf, allow);
+		((void(*)(void* self, int allow))g_engine_nativeFunctions[2611])(m_pSelf, allow);
 	}
 	inline void AddKeyValueTag(const char* key, const char* value) 
 	{
-		((void(*)(void* self, const char* key, const char* value))g_nativeFunctions[2612])(m_pSelf, key, value);
+		((void(*)(void* self, const char* key, const char* value))g_engine_nativeFunctions[2612])(m_pSelf, key, value);
 	}
 	inline void RemoveKeyValueTags(const char* key) 
 	{
-		((void(*)(void* self, const char* key))g_nativeFunctions[2613])(m_pSelf, key);
+		((void(*)(void* self, const char* key))g_engine_nativeFunctions[2613])(m_pSelf, key);
 	}
 	inline void RemoveAllKeyValueTags() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2614])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2614])(m_pSelf);
 	}
 	inline void AddPreviewFile(const char* previewFile, int type) 
 	{
-		((void(*)(void* self, const char* previewFile, int type))g_nativeFunctions[2615])(m_pSelf, previewFile, type);
+		((void(*)(void* self, const char* previewFile, int type))g_engine_nativeFunctions[2615])(m_pSelf, previewFile, type);
 	}
 	inline void AddPreviewVideo(const char* videoId) 
 	{
-		((void(*)(void* self, const char* videoId))g_nativeFunctions[2616])(m_pSelf, videoId);
+		((void(*)(void* self, const char* videoId))g_engine_nativeFunctions[2616])(m_pSelf, videoId);
 	}
 	inline void UpdatePreviewFile(unsigned int index, const char* previewFile) 
 	{
-		((void(*)(void* self, unsigned int index, const char* previewFile))g_nativeFunctions[2617])(m_pSelf, index, previewFile);
+		((void(*)(void* self, unsigned int index, const char* previewFile))g_engine_nativeFunctions[2617])(m_pSelf, index, previewFile);
 	}
 	inline void UpdatePreviewVideo(unsigned int index, const char* videoId) 
 	{
-		((void(*)(void* self, unsigned int index, const char* videoId))g_nativeFunctions[2618])(m_pSelf, index, videoId);
+		((void(*)(void* self, unsigned int index, const char* videoId))g_engine_nativeFunctions[2618])(m_pSelf, index, videoId);
 	}
 	inline void RemovePreview(unsigned int index) 
 	{
-		((void(*)(void* self, unsigned int index))g_nativeFunctions[2619])(m_pSelf, index);
+		((void(*)(void* self, unsigned int index))g_engine_nativeFunctions[2619])(m_pSelf, index);
 	}
 	inline void SetRequiredGameVersions(const char* minVersion, const char* maxVersion) 
 	{
-		((void(*)(void* self, const char* minVersion, const char* maxVersion))g_nativeFunctions[2620])(m_pSelf, minVersion, maxVersion);
+		((void(*)(void* self, const char* minVersion, const char* maxVersion))g_engine_nativeFunctions[2620])(m_pSelf, minVersion, maxVersion);
 	}
 	inline int Submit(const char* changeNote) 
 	{
 		return
-		((int(*)(void* self, const char* changeNote))g_nativeFunctions[2621])(m_pSelf, changeNote);
+		((int(*)(void* self, const char* changeNote))g_engine_nativeFunctions[2621])(m_pSelf, changeNote);
 	}
 	inline float GetProgressPercent() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2622])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2622])(m_pSelf);
 	}
 	inline uint64 GetBytesProcessed() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2623])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[2623])(m_pSelf);
 	}
 	inline uint64 GetBytesTotal() 
 	{
 		return
-		((uint64(*)(void* self))g_nativeFunctions[2624])(m_pSelf);
+		((uint64(*)(void* self))g_engine_nativeFunctions[2624])(m_pSelf);
 	}
-	RW_VAR(int,m_creating,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2625],g_nativeFunctions[2626]);
-	RW_VAR(int,m_created,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2627],g_nativeFunctions[2628]);
-	RW_VAR(int,m_submitted,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2629],g_nativeFunctions[2630]);
-	RW_VAR(int,m_complete,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2631],g_nativeFunctions[2632]);
-	RW_VAR(int,m_success,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2633],g_nativeFunctions[2634]);
-	RW_VAR(int,m_bNeedsLegalAgreement,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2635],g_nativeFunctions[2636]);
-	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcUpdate,g_nativeFunctions[2637],g_nativeFunctions[2638]);
+	RW_VAR(int,m_creating,Steam::Ugc::CUgcUpdate,g_engine_nativeFunctions[2625],g_engine_nativeFunctions[2626]);
+	RW_VAR(int,m_created,Steam::Ugc::CUgcUpdate,g_engine_nativeFunctions[2627],g_engine_nativeFunctions[2628]);
+	RW_VAR(int,m_submitted,Steam::Ugc::CUgcUpdate,g_engine_nativeFunctions[2629],g_engine_nativeFunctions[2630]);
+	RW_VAR(int,m_complete,Steam::Ugc::CUgcUpdate,g_engine_nativeFunctions[2631],g_engine_nativeFunctions[2632]);
+	RW_VAR(int,m_success,Steam::Ugc::CUgcUpdate,g_engine_nativeFunctions[2633],g_engine_nativeFunctions[2634]);
+	RW_VAR(int,m_bNeedsLegalAgreement,Steam::Ugc::CUgcUpdate,g_engine_nativeFunctions[2635],g_engine_nativeFunctions[2636]);
+	RW_VAR(int,m_resultCode,Steam::Ugc::CUgcUpdate,g_engine_nativeFunctions[2637],g_engine_nativeFunctions[2638]);
 };
 class VertexLayout
 {
@@ -12219,23 +12201,23 @@ class VertexLayout
 	}
 	VertexLayout(const char* name, int size) 
 	{
-		m_pSelf = ((void*(*)(const char* name, int size))g_nativeFunctions[2639])(name, size);
+		m_pSelf = ((void*(*)(const char* name, int size))g_engine_nativeFunctions[2639])(name, size);
 	}
 	inline void Destroy() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2640])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2640])(m_pSelf);
 	}
 	inline void Free() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2641])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2641])(m_pSelf);
 	}
 	inline void Add(const char* semanticName, int semanticIndex, unsigned int format, int offset) 
 	{
-		((void(*)(void* self, const char* semanticName, int semanticIndex, unsigned int format, int offset))g_nativeFunctions[2642])(m_pSelf, semanticName, semanticIndex, format, offset);
+		((void(*)(void* self, const char* semanticName, int semanticIndex, unsigned int format, int offset))g_engine_nativeFunctions[2642])(m_pSelf, semanticName, semanticIndex, format, offset);
 	}
 	inline void Build() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2643])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2643])(m_pSelf);
 	}
 };
 class VfxCompiledShaderInfo_t
@@ -12248,10 +12230,10 @@ class VfxCompiledShaderInfo_t
 	}
 	inline void Delete() 
 	{
-		((void(*)(void* __self))g_nativeFunctions[2644])(m_pSelf);
+		((void(*)(void* __self))g_engine_nativeFunctions[2644])(m_pSelf);
 	}
-	RW_VAR(const char *,compilerOutput,VfxCompiledShaderInfo_t,g_nativeFunctions[2645],g_nativeFunctions[2646]);
-	RW_VAR(int,compileFailed,VfxCompiledShaderInfo_t,g_nativeFunctions[2647],g_nativeFunctions[2648]);
+	RW_VAR(const char *,compilerOutput,VfxCompiledShaderInfo_t,g_engine_nativeFunctions[2645],g_engine_nativeFunctions[2646]);
+	RW_VAR(int,compileFailed,VfxCompiledShaderInfo_t,g_engine_nativeFunctions[2647],g_engine_nativeFunctions[2648]);
 };
 class VPhysXBodyPart_t
 {
@@ -12264,61 +12246,62 @@ class VPhysXBodyPart_t
 	inline int GetSphereCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2649])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2649])(m_pSelf);
 	}
 	inline const RnSphereDesc_t* GetSphere(int index) 
 	{
 		return
-		((const RnSphereDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2650])(m_pSelf, index);
+		((const RnSphereDesc_t*(*)(void* __self, int __index))g_engine_nativeFunctions[2650])(m_pSelf, index);
 	}
 	inline int GetCapsuleCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2651])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2651])(m_pSelf);
 	}
 	inline const RnCapsuleDesc_t* GetCapsule(int index) 
 	{
 		return
-		((const RnCapsuleDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2652])(m_pSelf, index);
+		((const RnCapsuleDesc_t*(*)(void* __self, int __index))g_engine_nativeFunctions[2652])(m_pSelf, index);
 	}
 	inline int GetHullCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2653])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2653])(m_pSelf);
 	}
 	inline const RnHullDesc_t* GetHull(int index) 
 	{
 		return
-		((const RnHullDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2654])(m_pSelf, index);
+		((const RnHullDesc_t*(*)(void* __self, int __index))g_engine_nativeFunctions[2654])(m_pSelf, index);
 	}
 	inline int GetMeshCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2655])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2655])(m_pSelf);
 	}
 	inline const RnMeshDesc_t* GetMesh(int index) 
 	{
 		return
-		((const RnMeshDesc_t*(*)(void* __self, int __index))g_nativeFunctions[2656])(m_pSelf, index);
+		((const RnMeshDesc_t*(*)(void* __self, int __index))g_engine_nativeFunctions[2656])(m_pSelf, index);
 	}
 	inline int GetCollisionAttributeCount() 
 	{
 		return
-		((int(*)(void* __self))g_nativeFunctions[2657])(m_pSelf);
+		((int(*)(void* __self))g_engine_nativeFunctions[2657])(m_pSelf);
 	}
 	inline unsigned short GetCollisionAttributeIndex(int index) 
 	{
 		return
-		((unsigned short(*)(void* __self, int __index))g_nativeFunctions[2658])(m_pSelf, index);
+		((unsigned short(*)(void* __self, int __index))g_engine_nativeFunctions[2658])(m_pSelf, index);
 	}
-	RW_VAR(unsigned int,m_nFlags,VPhysXBodyPart_t,g_nativeFunctions[2659],g_nativeFunctions[2660]);
-	RW_VAR(float,m_flMass,VPhysXBodyPart_t,g_nativeFunctions[2661],g_nativeFunctions[2662]);
-	RW_VAR(unsigned short,m_nCollisionAttributeIndex,VPhysXBodyPart_t,g_nativeFunctions[2663],g_nativeFunctions[2664]);
-	RW_VAR(float,m_flInertiaScale,VPhysXBodyPart_t,g_nativeFunctions[2665],g_nativeFunctions[2666]);
-	RW_VAR(float,m_flLinearDamping,VPhysXBodyPart_t,g_nativeFunctions[2667],g_nativeFunctions[2668]);
-	RW_VAR(float,m_flAngularDamping,VPhysXBodyPart_t,g_nativeFunctions[2669],g_nativeFunctions[2670]);
-	RW_VAR(int,m_bOverrideMassCenter,VPhysXBodyPart_t,g_nativeFunctions[2671],g_nativeFunctions[2672]);
-	RW_VAR(Vector,m_vMassCenterOverride,VPhysXBodyPart_t,g_nativeFunctions[2673],g_nativeFunctions[2674]);
+	RW_VAR(unsigned int,m_nFlags,VPhysXBodyPart_t,g_engine_nativeFunctions[2659],g_engine_nativeFunctions[2660]);
+	RW_VAR(float,m_flMass,VPhysXBodyPart_t,g_engine_nativeFunctions[2661],g_engine_nativeFunctions[2662]);
+	RW_VAR(unsigned short,m_nCollisionAttributeIndex,VPhysXBodyPart_t,g_engine_nativeFunctions[2663],g_engine_nativeFunctions[2664]);
+	RW_VAR(float,m_flInertiaScale,VPhysXBodyPart_t,g_engine_nativeFunctions[2665],g_engine_nativeFunctions[2666]);
+	RW_VAR(float,m_flLinearDamping,VPhysXBodyPart_t,g_engine_nativeFunctions[2667],g_engine_nativeFunctions[2668]);
+	RW_VAR(float,m_flAngularDamping,VPhysXBodyPart_t,g_engine_nativeFunctions[2669],g_engine_nativeFunctions[2670]);
+	RW_VAR(float,m_flGravityScale,VPhysXBodyPart_t,g_engine_nativeFunctions[2671],g_engine_nativeFunctions[2672]);
+	RW_VAR(int,m_bOverrideMassCenter,VPhysXBodyPart_t,g_engine_nativeFunctions[2673],g_engine_nativeFunctions[2674]);
+	RW_VAR(Vector,m_vMassCenterOverride,VPhysXBodyPart_t,g_engine_nativeFunctions[2675],g_engine_nativeFunctions[2676]);
 };
 class VPhysXJoint_t
 {
@@ -12331,79 +12314,79 @@ class VPhysXJoint_t
 	inline float GetLinearLimitMin() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2675])(m_pSelf);
+		((float(*)(void* __self))g_engine_nativeFunctions[2677])(m_pSelf);
 	}
 	inline float GetLinearLimitMax() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2676])(m_pSelf);
+		((float(*)(void* __self))g_engine_nativeFunctions[2678])(m_pSelf);
 	}
 	inline float GetSwingLimitMin() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2677])(m_pSelf);
+		((float(*)(void* __self))g_engine_nativeFunctions[2679])(m_pSelf);
 	}
 	inline float GetSwingLimitMax() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2678])(m_pSelf);
+		((float(*)(void* __self))g_engine_nativeFunctions[2680])(m_pSelf);
 	}
 	inline float GetTwistLimitMin() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2679])(m_pSelf);
+		((float(*)(void* __self))g_engine_nativeFunctions[2681])(m_pSelf);
 	}
 	inline float GetTwistLimitMax() 
 	{
 		return
-		((float(*)(void* __self))g_nativeFunctions[2680])(m_pSelf);
+		((float(*)(void* __self))g_engine_nativeFunctions[2682])(m_pSelf);
 	}
 	inline void SetLinearLimitMin(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2681])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_engine_nativeFunctions[2683])(m_pSelf, value);
 	}
 	inline void SetLinearLimitMax(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2682])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_engine_nativeFunctions[2684])(m_pSelf, value);
 	}
 	inline void SetSwingLimitMin(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2683])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_engine_nativeFunctions[2685])(m_pSelf, value);
 	}
 	inline void SetSwingLimitMax(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2684])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_engine_nativeFunctions[2686])(m_pSelf, value);
 	}
 	inline void SetTwistLimitMin(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2685])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_engine_nativeFunctions[2687])(m_pSelf, value);
 	}
 	inline void SetTwistLimitMax(float value) 
 	{
-		((void(*)(void* __self, float __value))g_nativeFunctions[2686])(m_pSelf, value);
+		((void(*)(void* __self, float __value))g_engine_nativeFunctions[2688])(m_pSelf, value);
 	}
-	RW_VAR(unsigned short,m_nType,VPhysXJoint_t,g_nativeFunctions[2687],g_nativeFunctions[2688]);
-	RW_VAR(unsigned short,m_nBody1,VPhysXJoint_t,g_nativeFunctions[2689],g_nativeFunctions[2690]);
-	RW_VAR(unsigned short,m_nBody2,VPhysXJoint_t,g_nativeFunctions[2691],g_nativeFunctions[2692]);
-	RW_VAR(unsigned short,m_nFlags,VPhysXJoint_t,g_nativeFunctions[2693],g_nativeFunctions[2694]);
-	RW_VAR(int,m_bEnableCollision,VPhysXJoint_t,g_nativeFunctions[2695],g_nativeFunctions[2696]);
-	RW_VAR(int,m_bEnableLinearLimit,VPhysXJoint_t,g_nativeFunctions[2697],g_nativeFunctions[2698]);
-	RW_VAR(int,m_bEnableLinearMotor,VPhysXJoint_t,g_nativeFunctions[2699],g_nativeFunctions[2700]);
-	RW_VAR(Vector,m_vLinearTargetVelocity,VPhysXJoint_t,g_nativeFunctions[2701],g_nativeFunctions[2702]);
-	RW_VAR(float,m_flMaxForce,VPhysXJoint_t,g_nativeFunctions[2703],g_nativeFunctions[2704]);
-	RW_VAR(int,m_bEnableSwingLimit,VPhysXJoint_t,g_nativeFunctions[2705],g_nativeFunctions[2706]);
-	RW_VAR(int,m_bEnableTwistLimit,VPhysXJoint_t,g_nativeFunctions[2707],g_nativeFunctions[2708]);
-	RW_VAR(int,m_bEnableAngularMotor,VPhysXJoint_t,g_nativeFunctions[2709],g_nativeFunctions[2710]);
-	RW_VAR(Vector,m_vAngularTargetVelocity,VPhysXJoint_t,g_nativeFunctions[2711],g_nativeFunctions[2712]);
-	RW_VAR(float,m_flMaxTorque,VPhysXJoint_t,g_nativeFunctions[2713],g_nativeFunctions[2714]);
-	RW_VAR(float,m_flLinearFrequency,VPhysXJoint_t,g_nativeFunctions[2715],g_nativeFunctions[2716]);
-	RW_VAR(float,m_flLinearDampingRatio,VPhysXJoint_t,g_nativeFunctions[2717],g_nativeFunctions[2718]);
-	RW_VAR(float,m_flAngularFrequency,VPhysXJoint_t,g_nativeFunctions[2719],g_nativeFunctions[2720]);
-	RW_VAR(float,m_flAngularDampingRatio,VPhysXJoint_t,g_nativeFunctions[2721],g_nativeFunctions[2722]);
-	RW_VAR(float,m_flLinearStrength,VPhysXJoint_t,g_nativeFunctions[2723],g_nativeFunctions[2724]);
-	RW_VAR(float,m_flAngularStrength,VPhysXJoint_t,g_nativeFunctions[2725],g_nativeFunctions[2726]);
-	RW_VAR(CTransformUnaligned,m_Frame1,VPhysXJoint_t,g_nativeFunctions[2727],g_nativeFunctions[2728]);
-	RW_VAR(CTransformUnaligned,m_Frame2,VPhysXJoint_t,g_nativeFunctions[2729],g_nativeFunctions[2730]);
+	RW_VAR(unsigned short,m_nType,VPhysXJoint_t,g_engine_nativeFunctions[2689],g_engine_nativeFunctions[2690]);
+	RW_VAR(unsigned short,m_nBody1,VPhysXJoint_t,g_engine_nativeFunctions[2691],g_engine_nativeFunctions[2692]);
+	RW_VAR(unsigned short,m_nBody2,VPhysXJoint_t,g_engine_nativeFunctions[2693],g_engine_nativeFunctions[2694]);
+	RW_VAR(unsigned short,m_nFlags,VPhysXJoint_t,g_engine_nativeFunctions[2695],g_engine_nativeFunctions[2696]);
+	RW_VAR(int,m_bEnableCollision,VPhysXJoint_t,g_engine_nativeFunctions[2697],g_engine_nativeFunctions[2698]);
+	RW_VAR(int,m_bEnableLinearLimit,VPhysXJoint_t,g_engine_nativeFunctions[2699],g_engine_nativeFunctions[2700]);
+	RW_VAR(int,m_bEnableLinearMotor,VPhysXJoint_t,g_engine_nativeFunctions[2701],g_engine_nativeFunctions[2702]);
+	RW_VAR(Vector,m_vLinearTargetVelocity,VPhysXJoint_t,g_engine_nativeFunctions[2703],g_engine_nativeFunctions[2704]);
+	RW_VAR(float,m_flMaxForce,VPhysXJoint_t,g_engine_nativeFunctions[2705],g_engine_nativeFunctions[2706]);
+	RW_VAR(int,m_bEnableSwingLimit,VPhysXJoint_t,g_engine_nativeFunctions[2707],g_engine_nativeFunctions[2708]);
+	RW_VAR(int,m_bEnableTwistLimit,VPhysXJoint_t,g_engine_nativeFunctions[2709],g_engine_nativeFunctions[2710]);
+	RW_VAR(int,m_bEnableAngularMotor,VPhysXJoint_t,g_engine_nativeFunctions[2711],g_engine_nativeFunctions[2712]);
+	RW_VAR(Vector,m_vAngularTargetVelocity,VPhysXJoint_t,g_engine_nativeFunctions[2713],g_engine_nativeFunctions[2714]);
+	RW_VAR(float,m_flMaxTorque,VPhysXJoint_t,g_engine_nativeFunctions[2715],g_engine_nativeFunctions[2716]);
+	RW_VAR(float,m_flLinearFrequency,VPhysXJoint_t,g_engine_nativeFunctions[2717],g_engine_nativeFunctions[2718]);
+	RW_VAR(float,m_flLinearDampingRatio,VPhysXJoint_t,g_engine_nativeFunctions[2719],g_engine_nativeFunctions[2720]);
+	RW_VAR(float,m_flAngularFrequency,VPhysXJoint_t,g_engine_nativeFunctions[2721],g_engine_nativeFunctions[2722]);
+	RW_VAR(float,m_flAngularDampingRatio,VPhysXJoint_t,g_engine_nativeFunctions[2723],g_engine_nativeFunctions[2724]);
+	RW_VAR(float,m_flLinearStrength,VPhysXJoint_t,g_engine_nativeFunctions[2725],g_engine_nativeFunctions[2726]);
+	RW_VAR(float,m_flAngularStrength,VPhysXJoint_t,g_engine_nativeFunctions[2727],g_engine_nativeFunctions[2728]);
+	RW_VAR(CTransformUnaligned,m_Frame1,VPhysXJoint_t,g_engine_nativeFunctions[2729],g_engine_nativeFunctions[2730]);
+	RW_VAR(CTransformUnaligned,m_Frame2,VPhysXJoint_t,g_engine_nativeFunctions[2731],g_engine_nativeFunctions[2732]);
 };
 class VSound_t
 {
@@ -12415,67 +12398,67 @@ class VSound_t
 	}
 	inline void DestroyStrongHandle() 
 	{
-		((void(*)(void* self))g_nativeFunctions[2731])(m_pSelf);
+		((void(*)(void* self))g_engine_nativeFunctions[2733])(m_pSelf);
 	}
 	inline int IsStrongHandleValid() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2732])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2734])(m_pSelf);
 	}
 	inline int IsError() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2733])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2735])(m_pSelf);
 	}
 	inline int IsStrongHandleLoaded() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2734])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2736])(m_pSelf);
 	}
 	inline HSoundStrong* CopyStrongHandle() 
 	{
 		return
-		((HSoundStrong*(*)(void* self))g_nativeFunctions[2735])(m_pSelf);
+		((HSoundStrong*(*)(void* self))g_engine_nativeFunctions[2737])(m_pSelf);
 	}
 	inline const void* GetBindingPtr() 
 	{
 		return
-		((const void*(*)(void* self))g_nativeFunctions[2736])(m_pSelf);
+		((const void*(*)(void* self))g_engine_nativeFunctions[2738])(m_pSelf);
 	}
 	inline int64 format() 
 	{
 		return
-		((int64(*)(void* self))g_nativeFunctions[2737])(m_pSelf);
+		((int64(*)(void* self))g_engine_nativeFunctions[2739])(m_pSelf);
 	}
 	inline int BitsPerSample() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2738])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2740])(m_pSelf);
 	}
 	inline int channels() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2739])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2741])(m_pSelf);
 	}
 	inline int BytesPerSample() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2740])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2742])(m_pSelf);
 	}
 	inline int m_sampleFrameSize() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2741])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2743])(m_pSelf);
 	}
 	inline int m_rate() 
 	{
 		return
-		((int(*)(void* self))g_nativeFunctions[2742])(m_pSelf);
+		((int(*)(void* self))g_engine_nativeFunctions[2744])(m_pSelf);
 	}
 	inline float Duration() 
 	{
 		return
-		((float(*)(void* self))g_nativeFunctions[2743])(m_pSelf);
+		((float(*)(void* self))g_engine_nativeFunctions[2745])(m_pSelf);
 	}
 };
 class WindowsGlue
@@ -12490,9 +12473,14 @@ class WindowsGlue
 	inline const char* FindFile() 
 	{
 		return
-		((const char*(*)())g_nativeFunctions[2744])();
+		((const char*(*)())g_engine_nativeFunctions[2746])();
 	}
 };
+#undef ConVar
+#undef ConCommand
+#undef CUtlBuffer
+#undef CUtlString
+#undef CUtlVector
 inline void engineFree()
 {
 	if ( g_pengineLibrary == 0 ) return;
@@ -12500,4 +12488,4 @@ inline void engineFree()
 	g_pengineLibrary = 0;
 	g_bIsengineInitialized = false;
 }
-#endif ENGINE_GEN_H
+#endif

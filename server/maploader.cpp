@@ -15,6 +15,7 @@
 #include "entitysystem.h"
 #include "stdio.h"
 #include "string.h"
+#include "stdlib.h"
 
 class CMapLoader : public IMapLoader
 {
@@ -83,6 +84,7 @@ void CMapLoader::SetKeyField( CBaseEntity *pEntity, typedescription_t *pTypeDesc
 		Quaternion *pQuat;
 		Vector *pVector;
 		Vector4D *pColor;
+		char *szClonedString;
 	};
 	union {
 		struct
@@ -98,6 +100,12 @@ void CMapLoader::SetKeyField( CBaseEntity *pEntity, typedescription_t *pTypeDesc
 	{
 	case FIELD_INTEGER:
 		sscanf(szValue, "%i", GetVarWithOffset<int>(pEntity, pTypeDesc));
+		break;
+	case FIELD_STRING:
+		szClonedString = (char*)malloc(strlen(szValue)+1);
+		strcpy(szClonedString, szValue);
+		*GetVarWithOffset<const char*>(pEntity, pTypeDesc) = szClonedString;
+		printf("%s\n",szClonedString);
 		break;
 	case FIELD_QUATERNION_QANGLE:
 		pQuat = GetVarWithOffset<Quaternion>(pEntity, pTypeDesc);
@@ -163,6 +171,8 @@ void CMapLoader::SpawnEntities()
 					continue;
 				
 				szValue = pKeyValues->GetValueString(StringToken(pTypeDesc->m_szEditorName), NULL);
+				if (szValue == NULL)
+					continue;
 				SetKeyField(pEntity, pTypeDesc, szValue);
 			}
 		}

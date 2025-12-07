@@ -94,10 +94,10 @@ void CTestRendering::Frame(SwapChainHandle_t hSwapChain)
 	g_pWorldRendererMgr->UpdateObjectsForRendering(StringToken(MapLoader()->GetMainWorld()->GetWorldDebugName()), (Vector){}, 1,500);
 
 	pRenderAttributes->SetBoolValue(StringToken("renderOpaque"), true);
-	pRenderAttributes->SetBoolValue(StringToken("renderTranslucent"), true);
-	pRenderAttributes->SetBoolValue(StringToken("directLighting"), true);
-	pRenderAttributes->SetBoolValue(StringToken("indirectLighting"), true);
-	pRenderAttributes->SetBoolValue(StringToken("renderSun"), true);
+	pRenderAttributes->SetBoolValue(StringToken("renderTranslucent"), false);
+	pRenderAttributes->SetBoolValue(StringToken("directLighting"), false);
+	pRenderAttributes->SetBoolValue(StringToken("indirectLighting"), false);
+	pRenderAttributes->SetBoolValue(StringToken("renderSun"), false);
 	pRenderAttributes->SetBoolValue(StringToken("drawShadows"), true);
 	pRenderAttributes->SetVector4DValue(StringToken("ambientColor"), (Vector4D){0.7,0.7,0.7,1});
 	pRenderAttributes->SetVector4DValue(StringToken("clearColor"), (Vector4D){1,1,1,0});

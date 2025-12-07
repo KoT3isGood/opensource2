@@ -1,6 +1,7 @@
 #include "basemodelentity.h"
 #include "entitysystem.h"
 #include "maploader.h"
+#include "icvar.h"
 
 void ServerInit()
 {
@@ -12,5 +13,6 @@ void ServerInit()
 
 void ServerFrame()
 {
+	Console()->Execute();
 	EntitySystem()->Think();
 }

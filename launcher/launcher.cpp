@@ -4,6 +4,8 @@
 
 
 #include "engine/appsystem.h"
+#include "tier0/platform.h"
+#include "tier1/commandline.h"
 #include "stdio.h"
 #include "windows.h"
 #include "libloaderapi.h"
@@ -12,10 +14,14 @@
 #include "engine/engine2vars.h"
 #include "engine/testrender.h"
 #include "engine/stringtoken.h"
+#include "engine/inativecvar.h"
 #include "maploader.h"
 #include "stdlib.h"
+#include "sourcetools/sourcetools.h"
+#include "sourcetools/sourcetoolsvars.h"
+#include "hammer/hammer.h"
 
-int iStructSizes[149]={24,1,16,2,24,4,0x11,4,4,3,4,8,0x14,0x1c,0x28,4,4,0x10,4,4,8,4,8,4,4,4,4,4,0x10,4,4,4,0xc,0xc,0x20,0x2dc,4,0x10,0x288,0x101,0x40,4,0x60,0x2c,0x20,4,4,4,4,8,8,4,4,4,4,8,4,4,1,4,4,0x28,0x28,0x88,0x78,4,4,0x28,4,4,4,4,4,4,0xc,0x10,0x10,0x18,4,4,4,8,4,1,4,0x30,4,8,4,4,8,4,4,1,0x1c,200,0x88,0x1c,0x10,1,4,4,4,8,0x4c,4,4,4,4,0x2c,4,0x1c,0x74,0x20,0x78,4,8,0x2c,4,4,4,4,0xc,8,0x10,8,0x14,4,4,0x40,4,1,0x18,4,8,4,4,4,4,4,4,8,8,4,4,4,8,4,};
+
 
 CMaterialSystem2AppSystemDict *AppSystem;
 
@@ -38,15 +44,11 @@ void CC SetSystemInfo()
 
 void CC RegisterNativeVar(void* pConVar)
 {
-	ConVar pRealVar;
-	pRealVar.m_pSelf = pConVar;
-	printf("v   %s\n", pRealVar.GetName());
+	CNativeConsole::RegisterVar(pConVar);
 }
 void CC RegisterNativeCommand(void* pCommand)
 {
-	ConCommand pRealCommand;
-	pRealCommand.m_pSelf = pCommand;
-	printf("c   %s\n", pRealCommand.GetName());
+	CNativeConsole::RegisterCommand(pCommand);
 }
 void CC OnConVarChanged(const char *szName, const char *szValue, const char *szPrevious)
 {
@@ -110,9 +112,19 @@ int CC RegisterHandle( void *ptr, unsigned int type )
 	}
 	if (type==StringToken("SceneLightObject"))
 	{
-		printf("Creating light scene object\n");
 		SourceHandle_t *pHandle = new SourceHandle_t;
 		CSceneLightObject *pSceneObject = new CSceneLightObject;
+		pSceneObject->m_pSelf = ptr;
+		pHandle->pObject = pSceneObject;
+		pHandle->pNext = g_pCurrentSourceHandle;
+		g_pCurrentSourceHandle = pHandle;
+		iLastHandleIndex++;
+		return iLastHandleIndex; 
+	}
+	if (type==StringToken("SceneLightProbeVolumeObject"))
+	{
+		SourceHandle_t *pHandle = new SourceHandle_t;
+		CSceneLightProbeVolumeObject *pSceneObject = new CSceneLightProbeVolumeObject;
 		pSceneObject->m_pSelf = ptr;
 		pHandle->pObject = pSceneObject;
 		pHandle->pNext = g_pCurrentSourceHandle;
@@ -232,6 +244,7 @@ void ServerFrame();
 
 int main( int nArgc, char **argv )
 {
+	CommandLine()->CreateCommandLine(nArgc, argv);
 
 	char path[MAX_PATH] = {};
 
@@ -273,30 +286,40 @@ int main( int nArgc, char **argv )
 
 	for (int i = 0; i<80;i++)
 	{
-		g_callbackFunctions[i] = (void*)(0x123400+i);
+		g_engine_callbackFunctions[i] = (void*)(0x123400+i);
 	}
-	g_callbackFunctions[3] = (void*)RegisterNativeVar;
-	g_callbackFunctions[4] = (void*)RegisterNativeCommand;
-	g_callbackFunctions[5] = (void*)OnConVarChanged;
-	g_callbackFunctions[6] = (void*)RegisterEngineLogger;
-	g_callbackFunctions[7] = (void*)EnvironmentExit;
-	g_callbackFunctions[13] = (void*)OnWindowActive;
-	g_callbackFunctions[22] = (void*)OnConsoleCommand;
-	g_callbackFunctions[24] = (void*)SetSystemInfo;
-	g_callbackFunctions[25] = (void*)SetSystemInfo;
-	g_callbackFunctions[26] = (void*)EnginePrint;
-	g_callbackFunctions[28] = (void*)OnClientOutput;
-	g_callbackFunctions[29] = (void*)OnSceneViewSubmitted;
-	g_callbackFunctions[30] = (void*)OnLayer;
-	g_callbackFunctions[31] = (void*)RegisterHandle;
-	g_callbackFunctions[49] = (void*)AddLayersToView;	
-	g_callbackFunctions[50] = (void*)PipelineEnd;
-	g_callbackFunctions[56] = (void*)SetSystemInfo;
-	g_callbackFunctions[70] = (void*)InternalIsActive;
-	g_callbackFunctions[71] = (void*)InternalWantsInit;
-	g_callbackFunctions[75] = (void*)GetVulkanInstanceExtensionsRequired;
-	g_callbackFunctions[76] = (void*)GetVulkanDeviceExtensionsRequired;
-	g_callbackFunctions[78] = (void*)SetSystemInfo;
+	/*
+	for (int i = 0; i<417;i++)
+	{
+		g_tools_callbackFunctions[i] = (void*)(0x2234000+i);
+	}
+	for (int i = 0; i<61;i++)
+	{
+		g_hammer_callbackFunctions[i] = (void*)(0x323400+i);
+	}
+	*/
+	g_engine_callbackFunctions[3] = (void*)RegisterNativeVar;
+	g_engine_callbackFunctions[4] = (void*)RegisterNativeCommand;
+	g_engine_callbackFunctions[5] = (void*)OnConVarChanged;
+	g_engine_callbackFunctions[6] = (void*)RegisterEngineLogger;
+	g_engine_callbackFunctions[7] = (void*)EnvironmentExit;
+	g_engine_callbackFunctions[13] = (void*)OnWindowActive;
+	g_engine_callbackFunctions[22] = (void*)OnConsoleCommand;
+	g_engine_callbackFunctions[24] = (void*)SetSystemInfo;
+	g_engine_callbackFunctions[25] = (void*)SetSystemInfo;
+	g_engine_callbackFunctions[26] = (void*)EnginePrint;
+	g_engine_callbackFunctions[28] = (void*)OnClientOutput;
+	g_engine_callbackFunctions[29] = (void*)OnSceneViewSubmitted;
+	g_engine_callbackFunctions[30] = (void*)OnLayer;
+	g_engine_callbackFunctions[31] = (void*)RegisterHandle;
+	g_engine_callbackFunctions[49] = (void*)AddLayersToView;	
+	g_engine_callbackFunctions[50] = (void*)PipelineEnd;
+	g_engine_callbackFunctions[56] = (void*)SetSystemInfo;
+	g_engine_callbackFunctions[70] = (void*)InternalIsActive;
+	g_engine_callbackFunctions[71] = (void*)InternalWantsInit;
+	g_engine_callbackFunctions[75] = (void*)GetVulkanInstanceExtensionsRequired;
+	g_engine_callbackFunctions[76] = (void*)GetVulkanDeviceExtensionsRequired;
+	g_engine_callbackFunctions[78] = (void*)SetSystemInfo;
 
 	LoadLibraryA("engine2.dll");
 
@@ -308,10 +331,12 @@ int main( int nArgc, char **argv )
 	if(!igen_engine)
 		_exit(1);
 
-	g_sHash = *(short*)(((uint64_t)igen_engine)+23);
-	printf("Hijacked hash: %i\n", g_sHash);
-
 	engineBindingsInitialize();
+	/*
+	toolsBindingsInitialize();
+	hammerBindingsInitialize();
+	*/
+
 	LoadLibraryA("coreclr.dll");
 
 
@@ -334,16 +359,33 @@ int main( int nArgc, char **argv )
 	pTestRendering->Init();
 	ServerInit();
 
+	/*
+	bool bTools = CommandLine()->CheckParam("-tools");
+
+	if (bTools)
+	{
+		g_pToolFramework2->Spin();
+		ToolsStallMonitor_IndicateActivity();
+	}
+	*/
+
 
 
 	Plat_SetCurrentFrame(0);
 
+	float fCurrentTime = Plat_GetTime();
+	float fPreviousTime = fCurrentTime;
+
 	while(true)
 	{
+		fPreviousTime = fCurrentTime;
+		fCurrentTime = Plat_GetTime();
 		SteamGameServer_RunCallbacks();
 		SteamAPI_RunCallbacks();
+
 		ServerFrame();
-		SourceEngineFrame(AppSystem, 0, 0);
+		SourceEngineFrame(AppSystem, fCurrentTime, fPreviousTime);
+		
 	}
 
 	return 0;

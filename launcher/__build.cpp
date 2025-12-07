@@ -25,6 +25,8 @@ DECLARE_BUILD_STAGE(launcher)
 		"engine/testrender.cpp",
 		"engine/murmur2.cpp",
 		"engine/stringtoken.cpp",
+		"engine/cvar.cpp",
+		"engine/nativecvar.cpp",
 		"external/murmur2/MurmurHash2.c",
 
 		"server/game.cpp",
@@ -35,15 +37,20 @@ DECLARE_BUILD_STAGE(launcher)
 		"server/pointentity.cpp",
 		"server/lightentity.cpp",
 		"server/directionallight.cpp",
+		"server/lightprobevolume.cpp",
 	};
 	stCompile.includeDirectories = {
 		"public",
+		"public/funnystd",
 		"external/murmur2",
 		"external/cglm/include",
 	};
 	stCompile.m_target.kernel = TARGET_KERNEL_WINDOWS_GNU;
 	stLink = ccompiler->Compile(&stCompile);
 	stLink.linkType = ELINK_EXECUTABLE;
+	stLink.objects.AppendTail({tier0_lib});
+	stLink.objects.AppendTail({tier1_lib});
+	stLink.objects.AppendTail({tier2_lib});
 	szExeTempBin = linker->Link(&stLink);
 
 	filesystem2->MakeDirectory("game");

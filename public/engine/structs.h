@@ -11,8 +11,35 @@ typedef long long int64;
 #define uint64 unsigned long long
 #define nint long long
 
+template <typename A, typename Parent>
+class RWVariable
+{
+	private:
+	Parent *m_parent;
+	A(*m_ReadOp)(Parent*);
+	void(*m_WriteOp)(Parent*, A);
+	public:
+	RWVariable(void* ReadOp, void* WriteOp, Parent *parent)
+	{
+		m_ReadOp = (A(*)(Parent*))ReadOp;
+		m_WriteOp = (void(*)(Parent*, A))WriteOp;
+		m_parent = parent;
+	}
+	inline RWVariable& operator = (const A& other)
+	{
+		m_WriteOp( (Parent*)m_parent->m_pSelf , other);
+		return *this;
+	}
+	inline operator A()
+	{
+		return m_ReadOp( (Parent*)m_parent->m_pSelf );
+	}
+};
+#define RW_VAR(type, name, parent, readop, writeop) RWVariable<type, parent> name{readop, writeop,this};
+
+
 #define abstract_class class
-extern short g_sHash;
+extern unsigned short g_engine_sHash;
 
 struct AABB_t
 {
@@ -205,12 +232,14 @@ public:
 class CSceneObject;
 class HModelStrong;
 struct KeyValues3;
-class CUtlString;
 class MeshTraceInput {};
 class MeshTraceOutput {};
 
+
 template<typename A>
-class CUtlVector;
+class _CUtlVector;
+
+class _CUtlString;
 
 
 class HAnimationGraphStrong;
@@ -397,6 +426,68 @@ namespace NativeEngine
 	class SDLGameController;
 }
 
+class QWidget;
+class QScrollBar;
+class QObject;
+class QChar;
+class QPixmap;
+class QMenu;
+class QAction;
+typedef Rect_t QRectF;
+class QPushButton;
+class QLabel;
+class QStatusBar;
+class QMenuBar;
+class QToolBar;
+class QLayout;
+class CGameDataClass;
+class CGameDataVariable;
+class QGraphicsItem;
+class GDIVItemSet;
+class CHelperInfo;
+class CGameData;
+class QLineEdit;
+class QScreen;
+class QGraphicsView;
+class QPainter;
+class QPen;
+class QStringList;
+class QTextDocument;
+class QMimeData;
+class CMapNode;
+class CSelection;
+class ISelectionSet;
+class IAsset;
+class QTextCursor;
+class CToolCamera;
+class CWorkPlane;
+
+enum EnumChildrenPos_t
+{
+
+};
+
+namespace Trace
+{
+
+};
+
+namespace NativeHammer
+{
+	class Options;
+}
+namespace Trace
+{
+	class TraceRequest
+	{
+
+	};
+	class TraceResult
+	{
+
+	};
+}
+
 // Make it feel more C-like
 enum class SceneObjectFlags :uint64_t 
 {
@@ -472,8 +563,8 @@ enum class SceneObjectFlags :uint64_t
 #define GN(var) (decltype(var))(var->m_pSelf)
 #define SET_NATIVE(var, v) var->m_pSelf = (void*)(v)
 #define CREATE_NATIVE(type, var) type __##var; type *var = &__##var
+#define CREATE_NATIVE_ALLOC(type, var) type *var = new type
 #define FROM_NATIVE(type, var) CREATE_NATIVE(type, var); SET_NATIVE(var, _##var) 
-
-
+#define FROM_NATIVE_ALLOC(type, var) CREATE_NATIVE_ALLOC(type, var); SET_NATIVE(var, _##var) 
 
 #endif
