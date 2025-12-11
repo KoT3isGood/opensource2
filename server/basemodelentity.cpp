@@ -11,12 +11,13 @@
 #include "engine/stringtoken.h"
 #include "maploader.h"
 
-#define TEST_MODEL_NAME "models/dev/error.vmdl"
+#define TEST_MODEL_NAME "models/dev/box.vmdl"
 
 void CBaseModelEntity::Spawn()
 {
 	
-	SetAbsOrigin({200,0,0});
+	SetAbsOrigin({200,0,25});
+	SetScale(1);
 	SetModel(TEST_MODEL_NAME);
 }
 
@@ -28,8 +29,9 @@ void CBaseModelEntity::SetModel( const char *szModelName )
 				uint64_t(SceneObjectFlags::IsLoaded),
 				0, GN(MapLoader()->GetMainWorld()), 1));
 	m_pSceneObject->SetTintRGBA((Vector4D){1,1,1,1});
-	
-	HMaterialStrong* pMaterialHandle = Glue::Resources::GetMaterial("materials/error.vmat");
+	m_pSceneObject->SetFlags((uint64_t)SceneObjectFlags::CastShadows);
+
+	HMaterialStrong* pMaterialHandle = Glue::Resources::GetMaterial("materials/dev/reflectivity_30.vmat");
 	m_pSceneObject->SetMaterialOverrideForMeshInstances(pMaterialHandle);
 }
 void CBaseModelEntity::SetAbsAngles( float fPitch, float fYaw, float fRoll )

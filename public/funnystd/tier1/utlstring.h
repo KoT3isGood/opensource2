@@ -23,6 +23,8 @@ public:
 	void RemoveHead( size_t nCount );
 	void RemoveAt( size_t nPosition, size_t nCount );
 
+	CUtlString GetExtension( void );
+
 	char *GetString( void );
 	size_t GetLenght( void );
 	operator char*( void );

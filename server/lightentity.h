@@ -15,6 +15,10 @@ public:
 	virtual void Spawn() override;
 
 	Vector4D m_lightColor;
+	int m_nShadows;
+	int m_nCascades;
+	const char *m_szLightCookie;
+	int m_iBakeLightIndex = -1;
 };
 
 #endif

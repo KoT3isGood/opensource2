@@ -6,10 +6,10 @@
 #include "engine/engine2vars.h"
 #include "engine/handle.h"
 
-class CLightProbeEntity : public CPointEntity
+class CEnvLightProbeVolume : public CPointEntity
 {
 public:
-	DECLARE_CLASS(CLightProbeEntity, CPointEntity)
+	DECLARE_CLASS(CEnvLightProbeVolume, CPointEntity)
 	DECLARE_DATADESC()
 
 
@@ -25,18 +25,18 @@ public:
 	int m_nHandShake;
 	int m_indoorOutdoorLevel;
 
-	HRenderTextureStrong *m_texture;
-	HRenderTextureStrong *m_dliTexture;
-	HRenderTextureStrong *m_dlsTexture;
+	HRenderTextureStrong *m_texture = NULL;
+	HRenderTextureStrong *m_dliTexture = NULL;
+	HRenderTextureStrong *m_dlsTexture = NULL;
 };
 
-void CLightProbeEntity::Spawn()
+void CEnvLightProbeVolume::Spawn()
 {
-	if (m_texture)
+	if (m_szProbeTextureName)
 		m_texture = Glue::Resources::GetTexture(m_szProbeTextureName);
-	if (m_dliTexture)
+	if (m_szDliProbeTextureName)
 		m_dliTexture = Glue::Resources::GetTexture(m_szDliProbeTextureName);
-	if (m_dlsTexture)
+	if (m_szDlsProbeTextureName)
 		m_dlsTexture = Glue::Resources::GetTexture(m_szDlsProbeTextureName);
 	m_pProbeVolumeObject = (CSceneLightProbeVolumeObject*)AcquireNextHandle(g_pSceneSystem->CreateLightProbeVolume(GN(MapLoader()->GetMainWorld())));
 	if (m_texture)
@@ -51,13 +51,12 @@ void CLightProbeEntity::Spawn()
 	m_pProbeVolumeObject->m_nRenderPriority = m_indoorOutdoorLevel;
 	m_pProbeVolumeObject->SetRenderingEnabled(true);
 	m_pProbeVolumeObject->CreateConstants();
-	g_pSceneSystem->MarkLightProbeVolumeObjectUpdated(m_pProbeVolumeObject);
+	g_pSceneSystem->MarkLightProbeVolumeObjectUpdated(GN(m_pProbeVolumeObject));
 }
 
-LINK_ENTITY_TO_CLASS( env_combined_light_probe_volume, CLightProbeEntity )
-LINK_ENTITY_TO_CLASS( env_light_probe_volume, CLightProbeEntity )
+LINK_ENTITY_TO_CLASS( env_light_probe_volume, CEnvLightProbeVolume )
 
-BEGIN_DATADESC(CLightProbeEntity)
+BEGIN_DATADESC(CEnvLightProbeVolume)
 	DEFINE_KEYFIELD(m_szProbeTextureName, FIELD_STRING, "lightprobetexture")
 	DEFINE_KEYFIELD(m_szDliProbeTextureName, FIELD_STRING, "lightprobetexture_dli")
 	DEFINE_KEYFIELD(m_szDliProbeTextureName, FIELD_STRING, "lightprobetexture_dls")
@@ -66,3 +65,4 @@ BEGIN_DATADESC(CLightProbeEntity)
 	DEFINE_KEYFIELD(m_nHandShake, FIELD_INTEGER, "handshake")
 	DEFINE_KEYFIELD(m_indoorOutdoorLevel, FIELD_INTEGER, "indoor_outdoor_level")
 END_DATADESC()
+

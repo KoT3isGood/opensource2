@@ -24,6 +24,10 @@ enum fieldtype_t {
 	FIELD_COLOR1,
 	FIELD_INTEGER,
 	FIELD_BOOLEAN,
+	
+	FIELD_MATERIAL,
+	FIELD_TEXTURE,
+	FIELD_MODEL,
 };
 
 struct typedescription_t

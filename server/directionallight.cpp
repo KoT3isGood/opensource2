@@ -8,30 +8,29 @@
 #include "lightentity.h"
 #include "maploader.h"
 
-class CDirectionalLight : public CLightEntity
+class CLightDirectionalEntity : public CLightEntity
 {
 public:
-	DECLARE_CLASS(CDirectionalLight, CLightEntity)
+	DECLARE_CLASS(CLightDirectionalEntity, CLightEntity)
 	DECLARE_DATADESC()
 
 	virtual void Spawn() override;
 
 };
 
-LINK_ENTITY_TO_CLASS(light_environment, CDirectionalLight)
+LINK_ENTITY_TO_CLASS(light_environment, CLightDirectionalEntity)
 
-void CDirectionalLight::Spawn()
+void CLightDirectionalEntity::Spawn()
 {
 	Vector direction = m_transform.m_rotation.GetForwardAxis();
-	direction.x *= -1;
-
+	printf("dir %f %f %f\n", direction.x, direction.y, direction.z);
 
 	m_pLightObject = (CSceneLightObject*)AcquireNextHandle(g_pSceneSystem->CreateDirectionalLight(GN(MapLoader()->GetMainWorld()), direction));
-	m_pLightObject->SetColor((Vector){m_lightColor.x, m_lightColor.y, m_lightColor.z});
 	m_pLightObject->AddTag(StringToken("light_directional"));
 
 	BaseClass::Spawn();
+	printf("dir %f %f %f\n", m_pLightObject->GetWorldDirection().x, m_pLightObject->GetWorldDirection().y, m_pLightObject->GetWorldDirection().z);
 }
 
-BEGIN_DATADESC(CDirectionalLight)
+BEGIN_DATADESC(CLightDirectionalEntity)
 END_DATADESC()

@@ -118,6 +118,7 @@ struct QAngle
 	float y;
 	float z;
 };
+#include "stdio.h"
 
 struct Quaternion 
 {
@@ -130,7 +131,7 @@ struct Quaternion
 	{
 		mat4 m;
 		versor q;
-		glm_euler((vec3){angle.x, angle.y, angle.z}, m);
+		glm_euler((vec3){glm_rad(angle.x), glm_rad(angle.y), glm_rad(angle.z)}, m);
 		glm_mat4_quat(m, q);
 		x = q[0];
 		y = q[1];
@@ -151,10 +152,12 @@ struct Quaternion
 
 	inline Vector GetForwardAxis()
 	{
-		vec3 f = {1,0,0};
+		vec3 f = {0,0,1};
+		vec3 f2 = {0,0,0};
 		versor q = {x,y,z,w};
+		glm_quat_rotatev(q, f, f2);
 
-		return *(Vector*)&f;
+		return *(Vector*)f2;
 	}
 };
 

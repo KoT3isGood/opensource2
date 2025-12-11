@@ -13,9 +13,11 @@
 #include "engine/handle.h"
 #include "engine/stringtoken.h"
 #include "entitysystem.h"
+#include "sourcetools/sourcetools.h"
 #include "stdio.h"
 #include "string.h"
 #include "stdlib.h"
+#include "tier1/utlstring.h"
 
 class CMapLoader : public IMapLoader
 {
@@ -65,11 +67,11 @@ void CMapLoader::LoadMap( const char *szMap )
 		)
 	);
 	m_pMainWorldRef->PrecacheAllWorldNodes(0x0080);
+	SpawnEntities();
 
 	SET_NATIVE(m_pMainPVS, g_pEnginePVSManager->BuildPvs(GN(m_pMainWorldRef)));
 	m_pMainWorld->SetPVS(GN(m_pMainPVS));
 
-	SpawnEntities();
 }
 
 template <typename T>
@@ -80,11 +82,15 @@ T *CMapLoader::GetVarWithOffset(CBaseEntity *pEntity, typedescription_t *pTypeDe
 
 void CMapLoader::SetKeyField( CBaseEntity *pEntity, typedescription_t *pTypeDesc, const char *szValue)
 {
+	CUtlString szUtl = szValue;
 	union {
 		Quaternion *pQuat;
 		Vector *pVector;
 		Vector4D *pColor;
-		char *szClonedString;
+		char **pszClonedString;
+		HMaterialStrong **ppMaterial;
+		HRenderTextureStrong **ppTexture;
+		HModelStrong **ppModel;
 	};
 	union {
 		struct
@@ -101,11 +107,10 @@ void CMapLoader::SetKeyField( CBaseEntity *pEntity, typedescription_t *pTypeDesc
 	case FIELD_INTEGER:
 		sscanf(szValue, "%i", GetVarWithOffset<int>(pEntity, pTypeDesc));
 		break;
+	case FIELD_FLOAT:
+		sscanf(szValue, "%f", GetVarWithOffset<float>(pEntity, pTypeDesc));
+		break;
 	case FIELD_STRING:
-		szClonedString = (char*)malloc(strlen(szValue)+1);
-		strcpy(szClonedString, szValue);
-		*GetVarWithOffset<const char*>(pEntity, pTypeDesc) = szClonedString;
-		printf("%s\n",szClonedString);
 		break;
 	case FIELD_QUATERNION_QANGLE:
 		pQuat = GetVarWithOffset<Quaternion>(pEntity, pTypeDesc);
@@ -123,6 +128,22 @@ void CMapLoader::SetKeyField( CBaseEntity *pEntity, typedescription_t *pTypeDesc
 		pColor->y = colorData.g/255.0;
 		pColor->z = colorData.b/255.0;
 		pColor->w = colorData.a/255.0;
+		break;
+	case FIELD_TEXTURE:
+		if (szUtl.GetExtension() == "vtex_c")
+		{
+			szUtl.RemoveTail(2);
+		}
+		ppTexture = GetVarWithOffset<HRenderTextureStrong*>(pEntity, pTypeDesc);
+		*ppTexture = Glue::Resources::GetTexture(szUtl);
+		break;
+	case FIELD_MATERIAL:
+		if (szUtl.GetExtension() == "vmat_c")
+		{
+			szUtl.RemoveTail(2);
+		}
+		ppMaterial = GetVarWithOffset<HMaterialStrong*>(pEntity, pTypeDesc);
+		*ppMaterial = Glue::Resources::GetMaterial(szUtl);
 		break;
 	default:
 		break;

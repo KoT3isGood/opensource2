@@ -19,15 +19,17 @@ DECLARE_BUILD_STAGE(launcher)
 	stCompile = {};
 	stCompile.m_szName = "launcher";
 	stCompile.files = {
+		"external/murmur2/MurmurHash2.c",
 		"launcher/launcher.cpp",
+
 		"engine/engine2.cpp",
 		"engine/time.cpp",
 		"engine/testrender.cpp",
+		"engine/valvefunnystd.cpp",
 		"engine/murmur2.cpp",
 		"engine/stringtoken.cpp",
 		"engine/cvar.cpp",
 		"engine/nativecvar.cpp",
-		"external/murmur2/MurmurHash2.c",
 
 		"server/game.cpp",
 		"server/maploader.cpp",
@@ -37,7 +39,11 @@ DECLARE_BUILD_STAGE(launcher)
 		"server/pointentity.cpp",
 		"server/lightentity.cpp",
 		"server/directionallight.cpp",
-		"server/lightprobevolume.cpp",
+		"server/envsky.cpp",
+		"server/envcubemap.cpp",
+		"server/envcubemapbox.cpp",
+		"server/envlightprobevolume.cpp",
+		"server/envcombinedlightprobevolume.cpp",
 	};
 	stCompile.includeDirectories = {
 		"public",

@@ -13,6 +13,7 @@ void ServerInit()
 
 void ServerFrame()
 {
+	Console()->AddCommand("r_light_probe_volume_debug_grid 1");
 	Console()->Execute();
 	EntitySystem()->Think();
 }

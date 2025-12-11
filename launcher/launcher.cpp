@@ -7,6 +7,7 @@
 #include "tier0/platform.h"
 #include "tier1/commandline.h"
 #include "stdio.h"
+#include "valvefunnystd.h"
 #include "windows.h"
 #include "libloaderapi.h"
 #include "engine/structs.h"
@@ -31,7 +32,7 @@ fpxr::Instance *FPXRInstance;
 
 void CC RegisterEngineLogger( int id, const char *v )
 {
-	printf("EngineLogger %s\n",v);
+	//printf("EngineLogger %s\n",v);
 }
 void CC OnClientOutput()
 {
@@ -71,6 +72,7 @@ SourceHandle_t *g_pCurrentSourceHandle = NULL;
 int iLastHandleIndex = 0;
 void *AcquireNextHandle(int hHandle)
 {
+	printf("Got %i\n", hHandle);
 	g_pCurrentSourceHandle->handle = hHandle;
 	return g_pCurrentSourceHandle->pObject;
 }
@@ -84,80 +86,41 @@ void *GetByHandle(int hHandle)
 	}
 	return NULL;
 }
+#define ALLOCATE_HANDLE( className ) \
+if (type==StringToken(#className)) \
+{ \
+	SourceHandle_t *pHandle = new SourceHandle_t; \
+	C##className *pSceneWorld = new C##className; \
+	pSceneWorld->m_pSelf = ptr; \
+	pHandle->pObject = pSceneWorld; \
+	pHandle->pNext = g_pCurrentSourceHandle; \
+	g_pCurrentSourceHandle = pHandle; \
+	iLastHandleIndex++; \
+	return iLastHandleIndex; \ 
+}
+
+#define ALLOCATE_HANDLE_INTERFACE( className ) \
+if (type==StringToken(#className)) \
+{ \
+	SourceHandle_t *pHandle = new SourceHandle_t; \
+	I##className *pSceneWorld = new I##className; \
+	pSceneWorld->m_pSelf = ptr; \
+	pHandle->pObject = pSceneWorld; \
+	pHandle->pNext = g_pCurrentSourceHandle; \
+	g_pCurrentSourceHandle = pHandle; \
+	iLastHandleIndex++; \
+	return iLastHandleIndex; \ 
+}
 
 int CC RegisterHandle( void *ptr, unsigned int type )
 {
-	printf("Created %i %p\n",type, ptr);
-	if (type==StringToken("SceneWorld"))
-	{
-		SourceHandle_t *pHandle = new SourceHandle_t;
-		ISceneWorld *pSceneWorld = new ISceneWorld;
-		pSceneWorld->m_pSelf = ptr;
-		pHandle->pObject = pSceneWorld;
-		pHandle->pNext = g_pCurrentSourceHandle;
-		g_pCurrentSourceHandle = pHandle;
-		iLastHandleIndex++;
-		return iLastHandleIndex; 
-	}
-	if (type==StringToken("SceneObject"))
-	{
-		SourceHandle_t *pHandle = new SourceHandle_t;
-		CSceneObject *pSceneObject = new CSceneObject;
-		pSceneObject->m_pSelf = ptr;
-		pHandle->pObject = pSceneObject;
-		pHandle->pNext = g_pCurrentSourceHandle;
-		g_pCurrentSourceHandle = pHandle;
-		iLastHandleIndex++;
-		return iLastHandleIndex; 
-	}
-	if (type==StringToken("SceneLightObject"))
-	{
-		SourceHandle_t *pHandle = new SourceHandle_t;
-		CSceneLightObject *pSceneObject = new CSceneLightObject;
-		pSceneObject->m_pSelf = ptr;
-		pHandle->pObject = pSceneObject;
-		pHandle->pNext = g_pCurrentSourceHandle;
-		g_pCurrentSourceHandle = pHandle;
-		iLastHandleIndex++;
-		return iLastHandleIndex; 
-	}
-	if (type==StringToken("SceneLightProbeVolumeObject"))
-	{
-		SourceHandle_t *pHandle = new SourceHandle_t;
-		CSceneLightProbeVolumeObject *pSceneObject = new CSceneLightProbeVolumeObject;
-		pSceneObject->m_pSelf = ptr;
-		pHandle->pObject = pSceneObject;
-		pHandle->pNext = g_pCurrentSourceHandle;
-		g_pCurrentSourceHandle = pHandle;
-		iLastHandleIndex++;
-		return iLastHandleIndex; 
-	}
+	ALLOCATE_HANDLE_INTERFACE(SceneWorld);
+	ALLOCATE_HANDLE(SceneObject);
+	ALLOCATE_HANDLE(SceneLightObject);
+	ALLOCATE_HANDLE(SceneLightProbeVolumeObject);
+	ALLOCATE_HANDLE(SceneSkyBoxObject);
+	ALLOCATE_HANDLE(EnvMapSceneObject);
 	return -1;
-}
-
-void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
-{
-	FROM_NATIVE(ISceneView, pView);
-	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
-	
-
-	/*
-	CREATE_NATIVE(ISceneLayer, pSceneLayer);
-	SET_NATIVE(pSceneLayer, pView->AddRenderLayer("TestLayer", viewport, StringToken("Forward"), NULL));
-	HSceneViewRenderTarget rt;
-	rt.hHandle = -1;
-	pSceneLayer->SetOutput(hColor, hDepth);
-	pSceneLayer->SetClearColor((Vector4D){1,0.5,0,1}, 0);
-	pSceneLayer->m_nClearFlags = 0xFF;
-	pRenderAttributes->MergeToPtr((CRenderAttributes*)pSceneLayer->GetRenderAttributesPtr());
-	*/
-}
-
-void PipelineEnd(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
-{
-	
-	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
-	FROM_NATIVE(ISceneView, pView);
 }
 
 struct ManagedRenderSetup_t
@@ -169,6 +132,57 @@ struct ManagedRenderSetup_t
 	int msaaLevel;
 	SceneSystemPerFrameStats_t *stats;
 };
+
+void TiledCulling_Callback( ManagedRenderSetup_t _setup )
+{
+	CREATE_NATIVE(IRenderContext, renderContext);
+	SET_NATIVE(renderContext, _setup.renderContext);
+	CREATE_NATIVE(ISceneLayer, sceneLayer);
+	SET_NATIVE(sceneLayer, _setup.sceneLayer);
+	
+	CREATE_NATIVE(ISceneView, sceneView);
+	SET_NATIVE(sceneView, _setup.sceneView);
+
+	g_pSceneSystem->RenderTiledLightCulling(_setup.renderContext, _setup.sceneView, sceneView->GetMainViewport());
+};
+
+void AddLayersToView(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
+{
+	FROM_NATIVE(ISceneView, pView);
+	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
+
+	CREATE_NATIVE(CFrustum, pFrustum);
+	SET_NATIVE(pFrustum, pView->GetFrustum());
+
+
+	CREATE_NATIVE(ISceneLayer, pSceneLayer);
+	SET_NATIVE(pSceneLayer, pView->AddRenderLayer("Lightbinner", viewport, 0, NULL));
+	pSceneLayer->m_nLayerFlags = 0x10000 | 0x4;
+	pSceneLayer->SetOutput(hColor, hDepth);
+	pSceneLayer->AddObjectFlagsRequiredMask((uint64_t)SceneObjectFlags::IsLight);
+	pSceneLayer->AddObjectFlagsExcludedMask(0x0);
+
+	SET_NATIVE(pSceneLayer,
+	pView->AddManagedProceduralLayer("Tiled Culling", viewport, (void*)TiledCulling_Callback, NULL, true)
+	);
+	pSceneLayer->m_nLayerFlags = 0x4 | 0x40 | 0x200 | 0x40000;
+	pSceneLayer->SetOutput(hColor, hDepth);
+	pSceneLayer->AddObjectFlagsRequiredMask(0x0);
+	pSceneLayer->AddObjectFlagsExcludedMask(0x0);
+}
+
+void PipelineEnd(ISceneView *_pView, RenderViewport_t viewport, HSceneViewRenderTarget hColor, HSceneViewRenderTarget hDepth, uint64_t nMSAA, CRenderAttributes *_pRenderAttributes)
+{
+	
+	CREATE_NATIVE(ISceneView, sceneView);
+	SET_NATIVE(sceneView, _pView);
+	
+	CREATE_NATIVE(CFrustum, pFrustum);
+	SET_NATIVE(pFrustum, sceneView->GetFrustum());
+
+	FROM_NATIVE(CRenderAttributes, pRenderAttributes);
+	FROM_NATIVE(ISceneView, pView);
+}
 enum LayerStage: int
 {
 	LAYER_STAGE_AfterDepthPrepass = 1000,
@@ -197,10 +211,18 @@ void OnLayer( LayerStage renderHookStage, ManagedRenderSetup_t _setup)
 
 	CREATE_NATIVE(CFrustum, pFrustum);
 	SET_NATIVE(pFrustum, sceneView->GetFrustum());
+
 }
 
 void OnSceneViewSubmitted( ISceneView* view )
 {
+	CREATE_NATIVE(ISceneView, sceneView);
+	SET_NATIVE(sceneView, view);
+	
+	CREATE_NATIVE(CFrustum, pFrustum);
+	SET_NATIVE(pFrustum, sceneView->GetFrustum());
+	*pFrustum = CFrustum();
+	// should the camera pos be that low in some of the stuff?
 }
 
 int InternalIsActive()
@@ -353,11 +375,21 @@ int main( int nArgc, char **argv )
 
 	int v = SourceEnginePreInit("engine2.exe", (CMaterialSystem2AppSystemDict*)AppSystem->m_pSelf);
 	if (!v) printf("Failed to SourceEnginePreInit\n");
+
+
+	_CUtlVector<_CUtlString> resources_unusable = _CUtlVector<_CUtlString>(8,8);
+	CUtlVector<CUtlString> resources;
+
+	g_pResourceSystem->GetAllCodeManifests(GN((&resources_unusable)));
+	resources = ToFunnyVectorString(&resources_unusable);
+
+	for (auto r: resources)
+	{
+		printf("r %s\n",r.GetString());
+	}
+
 	v = SourceEngineInit(GN(AppSystem));
 	if (!v) printf("Failed to SourceEngineInit\n");
-
-	pTestRendering->Init();
-	ServerInit();
 
 	/*
 	bool bTools = CommandLine()->CheckParam("-tools");
@@ -371,10 +403,14 @@ int main( int nArgc, char **argv )
 
 
 
-	Plat_SetCurrentFrame(0);
 
+
+	pTestRendering->Init();
+	ServerInit();
+	
 	float fCurrentTime = Plat_GetTime();
 	float fPreviousTime = fCurrentTime;
+	Plat_SetCurrentFrame(0);
 
 	while(true)
 	{

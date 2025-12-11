@@ -1,6 +1,7 @@
 #include "tier1/utlstring.h"
 #include "tier0/lib.h"
 #include "stdarg.h"
+#include "tier0/platform.h"
 CUtlString::CUtlString( void )
 {
 	m_data.Reserve(1);
@@ -71,6 +72,10 @@ void CUtlString::RemoveHead( size_t nCount )
 void CUtlString::RemoveAt( size_t nPosition, size_t nCount )
 {
 
+}
+CUtlString CUtlString::GetExtension( void )
+{
+	return Plat_GetExtension(GetString());
 }
 
 char *CUtlString::GetString( void )
