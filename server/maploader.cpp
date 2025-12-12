@@ -67,10 +67,10 @@ void CMapLoader::LoadMap( const char *szMap )
 		)
 	);
 	m_pMainWorldRef->PrecacheAllWorldNodes(0x0080);
-	SpawnEntities();
-
 	SET_NATIVE(m_pMainPVS, g_pEnginePVSManager->BuildPvs(GN(m_pMainWorldRef)));
 	m_pMainWorld->SetPVS(GN(m_pMainPVS));
+	
+	SpawnEntities();
 
 }
 

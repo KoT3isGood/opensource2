@@ -16,7 +16,7 @@
 void CBaseModelEntity::Spawn()
 {
 	
-	SetAbsOrigin({200,0,25});
+	SetAbsOrigin({200,0,35});
 	SetScale(1);
 	SetModel(TEST_MODEL_NAME);
 }

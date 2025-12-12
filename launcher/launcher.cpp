@@ -221,7 +221,6 @@ void OnSceneViewSubmitted( ISceneView* view )
 	
 	CREATE_NATIVE(CFrustum, pFrustum);
 	SET_NATIVE(pFrustum, sceneView->GetFrustum());
-	*pFrustum = CFrustum();
 	// should the camera pos be that low in some of the stuff?
 }
 
@@ -308,7 +307,7 @@ int main( int nArgc, char **argv )
 
 	for (int i = 0; i<80;i++)
 	{
-		g_engine_callbackFunctions[i] = (void*)(0x123400+i);
+		g_engine_callbackFunctions[i] = (void*)(0x100+i);
 	}
 	/*
 	for (int i = 0; i<417;i++)

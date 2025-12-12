@@ -47,9 +47,9 @@ void CEnvCombinedLightProbeVolume::Spawn()
 	m_pProbeVolumeObject->m_vBoxMaxs = m_vBoxMins;
 	m_pProbeVolumeObject->m_nHandshake = m_nHandShake;
 	m_pProbeVolumeObject->m_nRenderPriority = m_indoorOutdoorLevel;
+	m_pProbeVolumeObject->SetTransform(m_transform);
 	m_pProbeVolumeObject->SetRenderingEnabled(true);
 	m_pProbeVolumeObject->CreateConstants();
-	m_pProbeVolumeObject->SetTransform(m_transform);
 	g_pSceneSystem->MarkLightProbeVolumeObjectUpdated(GN(m_pProbeVolumeObject));
 	
 	m_pSceneCubemap = (CEnvMapSceneObject*)AcquireNextHandle(g_pSceneSystem->CreateEnvMap(GN(MapLoader()->GetMainWorld()), 1));
